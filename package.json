@@ -1,0 +1,24 @@
+{
+  "name": "news-agent-architecture",
+  "version": "1.0.0",
+  "description": "> 交叉核验 · 案例深度 · 视觉优先",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Julian-Commit/architecture-daily-briefing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Julian-Commit/architecture-daily-briefing/issues"
+  },
+  "homepage": "https://github.com/Julian-Commit/architecture-daily-briefing#readme",
+  "dependencies": {
+    "puppeteer": "^25.3.0"
+  }
+}
