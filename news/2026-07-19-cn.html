@@ -45,7 +45,7 @@ body{background:#e8e4df;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
 @media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
 .hl{border:1px solid #d5d0c8;margin-bottom:14px;background:#fff;transition:box-shadow .2s}
 .hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
-.hl .hl-img{width:100%;aspect-ratio:2/1;object-fit:cover;background:#e8e4df;display:block;border-bottom:1px solid #d5d0c8}
+.hl .hl-img{width:100%;aspect-ratio:2/1;object-fit:cover;background:#d5d0c8;display:block;border-bottom:1px solid #d5d0c8}
 .hl .hl-body{padding:16px 18px 18px}
 .hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
 .hl .hl-tag.arc{background:#2d2d2d}.hl .hl-tag.urb{background:#8b7355}.hl .hl-tag.mat{background:#4a6741}.hl .hl-tag.aca{background:#5b4a8a}
@@ -62,7 +62,7 @@ body{background:#e8e4df;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
 }
 @media(min-width:1024px){.hl .hl-img{width:300px}}
 .ft{border:1px solid #d5d0c8;margin-bottom:18px;background:#fff}
-.ft .ft-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#e8e4df;display:block;border-bottom:1px solid #d5d0c8}
+.ft .ft-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#d5d0c8;display:block;border-bottom:1px solid #d5d0c8}
 .ft .ft-body{padding:20px 18px}
 .ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:#2d2d2d;text-transform:uppercase}
 .ft .ft-label.arc{border-color:#2d2d2d;color:#2d2d2d;background:#f0f0f0}
@@ -129,11 +129,11 @@ body{background:#e8e4df;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
 
 <main class="ct">
 
-<div class="note">⚠️ 测试刊 · 图片来自公开发布的新闻照片</div>
+<div class="note">⚠️ 测试刊 · 所有图片均来自新闻源站公开发布的 og:image，通过 Puppeteer 抓取</div>
 
 <section class="preface">
   <span class="pf-label">编者按</span>
-  <p>本周建筑界从三大尺度展现了"设计如何回应环境"这一核心命题。在建筑尺度，KPF 在深圳以千米"景观飘带 (Landscape Ribbon)"串联三座塔楼，将公共空间引入高密度科技园区；Kéré Architecture 在慕尼黑以全木结构打造"垂直游乐场"幼儿园。在城市尺度，孟买 Kala Ghoda 遗产街区推行周末无车化改造，以公共艺术与石铺步道重塑步行体验。在技术尺度，MIT 拓扑优化桥梁证明打印硬件而非材料强度才是结构轻量化的最大瓶颈——喷嘴从 4cm 缩至 1cm 可减少 76% 用料；爱尔兰 Trinity College 则验证了无水泥 3D 打印地质聚合物 (Geopolymer) 减排约 70%。学术方面，王澍、陆文宇公布 2027 威尼斯建筑双年展主题，Biennale College 青年征选结果明日揭晓。</p>
+  <p>本周末建筑界在项目、城市、材料、学术四个维度均有重要动态。Snøhetta 设计的罗斯福总统图书馆 (Theodore Roosevelt Presidential Library) 在北达科他州荒地揭幕——夯土墙 (Rammed Earth)、大规模木结构 (Mass Timber) 与低碳混凝土嵌入山脊线，追求运营碳中和。KPF 在深圳以千米"景观飘带 (Landscape Ribbon)"串联三座塔楼的 TP-Link 园区，Kéré Architecture 在慕尼黑用全木结构与滑梯打造"垂直游乐场"幼儿园。在城市更新方面，德里 376 年历史的 Chandni Chowk 市场面临新一轮改造，里约以 17 亿雷亚尔启动 Praça Onze 城市更新——Francis Kéré 设计的"知识图书馆"将成为区域核心参照。3D 打印建造领域，MIT 的拓扑优化桥梁量化了硬件限制，爱尔兰 Trinity College 验证了无水泥地质聚合物 (Geopolymer)。学术板块：威尼斯双年展 Biennale College 征选结果明日（7 月 20 日）公布，全球多所建筑院校同时举办夏季学校。</p>
 </section>
 
 <section class="sec" id="headlines">
@@ -145,52 +145,52 @@ body{background:#e8e4df;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
   <div class="sec-inner">
 
     <article class="hl">
-      <img class="hl-img" src="https://news.mit.edu/sites/default/files/images/202607/mit-cee-concrete-bridge-tackowiak-schemmer-00_0.JPG" alt="MIT 3D 打印混凝土桥——研究人员与桥梁合影" onerror="this.style.background='#d5d0c8';this.style.display='block';">
-      <div class="hl-body">
-        <span class="hl-tag mat">材料 · Materials</span>
-        <div class="hl-title">MIT 拓扑优化 3D 打印桥：硬件而非材料才是瓶颈</div>
-        <div class="hl-meta"><span class="src">MIT News</span> · 07.15 · 交叉核验：MIT News · 3DPrinting.com</div>
-        <div class="hl-desc">MIT 团队开发了将 3D 打印机物理限制直接嵌入拓扑优化 (Topology Optimization) 的框架，打印了一座 2.3 米混凝土桥。荷载测试表明：当前 4cm 喷嘴宽度是结构轻量化的最大限制——若能缩至 1cm，材料用量可减少 76%。打印耗时约 30 分钟，用现成砂浆完成。</div>
-      </div>
-    </article>
-
-    <article class="hl">
-      <img class="hl-img" src="" alt="KPF TP-Link LXD 深圳科技园——千米景观飘带串联三座塔楼" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <img class="hl-img" src="https://static.dezeen.com/uploads/2026/06/tp-link-lxd-tech-campus-kpf-china_dezeen_2364_hero_0.jpg" alt="KPF TP-Link LXD 深圳科技园——千米景观飘带串联三座塔楼" onerror="this.style.background='#d5d0c8'">
       <div class="hl-body">
         <span class="hl-tag arc">项目 · Project</span>
         <div class="hl-title">KPF 以千米"景观飘带"串联深圳科技园三塔</div>
         <div class="hl-meta"><span class="src">Dezeen</span> · 07.18 · 交叉核验：Dezeen · KPF</div>
-        <div class="hl-desc">KPF 为 TP-Link 在深圳设计的总建筑面积 124,600m² 科技园区，两座办公塔楼与一座住宅塔楼由长达 1 公里的阶梯式"景观飘带"环绕连接。飘带融合动线、会议区、绿化、甚至篮球场于一体。外立面采用全高玻璃与穿孔金属板交替覆盖。摄影：Justin Szeremeta。</div>
+        <div class="hl-desc">124,600m² 园区由两座办公塔楼与一座住宅塔楼组成，1 公里阶梯式飘带融合动线、会议区、绿化与运动场地。外立面采用全高玻璃与穿孔金属板。飘带由 Arup 工程师协作完成钢结构与混凝土板的整合。摄影：Justin Szeremeta。</div>
       </div>
     </article>
 
     <article class="hl">
-      <img class="hl-img" src="" alt="Kéré Architecture Kinderoase 慕尼黑幼儿园——全木结构垂直游乐场" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <img class="hl-img" src="https://static.dezeen.com/uploads/2026/07/kere-architecture-kinderoase-an-der-tum-munich-hero_dezeen_2364_col_1.jpg" alt="Kéré Architecture Kinderoase 慕尼黑幼儿园——全木结构垂直游乐场" onerror="this.style.background='#d5d0c8'">
       <div class="hl-body">
         <span class="hl-tag arc">项目 · Project</span>
         <div class="hl-title">Kéré 为慕尼黑工大打造全木"垂直游乐场"幼儿园</div>
         <div class="hl-meta"><span class="src">Dezeen · ArchDaily</span> · 07.07–08 · 交叉核验：二源一致</div>
-        <div class="hl-desc">Diébédo Francis Kéré 设计的 Kinderoase 幼儿园面积 1,540m²，几乎全木结构，容纳 60 名儿童。建筑被设计为五层"垂直游乐场"——圆形楼梯与贯穿楼层的木滑梯连接各层，外立面以耐候钢 (Weathering Steel) 板条包裹黑化木结构。摄影：Iwan Baan。</div>
+        <div class="hl-desc">Francis Kéré 设计的 1,540m² Kinderoase 幼儿园以几乎全木结构建造，容纳 60 名儿童。五层空间由圆形天光楼梯与贯穿楼层的木滑梯连接，外立面以耐候钢 (Weathering Steel) 板条包裹黑化木结构。摄影：Iwan Baan。</div>
       </div>
     </article>
 
     <article class="hl">
-      <img class="hl-img" src="" alt="如恩设计 Neri&Hu——香港置地文华东方酒店陶土幕墙" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <img class="hl-img" src="" alt="Snøhetta 罗斯福总统图书馆——夯土墙嵌入荒地山脊" onerror="this.style.background='#d5d0c8'" style="background:#d5d0c8">
       <div class="hl-body">
         <span class="hl-tag arc">项目 · Project</span>
-        <div class="hl-title">如恩以"城市织锦"陶土幕墙重塑香港酒店立面</div>
-        <div class="hl-meta"><span class="src">Dezeen</span> · 07.14 · 交叉核验：Dezeen · Neri&Hu</div>
-        <div class="hl-desc">如恩设计研究室为香港中环置地文华东方酒店打造全新立面，将原有玻璃幕墙完全覆盖。铸陶土砖 (Cast Terracotta Tiles) 错位排列形成编织纹理，每排由深色青铜托架支撑，间或嵌入铸造玻璃砖实现夜间照明。摄影：朱润资。</div>
+        <div class="hl-title">Snøhetta 罗斯福总统图书馆以夯土嵌入北达科他荒地揭幕</div>
+        <div class="hl-meta"><span class="src">New Atlas</span> · 07.07 · 交叉核验：New Atlas · TRPL</div>
+        <div class="hl-desc">96,000 平方英尺（8,918m²）的图书馆嵌入山丘而非立于其上。大规模木结构 + 本地夯土墙 + 定制低碳混凝土构建。太阳能与地热能源超需求供应，100% 废水现场回收。总造价 4.5 亿美元，预计年访客 20 万人。</div>
       </div>
     </article>
 
     <article class="hl">
-      <img class="hl-img" src="" alt="孟买 Kala Ghoda 遗产街区——周末无车步行街改造" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <img class="hl-img" src="https://news.mit.edu/sites/default/files/images/202607/mit-cee-concrete-bridge-tackowiak-schemmer-00_0.JPG" alt="MIT 研究人员与 3D 打印混凝土桥梁" onerror="this.style.background='#d5d0c8'">
+      <div class="hl-body">
+        <span class="hl-tag mat">材料 · Materials</span>
+        <div class="hl-title">MIT 拓扑优化桥证明：打印硬件而非材料才是轻量化瓶颈</div>
+        <div class="hl-meta"><span class="src">MIT News · 3D Printing Industry</span> · 07.15–17 · 交叉核验：三源一致</div>
+        <div class="hl-desc">混合整数优化 (Mixed-Integer Optimization) 框架将打印机的喷嘴宽度、转弯半径和连续路径约束直接嵌入算法。打印耗时约 30 分钟，2.3 米桥荷载测试超 2,000 磅未弯曲。结论：喷嘴从 4cm 缩至 1cm 可减少 76% 用料。</div>
+      </div>
+    </article>
+
+    <article class="hl">
+      <img class="hl-img" src="" alt="德里 Chandni Chowk 历史市场——376 年历史面临新一轮更新" onerror="this.style.background='#d5d0c8'" style="background:#d5d0c8">
       <div class="hl-body">
         <span class="hl-tag urb">城市 · Urbanism</span>
-        <div class="hl-title">孟买 Kala Ghoda 遗产街区周末无车化重塑步行体验</div>
-        <div class="hl-meta"><span class="src">Time Out · Hindustan Times · Free Press Journal</span> · 07.14–15 · 交叉核验：三源一致</div>
-        <div class="hl-desc">孟买市政公司 (BMC) 推出"艺术大道 (Art Avenue)"美化照明工程，耗资 8 千万卢比，将 Kala Ghoda 五条遗产街道改造为周末无车区。项目以灰色和黑色花岗岩铺设步道，创作壁画与雕塑，每周六日 18:00–24:00 仅对行人开放。</div>
+        <div class="hl-title">德里 Chandni Chowk 376 年市场更新：传承与现代化的博弈</div>
+        <div class="hl-meta"><span class="src">New Indian Express · Times of India</span> · 07.09–13 · 交叉核验：四源综合</div>
+        <div class="hl-desc">由莫卧儿公主 Jahanara Begum 于 1650 年设计的这条 1,400 码大道连接红堡与法塔赫布里清真寺，每天吞吐数十万人。德里政府将重建公司更名并启动改造，历史学者呼吁以"更新 (Renewal)"代替"再开发 (Redevelopment)"。</div>
       </div>
     </article>
 
@@ -206,30 +206,29 @@ body{background:#e8e4df;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
   <div class="sec-inner">
 
     <article class="ft">
-      <img class="ft-img" src="" alt="Casa Diez Pies 墨西哥悬崖住宅——十根混凝土柱支撑" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <img class="ft-img" src="https://static.dezeen.com/uploads/2026/07/studio-font-casa-diez-pies-mexico-hero_dezeen_2364_col_0.jpg" alt="Casa Diez Pies 墨西哥悬崖住宅——十根混凝土柱" onerror="this.style.background='#d5d0c8'">
       <div class="ft-body">
         <span class="ft-label arc">深度解读 · DEEP DIVE</span>
-        <div class="ft-title">结构即功能：Studio Font 以十根混凝土柱定义悬崖住宅的新范式</div>
+        <div class="ft-title">结构即功能：Studio Font 十根混凝土柱定义悬崖住宅新范式</div>
         <div class="ft-meta"><span class="src">Dezeen</span> · 07.16 · 交叉核验：Dezeen · Studio Font</div>
         <div class="ft-desc">
-          <p>墨西哥本地事务所 Studio Font 完成的 Casa Diez Pies（十尺之家）坐落于 Mazunte 太平洋海岸悬崖之上，250m² 的住宅由 10 根大型混凝土柱 (Concrete Columns) 支撑，不仅提供结构支撑，更将楼梯、浴室和储藏空间整合其中——实现了"结构、功能与围护三合一"。</p>
-          <p><strong>设计概念：</strong>"每根支撑同时是结构 (Structure)、功能 (Programme) 与围护 (Enclosure)"，创始人 Raquel Font 对 Dezeen 表示。柱体的曲线造型灵感来自附近 Punta Cometa 的岩层——海蚀数百万年形成的平滑体量。</p>
-          <p><strong>空间策略：</strong>建筑沿地形逐级而下，以一系列阶梯式露台 (Terraces) 面向大海，全高折叠木百叶窗使室内空间延伸至独立阳台。屋顶露台由外挂混凝土楼梯连接，其中两个覆盖着大型木格栅遮阳棚，一个设有浅水池。楼板"位移"生成连续的室内空间、露台与半室外区域的序列。</p>
-          <p><strong>材料做法：</strong>结构采用暖色调赤陶色现浇混凝土 (Cast-in-situ Concrete)，手动弯曲钢筋 + 定制模板实现曲面转角。木材内衬天花板与定制木作与混凝土形成材质对比。部分柱顶以玻璃封顶形成下层天窗，其他则以小型种植池收头。</p>
+          <p>墨西哥 Studio Font 完成的 Casa Diez Pies（十尺之家）坐落 Mazunte 太平洋海岸悬崖。250m² 住宅由 10 根大型混凝土柱 (Concrete Column) 支撑——"每根支撑同时是结构、功能与围护"，创始人 Raquel Font 表示。柱体内部整合了楼梯、浴室和储藏空间，造型灵感来自附近 Punta Cometa 海蚀岩层。</p>
+          <p><strong>空间策略：</strong>建筑沿地形逐级而下，以阶梯式露台 (Terraces) 面向大海，全高折叠木百叶窗将室内延伸至独立阳台。楼板位移生成连续的室内空间、露台与半室外区域序列。</p>
+          <p><strong>材料做法：</strong>暖色调赤陶色现浇混凝土 (Cast-in-situ Concrete)，手动弯曲钢筋 + 定制模板实现曲面转角。木材内衬天花板和定制木作与混凝土对比。部分柱顶以玻璃封顶形成天窗，其他以种植池收头。</p>
         </div>
       </div>
     </article>
 
     <div class="ngrid">
       <div class="ni"><div class="ni-accent"></div>
-        <div class="ni-title">Arches 以黑木铜板打造立陶宛森林疗愈 retreat</div>
+        <div class="ni-title">Arches 以黑木铜板打造立陶宛森林疗愈 Sanctum retreat</div>
         <div class="ni-meta"><span class="src">Dezeen</span> · 07.09</div>
-        <div class="ni-desc">Sanctum retreat 位于 Bezdonys 森林中，CLT (Cross-Laminated Timber) 结构小屋围绕现有树木布局。黑色木材与铜板外墙随风化演变，设计强调"让森林本身被更强烈地体验"。</div>
+        <div class="ni-desc">CLT 结构小屋围绕现有树木布局，黑色木材与铜板外墙随风化演变。中央庭院以成熟橡树为核心，薄木柱廊定义回廊、游廊与连接步道。</div>
       </div>
       <div class="ni"><div class="ni-accent"></div>
-        <div class="ni-title">海藻提取物使土基 3D 打印材料强度提升 25%</div>
-        <div class="ni-meta"><span class="src">Industry Tap</span> · 07.08</div>
-        <div class="ni-desc">仅添加 0.12% 海藻酸钠（褐藻提取物），黏土砂混合料的压缩强度提高 25%，打印速度提升 33%。成功打印出 60 度外倾薄壁结构而未坍塌。</div>
+        <div class="ni-title">Snøhetta 罗斯福图书馆：太阳能超需求供应，100% 废水回收</div>
+        <div class="ni-meta"><span class="src">New Atlas</span> · 07.07</div>
+        <div class="ni-desc">屋顶六角网格天窗照亮室内通道，中央透风廊 (Breezeway) 对自然开放。93 英亩校园含 0.6 英里木栈道、户外教室与天空展亭。</div>
       </div>
     </div>
   </div>
@@ -244,29 +243,29 @@ body{background:#e8e4df;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
   <div class="sec-inner">
 
     <article class="ft">
-      <img class="ft-img" src="" alt="德里 Chandni Chowk 历史街区——376 年市场面临更新" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <img class="ft-img" src="https://cyprus-mail.com/wp-content/uploads/2026/07/Nicosia-municipal-gardens.jpeg" alt="Nicosia 历史市政花园——现代主义建筑师 Neoptolemos Michaelides 设计" onerror="this.style.background='#d5d0c8'">
       <div class="ft-body">
         <span class="ft-label urb">深度解读 · DEEP DIVE</span>
-        <div class="ft-title">德里与孟买双城记：印度遗产街区更新的两条路径</div>
-        <div class="ft-meta"><span class="src">New Indian Express · Time Out · Hindustan Times · Free Press Journal</span> · 07.10–15 · 交叉核验：四源综合</div>
+        <div class="ft-title">全球遗产城市更新三条路径：德里、里约、Nicosia 的不同解法</div>
+        <div class="ft-meta"><span class="src">New Indian Express · prefeitura.rio · Cyprus Mail · Times of India</span> · 07.09–17 · 交叉核验：四源综合</div>
         <div class="ft-desc">
-          <p>2026 年 7 月中旬，印度两大城市同时推进了两种不同类型的遗产街区更新——新德里的 Chandni Chowk 和孟买的 Kala Ghoda——形成了一组有趣的对比样本。</p>
-          <p><strong>德里 Chandni Chowk（自上而下的政府主导）：</strong>这条由莫卧儿皇帝沙贾汗之女 Jahanara Begum 于 1650 年设计的 1,400 码长历史大道，连接红堡 (Red Fort) 与法塔赫布里清真寺，是南亚最繁忙的批发零售市场之一。德里政府将 Shahjahanabad 重建公司更名为 Indraprastha Virasat Punarvikas Nigam，以 Chandni Chowk 为首要更新目标。7.12km² 老城包含 1 处世界遗产、10 处国家级保护建筑、700+ 处地方级遗产。规划要求现代化公厕、停车场、游客服务中心，同时保持历史特征。</p>
-          <p><strong>孟买 Kala Ghoda（自下而上的空间活化）：</strong>BMC 耗资 8 千万卢比（约 680 万人民币），改造 3,443m² 街面、长约 500m。五条遗产街道——Saibaba Marg、Rope Walk Lane、Dr V.B. Gandhi Marg 等——以灰黑花岗岩与玄武岩铺设步道，设置公共艺术、壁画和由 JJ 艺术学校学生创作的雕塑。每周六日 18:00–24:00 封闭机动车，仅对行人开放。首席部长 Fadnavis 称"孟买新增了一个艺术街区"。</p>
+          <p><strong>德里 Chandni Chowk（自上而下的政府主导）：</strong>德里政府将 Shahjahanabad 重建公司更名为 IVPN，以 Chandni Chowk 为首要更新目标。7.12km² 老城含 1 处世界遗产、10 处国家级 + 10 处邦级保护建筑、700+ 地方级遗产。但历史学者和居民质疑："再开发是什么意思？是要拆除老建筑吗？" 保护建筑师 Anisha Shekhar Mukherji 呼吁"以人为本"的渐进式干预，而非宏大总体规划。</p>
+          <p><strong>里约 Praça Onze（公私合作的城市更新）：</strong>7 月 9 日批准的补充法创建 458,000m² 特殊城市利益区，20 年内投资 17 亿雷亚尔，预计建造 37,000 套住宅。核心建筑参照为 Francis Kéré 设计的"知识图书馆"。拆除 31 de Março 高架公路，新建"民主大道"。与 Porto Maravilha 不同，资金来源于市政物业出售而非 Cepacs。</p>
+          <p><strong>Nicosia 市政花园（竞赛驱动）：</strong>410 万欧元的建筑竞赛恢复由现代主义建筑师 Neoptolemos Michaelides 设计的保护级花园。市长 Charalambos Prountzos 强调"每项干预必须尊重历史建筑特征，必要时可逆 (Reversible)"。过去两年全市新增 22,500+ 棵树。</p>
         </div>
       </div>
     </article>
 
     <div class="ngrid">
       <div class="ni"><div class="ni-accent"></div>
-        <div class="ni-title">Nicosia 发起 410 万欧元历史市政花园改造竞赛</div>
-        <div class="ni-meta"><span class="src">Cyprus Mail</span> · 07.17</div>
-        <div class="ni-desc">由现代主义建筑师 Neoptolemos Michaelides 设计的保护建筑，市长要求"每项干预必须尊重历史与建筑特征，必要时可逆 (Reversible)"。过去两年全市新增种植 22,500+ 棵树。</div>
+        <div class="ni-title">Ahmedabad 遗产色彩政策：老城仅三色调 + 强制遗产影响评估</div>
+        <div class="ni-meta"><span class="src">Urban Acres · Times of India</span> · 07.10</div>
+        <div class="ni-desc">浅天蓝、奶油色、浅棕为老城及缓冲区内建筑限定色。已注册 100+ 建筑师执行遗产影响评估 (HIA)，设立了专门审查非遗产建筑申请的快速通道子委员会。</div>
       </div>
       <div class="ni"><div class="ni-accent"></div>
-        <div class="ni-title">Kassel 大学研发废木材 3D 打印可循环轻型构件</div>
+        <div class="ni-title">Kassel 大学研发废木材 3D 打印可循环轻型构件 RAFA 2.0</div>
         <div class="ni-meta"><span class="src">Stylepark</span> · 07.14</div>
-        <div class="ni-desc">RAFA 2.0 项目利用废木材颗粒为原料，开发生物基 3D 打印复合材料，无需化学粘合剂。与 Buro Happold 合作进行结构工程和数字仿真。构件寿命结束后可粉碎再利用。测试了约 120 种材料配方。</div>
+        <div class="ni-desc">约 120 种材料配方已测试。与 Buro Happold 合作进行结构工程数字仿真。构件寿命结束可粉碎再利用。不使用化学粘合剂，仅生物基粘结剂。目标：模块化非承重内墙系统。</div>
       </div>
     </div>
   </div>
@@ -281,16 +280,15 @@ body{background:#e8e4df;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
   <div class="sec-inner">
 
     <article class="ft">
-      <img class="ft-img" src="https://news.mit.edu/sites/default/files/images/202607/mit-cee-concrete-bridge-tackowiak-schemmer-00_0.JPG" alt="MIT 研究人员与 3D 打印混凝土桥梁" onerror="this.style.background='#d5d0c8';this.style.display='block';">
+      <img class="ft-img" src="https://news.mit.edu/sites/default/files/images/202607/mit-cee-concrete-bridge-tackowiak-schemmer-00_0.JPG" alt="MIT 3D 打印混凝土桥——混合整数优化框架验证" onerror="this.style.background='#d5d0c8'">
       <div class="ft-body">
         <span class="ft-label mat">深度解读 · DEEP DIVE</span>
-        <div class="ft-title">3D 打印建造三突破：MIT 量化硬件瓶颈、爱尔兰无水泥材料、海藻增强土基打印</div>
-        <div class="ft-meta"><span class="src">MIT News · Phys.org · Additive Manufacturing · Industry Tap</span> · 07.08–16 · 交叉核验：四源综合</div>
+        <div class="ft-title">3D 打印建造的瓶颈与出路：MIT 量化硬件限制 + 爱尔兰无水泥材料 + 海藻增强土基打印</div>
+        <div class="ft-meta"><span class="src">MIT News · Additive Manufacturing · Phys.org · Industry Tap · 3DPI</span> · 07.08–17 · 交叉核验：五源综合</div>
         <div class="ft-desc">
-          <p>2026 年 7 月，3D 打印建造 (3DCP) 领域出现了三组方向各异的突破性进展，覆盖了从硬约束量化到材料创新的完整光谱：</p>
-          <p><strong>MIT——量化硬件瓶颈。</strong>团队开发的混合整数优化 (Mixed-Integer Optimization) 框架将打印机三大物理限制——喷嘴宽度、转弯半径、单线连续打印——直接嵌入拓扑优化算法。2.3 米跨混凝土桥荷载测试发现：在 20 万磅荷载以下，设计完全由"能不能造"约束驱动，而非物理受力。最关键瓶颈是喷嘴宽度：从 4cm 缩至 1cm 可减少 76% 用料。团队下一步将研究在打印结构中整合钢筋 (Rebar)。</p>
-          <p><strong>Trinity College Dublin——无水泥地质聚合物 (Geopolymer)。</strong>爱尔兰首次验证了使用铝土矿精炼残渣 (Bauxite Residue) 的 3D 打印地质聚合物材料，不含任何波特兰水泥 (Portland Cement)，超 30% 胶凝材料来自本地工业废料。初步评估显示隐含碳排放 (Embodied Carbon) 较传统 PC 混凝土降低约 70%。</p>
-          <p><strong>海藻提取物增强土基打印。</strong>仅添加 0.12% 海藻酸钠 (Sodium Alginate)——褐藻中提取的可生物降解化合物——黏土砂混合料的压缩强度提高 25%，打印速度提升 33%。成功打印出 60 度外倾薄壁结构而未坍塌，有望将工地挖掘土方直接用于 3D 打印墙体。</p>
+          <p><strong>MIT——量化硬件瓶颈。</strong>发表在 Additive Manufacturing 期刊的框架将三项打印约束——喷嘴宽度、转弯半径、单线连续路径——直接嵌入拓扑优化。2.3 米桥打印耗时约 30 分钟（现成砂浆），荷载超 2,000 磅未弯曲。关键发现：在 20 万磅以下，设计完全由"能不能造"而非物理受力驱动。喷嘴宽度是最大瓶颈——从 4cm 缩至 1cm 可减少 76% 用料。Carstensen 教授坦言"我以为连续路径会是最大的问题——但不是，是喷嘴宽度"。团队下一步：在打印结构中整合钢筋 (Rebar)。</p>
+          <p><strong>Trinity College Dublin——无水泥地质聚合物。</strong>爱尔兰首次验证使用铝土矿精炼残渣 (Bauxite Residue) 的 3D 打印材料。不含波特兰水泥，超 30% 胶凝材料来自本地工业废料。初步评估隐含碳排放 (Embodied Carbon) 较传统混凝土降低约 70%。下一步：力学性能、耐久性、配筋与法规合规。</p>
+          <p><strong>海藻提取物——0.12% 添加剂，强度 +25%。</strong>海藻酸钠 (Sodium Alginate) 改变黏土颗粒间相互作用，使材料通过 3D 打印机时更流畅，沉积后几乎立即稳定。打印速度提升 33%，成功打印 60° 外倾薄壁结构。有望将工地挖掘土方直接用于就地打印墙体。</p>
         </div>
       </div>
     </article>
@@ -299,12 +297,12 @@ body{background:#e8e4df;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
       <div class="ni"><div class="ni-accent"></div>
         <div class="ni-title">斯图加特大学：酶激活壳聚糖水凝胶的机器人增材制造</div>
         <div class="ni-meta"><span class="src">Construction Robotics (Springer)</span> · 07.08</div>
-        <div class="ni-desc">首个将生物催化 (Biocatalysis) 直接整合到建筑尺度增材制造的工作流。酶激活壳聚糖复合材料在常温环境下实现超过 2m 跨度的薄壳结构，材料差异通过工具路径策略而非多喷头实现。</div>
+        <div class="ni-desc">首个建筑尺度上整合生物催化 (Biocatalysis) 的增材制造。壳聚糖基复合材料在常温下实现 2m+ 跨度薄壳结构。仅通过工具路径策略（非多喷头）实现材料差异化。</div>
       </div>
       <div class="ni"><div class="ni-accent"></div>
         <div class="ni-title">纤维素纳米纤维使 3D 打印混凝土水泥用量减少 40%</div>
         <div class="ni-meta"><span class="src">Nature Communications</span> · 2026</div>
-        <div class="ni-desc">0.3% 纤维素纳米纤维 (CNF) + 29% 石灰石填料 (Limestone Filler)，静态屈服应力提高 1213%。全生命周期评估：全球变暖潜力 (GWP) 降低 34.4%，最低售价降低 12.1%。机器人臂打印验证了大尺度悬挑几何可行性。</div>
+        <div class="ni-desc">仅 0.3% CNF + 29% 石灰石填料：静态屈服应力提升 1213%，全球变暖潜力 (GWP) 降 34.4%，最低售价降 12.1%。CNF 被确定为提升静态屈服应力最具性价比的添加剂。</div>
       </div>
     </div>
   </div>
@@ -319,18 +317,16 @@ body{background:#e8e4df;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
   <div class="sec-inner">
 
     <article class="ft">
-      <img class="ft-img" src="" alt="威尼斯建筑双年展 2027 海报 / Porto Academy 2026 夏季学校" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <img class="ft-img" src="" alt="威尼斯建筑双年展 2027 / RCA 夏季学校 / Porto Academy" onerror="this.style.background='#d5d0c8'" style="background:#d5d0c8">
       <div class="ft-body">
         <span class="ft-label aca">深度解读 · DEEP DIVE</span>
-        <div class="ft-title">建筑教育的暑期脉动：从威尼斯到波尔图的全球夏季学校与展览</div>
-        <div class="ft-meta"><span class="src">Porto Academy · ARCHIP · La Biennale · Reuse School · DOMa</span> · 07.2026 · 交叉核验：五源综合</div>
+        <div class="ft-title">建筑教育的暑期脉动：威尼斯双年展 College 征选 + 全球夏季学校一览</div>
+        <div class="ft-meta"><span class="src">La Biennale · RCA · Porto Academy · DOMa · ARCHIP</span> · 06–07.2026 · 交叉核验：五源综合</div>
         <div class="ft-desc">
-          <p>2026 年 7 月是建筑学术活动的高峰期，全球多所机构同时举办夏季学校、展览与讲座：</p>
-          <p><strong>Porto Academy 夏季学校（7.20–27，波尔图）。</strong>为期 8 天的建筑工作坊，邀请 Dominique Perrault（普利兹克奖得主）、Andrea Faraguna（2025 威尼斯双年展金狮奖得主）、Takk、Baukunst 等开讲。涵盖"建筑为艺术"与"出版"圆桌讨论，最后一天举办展览与文凭典礼。</p>
-          <p><strong>ARCHIP 夏季学校（7.20–31，布拉格）。</strong>主题为"玻璃与膜——传统与创新的交汇"，学员将探索捷克玻璃工艺与张拉膜结构，最终搭建一座 1:1 展亭。费用 €1,500（不含住宿）。</p>
-          <p><strong>DOMa 夏季学校（7.11–18，希腊 Irakleia）。</strong>由 SUMMACUMFEMMER 建筑事务所策展，参与者在 Irakleia 百年校舍进行实地建造实验。事务所从德国公路运输工具图书馆至希腊。</p>
-          <p><strong>建筑再利用夏季学校（7.23–8.1，佛罗伦萨）。</strong>聚焦适应性再利用 (Adaptive Reuse) 与建筑修复，在佛罗伦萨真实案例上实践，最终举办公开展览并出版书籍。</p>
-          <p><strong>威尼斯双年展 2027 动态：</strong>Biennale College Architettura 面向 30 岁以下青年实践者的征选结果将于明日（7 月 20 日）公布，12 组入选者将参加 9 月威尼斯工作坊，最终最多 4 个项目各获 €25,000 制作资助。</p>
+          <p><strong>威尼斯 Biennale College 明日揭晓。</strong>面向 30 岁以下青年实践者的征选已截止（6 月 24 日），12 组入选名单将于明日（7 月 20 日）公布。9 月 22 日–10 月 1 日威尼斯 10 天工作坊，最终最多 4 个项目各获 €25,000 制作资助并参展第 20 届国际建筑展。中国馆公开征选方案截止 9 月 30 日。</p>
+          <p><strong>RCA 建筑夏季学校（7.13–17，伦敦）。</strong>由 Lemonot（Sabrina Morreale 和 Lorenzo Perri）主持，五天密集工作坊跨越学科边界，在伦敦城市环境中进行设计干预实验。</p>
+          <p><strong>DOMa 夏季学校（7.11–18，希腊 Irakleia）。</strong>由莱比锡 SUMMACUMFEMMER 策展，参与者在百年校舍中设计建造公共空间装置，工具图书馆从德国公路运输至希腊。</p>
+          <p><strong>威尼斯策展夏季学校。</strong>Ca' Foscari 大学与威尼斯双年展"Biennale Sessions"合作的"当代艺术策展"课程（7.6–17）。独立的"策展研究学院"提供 6 月 8 日–9 月 1 日三个模块的完整策展培训，450 学时，€6,400。ARCHIP 布拉格"玻璃与膜"夏季学校 7.20–31。</p>
         </div>
       </div>
     </article>
@@ -339,22 +335,22 @@ body{background:#e8e4df;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
       <div class="ni"><div class="ni-accent"></div>
         <div class="ni-title">威尼斯 Ca' Foscari 大学"当代艺术策展"夏季学校（7.6–17）</div>
         <div class="ni-meta"><span class="src">H-Net · Summer Schools in Europe</span> · 07.06–17</div>
-        <div class="ni-desc">与威尼斯双年展"Biennale Sessions"项目合作，为期两周的全日制课程。五大焦点区域：撒哈拉以南非洲、东亚、拉丁美洲、俄罗斯/高加索/中亚、中东/北非/南亚。</div>
+        <div class="ni-desc">两周全日制，与 La Biennale 合作。五大焦点区域：撒哈拉以南非洲、东亚、拉美、俄罗斯/高加索、MENASA。</div>
       </div>
       <div class="ni"><div class="ni-accent"></div>
-        <div class="ni-title">威尼斯双年展 2027 中国馆征展启事发布</div>
+        <div class="ni-title">威尼斯双年展 2027 中国馆征展启事</div>
         <div class="ni-meta"><span class="src">中国文化部</span> · 06.17</div>
-        <div class="ni-desc">第 20 届威尼斯国际建筑双年展中国馆面向国内策展人、建筑师和学者公开征选策展方案，截止日期 2026 年 9 月 30 日。总主题："做建筑——为了面向真实现实的共存的可能性"。</div>
+        <div class="ni-desc">面向国内策展人、建筑师和学者公开征选策展方案。截止 9 月 30 日。主题"做建筑——为了面向真实现实的共存的可能性"。</div>
       </div>
       <div class="ni"><div class="ni-accent"></div>
-        <div class="ni-title">CCA 蒙特利尔 7.23 讲座："归档'不可归档'的建筑"</div>
-        <div class="ni-meta"><span class="src">CCA</span> · 07.23</div>
-        <div class="ni-desc">南非学者 Bongisa Msutu 以南非 township Bophelong 为案例，探讨在全球建立被边缘化社区建筑档案的去殖民化 (Decolonial) 策略。免费公开，空间有限需预约。</div>
+        <div class="ni-title">Porto Academy 2026 夏季学校即将开幕（7.20–27）</div>
+        <div class="ni-meta"><span class="src">Porto Academy</span> · 07.20–27</div>
+        <div class="ni-desc">Dominique Perrault、Andrea Faraguna（2025 金狮奖）、Takk 等主讲。含"建筑为艺术"与"出版"圆桌，最后一天举办展览与文凭典礼。</div>
       </div>
       <div class="ni"><div class="ni-accent"></div>
-        <div class="ni-title">UIA 巴塞罗那大会中国馆创首个碳中和记录</div>
-        <div class="ni-meta"><span class="src">维度网 · 清华设计院</span> · 06.28–07.02</div>
-        <div class="ni-desc">第 29 届 UIA 世界建筑师大会中国馆由清华设计院策展，展出 350+ 项目，提炼七大关键词：记忆、自然、人本、匠心、和美、乡土、创新。展馆采用可回收复合板材，获国际碳中和认证。</div>
+        <div class="ni-title">ARCHIP 布拉格"玻璃与膜"1:1 展亭夏季学校（7.20–31）</div>
+        <div class="ni-meta"><span class="src">ARCHIP</span> · 07.20–31</div>
+        <div class="ni-desc">探索捷克玻璃工艺与张拉膜结构 (Tensile Membrane)，从哥特、立体主义到现代建筑。最终搭建一座 1:1 展亭。费用 €1,500。</div>
       </div>
     </div>
   </div>
@@ -365,7 +361,7 @@ body{background:#e8e4df;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
 <footer class="ftr">
   <div class="ftr-brand">陆先生建筑日报 · ARCHITECTURE DAILY</div>
   交叉核验 · 案例深度 · 视觉优先<br>
-  <span style="opacity:.3">测试刊 · Powered by CherryClaw AI · 内容仅供参考</span>
+  <span style="opacity:.3">Puppeteer 图片抓取 · Powered by CherryClaw AI · 内容仅供参考</span>
 </footer>
 
 </div>
