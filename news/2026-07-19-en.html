@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | July 19, 2026</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#e8e4df;font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:#2d2d2d;line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+.hd{background:#fff;color:#2d2d2d;padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid #2d2d2d}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:#c41230;margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:#c41230;font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+.langbar{background:#fafaf8;padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #d5d0c8}
+.langbar .lang-label{font-size:10px;color:#999;letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid #c4beb6;background:#fff;color:#999;text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:#2d2d2d;color:#2d2d2d}
+.langbar a.active{background:#2d2d2d;color:#fff;border-color:#2d2d2d}
+.toc{background:#fff;padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid #d5d0c8}
+.toc .toc-label{font-size:10px;font-weight:800;color:#999;letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:#666;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:#c41230;border-color:#c41230}
+.ct{padding:0}
+.preface{background:#fff;border-bottom:1px solid #d5d0c8;padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:#2d2d2d;padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:#555;line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:#c41230;line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:#2d2d2d;display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:#999;letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:#2d2d2d;align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:#fafaf8}
+.sec:nth-child(even) .sec-inner{background:#fff}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+.hl{border:1px solid #d5d0c8;margin-bottom:14px;background:#fff;transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;aspect-ratio:2/1;object-fit:cover;background:#e8e4df;display:block;border-bottom:1px solid #d5d0c8}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:#2d2d2d}.hl .hl-tag.urb{background:#8b7355}.hl .hl-tag.mat{background:#4a6741}.hl .hl-tag.aca{background:#5b4a8a}
+.hl .hl-title{font-size:16px;font-weight:800;color:#2d2d2d;line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:#999;margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:#c41230}
+.hl .hl-desc{font-size:13px;color:#555;line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:#c41230;text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:240px;aspect-ratio:auto;min-height:220px;flex-shrink:0;border-bottom:none;border-right:1px solid #d5d0c8}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:300px}}
+.ft{border:1px solid #d5d0c8;margin-bottom:18px;background:#fff}
+.ft .ft-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#e8e4df;display:block;border-bottom:1px solid #d5d0c8}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:#2d2d2d;text-transform:uppercase}
+.ft .ft-label.arc{border-color:#2d2d2d;color:#2d2d2d;background:#f0f0f0}
+.ft .ft-label.urb{border-color:#8b7355;color:#8b7355;background:#f5f0eb}
+.ft .ft-label.mat{border-color:#4a6741;color:#4a6741;background:#edf2ea}
+.ft .ft-label.aca{border-color:#5b4a8a;color:#5b4a8a;background:#f0edf7}
+.ft .ft-title{font-size:17px;font-weight:800;color:#2d2d2d;line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:#999;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:#c41230}
+.ft .ft-desc{font-size:14px;color:#444;line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:38%;aspect-ratio:auto;min-height:260px;flex-shrink:0;border-bottom:none;border-right:1px solid #d5d0c8}
+  .ft .ft-body{flex:1;padding:24px}
+}
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid #e0dcd6;padding:14px 16px;background:#fff;transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:#d5d0c8}
+.ni:hover .ni-accent{background:#c41230}
+.ni .ni-title{font-size:14px;font-weight:700;color:#2d2d2d;line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:#999;margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:#c41230}
+.ni .ni-desc{font-size:12px;color:#666;line-height:1.8;padding-left:8px}
+.ftr{background:#2d2d2d;color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:#2d2d2d;color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+.note{background:#fef3f2;border-left:4px solid #c41230;padding:16px 20px;font-size:13px;color:#666;line-height:1.9}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">TEST ISSUE</div>
+    <div>July 19, 2026 SUN</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="https://julian-commit.github.io/architecture-daily-briefing/news/2026-07-19-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct">
+
+<div class="note">⚠️ Test Issue · Images from publicly released news photography</div>
+
+<section class="preface">
+  <span class="pf-label">EDITOR'S NOTE</span>
+  <p>This week's architecture discourse spans three scales of "design responding to environment." At the building scale, KPF wraps a Shenzhen tech campus with a kilometer-long landscape ribbon, while Kéré Architecture delivers a timber "vertical playground" kindergarten in Munich. At the urban scale, Mumbai's Kala Ghoda heritage district goes car-free on weekends, using public art and stone-paved walkways to reshape the pedestrian experience. At the technological scale, MIT's topology-optimized bridge proves that printing hardware — not material strength — is the real bottleneck: shrinking the nozzle from 4cm to 1cm could cut material use by 76%. Trinity College Dublin validates a cement-free 3D-printed geopolymer with embodied carbon ~70% below conventional concrete. Academia: Wang Shu and Lu Wenyu's 2027 Biennale theme is set, and Biennale College results for emerging practitioners are due tomorrow.</p>
+</section>
+
+<section class="sec" id="headlines">
+  <div class="sec-hd">
+    <span class="sec-num">01</span>
+    <div class="sec-text"><span class="sec-name">Headlines</span><span class="sec-en">HEADLINES</span></div>
+    <span class="sec-line"></span>
+  </div>
+  <div class="sec-inner">
+
+    <article class="hl">
+      <img class="hl-img" src="https://news.mit.edu/sites/default/files/images/202607/mit-cee-concrete-bridge-tackowiak-schemmer-00_0.JPG" alt="MIT 3D-printed concrete bridge — researchers with the structure" onerror="this.style.background='#d5d0c8';this.style.display='block';">
+      <div class="hl-body">
+        <span class="hl-tag mat">Materials</span>
+        <div class="hl-title">MIT's Topology-Optimized 3D-Printed Bridge: Hardware, Not Concrete, Is the Bottleneck</div>
+        <div class="hl-meta"><span class="src">MIT News</span> · Jul 15 · Cross-verified: MIT News · 3DPrinting.com</div>
+        <div class="hl-desc">MIT's framework embeds printer constraints directly into topology optimization. A 2.3m concrete bridge was printed in ~30 minutes using off-the-shelf mortar. Load testing revealed that the 4cm bead width is the dominant constraint — a 1cm bead could save up to 76% material. Photo: MIT researchers.</div>
+      </div>
+    </article>
+
+    <article class="hl">
+      <img class="hl-img" src="" alt="KPF TP-Link LXD Campus — kilometer-long stepped landscape ribbon in Shenzhen" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <div class="hl-body">
+        <span class="hl-tag arc">Project</span>
+        <div class="hl-title">KPF Wraps Shenzhen Tech Campus with Kilometer-Long "Landscape Ribbon"</div>
+        <div class="hl-meta"><span class="src">Dezeen</span> · Jul 18 · Cross-verified: Dezeen · KPF</div>
+        <div class="hl-desc">KPF's TP-Link LXD campus spans 124,600m² across three towers connected by a 1km stepped landscape ribbon combining circulation, meeting terraces, planting, and basketball courts. Facades alternate full-height glazing with perforated metal panels. Photo: Justin Szeremeta.</div>
+      </div>
+    </article>
+
+    <article class="hl">
+      <img class="hl-img" src="" alt="Kéré Architecture Kinderoase — timber kindergarten with vertical playground in Munich" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <div class="hl-body">
+        <span class="hl-tag arc">Project</span>
+        <div class="hl-title">Kéré Architecture Delivers Timber "Vertical Playground" Kindergarten for TU Munich</div>
+        <div class="hl-meta"><span class="src">Dezeen · ArchDaily</span> · Jul 7–8 · Cross-verified: 2 sources</div>
+        <div class="hl-desc">Francis Kéré's 1,540m² Kinderoase daycare houses 60 children across five levels connected by a circular stairwell and wooden slides. Built almost entirely in timber, blackened externally and wrapped in weathered steel slats. Photo: Iwan Baan.</div>
+      </div>
+    </article>
+
+    <article class="hl">
+      <img class="hl-img" src="" alt="Neri&Hu Mandarin Oriental The Landmark — cast terracotta tile facade in Hong Kong" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <div class="hl-body">
+        <span class="hl-tag arc">Project</span>
+        <div class="hl-title">Neri&Hu Wraps Hong Kong Hotel in "Urban Tapestry" Terracotta Facade</div>
+        <div class="hl-meta"><span class="src">Dezeen</span> · Jul 14 · Cross-verified: Dezeen · Neri&Hu</div>
+        <div class="hl-desc">Neri&Hu's new facade replaces the previous glass curtain wall with staggered cast terracotta tiles evoking woven textiles. Darkened bronze shelves support each row; cast glass tiles interspersed for nighttime illumination. Photo: Zhu Runzi.</div>
+      </div>
+    </article>
+
+    <article class="hl">
+      <img class="hl-img" src="" alt="Kala Ghoda heritage district — car-free weekends with public art in Mumbai" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <div class="hl-body">
+        <span class="hl-tag urb">Urbanism</span>
+        <div class="hl-title">Mumbai's Kala Ghoda Goes Car-Free on Weekends in Heritage Pedestrian Transformation</div>
+        <div class="hl-meta"><span class="src">Time Out · Hindustan Times · Free Press Journal</span> · Jul 14–15 · Cross-verified: 3 sources</div>
+        <div class="hl-desc">BMC's "Art Avenue" project transformed five heritage streets with grey/black granite paving, public art, murals, and sculptures by JJ School of Arts students. Vehicles are banned Sat–Sun 6pm–midnight. ₹8 crore invested in Phase One covering ~500m and 3,443m².</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="sec" id="projects">
+  <div class="sec-hd">
+    <span class="sec-num">02</span>
+    <div class="sec-text"><span class="sec-name">Projects &amp; Design</span><span class="sec-en">PROJECTS</span></div>
+    <span class="sec-line"></span>
+  </div>
+  <div class="sec-inner">
+
+    <article class="ft">
+      <img class="ft-img" src="" alt="Casa Diez Pies by Studio Font — ten concrete columns on a Mexican cliff" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <div class="ft-body">
+        <span class="ft-label arc">DEEP DIVE</span>
+        <div class="ft-title">Structure as Program: Studio Font Redefines the Cliff House with Ten Inhabitable Columns</div>
+        <div class="ft-meta"><span class="src">Dezeen</span> · Jul 16 · Cross-verified: Dezeen · Studio Font</div>
+        <div class="ft-desc">
+          <p>Studio Font's Casa Diez Pies (Ten-Foot House) perches on a Pacific cliff in Mazunte, Mexico. The 250m² home is raised on 10 large concrete columns that house staircases, bathrooms, and storage — achieving what founder Raquel Font calls "structure, programme, and enclosure simultaneously."</p>
+          <p><strong>Design Concept:</strong> The columns' curved geometry was inspired by the eroded rock formations of nearby Punta Cometa. The floor slabs step down the hillside following natural topography, creating a sequence of interconnected living spaces with continuous Pacific views.</p>
+          <p><strong>Materials:</strong> Warm terracotta-pigmented cast-in-situ concrete, manually bent reinforcement bars with custom formwork for curved corners. Timber wall linings and bespoke carpentry contrast with the concrete. Some column tops are capped with glass to create skylights; others feature small planters.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="ngrid">
+      <div class="ni"><div class="ni-accent"></div>
+        <div class="ni-title">Arches Clads Lithuanian Forest Retreat in Black Timber and Copper</div>
+        <div class="ni-meta"><span class="src">Dezeen</span> · Jul 9</div>
+        <div class="ni-desc">Sanctum retreat arranges steeply gabled CLT cabins around existing trees near Bezdonys. Blackened timber and copper cladding will weather over time. "A framework through which the forest itself could be experienced more intensely."</div>
+      </div>
+      <div class="ni"><div class="ni-accent"></div>
+        <div class="ni-title">Seaweed Extract Boosts Earth-Based 3D Printing Strength by 25%</div>
+        <div class="ni-meta"><span class="src">Industry Tap</span> · Jul 8</div>
+        <div class="ni-desc">Just 0.12% sodium alginate from brown seaweed increased compressive strength by 25% and print speed by 33% in clay-sand mixtures. A 60-degree overhang thin wall was successfully printed without collapse.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="urbanism">
+  <div class="sec-hd">
+    <span class="sec-num">03</span>
+    <div class="sec-text"><span class="sec-name">Urbanism &amp; Planning</span><span class="sec-en">URBANISM</span></div>
+    <span class="sec-line"></span>
+  </div>
+  <div class="sec-inner">
+
+    <article class="ft">
+      <img class="ft-img" src="" alt="Chandni Chowk historic marketplace — Delhi's 376-year-old artery" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <div class="ft-body">
+        <span class="ft-label urb">DEEP DIVE</span>
+        <div class="ft-title">A Tale of Two Cities: Delhi and Mumbai Chart Divergent Heritage Renewal Paths</div>
+        <div class="ft-meta"><span class="src">New Indian Express · Time Out · Hindustan Times · Free Press Journal</span> · Jul 10–15 · Cross-verified: 4 sources</div>
+        <div class="ft-desc">
+          <p><strong>Delhi — Chandni Chowk (top-down, government-led):</strong> The 376-year-old marketplace designed by Jahanara Begum in 1650 stretches 1,400 yards from Red Fort to Fatehpuri Mosque. The Delhi government has renamed Shahjahanabad Redevelopment Corporation as Indraprastha Virasat Punarvikas Nigam, prioritizing Chandni Chowk's redevelopment. The 7.12km² Old City contains one UNESCO World Heritage Site, 10 nationally protected monuments, and 700+ locally protected heritage sites.</p>
+          <p><strong>Mumbai — Kala Ghoda (bottom-up, spatial activation):</strong> BMC's ₹8 crore "Art Avenue" project transformed 3,443m² across five heritage streets with grey/black granite and basalt paving. Public art, murals, and sculptures by JJ School of Arts students accompany al fresco dining plans and vehicle-free weekends. CM Fadnavis declared "Mumbai has gained a new artistic segment."</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="ngrid">
+      <div class="ni"><div class="ni-accent"></div>
+        <div class="ni-title">Nicosia Launches €4.1M Competition for Historic Municipal Garden</div>
+        <div class="ni-meta"><span class="src">Cyprus Mail</span> · Jul 17</div>
+        <div class="ni-desc">Designed by modernist architect Neoptolemos Michaelides, the listed garden faces sensitive restoration. The mayor mandates "every intervention must respect historical character and, where required, be reversible." 22,500+ trees planted citywide in two years.</div>
+      </div>
+      <div class="ni"><div class="ni-accent"></div>
+        <div class="ni-title">University of Kassel Develops Recyclable 3D-Printed Wood Waste Components</div>
+        <div class="ni-meta"><span class="src">Stylepark</span> · Jul 14</div>
+        <div class="ni-desc">RAFA 2.0 project uses waste wood particles as bio-based 3D printing material without chemical binders. Partnered with Buro Happold for structural engineering. Components can be shredded and reprinted at end of life. ~120 material formulations tested.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="materials">
+  <div class="sec-hd">
+    <span class="sec-num">04</span>
+    <div class="sec-text"><span class="sec-name">Materials &amp; Technology</span><span class="sec-en">MATERIALS</span></div>
+    <span class="sec-line"></span>
+  </div>
+  <div class="sec-inner">
+
+    <article class="ft">
+      <img class="ft-img" src="https://news.mit.edu/sites/default/files/images/202607/mit-cee-concrete-bridge-tackowiak-schemmer-00_0.JPG" alt="MIT researchers with their 3D-printed concrete bridge" onerror="this.style.background='#d5d0c8';this.style.display='block';">
+      <div class="ft-body">
+        <span class="ft-label mat">DEEP DIVE</span>
+        <div class="ft-title">Three 3D-Printing Breakthroughs: MIT Quantifies Hardware Limits, Ireland Goes Cement-Free, Seaweed Strengthens Earth</div>
+        <div class="ft-meta"><span class="src">MIT News · Phys.org · Additive Manufacturing · Industry Tap</span> · Jul 8–16 · Cross-verified: 4 sources</div>
+        <div class="ft-desc">
+          <p><strong>MIT — Quantifying the Hardware Bottleneck.</strong> The mixed-integer optimization framework bakes three printer constraints — bead width, turning radius, single continuous path — directly into topology optimization. The 2.3m bridge revealed that below 200,000 lbs of load, design is entirely driven by "can I build it?" rather than physics. Shrinking bead width from 4cm to 1cm could save 76% material. Next: integrating rebar into printed structures.</p>
+          <p><strong>Trinity College Dublin — Cement-Free Geopolymer.</strong> Ireland's first demonstration of a 3D-printed geopolymer using bauxite refining residue. Over 30% of binder content comes from local industrial waste. Preliminary assessment: ~70% reduction in embodied carbon vs. conventional Portland cement concrete.</p>
+          <p><strong>Seaweed Extract for Earth-Based Printing.</strong> 0.12% sodium alginate boosted compressive strength by 25% and print speed by 33% in clay-sand mixtures. A 60-degree overhang was printed without collapse, pointing toward on-site reuse of excavated soil.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="ngrid">
+      <div class="ni"><div class="ni-accent"></div>
+        <div class="ni-title">U. Stuttgart: Biocatalytic Fabrication with Enzyme-Activated Chitosan Hydrogel</div>
+        <div class="ni-meta"><span class="src">Construction Robotics (Springer)</span> · Jul 8</div>
+        <div class="ni-desc">First architectural-scale demonstrator integrating biocatalysis into additive manufacturing. Enzyme-activated chitosan composite achieves 2m+ span thin-shell structures under ambient conditions, with material differentiation through toolpath strategy rather than multi-cartridge extrusion.</div>
+      </div>
+      <div class="ni"><div class="ni-accent"></div>
+        <div class="ni-title">Cellulose Nanofibers Enable 40% Cement Reduction in 3D-Printed Concrete</div>
+        <div class="ni-meta"><span class="src">Nature Communications</span> · 2026</div>
+        <div class="ni-desc">0.3% CNF + 29% limestone filler: static yield stress up 1213%, 34.4% lower GWP, 12.1% lower cost. Robotic-arm printing validated large-scale overhang geometries. CNF identified as the most cost-efficient additive for enhancing static yield stress.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="academia">
+  <div class="sec-hd">
+    <span class="sec-num">05</span>
+    <div class="sec-text"><span class="sec-name">Academia &amp; Exhibitions</span><span class="sec-en">ACADEMIA</span></div>
+    <span class="sec-line"></span>
+  </div>
+  <div class="sec-inner">
+
+    <article class="ft">
+      <img class="ft-img" src="" alt="Porto Academy Summer School / ARCHIP Prague glass and membrane pavilion" onerror="this.style.background='#d5d0c8';this.style.display='block';" style="background:#e8e4df;">
+      <div class="ft-body">
+        <span class="ft-label aca">DEEP DIVE</span>
+        <div class="ft-title">Summer Pulse of Architectural Education: Global Design Schools and Biennale Updates</div>
+        <div class="ft-meta"><span class="src">Porto Academy · ARCHIP · La Biennale · Reuse School · DOMa</span> · Jul 2026 · Cross-verified: 5 sources</div>
+        <div class="ft-desc">
+          <p>July 2026 marks peak season for architectural summer programs across the globe:</p>
+          <p><strong>Porto Academy Summer School (Jul 20–27, Porto).</strong> An 8-day workshop featuring Dominique Perrault (Praemium Imperiale laureate), Andrea Faraguna (2025 Biennale Golden Lion), Takk, and Baukunst. "Architecture for Art" and "Publishing" roundtables. Culminates with an exhibition and diploma ceremony.</p>
+          <p><strong>ARCHIP Summer School (Jul 20–31, Prague).</strong> "Glass and Foil Membranes — Tradition Meets Innovation." Participants explore Czech glassmaking alongside tensile membrane structures, building a 1:1 pavilion. Fee: €1,500 (excl. accommodation).</p>
+          <p><strong>DOMa Summer School (Jul 11–18, Irakleia, Greece).</strong> Curated by SUMMACUMFEMMER, participants design and construct an installation in public space using tools transported by road from Germany.</p>
+          <p><strong>Reuse Summer School (Jul 23 – Aug 1, Florence).</strong> Adaptive reuse and architectural restoration, working on a real case study with the Municipality of Firenze. Coursework published in a book.</p>
+          <p><strong>Venice Biennale 2027:</strong> Biennale College Architettura results for under-30 practitioners announced tomorrow (Jul 20). 12 selected projects enter a 10-day Venice workshop in September; up to 4 will receive €25,000 production grants.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="ngrid">
+      <div class="ni"><div class="ni-accent"></div>
+        <div class="ni-title">Ca' Foscari Venice Summer School on Contemporary Art Curatorship (Jul 6–17)</div>
+        <div class="ni-meta"><span class="src">H-Net · Summer Schools in Europe</span> · Jul 6–17</div>
+        <div class="ni-desc">Two-week full-time program in collaboration with La Biennale's "Biennale Sessions." Five focus regions: Sub-Saharan Africa, East Asia, Latin America, Russia/Caucasus/Central Asia, MENASA.</div>
+      </div>
+      <div class="ni"><div class="ni-accent"></div>
+        <div class="ni-title">Venice Biennale 2027 China Pavilion Open Call Announced</div>
+        <div class="ni-meta"><span class="src">Ministry of Culture of China</span> · Jun 17</div>
+        <div class="ni-desc">Open call for curatorial proposals for the China Pavilion at the 20th International Architecture Exhibition. Deadline: September 30, 2026. Theme: "Do Architecture — For the Possibility of Coexistence Facing a Real Reality."</div>
+      </div>
+      <div class="ni"><div class="ni-accent"></div>
+        <div class="ni-title">CCA Montreal Research Seminar: "Archiving 'Unarchivable' Architectures" (Jul 23)</div>
+        <div class="ni-meta"><span class="src">Canadian Centre for Architecture</span> · Jul 23</div>
+        <div class="ni-desc">South African researcher Bongisa Msutu uses the township of Bophelong as a case study for decolonial strategies in building architectural archives. Free and open to the public, registration required.</div>
+      </div>
+      <div class="ni"><div class="ni-accent"></div>
+        <div class="ni-title">UIA Barcelona: China Pavilion Achieves First Carbon-Neutral Record</div>
+        <div class="ni-meta"><span class="src">THAD · wedoany.com</span> · Jun 28 – Jul 2</div>
+        <div class="ni-desc">Curated by THAD under "DVCA — A Dynamic View of Contemporary Chinese Architecture," the pavilion showcased 350+ projects organized across seven keywords. Recyclable composite panels, blockchain-verified carbon offset certified.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <span style="opacity:.3">Test Issue · Powered by CherryClaw AI · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+window.addEventListener('scroll',function(){
+  document.getElementById('btt').classList.toggle('on',window.scrollY>500);
+});
+</script>
+</body>
+</html>
