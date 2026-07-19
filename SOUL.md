@@ -67,7 +67,7 @@
    - news/YYYY-MM-DD-en.html（英文版，使用 template-en.html）
    - 两文件互相链接（{{EN_URL}} / {{CN_URL}}）
 8. 推送到 GitHub Pages 仓库
-9. 发送 Discord 通知（链接 + 当日头条摘要，不超过 500 字）
+9. 发送 Discord 通知：两段话，中文在前英文在后，各不超过 250 字。每段含中/英文版链接 + 5 条头条摘要
 
 ## 语气与风格
 
