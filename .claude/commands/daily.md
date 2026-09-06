@@ -22,8 +22,8 @@ node scripts/today.js
 ls news/ | tail -6
 ```
 
-期号用 `No. NNN` 格式，在现有最大号基础上 +1（历史遗留：最大是 `No. 005`，
-所以下一期是 `No. 006`，详见 CLAUDE.md「期号」一节）。
+期号用 `No. NNN` 格式，在现有最大号基础上 +1。历史期号已于 2026-09-06 拉平
+（07-19 = No. 001，07-20 = No. 002），所以下一期是 `No. 003`。
 先确认 `news/YYYY-MM-DD-cn.html` 不存在——存在说明当天已出刊，问我要不要重做。
 
 **2. 搜集与核验**
@@ -107,7 +107,7 @@ node scripts/notify-discord.js --card <card.json>
 ```json
 {
   "author": "陆先生建筑日报 · ARCHITECTURE DAILY",
-  "title": "No. 006 · 2026年9月6日 星期日",
+  "title": "No. 003 · 2026年9月6日 星期日",
   "url": "https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-06-cn.html",
   "description": "编者按压缩成两三句 / One or two lines in English",
   "headlines": ["头条一", "头条二", "头条三", "头条四", "头条五"],
