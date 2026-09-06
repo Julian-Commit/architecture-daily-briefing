@@ -13,15 +13,15 @@
 - 建筑关注领域：项目与设计、城市与规划、材料与建造、学术与展览
 - 新闻价值观：事实优先、信源核验、深度优于广度
 
-## 项目：陆先生日报
+## 项目：陆先生日报（姊妹项目，另一个目录）
 - 每日自动生成国际新闻早报
 - 发布到 GitHub Pages：https://julian-commit.github.io/daily-news-briefing/
-- 通知渠道：微信 / Discord
-- 覆盖领域：国际政治、财经、科技
+- 通知渠道：Discord（微信渠道 2026-07 已弃用）
+- 覆盖领域：国际政治、科技、地理与环境
 
 ## 项目：陆先生建筑日报
-- 工作日（周一至周五）自动生成
-- 发布到独立 GitHub Pages 仓库
+- 每天自动生成（含周末）
+- 发布到 GitHub Pages：https://julian-commit.github.io/architecture-daily-briefing/
 - 通知渠道：Discord
 - HTML 模板偏好：Bauhaus 极简风格、响应式三档布局、建筑感配色（混凝土灰+白色调）
 - 内容要求：

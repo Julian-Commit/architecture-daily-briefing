@@ -2,7 +2,11 @@
 
 > 交叉核验 · 案例深度 · 视觉优先
 
-工作日自动生成的建筑行业日报，面向雪城大学建筑学院中英文母语学生。
+每天自动生成的建筑行业日报，面向雪城大学建筑学院中英文母语学生。
+
+## 访问
+
+🔗 **[https://julian-commit.github.io/architecture-daily-briefing/](https://julian-commit.github.io/architecture-daily-briefing/)**
 
 ## 板块
 
@@ -16,18 +20,31 @@
 ## 特性
 
 - 📐 Bauhaus 极简设计，响应式三档布局
-- 🌐 中英双语，一键切换
+- 🌐 中英文各一份独立页面，页眉一键互跳
 - 🔍 交叉核验信源（ArchDaily、Dezeen、gooood 等）
 - 📸 每条新闻配图，视觉优先
 - 🏷 建筑术语中英对照
-- ⏰ 工作日（周一至周五）自动更新
+- ⏰ 每天（含周末）更新
 
-## 技术栈
+## 怎么出一期
 
-- **引擎**：CherryClaw AI + DeepSeek v4 Pro
-- **搜索**：Exa（web_search + web_fetch）
-- **定时**：Cron（UTC 13:00 = 北京 21:00，周一至五）
-- **通知**：Discord
+在 Claude Code 里打开本目录，输入 `/daily`。人格与流程定义在
+[CLAUDE.md](CLAUDE.md) / [SOUL.md](SOUL.md) / [USER.md](USER.md)。
+
+手动跑或排查时用得到的命令：
+
+```bash
+npm install                                                        # 只有 extract-images 需要 puppeteer
+node scripts/today.js                                              # 北京时间日期（模板要的格式全给）
+node scripts/extract-images.js <url1> <url2>                       # 抓 og:image（真浏览器）
+node scripts/render.js template-cn.html cn.json news/2026-09-06-cn.html
+node scripts/render.js template-en.html en.json news/2026-09-06-en.html
+node scripts/build-index.js                                        # 重建首页与往期目录
+node scripts/notify-discord.js --file notify.txt --dry-run         # 预览中英两段通知
+node scripts/journal.js --tail 3                                   # 看最近几次运行记录
+```
+
+Discord 推送需要在仓库根目录建 `.env`（参考 `.env.example`）。
 
 ## 信源
 
@@ -35,6 +52,14 @@
 
 **中文**：ArchDaily 中文版 · 谷德设计网 (gooood) · 有方空间 · 建筑学院
 
+## 技术栈
+
+- **生成**：Claude Code（原 CherryClaw + DeepSeek v4 Pro）
+- **检索**：WebSearch / WebFetch（原 Exa）
+- **抓图**：Puppeteer
+- **发布**：GitHub Pages
+- **通知**：Discord REST API
+
 ---
 
-Powered by CherryClaw AI · Content for reference only
+内容仅供参考
