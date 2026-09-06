@@ -145,6 +145,9 @@ schtasks /Change /TN Luxiansheng-Daily-Arch /DISABLE      # 暂停
 schtasks /Change /TN Luxiansheng-Daily-Arch /ENABLE       # 恢复
 ```
 
+也可以完全不碰命令行：双击 `../News Agent/定时设置.cmd`，
+那个窗口同时管两个项目的四个计划任务（改时间、开关、立刻跑一次、看日志）。
+
 **两个前提，缺一就会在日志里失败：**
 
 1. 这个目录必须被信任过——先交互式跑一次 `claude` 并接受信任对话框，

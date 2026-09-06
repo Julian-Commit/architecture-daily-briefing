@@ -104,13 +104,19 @@ body{background:var(--bg);font-family:"PingFang SC","Hiragino Sans GB","Microsof
 .btn:hover{background:var(--ink);color:var(--paper)}
 .btn.primary{background:var(--ink);color:var(--paper)}
 .btn.primary:hover{background:var(--accent);border-color:var(--accent)}
-.row{display:flex;gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.row{display:flex;gap:10px;align-items:stretch;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.row:hover{background:var(--tint)}
+.row .r-main{display:flex;gap:14px;align-items:baseline;flex:1;min-width:0;padding:15px 8px 15px 6px;margin:0 -6px;text-decoration:none;color:inherit;flex-wrap:wrap}
 .row .r-no{font-size:12px;font-weight:800;color:var(--accent);width:60px;flex-shrink:0}
 .row .r-dt{font-size:12px;color:var(--muted);width:108px;flex-shrink:0}
 .row .r-t{font-size:13.5px;color:var(--soft);flex:1;min-width:180px;line-height:1.7}
-.row .r-l{font-size:11px;font-weight:800;flex-shrink:0}
-.row .r-l a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line-strong);margin-left:8px}
-.row .r-l a:hover{color:var(--accent);border-color:var(--accent)}
+.row .r-main:hover .r-t{color:var(--ink)}
+.row .r-main::after{content:"→";color:var(--accent);opacity:0;font-weight:800;align-self:center;transition:opacity .15s,transform .15s;transform:translateX(-4px)}
+.row .r-main:hover::after{opacity:1;transform:translateX(0)}
+.row .r-l{font-size:11px;font-weight:800;flex-shrink:0;display:flex;align-items:center;gap:8px;padding:0 2px}
+.row .r-l a{color:var(--muted);text-decoration:none;border:1px solid var(--line-strong);border-radius:2px;padding:4px 9px;line-height:1}
+.row .r-l a:hover{color:var(--paper);background:var(--ink);border-color:var(--ink)}
+@media(max-width:600px){.row .r-dt{width:auto}.row .r-t{min-width:100%;order:3}}
 .empty{font-size:13px;color:var(--muted);padding:18px 0}
 .ftr{background:#2d2d2d;color:#fff;text-align:center;font-size:11px;padding:22px;line-height:2}
 .ftr .brand{font-weight:800;letter-spacing:2px;font-size:12px}
@@ -164,11 +170,15 @@ ${body}
 }
 
 function issueRow(i, prefix) {
-  const links = [
-    i.cn ? `<a href="${prefix}${i.cn}">中文</a>` : '',
-    i.en ? `<a href="${prefix}${i.en}">EN</a>` : '',
-  ].join('');
-  return `<div class="row"><span class="r-no">${esc(i.issue)}</span><span class="r-dt">${i.dateCn} ${i.weekdayCn}</span><span class="r-t">${esc(i.titlesCn[0] || i.titlesEn[0] || '')}</span><span class="r-l">${links}</span></div>`;
+  // 整行是一个链接（指向中文版），右侧另留一个独立的英文入口。
+  // a 不能套 a，所以两个链接是兄弟节点，靠 flex 拼成一行。
+  const main = i.cn || i.en;
+  const title = esc(i.titlesCn[0] || i.titlesEn[0] || '');
+  const label = i.issue + ' ' + i.dateCn + ' ' + (i.titlesCn[0] || i.titlesEn[0] || '');
+  return `<div class="row">
+  <a class="r-main" href="${prefix}${main}" aria-label="${esc(label)}"><span class="r-no">${esc(i.issue)}</span><span class="r-dt">${i.dateCn} ${i.weekdayCn}</span><span class="r-t">${title}</span></a>
+  <span class="r-l">${i.cn ? `<a href="${prefix}${i.cn}">中文</a>` : ''}${i.en ? `<a href="${prefix}${i.en}">EN</a>` : ''}</span>
+</div>`;
 }
 
 function buildHome(issues) {
