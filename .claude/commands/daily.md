@@ -81,14 +81,32 @@ node scripts/build-index.js
 git add -A && git commit -m "建筑日报 YYYY-MM-DD（周X）" && git push
 ```
 
-**9. Discord 通知**
+**9. Discord 通知（发卡片，中英同一张）**
 
-写一个文本文件，中文段在前、英文段在后，中间单独一行 `---SPLIT---`，每段 ≤250 字，
-含中英两个链接 + 5 条头条一句话摘要：
+以前是中英分两条纯文本发。现在改成**一张卡片、两个按钮**，中英各一个入口，
+既不刷屏也不会出现裸链接。写一个 `card.json`（字段见 `scripts/notify-discord.js` 顶部注释）：
+
+```json
+{
+  "author": "陆先生建筑日报 · ARCHITECTURE DAILY",
+  "title": "No. 006 · 2026年9月6日 星期日",
+  "url": "https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-06-cn.html",
+  "description": "编者按压缩成两三句 / One or two lines in English",
+  "headlines": ["头条一", "头条二", "头条三", "头条四", "头条五"],
+  "image": "https://…（头条项目配图，必须 https）",
+  "color": "#c41230",
+  "footer": "交叉核验 · 案例深度 · 视觉优先",
+  "buttons": [
+    { "label": "阅读中文版", "url": "https://…/news/2026-09-06-cn.html" },
+    { "label": "English", "url": "https://…/news/2026-09-06-en.html" },
+    { "label": "往期目录", "url": "https://julian-commit.github.io/architecture-daily-briefing/news/" }
+  ]
+}
+```
 
 ```bash
-node scripts/notify-discord.js --file <notify.txt> --dry-run
-node scripts/notify-discord.js --file <notify.txt>
+node scripts/notify-discord.js --card <card.json> --dry-run
+node scripts/notify-discord.js --card <card.json>
 ```
 
 **10. 记账**

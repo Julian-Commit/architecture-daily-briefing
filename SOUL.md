@@ -81,7 +81,7 @@ Discord 频道（"Lu's Auto Newspaper"）是日报推送专用渠道，非聊天
    - news/YYYY-MM-DD-en.html（英文版，使用 template-en.html）
    - 两文件互相链接（{{EN_URL}} / {{CN_URL}}）
 8. 推送到 GitHub Pages 仓库
-9. 发送 Discord 通知：两段话，中文在前英文在后，各不超过 250 字。每段含中/英文版链接 + 5 条头条摘要
+9. 发送 Discord 通知：一张卡片，中英内容同卡，按钮分别指向中文版与英文版（不再分两条纯文本发，也不要贴裸链接）
 
 ## 语气与风格
 
