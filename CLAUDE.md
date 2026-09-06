@@ -124,9 +124,27 @@ DISCORD_CHANNEL_ID=1528382403633090731
 
 ## 定时
 
-Cherry Studio 的常驻 Cron 没有等价物。要么用 Claude 计划任务（依赖客户端在运行），
-要么上 GitHub Actions（真正无人值守，token 存仓库 Secret）。目前都未配置，
-上一期是 2026-07-20，此后已停更。
+已配好 Windows 计划任务 `Luxiansheng-Daily-Arch`：每天本机 15:20 触发（= 北京时间 21:20），
+执行 `scripts\run-daily.cmd` → `run-daily.ps1` → `claude -p "/daily 全自动"`。
+用订阅额度跑，不需要 API key；日志写在 `logs/daily-<北京日期>.log`（已 gitignore）。
+
+```powershell
+schtasks /Query  /TN Luxiansheng-Daily-Arch /V /FO LIST   # 看状态与下次触发时间
+schtasks /Run    /TN Luxiansheng-Daily-Arch               # 立刻手动跑一次
+schtasks /Change /TN Luxiansheng-Daily-Arch /DISABLE      # 暂停
+schtasks /Change /TN Luxiansheng-Daily-Arch /ENABLE       # 恢复
+```
+
+**两个前提，缺一就会在日志里失败：**
+
+1. 这个目录必须被信任过——先交互式跑一次 `claude` 并接受信任对话框，
+   否则 `.claude/settings.json` 里的权限白名单会被整个忽略，无头模式下工具调用会被拒。
+2. CLI 登录态有效——OAuth 过期时 `claude -p` 直接退出，同样要交互式登录一次。
+
+时区提醒：本机是欧洲中部时间。2026-10-25 欧洲夏令时结束后，本机 15:20 会变成北京 22:20，
+仍是同一个北京日期，不影响刊号；想精确对齐就把触发时间往前挪一小时。
+
+注意：上一期是 2026-07-20，中间停更近两个月。重新开跑时期号从 No. 006 续。
 
 ## 一个容易踩的坑：日期
 
