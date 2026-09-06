@@ -27,6 +27,16 @@ news/YYYY-MM-DD-cn.html / -en.html   每期中英双版
 news/2026-07-19.html  拆分前的旧单页版，同日已有 cn/en 版，已废弃
 news/index.html       往期目录（由脚本生成，不要手写）
 scripts/              extract-images 需要 puppeteer，其余无依赖
+  render          填模板 + 硬校验
+  extract-images  Puppeteer 抓 og:image
+  finalize        注入 og/twitter/JSON-LD，并把模板样式同步给旧刊
+  build-index     重建首页与往期目录
+  make-card       从中文版刊物生成 Discord 卡片 JSON（自动带英文按钮）
+  notify-discord  发卡片或纯文本到频道
+  poll-discord    每分钟看一眼频道有没有人说话
+  today           按北京时间给出各种日期格式
+  check-secrets   密钥扫描 / 装 pre-commit 钩子
+  journal         运行日志
 memory/FACT.md        频道 ID、发布频率等固定事实
 memory/JOURNAL.jsonl  运行日志
 ```

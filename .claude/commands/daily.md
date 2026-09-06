@@ -62,6 +62,16 @@ node scripts/render.js template-en.html <en.json> news/YYYY-MM-DD-en.html
 互链别写错：中文版 `EN_URL` = `YYYY-MM-DD-en.html`，英文版 `CN_URL` = `YYYY-MM-DD-cn.html`。
 `render.js` 报错必须修好再继续，不要用 `--allow-missing` 绕过。
 
+**5.5 收尾（注入分享信息 + 同步样式）**
+
+```bash
+node scripts/finalize.js news/YYYY-MM-DD-cn.html news/YYYY-MM-DD-en.html
+```
+
+从刊物自身解析标题、摘要、封面图，写进 og:/twitter: 与 JSON-LD，
+并把当前模板的样式外壳同步过去。**不能省**——没有这些标签，
+链接发出去就是一条裸 URL，既难看又像钓鱼。
+
 **6. 重建索引**
 
 ```bash
@@ -84,7 +94,15 @@ git add -A && git commit -m "建筑日报 YYYY-MM-DD（周X）" && git push
 **9. Discord 通知（发卡片，中英同一张）**
 
 以前是中英分两条纯文本发。现在改成**一张卡片、两个按钮**，中英各一个入口，
-既不刷屏也不会出现裸链接。写一个 `card.json`（字段见 `scripts/notify-discord.js` 顶部注释）：
+既不刷屏也不会出现裸链接。卡片从中文版刊物直接生成（英文按钮会自动带上）：
+
+```bash
+node scripts/make-card.js news/YYYY-MM-DD-cn.html <card.json>
+node scripts/notify-discord.js --card <card.json> --dry-run
+node scripts/notify-discord.js --card <card.json>
+```
+
+需要微调时再改那份 JSON，字段说明见 `scripts/notify-discord.js` 顶部注释：
 
 ```json
 {
