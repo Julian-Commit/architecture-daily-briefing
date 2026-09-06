@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-06</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;aspect-ratio:2/1;object-fit:cover;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:240px;aspect-ratio:auto;min-height:220px;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:300px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:38%;aspect-ratio:auto;min-height:260px;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+</style>
+<!-- share:start -->
+<meta name="description" content="BIG's first completed art museum opens: Suzhou MoCA rewrites the garden as twelve pavilions；MAD's Lucas Museum completed: 1,271 double-curved FRP panels, no two the same, opening …">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 003 · 2026-09-06 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="BIG's first completed art museum opens: Suzhou MoCA rewrites the garden as twelve pavilions；MAD's Lucas Museum completed: 1,271 double-curved FRP panels, no two the same, opening …">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-06-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images.adsttc.com/media/images/6a98/d856/cc78/e301/8820/ddac/large_jpg/the-suzhou-museum-of-contemporary-art-opens-to-the-public-marking-bigs-first-completed-art-museum_23.jpg?1788401771">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 003 · 2026-09-06 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="BIG's first completed art museum opens: Suzhou MoCA rewrites the garden as twelve pavilions；MAD's Lucas Museum completed: 1,271 double-curved FRP panels, no two the same, opening …">
+<meta name="twitter:image" content="https://images.adsttc.com/media/images/6a98/d856/cc78/e301/8820/ddac/large_jpg/the-suzhou-museum-of-contemporary-art-opens-to-the-public-marking-bigs-first-completed-art-museum_23.jpg?1788401771">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 003 · 2026-09-06 · 陆先生建筑日报 | Architecture Daily","description":"BIG's first completed art museum opens: Suzhou MoCA rewrites the garden as twelve pavilions；MAD's Lucas Museum completed: 1,271 double-curved FRP panels, no two the same, opening …","datePublished":"2026-09-06","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-06-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://images.adsttc.com/media/images/6a98/d856/cc78/e301/8820/ddac/large_jpg/the-suzhou-museum-of-contemporary-art-opens-to-the-public-marking-bigs-first-completed-art-museum_23.jpg?1788401771"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 003</div>
+    <div>September 6, 2026 Sunday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-06-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p>In the first week of September, architecture's "center" shifted in several directions at once. On 3 September the Suzhou Museum of Contemporary Art opened to the public on the shore of Jinji Lake — BIG's first completed art museum, in which twelve pavilions are gathered under a single continuous ribbon roof. The same week, MAD's Lucas Museum of Narrative Art in Los Angeles was declared complete: 1,271 double-curved fibre-reinforced polymer panels, no two alike, will be unveiled on 22 September. On the awards side, the 2026 OBEL Award went to no building at all, but to the public housing model run in Spain's Balearic Islands between 2019 and 2023 — as jury chair Nathalie de Vries put it, innovative architecture can be found not only in design and material choice but in procurement, policy and process. On 7 September the inaugural Pan-African Biennale opens in Nairobi, where artistic director Omar Degan's one-line thesis is "the center has always been here." And in Barcelona, Zhang Li, dean of Tsinghua University's School of Architecture, was elected President of the International Union of Architects for 2026–2029 — the first Chinese architect to hold the post.</p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6a98/d856/cc78/e301/8820/ddac/large_jpg/the-suzhou-museum-of-contemporary-art-opens-to-the-public-marking-bigs-first-completed-art-museum_23.jpg?1788401771" alt="Aerial view of the ribbon roof, Suzhou Museum of Contemporary Art / 苏州当代美术馆缎带式屋面鸟瞰" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">Projects</span>
+    <div class="hl-title">BIG's first completed art museum opens: Suzhou MoCA rewrites the garden as twelve pavilions</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Archinect</span> · <span class="src">Wallpaper*</span> · <span class="src">China Daily</span></div>
+    <div class="hl-desc">The Suzhou Museum of Contemporary Art opened to the public on 3 September on the shore of Jinji Lake, following a soft opening with preview exhibitions on 30 August. The 60,000-square-metre building was designed by BIG – Bjarke Ingels Group with ARTS Group, VIA.inc and SHUISHI for the Suzhou Industrial Park Culture, Sports and Tourism Bureau. Twelve pavilions are distributed across the site and linked by a continuous ribbon-like roof, the covered corridors beneath it forming a network of exhibition spaces threaded through the landscape; from the air the roof's loop approaches the infinity knot of traditional Chinese paper-cutting. It is the first art museum BIG has built.</div>
+    <a href="https://www.archdaily.com/1184463/suzhou-museum-of-contemporary-art-opens-as-bigs-first-completed-art-museum" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6a99/bc4b/1fe7/3101/8863/0356/large_jpg/lucas-museum-of-narrative-art_1.jpg" alt="The completed Lucas Museum of Narrative Art / 建成后的卢卡斯叙事艺术博物馆" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">Materials</span>
+    <div class="hl-title">MAD's Lucas Museum completed: 1,271 double-curved FRP panels, no two the same, opening 22 September</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Dezeen</span> · <span class="src">Parametric Architecture</span> · <span class="src">The Architect's Newspaper</span></div>
+    <div class="hl-desc">The Lucas Museum of Narrative Art, designed by Ma Yansong of MAD Architects, has been declared complete and opens to the public on 22 September. It occupies an 11-acre former surface parking lot in Los Angeles's Exposition Park and measures 300,000 square feet (about 27,900 square metres). The envelope is made of 1,271 uniquely shaped fibre-reinforced polymer (FRP) panels averaging roughly 8 by 32 feet, trimmed by a glass fibre-reinforced concrete (GFRC) ribbon; arched steel beams spanning 185 feet carry the lifted public plaza and its elliptical oculus. Landscape is by Studio-MLA (Mia Lehrer) with Stantec, which also served as executive architect.</div>
+    <a href="https://www.archdaily.com/1184508/first-look-at-the-completed-lucas-museum-of-narrative-art-opening-september-22-2026" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6a96/4b7b/b853/2e01/895b/69c6/large_jpg/the-balearic-social-housing-model-receives-the-2026-obel-award_21.jpg?1788234646" alt="A project from the Balearic Social Housing Model / 巴利阿里群岛公共住房项目" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">Urbanism</span>
+    <div class="hl-title">The 2026 OBEL Award goes to a system, not a building: the Balearic Social Housing Model wins</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Dezeen</span> · <span class="src">METALOCUS</span> · <span class="src">Wallpaper*</span> · <span class="src">world-architects</span></div>
+    <div class="hl-desc">On 1 September the OBEL Foundation named the Balearic Social Housing Model the recipient of the 2026 OBEL Award. What is being recognised is not a building but a way of running public housing, developed between 2019 and 2023 at IBAVI by the economist Cris Ballester Parets and the architect Carles Oliver Barceló: turning the administration from a passive client into an active developer, rebuilding technical capacity in-house, and rewriting procurement and competition rules. This edition's theme is "Systems' Hack"; for the first time in the award's history the jury has decided to carry the theme into a second award in spring 2027.</div>
+    <a href="https://www.archdaily.com/1184293/the-balearic-social-housing-model-receives-the-2026-obel-award" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6a17/6852/fd52/9207/909d/2e16/large_jpg/pan-african-biennale-unveils-participants-for-its-inaugural-edition-in-nairobi_7.jpg?1779918942" alt="The inaugural Pan-African Biennale / 首届泛非建筑双年展" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">Academia</span>
+    <div class="hl-title">The first Pan-African Biennale opens tomorrow in Nairobi: 30-plus countries, "Shifting the Center"</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Wallpaper*</span> · <span class="src">The Architect's Newspaper</span> · <span class="src">Pan-African Biennale</span></div>
+    <div class="hl-desc">The inaugural Pan-African Biennale (PAB) runs 7–11 September at the Kenyatta International Convention Centre in Nairobi — the first continental architecture biennale devoted to spatial practices from and within Africa, and fully African-led. Its artistic director is the Somali-Italian architect Omar Degan, and the theme is "Shifting the Center: From Fragility to Resilience." Participants come from more than thirty African countries and span architecture, urban research, material research, conservation and community-based design, organised through three strands: Land Under Pressure, Inherited Knowledge and Worlds to Come.</div>
+    <a href="https://www.archdaily.com/1041933/pan-african-biennale-unveils-participants-for-its-inaugural-edition-in-nairobi" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://www.uia-architectes.org/wp-content/uploads/2026/07/c163c2e1-5078-404d-9e1c-e3b22edaf7bc-1.jpeg" alt="UIA elects its 2026–2029 Council in Barcelona / UIA 巴塞罗那大会选出 2026–2029 届理事会" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">Academia</span>
+    <div class="hl-title">Zhang Li elected President of the International Union of Architects for 2026–2029</div>
+    <div class="hl-meta">Sources: <span class="src">UIA</span> · <span class="src">Architectural Society of China</span> · <span class="src">Beijing Municipal Government</span></div>
+    <div class="hl-desc">Meeting during the World Congress of Architects in Barcelona, the General Assembly of the International Union of Architects (UIA) elected its Council for the 2026–2029 term, with Zhang Li — dean of the School of Architecture at Tsinghua University and a standing committee member of the Architectural Society of China — as President. It is the first time a Chinese architect has held the office. The UIA is the profession's principal international body and its World Congress is held every three years; with Barcelona closed, hosting duties for the next congress have passed to Beijing, whose "road to Beijing" was formally launched in July.</div>
+    <a href="https://www.uia-architectes.org/en/news/uia-general-assembly-elects-council-for-the-2026-2029-term/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6a98/d856/cc78/e301/8820/ddac/large_jpg/the-suzhou-museum-of-contemporary-art-opens-to-the-public-marking-bigs-first-completed-art-museum_23.jpg?1788401771" alt="Twelve pavilions under the continuous roof, Suzhou MoCA / 苏州当代美术馆连续屋面下的十二座展亭" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">In depth</span>
+    <div class="ft-title">Dissolving a museum into a garden: how BIG's Suzhou MoCA handles 60,000 square metres with twelve pavilions</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily</span> · <span class="src">Archinect</span> · <span class="src">Wallpaper*</span> · <span class="src">The Plan</span> · <span class="src">China Daily</span> · <span class="src">art4d</span></div>
+    <div class="ft-desc">
+      <p>The Suzhou Museum of Contemporary Art opened to the public on 3 September on the shore of Jinji Lake, having soft-opened with preview exhibitions on 30 August. The project was delivered by BIG – Bjarke Ingels Group with ARTS Group, VIA.inc and SHUISHI for the Suzhou Industrial Park Culture, Sports and Tourism Bureau, and covers 60,000 square metres. For a practice founded in 2005, it is the first completed art museum.</p>
+      <p><strong>Concept: a village rather than a building.</strong> Museums of this size normally compress every function into one legible mass. Suzhou MoCA does the opposite: twelve discrete pavilions are distributed across the site, linked by covered corridors and gathered into a whole by a single continuous ribbon roof. Bjarke Ingels describes it this way: "By dissolving the museum into a Chinese garden of interconnected galleries, distributed across the site like pavilions in a park, the museum becomes a connection between the city and the lake." The reference is direct — Suzhou's UNESCO-listed classical gardens are not organised around a single dominant object but around the relationships between pavilion, corridor, water and rock.</p>
+      <p><strong>Spatial strategy: the route before the room.</strong> Circulation here is not enter–proceed–exit but a series of choices made while moving between pavilions. The corridors are simultaneously infrastructure and semi-outdoor space for display and pause; the gaps between the twelve volumes admit lake views, courtyards and daylight into the intervals of a visit. Prioritising the interval this way breaks 60,000 square metres into a sequence of graspable fragments, which is the most reliable defence against the fatigue large museums usually induce.</p>
+      <p><strong>Structure and form: the roof as the only unifying device.</strong> What makes twelve volumes read as one building is the continuous undulating roof. Seen from above, its loop approaches the infinity knot of Chinese paper-cutting — a figure that only resolves from the air. At ground level nobody reads the whole shape; visitors experience it instead as a continuously varying eave height and a shifting depth of shadow. At the opening, Ingels called the result "a manifestation of the ancient future of Suzhou and a testament to construction quality and technical sophistication in contemporary Chinese architecture." That points at something concrete: landing an irregular curved roof accurately across twelve supporting volumes at differing levels is a construction problem far more than a formal one.</p>
+      <p><strong>Context and consequence: from industrial park to cultural destination.</strong> The museum sits on the east bank of Jinji Lake in the Suzhou Industrial Park, and its client is the park's culture, sports and tourism bureau — a textbook case of locally-led cultural infrastructure investment. The opening phase presents four exhibitions: "Picasso and the World of His Influence," "Gèn: A Journey Through Art's Transcendence," "Codes &amp; Canopies: Art Beyond the Algorithmic Age," and "BIG: MATERIALISM," curated by the architects themselves. That combination is itself a positioning statement: an internationally legible master show to open the doors, held alongside local contemporary art scholarship and a technical, material-driven argument.</p>
+      <p>One comparison is worth drawing. Suzhou already has I.M. Pei's Suzhou Museum extension, completed in 2006, which answered the garden tradition head-on through white walls, grey tile and a geometricised landscape. Twenty years later BIG offers a different translation — not reproducing the garden's formal vocabulary but extracting its organisational logic (dispersal, corridor, route, borrowed scenery) and rebuilding it with contemporary structural means. The two buildings now sit in the same city as a pair, and between them they move the question of how tradition enters contemporary architecture a step further.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ngrid">
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">AART wins the competition for Rosenborg Castle's "Kingdom's Treasury": 1,300 sq m tucked beneath the moat</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">The Copenhagen Post</span> · <span class="src">Royal Danish Collection</span></div>
+  <div class="ni-desc">A team led by the Danish practice AART with VEGA Landskab, Fogh &amp; Følner and Artelia has won the international competition for Rigets Skatkammer (The Kingdom's Treasury). The proposal places roughly 1,300 square metres of underground extension beneath the historic moat of Christian IV's Renaissance castle, of which about 600 square metres is new exhibition space, while partially re-establishing the water around the building. The museum houses the Danish Crown Jewels and historic costume collections and already draws more than 500,000 visitors a year; the project is budgeted at over DKK 661 million.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Powerhouse Parramatta sets its opening for 7 November: 30,000 sq m behind a lattice exoskeleton</div>
+  <div class="ni-meta">Sources: <span class="src">ArchitectureAU</span> · <span class="src">Archinect</span> · <span class="src">designboom</span> · <span class="src">Artforum</span></div>
+  <div class="ni-desc">Powerhouse Parramatta, on the banks of the Parramatta River, opens to the public on Saturday 7 November. The 30,000-square-metre building was designed by the Franco-Japanese practice Moreau Kusunoki as lead architect with Australian firm Genton as local architect and Arup as engineer; the team won the competition in 2019. A lattice exoskeleton wraps seven exhibition halls, a rooftop observatory, an Indigenous garden and accommodation for visiting researchers. It is the first state cultural institution located in Western Sydney, a region whose residents come from more than 170 countries.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Kengo Kuma to receive the 2027 Andrée Putman Lifetime Achievement Award</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Dezeen</span> · <span class="src">designboom</span> · <span class="src">Bustler</span></div>
+  <div class="ni-desc">The Japanese architect Kengo Kuma has been selected for the Andrée Putman Lifetime Achievement Award at the 2027 Créateurs Design Awards (CDA), to be presented at the Shangri-La Paris on 16 January 2027. Named after the French designer Andrée Putman, the award is chosen by members of the Créateurs Design Association rather than through open submission; previous recipients include Norman Foster, Tadao Ando and Christian de Portzamparc.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Steven Holl Architects selected for the renewal of Ida Noyes Hall at the University of Chicago</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Archinect</span></div>
+  <div class="ni-desc">Steven Holl Architects has been selected to lead the renewal of Ida Noyes Hall at the University of Chicago, a 111-year-old campus building dating from 1916, with a focus on infrastructure upgrades. For students, commissions of this type — a historic campus building plus contemporary performance requirements — are useful specimens: where the existing fabric is held, how services are threaded in, and how accessible routes are added tend to expose a designer's judgement more sharply than new-build work does.</div>
+</div>
+
+</div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6a96/4b7b/b853/2e01/895b/69c6/large_jpg/the-balearic-social-housing-model-receives-the-2026-obel-award_21.jpg?1788234646" alt="A project from the Balearic Social Housing Model / 巴利阿里群岛公共住房项目外观" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">In depth</span>
+    <div class="ft-title">When the prize goes to the process: the Balearic Social Housing Model and the 2026 OBEL Award</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily</span> · <span class="src">Dezeen</span> · <span class="src">METALOCUS</span> · <span class="src">Wallpaper*</span> · <span class="src">world-architects</span> · <span class="src">The Plan</span></div>
+    <div class="ft-desc">
+      <p>On 1 September the OBEL Foundation announced the 2026 OBEL Award for the Balearic Social Housing Model. What makes this edition unusual is that the recipient is neither a building nor an architect, but a method of public administration operated between 2019 and 2023.</p>
+      <p><strong>Who did it: an economist and an architect.</strong> The model was driven from within IBAVI (Institut Balear de l'Habitatge) by a pairing — Cris Ballester Parets, an economist and then managing director, and Carles Oliver Barceló, the architect heading the technical department. The composition of that partnership already describes the model: half institutional design, half building practice.</p>
+      <p><strong>Institutional strategy: from passive client to active developer.</strong> Spain faces an acute housing shortage and very thin public rental stock. The default arrangement outsources projects and, through rigid tendering, selects the cheapest code-compliant scheme. The Balearic approach rewrote that chain: the administration rebuilt technical capacity in-house and became an active developer; procurement rules and competition formats were redesigned so that lowest price no longer governed the outcome; and innovation was coordinated across projects so that what one experiment learned could be carried into the next. Jury chair Nathalie de Vries stated the reasoning plainly: "What makes the Balearic Social Housing Model remarkable is how innovative architecture can be found not just in design and material choice but also in procurement, policy and process."</p>
+      <p><strong>Material and climate strategy: a Map of Resources.</strong> On the construction side the model relies on a "Map of Resources" that assesses territorial materials against five criteria — carbon impact, availability, performance, cost and scalability — favouring local supply including marés, the honey-coloured local sandstone, and timber. Climate response leans on passive design: orientation, thermal inertia, cross-ventilation and solar protection, which cut embodied and operational emissions and household energy bills at the same time. In social housing that dual effect matters more than usual: low-income tenants are far more exposed to energy costs than average households, so passive strategy is a social instrument as much as an environmental one.</p>
+      <p><strong>Scale and output.</strong> The portfolio includes 24 units at Pere Matutes 72 in Eivissa, 25 temporary cohousing units at Lope de Vega 3 in Palma, 19 units at Salvador Espriu 37 in Palma, and developments of 42 to 43 units elsewhere across the islands. No individual project is large. The value of the model lies in its repeatability rather than in the size of any one scheme.</p>
+      <p><strong>"Systems' Hack" and one unusual decision.</strong> The 2026 theme, "Systems' Hack," treats systems as interconnected operating mechanisms and hacking as strategic intervention to alter how they run. The jury then did something the award has never done before: it extended the theme into spring 2027 with a second award, to recognise another practice engaging systems at a different scale. That decision is itself the signal worth reading — having moved the frame from object to mechanism, the jury evidently thinks the argument is unfinished.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ngrid">
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">AIA names five winners of its 2026 Regional &amp; Urban Design Award</div>
+  <div class="ni-meta">Sources: <span class="src">AIA</span> · <span class="src">Archinect / Bustler</span></div>
+  <div class="ni-desc">The American Institute of Architects has announced five winners of its 2026 Regional &amp; Urban Design Award, covering urban design, regional and city planning, and community development. Honourees include Downtown Cary Park in North Carolina, which turns the town's historic core into a civic landscape of sculptural pavilions and immersive gardens; and India Basin Waterfront Park on San Francisco's southeastern shoreline, which converts a former industrial boatyard into a resilient public landscape by restoring wetlands, remediating contaminated ground and re-establishing equitable access to the bayfront.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">AIA also announces its 2026 Housing Award and Interior Architecture Award</div>
+  <div class="ni-meta">Sources: <span class="src">AIA</span> · <span class="src">Archinect</span></div>
+  <div class="ni-desc">In the same week the AIA announced ten winners of its 2026 Housing Award and nine schemes in its 2026 Interior Architecture Award. The institute's design excellence programme spans ten project categories this year; releasing housing, urban design and interiors together produces a useful cross-section of where American practice is currently placing its emphasis.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Marfa: Judd's Artillery Sheds enter a multi-year restoration with the Getty Conservation Institute</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Dezeen</span> · <span class="src">The Art Newspaper</span> · <span class="src">The Architect's Newspaper</span> · <span class="src">ARTnews</span></div>
+  <div class="ni-desc">The Chinati Foundation will restore the Artillery Sheds in Marfa, Texas — former military buildings adapted by Donald Judd between 1982 and 1986 to house his 100 untitled works in mill aluminium. Troy Schaum of Schaum Architects leads the project, developed with the Getty Conservation Institute; construction starts in October with completion targeted for 2029. Work covers 10,000 square feet of energy-efficient glazing, roof and façade repair, accessible paths, and rainwater collection to sustain native Chihuahuan Desert planting. Schaum describes the approach as "editing around the edges." The 100 aluminium works will be moved for the first time since their installation in the 1980s, after full documentation and material analysis.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">MVRDV reveals WOMA in Miami: 163 homes broken into stacked volumes to meet a low-rise neighbourhood</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">designboom</span> · <span class="src">Florida YIMBY</span></div>
+  <div class="ni-desc">MVRDV, with Quito-based developer Uribe Schwarzkopf and Miami architect of record Kobi Karp, has revealed WOMA, a mixed-use scheme for Wynwood Norte. It contains 163 residences alongside office, coworking, retail and cultural space. The single mass is broken into differently scaled stacked blocks so the building reads as several buildings gathered on one site — a direct response to the predominantly low-rise fabric around it — with the form drawing on Wynwood's history as a garment and manufacturing district. The site is a former coffee roasting plant next to the nonprofit Bakehouse Art Complex, and the project is Uribe Schwarzkopf's first in the United States.</div>
+</div>
+
+</div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.designboom.com/twitterimages/uploads/2022/09/mad-architects-lucas-museum-construction-updates-designboom-FB-1.jpg" alt="FRP panel installation during construction of the Lucas Museum / 卢卡斯博物馆施工中的曲面 FRP 幕墙安装" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">In depth</span>
+    <div class="ft-title">1,271 panels, none identical: the Lucas Museum's double-curved FRP envelope and a building that has to rock in an earthquake</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily</span> · <span class="src">Dezeen</span> · <span class="src">The Architect's Newspaper / Facades+</span> · <span class="src">CompositesWorld</span> · <span class="src">designboom</span> · <span class="src">Facade Tectonics Institute</span></div>
+    <div class="ft-desc">
+      <p>The Lucas Museum of Narrative Art, designed by Ma Yansong of MAD Architects, is complete and opens on 22 September. It sits on an 11-acre former surface parking lot in Los Angeles's Exposition Park, measures 300,000 square feet (about 27,900 square metres), and has landscape by Studio-MLA (Mia Lehrer) with Stantec, which also acted as Architect of Record. For students, the part of this building most worth studying is not the shape but how the shape was made buildable.</p>
+      <p><strong>Material choice: why GFRP rather than GFRC.</strong> The envelope comprises 1,271 uniquely shaped fibre-reinforced polymer (FRP/GFRP, Glass Fiber Reinforced Polymer) panels averaging roughly 8 by 32 feet. The design team, including façade consultant Walter P Moore, passed over glass fibre reinforced concrete (GFRC) — the more common choice for curved cladding — in favour of GFRP. The governing reason is weight: GFRP weighs a fraction of GFRC, and on this building reducing mass was not an economic preference but a structural precondition.</p>
+      <p><strong>Structural logic: base isolation demands a light skin.</strong> Los Angeles is high-seismic territory, and the building uses a base isolation system: in an earthquake the superstructure rocks on the isolation layer, cutting the seismic force delivered into the primary structure. The efficiency of that system is directly tied to the mass above it — a heavier envelope means larger loads and displacement demands at the isolators. The 1,271 lightweight GFRP panels are therefore not merely a façade decision; they are what allows the isolation strategy to work at all. It is an unusually clean example of material selection and structural system being mutually conditional.</p>
+      <p><strong>Fabrication: every panel gets its own mould.</strong> The panels are produced by Kreysler &amp; Associates in California, each formed on an individually shaped mould, because no two curvatures repeat across a double-curved surface. The workflow is a digital process developed specifically for FRP's material behaviour: panelising from the three-dimensional model, generating mould geometry, CNC-machining the moulds, then forming, trimming and checking tolerances. Complementing it is a glass fibre reinforced concrete (GFRC) ribbon used to resolve the continuous curve at the building's edge.</p>
+      <p><strong>Structure and space: a 185-foot steel arch holding up a floating mass.</strong> Arched steel beams spanning 185 feet carry the lifted public plaza at the centre of the building; an elliptical oculus opens through it, and three of the five public elevators run in cylindrical glass shafts. Long span and cantilever together produce the impression of a volume hovering above the ground — a familiar MAD motif, but one delivered here by explicit structural means rather than implied by form alone.</p>
+      <p><strong>Context and consequence.</strong> The project was approved in 2017 and broke ground in 2018, with an opening originally planned for 2025. Inside are two 299-seat theatres (the Robert Flaherty and Slavko Vorkapich theatres), roughly 100,000 square feet of gallery space (about 82,000 on the fourth floor and 8,000 on the fifth), a research library, and ten studios and classrooms. The collection runs to more than 40,000 works assembled by George Lucas over five decades, including Norman Rockwell, Frida Kahlo, Jack Kirby, Alison Bechdel, Gordon Parks and Dorothea Lange. Over 300 new trees — jacarandas, oaks, pines — have been planted alongside an amphitheatre, a hanging garden and a waterfall fountain. A freely shaped building that must stand in a seismic zone usually pays for that freedom somewhere in the cladding schedule; this one shows the arithmetic clearly.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ngrid">
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">"BIG: MATERIALISM" opens at Suzhou MoCA: from stone to recyclate</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Wallpaper*</span> · <span class="src">Archinect</span></div>
+  <div class="ni-desc">Among the four inaugural exhibitions at the Suzhou Museum of Contemporary Art is "BIG: MATERIALISM," curated by the practice itself. It organises the show as a material odyssey that begins with stone and ends with recyclate, passing through earth, metal, wood and plastic, and uses large-scale models to show how ten materials have shaped BIG's architecture. Structuring a retrospective around materials rather than a project chronology is a notable shift in how practices are now narrating themselves.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Europe's largest 3D-printed apartment building completed in France: 12 social housing units, 34 printing days</div>
+  <div class="ni-meta">Sources: <span class="src">3D Printing Industry</span> · <span class="src">VoxelMatters</span> · <span class="src">New Atlas</span> · <span class="src">COBOD</span></div>
+  <div class="ni-desc">PERI 3D Construction has completed ViliaSprint², a three-storey residential building in Bezannes, France, described by the project team as Europe's largest 3D-printed multi-family building: 800 square metres and 12 social housing apartments. A COBOD BOD2 gantry printer extruded the concrete layer by layer, making it the first building in France where both the load-bearing structure and all walls were printed directly on site. Effective printing took 34 days against 50 planned, halving shell construction time and cutting the overall programme by three months. As with this year's OBEL Award, social housing — where cost pressure is highest — remains the main proving ground for construction technology.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">German contractor Matthäi launches a 3D printing division after printing its own headquarters</div>
+  <div class="ni-meta">Sources: <span class="src">Robotics &amp; Automation News</span> · <span class="src">COBOD</span></div>
+  <div class="ni-desc">The German construction group Matthäi built its new two-storey headquarters with a COBOD BOD2 printer and occupied it in July 2026, then established a dedicated construction 3D printing division. A conventional main contractor moving printing from demonstration project to standing business line is a concrete indicator of industrial maturity — whether a builder is willing to staff a department for a technique tends to say more than any demonstration build.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Oslo Architecture Triennale programmes "The New Stone Age": natural stone returns as a structural material</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Oslo Architecture Triennale</span> · <span class="src">D5 Mag</span></div>
+  <div class="ni-desc">The public programme of the ninth Oslo Architecture Triennale (17 September – 1 October) includes a seminar titled "The New Stone Age" on the use of stone and other natural materials in contemporary architecture, alongside "Nature and Economy," which examines urban development through ecological economics. Under decarbonisation pressure, load-bearing stone has re-entered structural discussion — its embodied carbon is far below concrete and steel, and the obstacles are quarrying logistics, codes and cost rather than mechanical performance.</div>
+</div>
+
+</div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6a17/6852/fd52/9207/909d/2e16/large_jpg/pan-african-biennale-unveils-participants-for-its-inaugural-edition-in-nairobi_7.jpg?1779918942" alt="Work from the inaugural Pan-African Biennale / 首届泛非建筑双年展参展作品" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">In depth</span>
+    <div class="ft-title">"The center has always been here": the first Pan-African Biennale opens tomorrow in Nairobi</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily</span> · <span class="src">Wallpaper*</span> · <span class="src">The Architect's Newspaper</span> · <span class="src">Pan-African Biennale</span> · <span class="src">Apsaidal</span> · <span class="src">Empowers Africa</span></div>
+    <div class="ft-desc">
+      <p>The inaugural Pan-African Biennale (PAB) runs from 7 to 11 September at the Kenyatta International Convention Centre (KICC) in Nairobi. It is the first architecture biennale devoted to spatial practices from and within the African continent and organised entirely under African leadership. The artistic director is the Somali-Italian architect Omar Degan; the biennale has been in public preparation since 2025, and this edition's theme is "Shifting the Center: From Fragility to Resilience."</p>
+      <p><strong>The curatorial claim: taking back the word "center."</strong> Degan compresses the theme into a single sentence: "The center has always been here." The target is a long-standing structural fact — African architecture has tended to appear in international discourse as case study, field site or aid recipient, while agenda-setting happened elsewhere. PAB positions itself to foreground African cities, cultural memory and design agency on a global stage rather than as background annotation.</p>
+      <p><strong>Structure: three strands.</strong> The exhibition is organised through three thematic sections. Land Under Pressure addresses climate change and its impact on settlements and territorial networks; Inherited Knowledge takes up vernacular intelligence and local building know-how; Worlds to Come turns toward African futures and new spatial imaginaries. The sequence itself is an argument: acknowledge the pressure first, return to the existing knowledge base second, and only then propose a horizon — rather than jumping straight to "the future of Africa."</p>
+      <p><strong>Participation: thirty-plus countries, across disciplines.</strong> The announced selection spans more than thirty African nations, among them Algeria, Angola, Benin, Comoros, Djibouti, Equatorial Guinea, Eritrea, Gabon, the Gambia, Guinea, Guinea-Bissau, Ivory Coast, Lesotho, Libya, Madagascar, Malawi, Mauritania, Mauritius, Morocco, Namibia, Nigeria, Senegal, Seychelles, South Sudan, Sudan, Togo, Tunisia, Zambia and Zimbabwe. Participants are not limited to architecture offices; they include urban researchers, material research collectives, conservation bodies and community-based design groups. Confirmed practices include Djamel Klouche (Algeria), Banga Coletivo (Angola), Ramos Castellano Arquitectos, MASS Design Group and Raas Architects. The organisers' stated ambition is to expand toward all 54 African nations, with this edition as the first attempt.</p>
+      <p><strong>Why it is worth following from Syracuse.</strong> The central question PAB raises — how architecture establishes its own criteria from local materials and inherited building knowledge under conditions of constrained resources, acute climate pressure and rapid urbanisation — is legible from a distance and directly comparable to debates about regionalism and situated construction elsewhere. What distinguishes PAB is that it puts the question at the institutional level: not competing for a booth inside somebody else's biennale, but building one. For architecture students, a first edition is also the most transparent edition — curatorial framework, selection mechanism and funding structure are all still visible, which makes this a live case study in how an academic institution gets constructed.</p>
+      <p>The opening week unfolds through exhibitions, installations, keynote dialogues and public events across Nairobi and a number of satellite locations.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ngrid">
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Ninth Oslo Architecture Triennale opens 17 September: "What if Nature Comes First?"</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Oslo Architecture Triennale</span> · <span class="src">D5 Mag</span></div>
+  <div class="ni-desc">The ninth Oslo Architecture Triennale runs 17 September to 1 October, centred on Sofienberg Church, and brings together more than thirty international architecture projects under the question "What if Nature Comes First?" It is curated by the landscape architect Line Ramstad, who is also the Triennale's director and chief curator, and adopts a two-week festival format combining exhibition with conferences, seminars, workshops, film screenings and guided walks. The curatorial premise: if nature is placed at the start of architectural decision-making, what gets built, preserved, transformed — or left alone.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">UIA elects its 2026–2029 Council in Barcelona; the World Congress passes to Beijing</div>
+  <div class="ni-meta">Sources: <span class="src">UIA</span> · <span class="src">Beijing Municipal Government</span> · <span class="src">Architectural Society of China</span></div>
+  <div class="ni-desc">The General Assembly of the International Union of Architects elected a new Council for the 2026–2029 term during the 2026 World Congress of Architects in Barcelona, with Zhang Li, dean of Tsinghua University's School of Architecture, as President. With Barcelona concluded, hosting duties for the next World Congress have passed to Beijing, which formally launched its "road to Beijing" in July 2026. The congress is held every three years; the Barcelona programme also included "Beyond Recognition: Exploring the Role of Architectural Awards," a debate on whether architectural prizes should address environmental and social challenges.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Suzhou MoCA opens with four exhibitions: Picasso, contemporary Chinese art and the algorithmic age</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Wallpaper*</span> · <span class="src">China Daily</span></div>
+  <div class="ni-desc">The Suzhou Museum of Contemporary Art opened with four exhibitions: "Picasso and the World of His Influence," "Gèn: A Journey Through Art's Transcendence," "Codes &amp; Canopies: Art Beyond the Algorithmic Age," and "BIG: MATERIALISM." Placing an internationally legible master show, local contemporary art scholarship and a technical, material-driven argument in the same opening phase sketches out the range this new institution intends to occupy.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Powerhouse Parramatta opens with five exhibitions, including "The Mall" with OMA/AMO</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">ArchitectureAU</span> · <span class="src">designboom</span></div>
+  <div class="ni-desc">Powerhouse Parramatta opens on 7 November with five exhibitions. Among them is "The Mall," designed and curated in collaboration with OMA/AMO, which takes up Western Sydney's foundational role in the development of the global shopping centre — a building type routinely ignored by architectural history despite having shaped postwar urban form as decisively as almost anything else. OPEN Architecture is also involved in the opening exhibition design.</div>
+</div>
+
+</div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+})();
+</script>
+</body>
+</html>
