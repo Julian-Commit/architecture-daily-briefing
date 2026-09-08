@@ -16,3 +16,6 @@ logs/
 # 轮询器的状态与锁
 .discord-poll-state.json
 .discord-poll.lock
+
+# 出刊时的中间产物（渲染用 JSON、卡片 JSON 等）
+.tmp/
