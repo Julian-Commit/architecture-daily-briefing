@@ -48,11 +48,17 @@ memory/JOURNAL.jsonl  运行日志
 1. **搜集** — `WebSearch` 搜四个板块，中英文源并行；`WebFetch` 读原文核验，每条 ≥2 个独立信源。
 2. **抓图** — 建筑是视觉学科，每条尽量配图：
    ```
-   node scripts/extract-images.js <url1> <url2> ...        # 输出 JSON 到 stdout
-   curl -sL <url> | grep -o 'og:image[^>]*'                # 备选，服务端渲染站点够用
+   node scripts/extract-images.js <url1> <url2> ...        # 默认：纯 HTTP，不开浏览器
+   node scripts/extract-images.js --auto <url1> ...        # 抓不到的那几条再用浏览器补
    ```
-   `extract-images.js` 用 Puppeteer 跑真浏览器（ArchDaily/Dezeen 这类 JS 渲染站点必须这样）。
-   首次或换机器后若报找不到 puppeteer，先 `npm install`。
+   **默认不启动浏览器**。og:image 是给社交平台爬虫看的，本来就写在静态 HTML 的 `<head>` 里，
+   一个 GET 就能拿到。被 401/403/429 挡住时脚本会自动换成 facebook 爬虫的 UA 再试一次——
+   这些站点故意放行社交爬虫读 og 标签，正好对得上。
+   `status` 为 `blocked` 说明该源按 IP 封锁（Reuters 这类），换个信源的图，别硬啃。
+
+   **不要随手加 `--browser`**：那会启动 Puppeteer 的 Chrome for Testing，
+   卡巴斯基会弹"正在试图访问网络摄像头"的模态框拦它——无人值守出刊时没人点，整期卡死
+   （2026-09-09 实际发生过）。真需要渲染 JS 时用 `--auto`，它只对失败的那几条开浏览器。
 3. **写稿** — 5 条头条（四板块至少各一）+ 每板块 1 篇深度解读（综合 5-6 信源）+ 3-4 条快讯 + 编者按（150-250 字）。
    深度解读必须覆盖：设计概念 / 空间策略 / 结构或材料创新 / 项目背景与影响。
    术语首次出现标英文原名，图片 alt 中英双语。

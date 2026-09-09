@@ -38,8 +38,10 @@ Designboom / Architectural Record，中文源 ArchDaily 中文版 / gooood / 有
 node scripts/extract-images.js <url1> <url2> <url3> ...
 ```
 
-输出 JSON（stdout），进度日志走 stderr。`status` 不是 `ok` 的换备选源，
-或者 `curl -sL <url> | grep -o 'og:image[^>]*'` 试一下。报找不到 puppeteer 就先 `npm install`。
+输出 JSON（stdout），进度日志走 stderr。**默认纯 HTTP，不开浏览器**，被反爬挡住会自动
+换社交爬虫 UA 重试一次。`status` 为 `blocked`（按 IP 封锁，如 Reuters）或 `no_image` 时，
+换个信源的图，不要为了凑图加 `--browser`——那会启动 Chrome，卡巴斯基弹框会把整期卡死。
+实在需要渲染 JS 才拿得到图，用 `--auto`（只对失败项开浏览器，且要有人在场）。
 图片 alt 写中英双语。
 
 **4. 写稿**
