@@ -71,7 +71,7 @@ body{background:var(--bg);font-family:"PingFang SC","Hiragino Sans GB","Microsof
 
 .hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
 .hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
-.hl .hl-img{width:100%;aspect-ratio:2/1;object-fit:cover;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
 .hl .hl-body{padding:16px 18px 18px}
 .hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
 .hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
@@ -83,13 +83,13 @@ body{background:var(--bg);font-family:"PingFang SC","Hiragino Sans GB","Microsof
 .hl .hl-link:hover{border-bottom-width:2px}
 @media(min-width:768px){
   .hl{display:flex;border-radius:0}
-  .hl .hl-img{width:240px;aspect-ratio:auto;min-height:220px;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
   .hl .hl-body{flex:1;padding:20px}
 }
-@media(min-width:1024px){.hl .hl-img{width:300px}}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
 
 .ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
-.ft .ft-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
 .ft .ft-body{padding:20px 18px}
 .ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
 .ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
@@ -103,7 +103,7 @@ body{background:var(--bg);font-family:"PingFang SC","Hiragino Sans GB","Microsof
 .ft .ft-desc p{margin-bottom:10px}
 @media(min-width:768px){
   .ft{display:flex;border-radius:0}
-  .ft .ft-img{width:38%;aspect-ratio:auto;min-height:260px;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
   .ft .ft-body{flex:1;padding:24px}
 }
 
@@ -141,6 +141,14 @@ img{background:var(--tint)}
   .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
   a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
 }
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
 </style>
 </head>
 <body>
@@ -288,6 +296,25 @@ img{background:var(--tint)}
     }, { rootMargin: '-64px 0px -70% 0px' });
     Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
   }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
 })();
 </script>
 </body>
