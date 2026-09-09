@@ -64,6 +64,16 @@ node scripts/render.js template-en.html <en.json> news/YYYY-MM-DD-en.html
 互链别写错：中文版 `EN_URL` = `YYYY-MM-DD-en.html`，英文版 `CN_URL` = `YYYY-MM-DD-cn.html`。
 `render.js` 报错必须修好再继续，不要用 `--allow-missing` 绕过。
 
+**5.4 校验配图（必做）**
+
+```bash
+node scripts/check-images.js news/YYYY-MM-DD-cn.html news/YYYY-MM-DD-en.html
+```
+
+带本站 Referer 真实请求每张图。**URL 能打开 ≠ 页面上能显示**：有些图床开了防盗链，
+直接访问 200、带 Referer 就 403，读者看到的是空白。建筑日报把"视觉优先"写进了人格，
+这一步不能省。报错的图换别的信源，找不到就不配——**绝不挂一张不对版的照片充数**。
+
 **5.5 收尾（注入分享信息 + 同步样式）**
 
 ```bash

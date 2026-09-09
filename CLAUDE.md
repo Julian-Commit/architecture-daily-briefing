@@ -28,7 +28,8 @@ news/2026-07-19.html  拆分前的旧单页版，同日已有 cn/en 版，已废
 news/index.html       往期目录（由脚本生成，不要手写）
 scripts/              extract-images 需要 puppeteer，其余无依赖
   render          填模板 + 硬校验
-  extract-images  Puppeteer 抓 og:image
+  extract-images  抓 og:image（纯 HTTP，不开浏览器）
+  check-images    校验配图在本站能否显示（防盗链会 403）
   finalize        注入 og/twitter/JSON-LD，并把模板样式同步给旧刊
   build-index     重建首页与往期目录
   make-card       从中文版刊物生成 Discord 卡片 JSON（自动带英文按钮）
