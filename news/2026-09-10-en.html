@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-10</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="Stefano Boeri wins Ibiza affordable housing competition with dry-assembled CLT: 190 below-market rentals, chosen from 13 entries；UN General Assembly adopts Correct the Map resolut…">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 006 · 2026-09-10 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="Stefano Boeri wins Ibiza affordable housing competition with dry-assembled CLT: 190 below-market rentals, chosen from 13 entries；UN General Assembly adopts Correct the Map resolut…">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-10-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.designboom.com/twitterimages/uploads/2026/09/SA-casa-stefano-boeri-architetti-affordable-housing-ibiza-spain-designboom-fb.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 006 · 2026-09-10 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="Stefano Boeri wins Ibiza affordable housing competition with dry-assembled CLT: 190 below-market rentals, chosen from 13 entries；UN General Assembly adopts Correct the Map resolut…">
+<meta name="twitter:image" content="https://www.designboom.com/twitterimages/uploads/2026/09/SA-casa-stefano-boeri-architetti-affordable-housing-ibiza-spain-designboom-fb.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 006 · 2026-09-10 · 陆先生建筑日报 | Architecture Daily","description":"Stefano Boeri wins Ibiza affordable housing competition with dry-assembled CLT: 190 below-market rentals, chosen from 13 entries；UN General Assembly adopts Correct the Map resolut…","datePublished":"2026-09-10","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-10-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://www.designboom.com/twitterimages/uploads/2026/09/SA-casa-stefano-boeri-architetti-affordable-housing-ibiza-spain-designboom-fb.jpg"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 006</div>
+    <div>September 10, 2026 Thursday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-10-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p>Today's thread is what we build with, and who decides what gets built. Stefano Boeri Architetti has won out over 12 other entries to deliver 190 below-market rental homes in Ibiza using a prefabricated cross-laminated timber system — industrialised timber construction finally being tested on affordable housing, the building type with the hardest cost constraints. The hexagonal pavilion Gerhard Richter, now 94, conceived with Selldorf Architects opens in Doha on 20 November, carrying into three dimensions the 2010 operation in which he cut an abstract painting into 8,192 vertical strips. In Washington, the Interior Secretary has announced that a 250-foot triumphal arch breaks ground within weeks; it will physically interrupt the sightline between the Lincoln Memorial and Arlington National Cemetery established in 1932, and litigation is ongoing. Bavaria's arts ministry has ordered the Architekturmuseum der TUM out of the Pinakothek der Moderne, with no confirmed destination for 600,000 drawings. On the academic side, Herzog &amp; de Meuron opens two decades of Chinese process archives at M+ in Hong Kong on 12 September. And the UN General Assembly adopted its Correct the Map resolution 164 to 1, recommending equal-area projections — cartography, but also the cognitive baseline for urban and regional research.</p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/SA-casa-stefano-boeri-architetti-affordable-housing-ibiza-spain-designboom-fb.jpg" alt="Sa Casa 四栋 CLT 住宅体量与其间的共享景观 / The four CLT residential volumes of Sa Casa and the shared landscape between them" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">MATERIALS</span>
+    <div class="hl-title">Stefano Boeri wins Ibiza affordable housing competition with dry-assembled CLT: 190 below-market rentals, chosen from 13 entries</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">designboom</span> · <span class="src">Stefano Boeri Architetti</span> · <span class="src">Pambianco</span></div>
+    <div class="hl-desc">Milan-based Stefano Boeri Architetti has won Casa 47, the competition launched by Spain's Entidad Estatal de Vivienda, with a scheme named Sa Casa. The project sits on a 5,505-square-metre parcel within Ca n'Escandell, a large public housing district on the edge of Ibiza Town, and will deliver roughly 190 below-market-rate rental apartments; the wider neighbourhood is planned to hold more than 500 protected homes. The structural system is cross-laminated timber (CLT) — structural panels built from layers of wood set perpendicular to one another — with components prefabricated off site and assembled dry on site, cutting construction time, material waste and disruption to the surroundings. The four residential volumes are set apart from one another, and the jury's stated reason for selecting the scheme was precisely how that separation negotiates the terrain and opens the housing toward the shared landscape between the blocks. Native planting extends from the open spaces onto the roofs, providing shade, creating habitat, improving air quality and mitigating the urban heat island effect; photovoltaic panels sit on the roofs, and building orientation, natural ventilation and water management are all folded into the design. The scheme was selected from 13 entries.</div>
+    <a href="https://www.archdaily.com/1184832/stefano-boeri-architetti-wins-competition-for-timber-affordable-housing-in-ibiza" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6aa2/2df3/237b/e901/8be9/62f6/large_jpg/this-weeks-review_10.jpg?1789013503" alt="联合国大会通过「修正地图」决议后的世界地图投影议题 / The world map projection debate following the UN General Assembly's Correct the Map resolution" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">URBANISM</span>
+    <div class="hl-title">UN General Assembly adopts Correct the Map resolution 164 to 1, recommending equal-area projections and naming Equal Earth</div>
+    <div class="hl-meta">Sources: <span class="src">UN News and meetings coverage</span> · <span class="src">ArchDaily</span> · <span class="src">CNN</span> · <span class="src">The Washington Post</span> · <span class="src">NPR</span></div>
+    <div class="hl-desc">The UN General Assembly has adopted the Correct the Map resolution by a recorded vote of 164 in favour, one against (the United States), with six abstentions (Estonia, Georgia, Lithuania, Moldova, Serbia and Ukraine). The resolution calls for wider use of equal-area projections in contexts where the comparative size of continents carries substantive meaning, and names the Equal Earth projection specifically. It does not ban the Mercator projection, nor does it set a single global standard; instead it encourages choosing a projection according to "regional context." One clarification matters here: equal-area projections do not make Africa bigger — they remove the exaggeration Mercator applies to high-latitude landmasses. The sponsors' argument rested on education, public understanding, culture, geopolitics and development narratives, that is, on how Africa's actual scale and potential are perceived. For architecture and planning, the practical relevance is direct: base map choice in regional-scale analysis, climate zone comparison and territorial planning coursework changes the readings you get for area, density and distance. The US deputy representative criticised the debate as a distraction from substantive work.</div>
+    <a href="https://news.un.org/en/story/2026/09/1168284" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/selldorf-architects-doha-pavilion-gerhard-richter-designboom-qatar-FB.jpg" alt="Gerhard Richter 多哈六边形展亭的外墙印刷图案 / The printed patterns on the exterior walls of Gerhard Richter's hexagonal Doha pavilion" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">PROJECTS</span>
+    <div class="hl-title">Gerhard Richter's own hexagonal pavilion opens in Doha on 20 November: one abstract painting cut into 8,192 vertical strips, then grown into a building</div>
+    <div class="hl-meta">Sources: <span class="src">designboom</span> · <span class="src">The Art Newspaper</span> · <span class="src">Qatar Museums</span> · <span class="src">dpa / SN.at</span></div>
+    <div class="hl-desc">The Doha Pavilion, a permanent structure commissioned by Qatar Museums, opens on 20 November 2026 in MIA Park beside I. M. Pei's Museum of Islamic Art. It was conceived by the 94-year-old German artist Gerhard Richter himself, with Selldorf Architects as architect of record, and has been roughly ten years in the making. The plan is hexagonal, its six exterior walls carrying printed patterns; inside are three large-scale Strip paintings, two floor-to-ceiling mirrors and a freestanding sculpture called Strip Tower, with the sculpture Brunnen (Well) outside. The method comes directly from a digital operation Richter carried out in 2010: he recursively subdivided one of his abstract paintings along the vertical axis into 8,192 strips, each only 0.08 millimetres wide, work later collected in his 2011 book Patterns. The pavilion is an attempt to push that two-dimensional algorithm into three-dimensional enclosure — architecture here is not a container for the painting but a continuation of the same logic of subdivision. The pavilion forms part of Rubaiya, Qatar's quadrennial opening in November across Doha with more than 50 artists and over 20 new commissions.</div>
+    <a href="https://www.designboom.com/architecture/gerhard-richter-hexagonal-doha-pavilion-strip-paintings-qatar-sellforf/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/Pinakothek_der_Moderne_Muenchen-1.jpg" alt="慕尼黑现代美术馆（Pinakothek der Moderne）外观 / Exterior of the Pinakothek der Moderne in Munich" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">ACADEMIA</span>
+    <div class="hl-title">Architekturmuseum TUM ordered out of the Pinakothek der Moderne: one of the largest architecture archives in German-speaking Europe, and 600,000 drawings with nowhere confirmed to go</div>
+    <div class="hl-meta">Sources: <span class="src">The Architect's Newspaper</span> · <span class="src">Technical University of Munich (TUM)</span> · <span class="src">Architekturmuseum der TUM</span> · <span class="src">Museen in Bayern</span></div>
+    <div class="hl-desc">In July 2026, Bavaria's arts minister Markus Blume announced sweeping reforms across eighteen state-run cultural institutions, one of which evicts the Architekturmuseum der TUM from the Pinakothek der Moderne. The museum has been housed there since the Pinakothek opened in 2002, in a building designed by Stephan Braunfels, and its holdings constitute one of the largest specialist architecture archives in German-speaking Europe — roughly 600,000 drawings, 200,000 photographs and 1,500 models, with material from more than 700 architects and landscape architects. An open letter opposing the move makes three arguments: that the built environment is "starkly underrepresented" in German museums; that the public has few institutions for open engagement with architecture; and that removing the museum will "jeopardize" both its reputation and the state's capacity to address pressing contemporary issues such as global warming and the housing crisis. As of publication, neither a new venue nor an archival storage plan has been announced — and for a collection built on paper drawings and physical models, climate-controlled storage and reading-room access are not incidental terms of a move but the precondition for the material remaining usable at all.</div>
+    <a href="https://www.archpaper.com/2026/09/architekturmuseum-tum-eviction/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://static.dezeen.com/uploads/2026/09/americas-regional-showcases-dezeen-awards_dezeen_2364_col_0.jpg" alt="Dezeen Awards 2026 美洲 Top 50 入选项目 / Projects selected for the Dezeen Awards 2026 Americas Top 50" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">PROJECTS</span>
+    <div class="hl-title">Dezeen Awards 2026 publishes its Americas Top 50, completing all three regional lists; shortlists follow 21–23 September</div>
+    <div class="hl-meta">Sources: <span class="src">Dezeen</span> · <span class="src">Dezeen Awards</span></div>
+    <div class="hl-desc">Dezeen has published its Top 50: Americas (AMER) list, the last of the three Regional Showcases introduced for this edition of the awards. The three lists cover Europe, Middle East and Africa (EMEA, published 9 September), Asia Pacific (APAC) and the Americas, with 50 places each, selected by Dezeen's editors from this year's entries and spanning architecture, interiors and design. The Americas list draws on projects from Brazil, Canada and the United States among others, and is sponsored by Programa. The practical significance of splitting by region lies in the judging frame: a single global list tends to be dominated by European and North American work, whereas fixed regional allocations guarantee places to each. Regional Showcases and the awards themselves are separate processes — the Dezeen Awards 2026 shortlists, selected by an international panel of judges, will be announced between 21 and 23 September, with the awards party set for 16 November at the Royal Opera House in London. Each selected project has its own page on the Dezeen Awards site.</div>
+    <a href="https://www.dezeen.com/2026/09/10/americas-regional-showcases-dezeen-awards/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/selldorf-architects-doha-pavilion-gerhard-richter-designboom-qatar-FB.jpg" alt="多哈展亭六边形体量与外墙条纹图案 / The hexagonal volume and striped exterior of the Doha Pavilion" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">IN DEPTH</span>
+    <div class="ft-title">How a line 0.08 millimetres wide becomes a building: Richter's hexagonal Doha pavilion, and the part of the work Selldorf had to land</div>
+    <div class="ft-meta">Cross-checked: <span class="src">designboom</span> · <span class="src">The Art Newspaper</span> · <span class="src">Qatar Museums</span> · <span class="src">dpa / SN.at</span> · <span class="src">Aachener Zeitung</span> · <span class="src">Selldorf Architects</span></div>
+    <div class="ft-desc">
+      <p>The Doha Pavilion, commissioned by Qatar Museums, opens on 20 November 2026 in MIA Park beside I. M. Pei's Museum of Islamic Art. It was conceived by the 94-year-old German artist Gerhard Richter himself, with Selldorf Architects as architect of record, and has taken roughly ten years. It is an unusual kind of commission: not an artist making an installation for an existing building, but a permanent structure intended to be read simultaneously as artwork and as architecture.</p>
+      <p><strong>Concept: pushing a two-dimensional subdivision into three dimensions.</strong>To read the pavilion you first have to read its source. In 2010 Richter applied a digital procedure to one of his own abstract paintings: repeated halving along the vertical axis, ending in 8,192 strips each 0.08 millimetres wide — a dimension already below the resolving limit of the eye, so the result registers as continuous optical gradient rather than as countable bands. The work was collected in the 2011 book Patterns and developed into his late Strip series. The pavilion's proposition is to carry that operation from canvas to enclosure: six exterior walls carry printed patterns, three large-scale Strip paintings line the interior walls, two floor-to-ceiling mirrors and a freestanding sculpture called Strip Tower stand within, and the sculpture Brunnen (Well) sits outside. Architecture here is not a container for painting but an extension of the same logic of subdivision into volume.</p>
+      <p><strong>Spatial strategy: the hexagon and the two mirrors together abolish the front.</strong>The hexagon is not a formal preference. Every side of a hexagonal plan is equivalent; there is no primary or secondary elevation, and approach can come from any of six directions — which corresponds exactly to the Strip series' own property of having no compositional centre, no strip more important than any other. The two floor-to-ceiling mirrors inside push this further by abolishing the endpoint: they fold the three Strip paintings back on themselves, visually extending a finite hexagonal room into something unbounded. In museum display this kind of move is often dismissed as a gimmick, but here it does conceptual work — Richter's recursive subdivision could mathematically continue indefinitely, and it is only the size of the canvas that stops it. The mirrors are how that "could have continued" gets stated in space.</p>
+      <p><strong>Structure and material: turning 0.08 millimetres into a buildable drawing.</strong>Selldorf Architects' role is reported as architect of record, a position whose actual workload is routinely underestimated. The difficulty sits at two ends. The first is landing the printed pattern on the exterior: strips at the 0.08-millimetre scale are achievable in painting through pigment and print resolution, but on a building envelope they must contend with panel jointing, UV fading, Doha's heat and humidity, and dust deposition — there is a direct conflict between the resolution of the pattern and the weathering life of the cladding, and any joint interrupts a gradient meant to be continuous. The second is detailing the hexagonal plan: six 120-degree wall junctions, pattern registration around each corner, and the placement of entry, services and egress on a volume with no declared front. Technical requirements for a permanent pavilion are an order of magnitude beyond those for a temporary structure, which is part of the explanation for the ten-year timeline.</p>
+      <p><strong>Background and impact: another model for Gulf cultural investment.</strong>The pavilion forms part of Rubaiya, Qatar's quadrennial opening in November across Doha with more than 50 artists and over 20 new commissions. Set in regional context: two decades of Gulf cultural construction have largely followed the route of importing an international museum brand and pairing it with a star architect — Louvre Abu Dhabi, Guggenheim Abu Dhabi. This instead builds a permanent structure for a single body of work by a single living artist, with the artist defining the form. It is closer to the American tradition of the single-artist place — the Rothko Chapel, Dia:Beacon — than to the comprehensive art museum. For architecture students, the case poses one concrete question: when the author of the form is not the architect, where does the architect's professional contribution sit? The answer is in the detailing, weathering and jointing described above — precisely the part student projects most often skip.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Hilversum's new sports complex goes to Benthem Crouwel and LD Architecten: €84 million, with a "3D sports circuit" threading the whole building</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Municipality of Hilversum</span> · <span class="src">PropertyNL</span> · <span class="src">Bouw en Uitvoering</span></div>
+  <div class="ni-desc">On 1 September 2026 the municipality of Hilversum, in the Netherlands, selected the team of Benthem Crouwel Architects and LD Architecten to design a new sports complex in the Arenapark district, after the team scored highest on both quality and price in an EU open tender. The project brings swimming, indoor sport, education and community life under one roof, with an investment of roughly €84 million. The evaluation committee singled out a strong integrated design vision connecting building, public space and sporting experience; its central device is a continuous circuit called the "3D Sportloper," linking the green forecourt, the atrium and the various sports functions. A further purpose-built element is a roughly 100-metre indoor athletics hall developed for the Gooise athletics club. Construction starts in September 2026, with completion targeted for the second quarter of 2031.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Amanoo, Yerevan: 11 hectares, 50 families per hectare, more than 75% green — and the landscape goes in before the buildings</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Khakhamyan Heritage</span> · <span class="src">Soghomonyan Architects</span></div>
+  <div class="ni-desc">The Amanoo residential district in Yerevan, Armenia, by Khakhamyan Heritage and Soghomonyan Architects, occupies 11 hectares and deliberately caps development intensity at 50 families per hectare, leaving more than 75% of the territory as green space. The genuinely unusual move is the construction sequence: landscape works are completed before building construction rather than planted after the buildings are topped out. The inversion has real consequences — trees planted first can already provide shade when residents move in, and the approach avoids heavy machinery destroying topsoil and existing vegetation during construction. The cost is that the landscape must be protected through a long construction period. For housing coursework in which high density is the default premise, this is a useful counter-reference.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Grimshaw turns Allegiant Stadium's north parking lots into a raised plaza: $158 million, with rideshare pick-up tucked beneath the deck</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Las Vegas Review-Journal</span> · <span class="src">FOX5 Vegas</span> · <span class="src">Grimshaw</span> · <span class="src">e-architect</span></div>
+  <div class="ni-desc">The Las Vegas Raiders have unveiled plans for the north side of Allegiant Stadium: the asphalt now occupied by Lots B and C becomes a landscaped plaza, with Grimshaw as design lead and architect of record. The scheme centres on a raised pedestrian deck running from the W. Hacienda Avenue overpass to the stadium's northern gate, with a large canopy above that doubles as a small concert stage and a rideshare pick-up and drop-off zone below. The aim is a direct pedestrian connection between the stadium and the Strip plus a flexible public space able to host events year-round. Total cost is $158 million, of which the Las Vegas Stadium Authority has approved $75 million from an existing fund. Construction is planned for the third quarter of 2027 with completion by the end of 2028, ahead of the 2029 Super Bowl. Grimshaw partner Andrew Byrne put it bluntly: "Some of the most undervalued land in American sport and entertainment is the asphalt sitting empty immediately adjacent to venues that already draw the crowd."</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Wim Wenders' Zumthor documentary From Inside Out premieres in Venice: 14 years of filming, 114 minutes, shot entirely in 3D</div>
+  <div class="ni-meta">Sources: <span class="src">La Biennale di Venezia</span> · <span class="src">ArchDaily</span> · <span class="src">Variety</span> · <span class="src">The Hollywood Reporter</span> · <span class="src">German Design Council</span></div>
+  <div class="ni-desc">From Inside Out: The Architecture of Peter Zumthor had its world premiere on 6 September 2026 in the Venice Open — Out of Competition strand of the Venice International Film Festival. Wim Wenders worked with Zumthor for more than 14 years on the film, which runs 114 minutes, is shot in 3D, and lists Brad Pitt as executive producer. It avoids the author-interview format standard to architecture documentaries, instead recording the buildings through four categories of witness — visitors, users, inhabitants and craftspeople. That methodological choice aligns with Zumthor's own position that architecture only means anything once it is experienced bodily. Projects covered include the Therme Vals, the Kolumba Museum in Cologne, the Bruder Klaus Chapel in the Eifel, the Steilneset Memorial in Vardø, the Secular Retreat in Devon and the David Geffen Galleries at the Los Angeles County Museum of Art.</div>
+</div></div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/7A492D6A-D501-4620-B38F-D0AF46AAC977.jpeg" alt="拟建于阿灵顿纪念环岛的凯旋门方案 / The proposed triumphal arch at Arlington Memorial Circle" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">IN DEPTH</span>
+    <div class="ft-title">250 feet on a sightline: Washington's triumphal arch breaks ground within weeks, and the site it will occupy is itself a piece of design</div>
+    <div class="ft-meta">Cross-checked: <span class="src">The Architect's Newspaper</span> · <span class="src">CBS News</span> · <span class="src">CNN</span> · <span class="src">WJLA</span> · <span class="src">National Capital Planning Commission public testimony</span> · <span class="src">The Hill / AP</span> · <span class="src">PBS NewsHour</span></div>
+    <div class="ft-desc">
+      <p>On 3 September 2026, US Interior Secretary Doug Burgum announced that the Triumphal Arch pushed by President Trump would begin excavation within weeks, on Memorial Circle on Columbia Island in Arlington, Virginia — the western end of the Arlington Memorial Bridge. The structure stands 250 feet (about 76 metres) from base to the top of its statuary, designed by Nicolas Charbonneau of Harrison Design, at an estimated cost of around $400 million, which Trump has said will come from a mix of private donors and taxpayer money. The controversy this has generated among architects and planners does not map neatly onto political alignment — its technical core is the site.</p>
+      <p><strong>Concept and site: that circle is not vacant land.</strong>Memorial Circle is currently empty, but its emptiness is designed. The Arlington Memorial Bridge, completed in 1932, was planned precisely to connect the Lincoln Memorial with Arlington National Cemetery (and Arlington House within it) along a straight sightline, symbolising post-Civil War reconciliation. That axis is an inherited piece of urban design descending from the McMillan Plan of 1902, and the circle's vacancy is the condition on which it depends. Placing a 250-foot structure there physically interrupts that line of sight. This can be stated independently of any aesthetic judgement: whatever the form of the object, a solid mass at the midpoint of an axis ends mutual visibility between its two ends.</p>
+      <p><strong>Spatial strategy and traffic: the circle's functional problem.</strong>Memorial Circle is also a high-volume traffic circle, taking turning movements from the George Washington Memorial Parkway and the Memorial Bridge. A second line of objection concentrates here: building a large structure at the centre of a traffic circle means prolonged construction hoarding and a permanent change to vehicle circulation, and once visitors are drawn to the centre of the circle, a pedestrian-vehicle conflict is created that did not previously exist — the circle has no safe pedestrian access. When the National Capital Planning Commission granted preliminary approval in July 2026, it explicitly requested that the Interior Department supply further material on the structure's potential impact on air navigation and on specifics of construction and area traffic. These are procedural requirements, and no final public response has been recorded.</p>
+      <p><strong>Form and criticism: attribute the judgements.</strong>On questions of form this briefing relays only attributed professional criticism. Writing in The Architect's Newspaper in June 2026, critic Naomi Leigh argued that the scheme gets classicism wrong, calling it "a simulacrum of the classical" and writing that "the arch is oversized and visually top-heavy, its proportions strained." According to Fox News, the sculptural programme includes golden eagles, lions and a winged Lady Liberty at the summit. As a disciplinary matter, the triumphal arch as a typology is not in itself the issue — the Arc de Triomphe and the Washington Square Arch are established precedents. The argument is about the proportional system, the height-to-width relationship of plinth and archivolt, and the visual distribution of sculptural load: technical questions that can be checked against classical orders and proportional canons, not matters of taste.</p>
+      <p><strong>Process and impact: the approval chain and unresolved litigation.</strong>On approvals: the US Commission of Fine Arts, whose members are appointed by Trump, granted final approval in May 2026, and the NCPC granted preliminary approval in July with the additional requirements noted above. The project has not received Congressional approval. On litigation: in February 2026 three Vietnam War veterans and architectural historian Calder Loth sued to block construction, describing the proposal as a "vanity project" and arguing among other points that it bypasses Congressional authorisation; the case is ongoing, and opponents sought emergency judicial relief around 3 September. For architecture and planning students, this case is worth following in full not because of whether it is ultimately built but because it exposes a set of normally invisible institutions: who protects inherited urban design, how approval authority over federal land is allocated, and how much constraint procedural review retains when the reviewing body's members are appointed by the project's proponent. These questions recur, in different forms, in major public projects in any country.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">European Prize for Urban Public Space marks 25 years with an exhibition opening in New York today: CCCB with the Spitzer School, ten themes across a quarter century</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen Events Guide</span> · <span class="src">Archinect</span> · <span class="src">CCNY Spitzer School of Architecture</span> · <span class="src">CCCB</span></div>
+  <div class="ni-desc">Design Matters: In Favor of Urban Public Space opens on 10 September 2026 in the Spitzer School Atrium Gallery at 141 Convent Avenue, New York, and runs to 26 February 2027. Presented by the Bernard and Anne Spitzer School of Architecture with the Centre de Cultura Contemporània de Barcelona (CCCB), it marks the twenty-fifth anniversary of the European Prize for Urban Public Space, the biennial award the CCCB has run since 2000 for projects that create, transform and recover public space in European cities. The exhibition does not organise the archive chronologically or by country; it re-cuts 25 years through ten themes, juxtaposing the smallest and largest scales of intervention. Themes announced so far include "Memory: Overlapping Times," "Mobility: Sharing Movement" and "Fostering Complexity." A programme of public events runs alongside, with practitioners, teachers and researchers in conversation across three threads: the climate emergency, social inequality and the transformation of mobility. Entries for the 13th edition of the Prize were open from 10 December 2025 to 26 February 2026.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">What equal-area projection means in the studio: change the base map and your area, density and distance readings all move</div>
+  <div class="ni-meta">Sources: <span class="src">UN meetings coverage (GA/12779)</span> · <span class="src">ArchDaily</span> · <span class="src">Equal Earth projection literature</span></div>
+  <div class="ni-desc">The UN's Correct the Map resolution recommends rather than mandates: it calls for equal-area projections where the comparative size of continents carries substantive meaning and names Equal Earth, but does not ban Mercator and does not set a single global standard, instead leaving the choice to "regional context." The operational implication for urban and regional research is direct. Mercator is a conformal projection: it preserves angles, not areas, and its exaggeration grows with latitude — which is also precisely why it remains the default for web mapping, since local shape is correct and zoom behaves consistently. But the moment your object of analysis is area (national land mass, climate-zone extent, green space per capita) or density (people per square kilometre), readings taken off a Mercator base are systematically wrong. For students working at regional scale, comparing climate zones, or on territorial planning briefs, the practical advice is single: separate area calculation from shape reading, use an appropriate projection for each, and stop using one base map for both.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Las Vegas Stadium Authority approves $75 million — for the plaza outside the venue, not the venue itself</div>
+  <div class="ni-meta">Sources: <span class="src">FOX5 Vegas</span> · <span class="src">Las Vegas Review-Journal</span> · <span class="src">TicketNews</span> · <span class="src">Raiders</span></div>
+  <div class="ni-desc">In early September 2026 the Las Vegas Stadium Authority voted unanimously to release $75 million from an existing fund toward the Raiders' $158 million north entry plaza at Allegiant Stadium. The nature of the allocation is worth isolating: the public money goes not to seating or suites but to the pedestrian deck, canopy and transport interface outside the stadium — the parts accessible to users and non-users alike. The long-standing criticism of public subsidy for North American sports venues centres on privatised returns, and confining subsidy to external public space is one answer to it, though the dispute is not resolved: final control over how the plaza is used still sits with the team. Construction is planned for the third quarter of 2027 with completion by the end of 2028, timed for the 2029 Super Bowl in Las Vegas.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Landscape before buildings: Yerevan's Amanoo inverts the construction sequence, trading 50 families per hectare for 75% green space</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Khakhamyan Heritage</span> · <span class="src">Soghomonyan Architects</span></div>
+  <div class="ni-desc">Amanoo sets development intensity at 50 families per hectare across an 11-hectare site, leaves more than 75% of the territory as green space, and completes landscape works ahead of building construction. That order is rare in housing development because it turns landscape into a sunk up-front cost and requires protecting mature planting through the whole construction period. The designers' logic is verifiable: trees planted first can provide shade at handover, whereas the conventional post-construction approach takes five to ten years to reach comparable canopy. The land economics of low density are unambiguous, and the reference value here is not the intensity figure itself but that the scheme treats "when does the green space exist" as a design variable rather than a line item at the end of construction.</div>
+</div></div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6aa1/b781/43f9/c501/88fd/1a62/large_jpg/stefano-boeri-architetti-wins-competition-for-timber-affordable-housing-in-ibiza_1.jpg" alt="Sa Casa 的 CLT 预制住宅体量与屋面植被 / The CLT prefabricated volumes of Sa Casa and their planted roofs" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">IN DEPTH</span>
+    <div class="ft-title">Affordable housing is the real exam for industrialised timber: Stefano Boeri's 190 dry-assembled CLT rentals in Ibiza</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily</span> · <span class="src">designboom</span> · <span class="src">Stefano Boeri Architetti</span> · <span class="src">Pambianco</span> · <span class="src">Entidad Estatal de Vivienda / Casa 47</span></div>
+    <div class="ft-desc">
+      <p>Stefano Boeri Architetti has won Casa 47, the competition run by Spain's Entidad Estatal de Vivienda, with Sa Casa: roughly 190 below-market-rate rental apartments in Ca n'Escandell, a public housing district on the edge of Ibiza Town. The parcel is 5,505 square metres, and the wider neighbourhood is planned to hold more than 500 protected homes. The scheme was chosen from 13 entries. The weight of this story is not the name of the practice but the brief itself — affordable housing is the building type with the hardest cost constraints, and whether industrialised timber construction works here matters far more than whether it works in a cultural building or a high-end house.</p>
+      <p><strong>Concept: split 190 homes into four blocks and let the landscape pass through.</strong>The scheme does not consolidate into one mass but distributes into four separated residential volumes. The jury's stated reason for selecting it was exactly how that separation negotiates the terrain, and how it consequently opens the housing toward the shared landscape between the blocks. This has a specific meaning for affordable housing: a single large volume is normally cheaper (better perimeter-to-area ratio, more concentrated vertical circulation), and splitting into four increases external wall area and the number of cores. The scheme is willing to pay that penalty in exchange for every apartment facing a shared green space of real dimension rather than the corridor of the next block. A central green area, courtyards, pathways, shared workspaces and communal areas are all built from the same modular system as the housing.</p>
+      <p><strong>Spatial strategy: modular does not have to mean fixed unit plans.</strong>The scheme pairs the prefabricated timber system with adaptable housing layouts. This is a genuine problem in prefabricated timber housing: CLT panels are load-bearing, so once wall positions are set they are hard to move, and modularity's usual price is unit plans too rigid to absorb changes in household structure. The response here is to separate the structural module from the partition system, so one structural grid accommodates different unit combinations — and because the shared facilities (workspaces, communal areas) use the same modular system, residential and communal units are structurally interchangeable. For social housing with a design life of several decades, that adaptability matters more than the initial unit mix.</p>
+      <p><strong>Structure and material: what dry assembly in CLT actually buys.</strong>The structural system is cross-laminated timber (CLT) — structural panels glued up from layers of wood set perpendicular to one another, serving as both load-bearing wall and floor plate. Components are prefabricated off site and dry-assembled on site with no wet trades. The process buys three things: compressed programme, reduced material waste, and less disruption to the surroundings. The third is unusually concrete in Ibiza, where a tourism economy strictly limits the construction window; shortening on-site works raises project feasibility by a whole notch. Climate strategy layers over the structure: native planting extends from the open spaces onto the roofs for shade, habitat, air quality and urban heat island mitigation, with photovoltaics on the roofs and building orientation, natural ventilation and water management folded into the design. One caution: combining green roofs with CLT roof plates imposes extra requirements on waterproofing and moisture control. Timber's greatest long-term risk is getting wet, and roof loading and waterproofing build-up are the details this kind of scheme most needs watched through construction documentation.</p>
+      <p><strong>Background and impact: why this brief is worth following.</strong>Europe has accumulated substantial experience with timber high-rises and timber public buildings, but affordable housing is still mostly concrete. The reason is straightforward: CLT costs more per unit of material than concrete, so its cost advantage has to be recovered on the overall account through programme and labour savings — which requires a stable prefabrication supply chain and a skilled assembly workforce, precisely the two things affordable housing projects find hardest to guarantee. Sa Casa was selected through a competition run by a national housing agency, which means the public sector is willing to carry the cost of trial and error on this path. For students, the transferable point is to move attention from "is timber low-carbon" to "is timber deliverable under cost constraint": the first was settled some time ago, the second is the actual battleground of the next decade. Stefano Boeri's practice is best known for Bosco Verticale, and it is worth noticing that here the planted roofs are visibly reined in to a climate function rather than a formal argument.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ICON finishes 10 3D-printed barracks at Fort Bliss: 58 days of printing, nine months contract to delivery, $62.8 million</div>
+  <div class="ni-meta">Sources: <span class="src">U.S. Army</span> · <span class="src">DVIDS</span> · <span class="src">Stars and Stripes</span> · <span class="src">ICON</span> · <span class="src">3D Printing Industry</span></div>
+  <div class="ni-desc">Austin-based 3D printing construction company ICON received a $62.8 million production contract from the U.S. Army in December 2025 to build ten 3D-printed barracks at Fort Bliss in west Texas. Construction began in January 2026, a ribbon cutting for the first buildings was held on 28 July, and the remainder were expected to come online through September. The buildings are printed in a purpose-blended concrete and house up to 560 soldiers on temporary assignment in open bays. The figures are the part to record: printing across all ten buildings took 58 days, with contract-to-delivery estimated at nine months; the military told Senate hearings that conventional delivery would have taken 24 months. This is the largest robotic construction deployment by the U.S. defence department to date. ICON has separately launched ICON Prime, a division for defence and space infrastructure, led by former congressman Will Hurd. The lesson for students: the real opening for 3D-printed concrete is not formal freedom in the housing market but standardised repetitive buildings under extreme schedule pressure.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The embodied carbon paradox in CLT floors: the 1–3 inches of concrete topping needed for acoustics eats back part of the saving</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">USG</span> · <span class="src">Baker's Place, Madison, Wisconsin</span></div>
+  <div class="ni-desc">An ArchDaily technical feature points at a step usually skipped in the timber decarbonisation narrative: CLT floor plates are light and acoustically insufficient on their own, so meeting party-floor sound ratings (STC/IIC) typically requires pouring 1 to 3 inches of concrete topping — and producing lightweight concrete generates roughly 1,230 pounds of CO₂ per metric ton. The embodied carbon saved in the primary structure is therefore partly given back in the acoustic build-up. The alternative path is a gypsum-based self-levelling system over an acoustic mat: comparing 1 inch of gypsum concrete against a conventional 3–4 inches of lightweight concrete, the claim is a reduction of at least 75% in embodied carbon, and substituting the lightweight topping in a 100,000-square-foot building is claimed to cut nearly 50 metric tons of CO₂e. The case study is Baker's Place in Madison — a 14-storey hybrid CLT building using a 5/16-inch acoustic mat plus 2 inches of gypsum concrete, achieving measured STC/IIC of 56/53 with installation completed in two days per floor. Note that the feature's data comes from materials manufacturer USG and should be read as a manufacturer's claim.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Meta puts CLT into data centre administration buildings: around 41% less embodied carbon, and up to half the foundation concrete</div>
+  <div class="ni-meta">Sources: <span class="src">Meta Sustainability and Meta Data Centers</span> · <span class="src">Construction Dive</span> · <span class="src">Data Centre Magazine</span> · <span class="src">Datacenter Dynamics</span></div>
+  <div class="ni-desc">Meta has adopted mass timber — including cross-laminated timber and glue-laminated beams — in administration buildings at data centre campuses in South Carolina, Wyoming and Alabama, recording roughly 41% lower embodied carbon than conventional materials. The saving comes from two accountable sources: the wood itself sequesters carbon and displaces high-emission steel and concrete; and mass timber structures weigh far less than steel or concrete, cutting foundation concrete requirements by up to half — an effect that is particularly pronounced on soft ground. There is a programme benefit too: mass timber components are largely prefabricated, so extensive on-site steel welding is unnecessary and completion can come weeks earlier. Data centres are among the fastest-growing building types globally, which gives construction choices in their administration and ancillary buildings significance beyond any single project — though note that Meta's application so far is limited to administration buildings, not the data halls themselves.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">PBFD 2026 in Venice, 16–18 September: putting facade failure on the main agenda</div>
+  <div class="ni-meta">Sources: <span class="src">Facade Today</span> · <span class="src">PBFD 2026</span></div>
+  <div class="ni-desc">The Performance-Based Facade Design (PBFD) 2026 conference runs in Venice from 16 to 18 September 2026, three days on facade durability, failure cases, climate change and whole-life value. Making failures a main agenda item is unusual for a facade industry conference — most comparable events lead on new products and performance figures. The framing answers a practical problem: the facade is the shortest-replacement-cycle part of a building envelope and the one whose failure has the most immediate consequences, while climate loading (extreme temperature swings, intense rainfall, wind pressure) is now changing faster than most codes are being revised. For students working in facade design or building technology, the conference programme doubles as a reading list of the current research frontier.</div>
+</div></div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6a94/9916/c615/2701/88ac/46da/large_jpg/herzog-and-de-meuron_10.jpg?1788123460" alt="赫尔佐格与德梅隆在 M+ 展出的模型与过程材料 / Models and process material by Herzog &amp; de Meuron on show at M+" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">IN DEPTH</span>
+    <div class="ft-title">Moving the storeroom into the gallery: Herzog &amp; de Meuron opens two decades of China at M+ on 12 September, showing decisions rather than finished photographs</div>
+    <div class="ft-meta">Cross-checked: <span class="src">M+ Museum</span> · <span class="src">ArchDaily</span> · <span class="src">Dezeen Events Guide</span> · <span class="src">The Standard (Hong Kong)</span> · <span class="src">Galerie Magazine</span> · <span class="src">Ocula</span></div>
+    <div class="ft-desc">
+      <p>Herzog &amp; de Meuron: In Focus opens on 12 September 2026 in the M+ Focus Gallery in Hong Kong and runs to January 2027, curated by Ikko Yokoyama and Iris Ng. The exhibition marks two things at once: M+'s fifth anniversary, and the second phase of the practice's donation to the M+ Collection. That donation comprises more than 200 process items — models, prototypes, sketches and archival material.</p>
+      <p><strong>Concept: show how it was thought, not how it turned out.</strong>The default mode of the architecture exhibition is outcome-driven: large photographs, finished models, wall text. This exhibition takes the opposite line, with the museum explicitly setting out to reveal "the experimentation and decision-making behind each work, from early ideas to built form." Ten Chinese projects are selected, spanning 2002 to 2021, among them the National Stadium in Beijing (2002–2008, the "Bird's Nest"), Tai Kwun Centre for Heritage and Art in Hong Kong (2006–2018), and M+ itself. Exhibiting the design process of a museum inside that museum is a rare self-referential arrangement in architecture exhibitions, and it gives the show an inherent layer of institutional self-examination.</p>
+      <p><strong>Spatial strategy: replicating the Basel open storage in Hong Kong.</strong>The core decision in the exhibition design is the use of wooden vitrines replicated from those the practice developed for the open storage of its archival holdings at the Kabinett, its Basel-based foundation established in 2015. This is not a stylistic citation but the wholesale transplant of a storage logic: open storage is characterised by the absence of narrative curation, with objects arranged in inventory order rather than exhibition order, so the visitor sees the archive as it actually is. Senior curator Ikko Yokoyama puts it as follows: "The open-storage display, inspired by the Kabinett, repositions the gallery as a space for discovery and dialogue." The strategy has a cost — it transfers part of the burden of organising information to the visitor, raising the threshold for those without a professional background — but what it buys is raw material unretouched by an exhibition narrative.</p>
+      <p><strong>Material: process objects are technical literature.</strong>The 200-plus donated items comprise models, prototypes, sketches and archival objects. Of these, the prototypes most warrant a dedicated visit: they are physical trials of construction details, material texture and surface treatment, and evidence of repeated exchange between architect and fabricator. In the National Stadium, every step of simplification and adjustment to the woven steel form survives in the model sequence; Tai Kwun, as a heritage conversion, makes the logic of the new-to-old interface far clearer in process material than in finished photographs. For students this material is irreplaceable — completed photographs show only the final choice, while a sequence of models and prototypes shows the options that were abandoned, and it is the latter that design teaching actually needs.</p>
+      <p><strong>Background and impact: a geographical relocation of a practice's archive.</strong>Herzog &amp; de Meuron engaged deeply with China from the early 2000s, coinciding with the country's period of rapid economic growth and large-scale infrastructure construction. Donating two decades of process archives to M+ in Hong Kong rather than keeping them in Basel is a substantive geographical shift: the primary material for researching these projects will henceforth sit mainly in Asia rather than Europe. That is consistent with M+'s institutional strategy for building a design and architecture collection — for a five-year-old museum, acquiring the primary archives of significant local projects establishes academic authority more effectively than acquiring finished works. For students at Syracuse Architecture with plans to be in Hong Kong in late 2026, this show is worth scheduling; it runs until January 2027, so it is still open over winter break.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Architecture Drawing Prize 2026 closes tomorrow: ninth edition, no categories, a special award for hand drawing, half price for students and under-30s</div>
+  <div class="ni-meta">Sources: <span class="src">Archinect</span> · <span class="src">ArchDaily</span> · <span class="src">Make Architects</span> · <span class="src">World Architecture Festival</span></div>
+  <div class="ni-desc">Entries for the Architecture Drawing Prize 2026 close on 11 September. Now in its ninth edition, the prize is presented by the World Architecture Festival in partnership with Make Architects and Sir John Soane's Museum in London, with support from Iris Ceramica Group. Submissions may be conceptual sketches, technical and construction drawings, cutaways, perspective views or digitally produced work; entries are considered together rather than divided into categories, with multiple winners selected alongside a special award recognising hand drawing. Entry costs £149 plus VAT, and students and entrants under 30 can use the code TADP26STU30 for a 50% discount. Winning works will be exhibited at the World Architecture Festival at the Broward County Convention Center in Fort Lauderdale from 18 to 20 November 2026; the overall winner is announced at the opening of the exhibition at Sir John Soane's Museum on 27 January 2027, which runs to 28 February.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">UIA-HYP CUP 2026 international student competition: registration closes 20 September, submissions 10 October, and the brief asks where you would live</div>
+  <div class="ni-meta">Sources: <span class="src">Archinect / Bustler</span> · <span class="src">International Union of Architects (UIA)</span> · <span class="src">World Architecture (WA)</span></div>
+  <div class="ni-desc">Registration for the UIA-HYP CUP 2026 International Student Competition in Architectural Design closes on Sunday 20 September 2026, with submissions due Saturday 10 October. The brief begins from continuing rural drift to cities and asks entrants to choose one of three ways of living — urban, suburban or rural — and demonstrate how communities with genuine relevance can be created, opening onto questions of identity, belonging, social interaction, sustainability and the evolving relationship between people, place and architecture. Run by the UIA with the journal World Architecture, HYP CUP is among the international student competitions with the highest participation from Chinese schools of architecture, and each edition's brief is set by an internationally recognised architect. For Chinese architecture students both at home and studying in the US, this is the deadline of the month worth watching — registration closes in ten days.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ArchDaily's September editorial focus is Escapism: from megastructures and underwater cities to sci-fi habitats and digital environments</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span></div>
+  <div class="ni-desc">ArchDaily has set Escapism in Architecture as its editorial focus for September 2026, commissioning across megastructures, underwater cities, science-fiction habitation and digital environments. The theme stands in evident contrast to the publication's recent editorial weighting toward climate adaptation, housing affordability and construction technology, and its own argument is that architecture's imaginings of leaving here — from Archigram's Walking City to contemporary virtual space — have never been purely formal games but a mode of critique of present urban conditions. For students working in architectural history and theory, a month of this commissioning amounts to a ready-made reading list.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">USTA Future Courts student competition: 70 entries from 45 schools of architecture, winner announced during the US Open on 31 August</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect's Newspaper</span> · <span class="src">USTA competition rules</span> · <span class="src">Weitzman School of Design, University of Pennsylvania</span></div>
+  <div class="ni-desc">The United States Tennis Association's Future Courts competition asked architecture students to reimagine the spaces around tennis courts across the country — note that the brief is the surround, not the court itself: court dimensions are locked by the rules, and what remains designable is seating, shade, changing facilities and the community interface, the parts that turn a hard surface into a public place. The competition drew 70 submissions from students at 45 schools of architecture, and the winning concept was announced during the 2026 US Open on 31 August. Master of Architecture students Ann Teng Chua, Teng Long "Tommy" Lee, Liam Niland and Kotaro Shiraishi of Penn's Weitzman School were named finalists. Among the published finalist schemes, Flying Cloud Tennis Center — by students from Harvard and Princeton — reimagines a historic shipbuilding pier in East Boston as a year-round tennis destination; legacy industrial waterfront plus low-threshold sports facility is a pairing that has been recurring frequently in American public space briefs.</div>
+</div></div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
