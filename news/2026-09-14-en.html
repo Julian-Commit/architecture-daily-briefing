@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-14</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="Central Asia gets its first permanent contemporary art institution: Studio KO turns a 1912 tram diesel station into CCA Tashkent, open since 6 September；Shenzhen's &quot;Hundred School…">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 009 · 2026-09-14 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="Central Asia gets its first permanent contemporary art institution: Studio KO turns a 1912 tram diesel station into CCA Tashkent, open since 6 September；Shenzhen's &quot;Hundred School…">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-14-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.mos.cms.futurecdn.net/zTWZDRQLNeZLv7ixMi5j6J-2560-80.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 009 · 2026-09-14 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="Central Asia gets its first permanent contemporary art institution: Studio KO turns a 1912 tram diesel station into CCA Tashkent, open since 6 September；Shenzhen's &quot;Hundred School…">
+<meta name="twitter:image" content="https://cdn.mos.cms.futurecdn.net/zTWZDRQLNeZLv7ixMi5j6J-2560-80.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 009 · 2026-09-14 · 陆先生建筑日报 | Architecture Daily","description":"Central Asia gets its first permanent contemporary art institution: Studio KO turns a 1912 tram diesel station into CCA Tashkent, open since 6 September；Shenzhen's \"Hundred School…","datePublished":"2026-09-14","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-14-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://cdn.mos.cms.futurecdn.net/zTWZDRQLNeZLv7ixMi5j6J-2560-80.jpg"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 009</div>
+    <div>September 14, 2026 Monday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-14-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p>Today's stories all land on buildings that already exist. Tashkent has turned a 1912 tram diesel station into Central Asia's first permanent institution for contemporary art: CCA Tashkent opened on 6 September, its new concrete mixed from local materials and its tiles fired by the city's Rakhimov family ceramics studio. Norfolk has turned a disused nightclub, car park and Argos store into King's Lynn Library — existing concrete frame kept, one entire floor slab removed, a new atrium cut through, 2,261 sqm at a GBP 14.8 million construction cost. In Shenzhen, a 1988 primary school was reworked inside a single summer holiday by touching four "micro-spaces" rather than rebuilding. On the materials side, a Tehran competition entry takes demolition waste as its primary material: salvaged concrete blocks as partitions, a demountable steel frame skinned in recycled aluminium. Academia goes back to 1971, where Superstudio's twelve "ideal cities" warn about what a single principle looks like once it is carried to its end. Monday is a thin news day by nature; the weight of these items is in the method, not the timing.</p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://cdn.mos.cms.futurecdn.net/zTWZDRQLNeZLv7ixMi5j6J-2560-80.jpg" alt="CCA Tashkent, converted by Studio KO / Studio KO 改造的塔什干当代艺术中心" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">PROJECTS</span>
+    <div class="hl-title">Central Asia gets its first permanent contemporary art institution: Studio KO turns a 1912 tram diesel station into CCA Tashkent, open since 6 September</div>
+    <div class="hl-meta">Sources: <span class="src">Dezeen</span> · <span class="src">ArchDaily</span> · <span class="src">designboom</span> · <span class="src">Wallpaper*</span> · <span class="src">Euronews</span> · <span class="src">gooood</span></div>
+    <div class="hl-desc">The Centre for Contemporary Arts Tashkent (CCA Tashkent) opened on 6 September 2026. It was designed by French practice Studio KO — founders Karl Fournier and Olivier Marty — for the Uzbekistan Art and Culture Development Foundation (ACDF), chaired by Gayane Umerova, and admission is free. The site holds two ornamental yellow-brick buildings designed in 1912 by architect Wilhelm Heinzelmann: one an administration block, the other the diesel station and depot serving Tashkent's first tram line, which stayed in service as part of the city's electricity network for more than a century before being handed to ACDF in 2019 for cultural use. The conversion keeps the depot hall whole and uses it as the central exhibition space — Dezeen calls the volume "basilica-like." The administration building becomes a bookshop and library; a new underground gallery passage and further exhibition rooms were excavated; the courtyard carries gatherings, workshops and outdoor film screenings. The programme also includes an auditorium, a restaurant and a prayer room. On materials, the early twentieth-century brick was restored, a bespoke concrete mix was developed from local materials, and custom tiles were commissioned from the Rakhimov family ceramics studio in Tashkent, with traditional Uzbek light-filtering motifs worked into openings and screens. The inaugural exhibition Hikmah (Uzbek for "wisdom"), curated by Sara Raza, shows ten artists, including Nadia Kaabi-Linke's Flying Carpets on loan from the Solomon R. Guggenheim Museum, Kimsooja's participatory Archive of Mind, and a site-specific ceramic installation by Rakhimov.</div>
+    <a href="https://www.dezeen.com/2026/09/09/studio-ko-centre-contemporary-arts-tashkent/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://oss.gooood.cn/uploads/2026/09/001-Yucai-No-2-Primary-School-Renovation-by-NODE-960x645.jpg" alt="The banyan courtyard at Yucai No.2 Primary School after renovation / 改造后的育才二小古榕庭院" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">URBANISM</span>
+    <div class="hl-title">Shenzhen's "Hundred Schools Renewal": NODE reworked a school founded in 1988 inside one summer holiday, touching only four micro-spaces</div>
+    <div class="hl-meta">Sources: <span class="src">gooood</span> · <span class="src">NODE Architecture &amp; Urbanism (architect)</span> · <span class="src">People's Daily Online, Shenzhen</span> · <span class="src">Southern Metropolis Daily</span> · <span class="src">Archiposition</span></div>
+    <div class="hl-desc">The renovation of Yucai No.2 Primary School, part of the Shekou Yucai education group, has been completed by NODE Architecture &amp; Urbanism. The school was founded in 1988 and grew alongside the Shenzhen Special Economic Zone; the site is 13,375 sqm with 26,223 sqm of floor area. Design ran from January to July 2024 and construction was compressed into the summer holiday, July to September 2024. Nothing was rebuilt wholesale. Instead four "micro-spaces" were updated: the sunken banyan courtyard, the school gate and a new covered walkway, the boundary wall recast as an honour wall, and the lower-grade activity courtyard. The banyan courtyard is the core move — a mirror pool at ground level, a vertical water wall at basement level, the original concrete stair replaced by a steel stair that doubles as seating, glass curtain walls opening the basement pool and music hall onto the courtyard, and coloured rubber surfacing in place of hard paving. At the gate, the parcel room was raised flush with the gate and clad in uniform dark red tiles, and the boundary wall was converted into a readable "campus chronicle." The lower-grade courtyard splits into three zones: a silicon-PU basketball court, a climbing wall made from the blank gable of a teaching block, and a self-organised play area shaped by artificial mounds, plus a two-level platform among the trees. Nanshan District launched the Hundred Schools Renewal programme in 2022, covering 143 schools and kindergartens over three years; this project belongs to its third season.</div>
+    <a href="https://www.gooood.cn/yucai-no-2-primary-school-renovation-by-node-architecture-urbanism.htm" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://hudsonarchitects.co.uk/wp-content/uploads/2026/06/FH_HudsonArchitects_KingsLynnLibrary_TypRes-2-red.jpg" alt="The fibre cement shingle facade of King's Lynn Library / 金斯林图书馆的纤维水泥瓦外墙" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">MATERIALS</span>
+    <div class="hl-title">King's Lynn Library: a nightclub, a car park and an Argos store become one library — concrete frame kept, a whole floor slab removed, GBP 14.8 million</div>
+    <div class="hl-meta">Sources: <span class="src">Dezeen</span> · <span class="src">The Architects' Journal</span> · <span class="src">Hudson Architects (architect)</span> · <span class="src">Norfolk County Council (client)</span> · <span class="src">Borough Council of King's Lynn &amp; West Norfolk</span></div>
+    <div class="hl-desc">UK practice Hudson Architects has converted a disused commercial building in the centre of King's Lynn, Norfolk, into a public library. The building carried three previous lives stacked together: nightclub, car park and Argos store. The new library has a gross internal area of 2,261 sqm — three times the size of the town's former library — with construction starting on site in January 2025, completion in March 2026 and opening to the public on 16 March 2026. Construction cost was GBP 14.8 million, or GBP 6,545 per sqm; together with funding from Norfolk County Council, the UK Government, the King's Lynn Neighbourhood Board and the Borough Council of King's Lynn &amp; West Norfolk, the wider investment in the town comes to around GBP 17 million. The structural strategy keeps the existing concrete frame while removing an entire floor slab, cutting in a new atrium and reworking the structure — reducing the bulk so it matches the scale of neighbouring buildings, and freeing space for a widened public street at the entrance. Original frame elements stay visible inside. The upper levels are wrapped in fibre cement shingles in several shades, mottled rather than uniform, echoing the tones of the historic town. On the ground floor a children's library takes a castle theme, with arched and crenellated play structures and shelving beneath wavy timber acoustic baffles; above, open reading areas run long desks around the edge of the atrium. Energy use is 57 kWh/sqm/yr with a BREEAM Excellent rating, achieved through natural ventilation, daylighting, air source heat pumps, photovoltaics and a biodiverse blue-green roof. The project is shortlisted in the Civic category of the 2026 AJ Architecture Awards.</div>
+    <a href="https://www.architectsjournal.co.uk/specification/case-study-kings-lynn-library-by-hudson-architects" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/superstudio-12-ideal-cities-price-perfectly-designed-life-designboom-1200.jpg" alt="A drawing from Superstudio's Twelve Ideal Cities / Superstudio《十二座理想城市》图解" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">ACADEMIA</span>
+    <div class="hl-title">Superstudio's twelve "ideal cities" come back into view: twelve cautionary tales from 1971 about the price of a perfect system</div>
+    <div class="hl-meta">Sources: <span class="src">designboom</span> · <span class="src">Architectural Design (original, December 1971)</span> · <span class="src">Casabella (January 1972)</span> · <span class="src">SOCKS Studio</span> · <span class="src">Matadero Madrid</span> · <span class="src">MAXXI / Centre Pompidou / SFMOMA collections</span></div>
+    <div class="hl-desc">On 12 September 2026 designboom revisited Twelve Cautionary Tales for Christmas: Premonitions of the Mystical Rebirth of Urbanism by the Italian radical group Superstudio, also known as 12 Ideal Cities. The work first appeared in December 1971 in the UK journal Architectural Design, volume XLII, was republished in January 1972 in the Italian magazine Casabella as Premonizioni della parusia urbanistica, and was reconfigured the same year as a multimedia slide show. The principal author was Superstudio member Gian Piero Frassinelli (also cited as Piero Frassinelli). Each of the twelve tales carries a single drawing, and each city develops one principle to its logical end. In the 2,000-Ton City an automated environment satisfies every need of its inhabitants; the cost is that a ceiling panel above each resident drops and crushes them the moment the system detects a rebellious thought. The New York of Brains preserves human brains in containers linked electronically. The City of the Book writes every rule of living into an instruction manual that inhabitants carry with them. Originals are held in the collections of MAXXI in Rome, the Centre Pompidou in Paris and SFMOMA in San Francisco. In 2020–2021 Matadero Madrid staged Twelve Cautionary Urban Tales, curated by Ethel Baraona Pohl, in which twelve architects and artists — among them Assemble, Design Earth, MAIO and Merve Bedir — remade the original structure.</div>
+    <a href="https://www.designboom.com/architecture/superstudio-12-ideal-cities-price-perfectly-designed-life/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://parametric-architecture.com/wp-content/uploads/2026/07/HONG-Designworks-Changan-Academy-Studio-Ten-05.webp" alt="The atrium of Chang'an Academy, Xi'an Public Library / 长安书院·西安图书馆的中庭" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">PROJECTS</span>
+    <div class="hl-title">Chang'an Academy · Xi'an Public Library: 70,016 sqm under a roof read as an open book, with wood-grain metal panels standing in for timber</div>
+    <div class="hl-meta">Sources: <span class="src">Dezeen</span> · <span class="src">e-architect</span> · <span class="src">Parametric Architecture</span> · <span class="src">Home Journal</span> · <span class="src">amazingarchitecture</span> · <span class="src">Yanko Design</span></div>
+    <div class="hl-desc">Chang'an Academy · Xi'an Public Library stands on the west bank of the Ba River in the Chanba Ecological Area of Xi'an, Shaanxi Province, facing the Xi'an Olympic Sports Centre across the water. Architectural design was by the Urban &amp; Architectural Design Research Centre of China Northwest Architectural Design and Research Institute, with interior and overall identity design by HONG Designworks (MINGRI FORMA Design Research). Gross floor area is 70,016.9 sqm; the building was completed in December 2024 and combines library, exhibition, education and community programmes. The roof unfolds along the river, dipping gently at the centre and curving upward at both ends, so that the silhouette seen from across the water reads as an open book; the upturned ends follow the logic of traditional Chinese eaves and are used to soften the monumentality of the volume, giving the edges a sense of lightness. Where the building reads as timber it is not timber: wood-grain metal panels were substituted for fire safety and long-term maintenance. The main interior move is to convert the central atrium from circulation void into active public room — a redesigned main stair links reception to the public areas on each floor in one continuous route, with a stepped, colour-blocked amphitheatre for lectures and performances.</div>
+    <a href="https://www.dezeen.com/2026/09/08/xian-public-library-cultural-centre-china/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.designboom.com/twitterimages/uploads/2025/09/studio-ko-1912-tram-depot-centre-contemporary-arts-tashkent-designboom-1200.jpg" alt="The former tram depot hall at CCA Tashkent / CCA Tashkent 的原电车车库大空间" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">IN DEPTH</span>
+    <div class="ft-title">A diesel station that ran for a century, kept as a basilica: what Studio KO did in Tashkent was not a fit-out but a re-sourcing of an industrial space in local materials</div>
+    <div class="ft-meta">Cross-checked: <span class="src">Dezeen</span> · <span class="src">ArchDaily</span> · <span class="src">designboom</span> · <span class="src">Wallpaper*</span> · <span class="src">Euronews</span> · <span class="src">gooood</span> · <span class="src">CCA Tashkent (institution)</span></div>
+    <div class="ft-desc">
+      <p>CCA Tashkent opened on 6 September 2026 as the first permanent institution for contemporary art and research in Central Asia. Studio KO is the architect; the client is the Uzbekistan Art and Culture Development Foundation (ACDF). The site holds two yellow-brick buildings designed in 1912 by Wilhelm Heinzelmann, one of them the diesel station and depot for the city's first tram line, which remained part of Tashkent's electricity network for more than a hundred years before passing to ACDF in 2019.</p>
+      <p><strong>Concept: start by admitting the building already has a spatial character.</strong> Studio KO describe their aim as honouring "the memory of a powerful industrial building while giving it a new poetic life." In practice that resolves into one decision: the depot hall was not subdivided. It is kept whole and used as the central exhibition space. Dezeen calls the volume "basilica-like" — a long nave, a structural rhythm down both sides, light arriving from above. Those features were produced by the requirements of generating plant and maintenance bays, and they happen to be exactly the relationships an exhibition hall needs. This is the easiest and rarest condition in industrial reuse: the new programme does not have to invent a space, only recognise an order the old one already possesses. Which means the real design work moves elsewhere — below ground, and onto the material surface.</p>
+      <p><strong>Spatial strategy: put the added area underground and to the side.</strong> The division of labour across the three volumes is clear. The depot hall exhibits. The administration building becomes bookshop and library. A newly excavated underground gallery passage and further rooms absorb what the main hall cannot hold. This "leave the primary volume alone, bury the increment" approach shares its logic with the standard move on listed buildings of putting new massing on the podium: what must be protected is the recognisable outline and the principal space, so everything variable has to find another address. The courtyard is defined as an all-weather public room, carrying gatherings, workshops and open-air screenings, while an auditorium, restaurant and prayer room complete the everyday infrastructure of a working cultural building. Free admission matters here, and not as marketing: it is the precondition for the courtyard and the bookshop actually joining the daily life of the city.</p>
+      <p><strong>Material: restore the old brick, mix a new concrete, fire bespoke tile.</strong> This is the part worth copying into a notebook. The first layer is restoration: the early twentieth-century brick was repaired piece by piece, keeping the age of the masonry rather than refinishing it. The second is mediation between old and new: the team developed a bespoke concrete mix from local materials, which matters because the new elements are not standard products trucked in from elsewhere — their aggregate and colour come from the same geography as the site, so they sit in tonal continuity with the old brick. The third is craft: custom tiles were commissioned from the Rakhimov family ceramics studio in Tashkent, and traditional Uzbek light-filtering motifs were worked into openings and screens. Wallpaper* and Marie Claire Arabia report the building's full material list as brick, ceramic, clay, copper, steel and wood — local craft first, industrial products second. Set against many international practices working in Central Asia and the Gulf, the difference is that locality here is not applied as pattern; it enters the aggregate, the kiln and the bond.</p>
+      <p><strong>Context and consequence: an institution's first year, from zero.</strong> The opening exhibition Hikmah (Uzbek for "wisdom"), curated by Sara Raza, shows ten artists. Nadia Kaabi-Linke's Flying Carpets is on loan from the Guggenheim, Kimsooja's Archive of Mind is participatory, and Rakhimov contributes a site-specific ceramic installation — a loan, a participatory work and a local commission side by side, which is the standard configuration for a new institution establishing international credit and local roots at once. The wider programme under ACDF chair Gayane Umerova includes residencies, internships and professional training. For readers in architecture, the value of the case is that it answers two questions usually handled separately: how an infrastructure building that lost its function gets reused, and how a place with no tradition of contemporary art institutions builds its first one. The first is answered by reading the order of the old space; the second by writing local craft into the construction detail. Here they are the same set of moves.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Kifisia apartment, Athens: every internal partition removed, functions defined by joinery rather than walls</div>
+  <div class="ni-meta">Sources: <span class="src">designboom</span> · <span class="src">Georgios Apostolopoulos Architects (architect)</span></div>
+  <div class="ni-desc">Kifisia Apartment: Reconfiguration of Domestic Boundaries, by Greek practice Georgios Apostolopoulos Architects, was published on 14 September 2026. The host building dates from the 1970s. The renovation strips out all internal partitions to leave one continuous open plan, then uses bespoke joinery to define functional zones without fully enclosing them. The elements include a central kitchen island acting as social hub, layered wardrobes working as spatial filters, fold-down beds integrated with desks and sliding panels, and a vanity that extends past the bathroom boundary. A single, monochromatic palette holds the visual continuity. In the architects' terms, privacy "becomes adaptable, negotiated through occupation and use rather than predetermined by walls." Photography: Lorenzo Zandri.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Heng Chun Yuan, Shanghai: 20 sqm, where an immovable cross of sprinkler pipes became the axes of the plan</div>
+  <div class="ni-meta">Sources: <span class="src">gooood</span> · <span class="src">ARCHWASTE (architect)</span></div>
+  <div class="ni-desc">ARCHWASTE's new premises for the Shanghai canteen Heng Chun Yuan sits in Yanqing Fang, Lane 122 Yanqing Road, Xuhui District: 20 sqm in total, 3 m wide, 7 m deep, with an original ceiling height of only 2.6 m. A cross of sprinkler pipes runs across the ceiling in a fixed position that cannot be altered — the design takes that constraint as the starting point for the plan, using the pipe cross as a coordinate axis to divide the room into four quadrants for the kitchen line, counter dining, a four-seat table and a small display area. The facade is treated as a camera viewfinder, its restrained openings framing the everyday scene of people eating as something to be watched from the street. Materials are hot-rolled steel plate, cast resin panels, timber and cement flooring, with a stainless steel plate eave; a green resin wall cabinet holds Chinese medicinal herbs. The original shop occupied a residential lane near Huaihai Middle Road, and the architects describe the result as new on the outside while carrying the warmth of the old shop at its core. Designed and completed in 2026.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Screen Wall, Beijing: recycled water bottles filled with coloured liquid, 15.84 sqm, shown from 22 August in a hutong gallery</div>
+  <div class="ni-meta">Sources: <span class="src">gooood</span> · <span class="src">ZXD Architects (designer)</span></div>
+  <div class="ni-desc">Screen Wall (Yingbi), an architectural installation by ZXD Architects, went on show on 22 August 2026 at the JING Hutong Art Museum in Sanyanjing Hutong, Beijing. It was designed between July and August 2026 and covers 15.84 sqm. Materials are recycled 350 ml water bottles, coloured liquid, mirror stainless steel sheet, polymer pigment and LED sources, backed by a perforated plate structure. The colour system follows the traditional Chinese five directional colours — blue-green, red, yellow, white and black — with light refracted and broken down through two media, bottle and liquid. The designers write that once these overlooked objects "are collected again, arranged, and injected with different concentrations of colour, they no longer exist as 'objects' but begin to turn into units of spatial organisation." A yingbi is conventionally a free-standing screen wall blocking sightlines in a Chinese courtyard house; here it is replaced by a translucent wall built from everyday waste.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Praia do Bom Sucesso housing by António Costa Lima Arquitectos published on 13 September</div>
+  <div class="ni-meta">Sources: <span class="src">gooood</span> · <span class="src">António Costa Lima Arquitectos (architect)</span></div>
+  <div class="ni-desc">Praia do Bom Sucesso, a housing project by the Portuguese practice António Costa Lima Arquitectos, was published on 13 September 2026, presented by the architects as a continuation of the existing fabric and typological DNA of Lisbon as a river-port city. By this paper's verification standard the item currently appears only via the architects and gooood, with no second independent outlet reporting it, so we do not comment further: areas, cost and construction data will be added once fuller drawings and technical material are released. It is listed here to flag the week's publication activity in Portuguese housing, not as a set of figures we have verified.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://oss.gooood.cn/uploads/2026/09/004-Yucai-No-2-Primary-School-Renovation-by-NODE-960x720.jpg" alt="The mirror pool and new steel stair in the banyan courtyard / 育才二小古榕庭院的镜面水景与新建钢楼梯" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">IN DEPTH</span>
+    <div class="ft-title">A two-month construction window dictated the method: NODE's four micro-spaces at Yucai No.2 are a repeatable answer for renewal inside an existing campus</div>
+    <div class="ft-meta">Cross-checked: <span class="src">gooood</span> · <span class="src">NODE Architecture &amp; Urbanism (architect)</span> · <span class="src">People's Daily Online, Shenzhen</span> · <span class="src">Southern Metropolis Daily</span> · <span class="src">Archiposition</span> · <span class="src">Published material on the Nanshan Hundred Schools Renewal programme</span></div>
+    <div class="ft-desc">
+      <p>The renovation of Yucai No.2 Primary School by NODE Architecture &amp; Urbanism belongs to the third season of the Hundred Schools Renewal programme in Shenzhen's Nanshan District. The school was founded in 1988 and grew with the Special Economic Zone; the site is 13,375 sqm with 26,223 sqm of floor area. Design ran January to July 2024, construction July to September 2024. The project has since received a 2024 Wallpaper* Urban Award and a 2025 AEEDA Asian Educational Environment Design Award.</p>
+      <p><strong>Concept: the problem was not that it worked badly, but that it worked too well.</strong> The initial diagnosis from school and architect deserves attention, because the campus was not derelict: the layout was orderly and the facilities complete. The problem was that the spatial order was "efficient but had lost the slack to hold imagination," and what staff and pupils actually asked for was more space to do things in. This is a characteristic brief in existing-campus renewal. Schools built to standard drawing sets in the 1980s and 1990s are beyond reproach on teaching efficiency, yet they compress every non-teaching hour into two states: corridor and sports field. So the design does not aim at capacity. It redistributes liveliness, turning corners that already existed but were walked past into places where people can stop and gather.</p>
+      <p><strong>Spatial strategy: four locations, one core.</strong> The scope holds at four points — the sunken banyan courtyard, the gate and covered walkway, the boundary wall turned honour wall, and the lower-grade activity courtyard. The real core is the banyan courtyard. This sunken space had been bypassed for lack of any reason to stop there, and the renovation activates it through three media: water, steps and interface. A mirror pool arrives at ground level and a vertical water wall at basement level, bringing sound and reflected light down into the lower floor. The original concrete stair is replaced by a steel stair that doubles as seating. Glass curtain walls open the basement swimming pool and music hall onto the courtyard, making the below-grade programme visible. Hard paving gives way to coloured rubber. The result is that the courtyard has become the emotional centre of the campus — by the architects' own record, staff and pupils now gather there on their own initiative, and several "15-minute break" concerts have already been held. That is the hardest test any public space renovation can pass: not that the drawings look good, but that people go there without being told to.</p>
+      <p><strong>Detail and material: doing design at the gate, of all places.</strong> The work at the entrance is almost fussily small. The parcel room, previously an awkward height, was raised flush with the gate and clad in uniform dark red tiles so the parts of the entrance read as one proportion again. The boundary wall was upgraded into a readable campus chronicle, which in effect converts a dead interface into an informational one. A new covered walkway links gate to teaching block, solving the most basic experience of arriving in the rain. The lower-grade courtyard splits three ways: a silicon-PU basketball court; a climbing wall made from the blank gable of a teaching block, which turns a dead surface into a sporting one; and a self-organised play area shaped by low artificial mounds, with a two-level platform among the trees and an "animal corner." The material list — stone, timber, metal, paint, glass — is entirely conventional. No special processes.</p>
+      <p><strong>Context and consequence: the real constraint is two months of summer holiday.</strong> Nanshan District launched Hundred Schools Renewal in 2022, covering 143 schools and kindergartens over three years, starting from basics such as structural strengthening and hazard removal while also pursuing ten categories of improvement including facility refurbishment, safety, smart-campus systems and toilets. For readers in architecture, the most instructive thing about the programme is not the finished result but its delivery constraint: classes cannot stop, so construction must fit inside the summer holiday. That condition eliminates demolition-and-rebuild outright, and therefore pushes the design towards micro-renewal — dispersed locations, prefabrication and dry construction where possible, each point able to complete on its own. Which is to say the method here is not a stylistic choice; it is what you get when you work backwards from the programme. With Chinese cities now broadly shifting to stock rather than new build, and demand for public-building renovation far exceeding new construction, this model of dispersed renewal inside a holiday window deserves more attention than any single project's finish quality.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Wangshan Qingshui ecological water plant, Cangnan: 47,573 sqm site at a plot ratio of 0.26, a municipal utility built to public-space standards</div>
+  <div class="ni-meta">Sources: <span class="src">gooood</span> · <span class="src">POA (architect)</span></div>
+  <div class="ni-desc">The Wangshan Qingshui ecological water purification plant by POA sits in Qianku, Cangnan County, Wenzhou, Zhejiang Province, built between 2022 and 2026. The site is 47,573 sqm with 13,080 sqm of floor area, a maximum building height of 24 m, 30.06 per cent green coverage and a plot ratio of 0.26. Two axes organise the site, separating the production zone from the administrative block entirely and splitting pedestrian and vehicle routes, so that operational safety is preserved while the outer edge of the compound stays approachable by the public — in the architects' words, "dissolving the sense of boundary around an industrial facility through an open posture," with the aim of making a municipal utility into an "ecological living room" for the town, half landscape and half city. The three-storey, 4,300 sqm administrative block houses party affairs, water quality testing and the control centre; the production zone contains more than ten types of structure including the distribution well, sand filtration basins and the membrane purification hall. Materials are clear glass curtain wall, graduated metal grilles and concrete, with the riverside landscape continuous into the site. This is a project publication; all figures are as released by the architects.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Wuxi Sanshuihui Tech &amp; Ecology Park: 10.8 hectares of decommissioned concrete plant, the dock basin turned stormwater system, a steel-and-timber warehouse re-roofed in tensile fabric</div>
+  <div class="ni-meta">Sources: <span class="src">gooood</span> · <span class="src">MYP INC. (designer)</span></div>
+  <div class="ni-desc">Wuxi Sanshuihui Tech &amp; Ecology Park by MYP INC. occupies 10.8 hectares (108,000 sqm) in Xinwu District, Wuxi, Jiangsu Province, on the site of a decommissioned concrete plant where three waterways converge: the Beijing-Hangzhou Grand Canal, Lake Tai and the Wangyu River. Design ran January to October 2023, with completion in August 2024. Three strategies structure the work. Urban rewilding keeps existing vegetation patterns and natural succession instead of clearing the site. Resilient infrastructure converts the industrial dock basin into a stormwater management system with ecological purification capacity, supported by bioswales and rain gardens. And a deliberately relaxed landscape leaves unprogrammed public space. What was kept and reused includes the native topography (only micro-landform refinement, no mass grading), the original steel-and-timber warehouse — converted into a "Sailing Hub" under a white tensile roof — and stretches of hard quay wall retained as wildlife interface. Materials are stone, rubble retaining walls, bamboo-timber decking, metal, concrete and native planting. Photography: Chill Shine.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">London's Open House Festival runs 12–20 September: more than 800 buildings free across all 33 boroughs</div>
+  <div class="ni-meta">Sources: <span class="src">Open City (organiser)</span> · <span class="src">The Architects' Journal</span> · <span class="src">Londonist</span> · <span class="src">London the Inside</span> · <span class="src">The London Archives</span></div>
+  <div class="ni-desc">The 2026 Open House Festival, run by Open City, takes place from Saturday 12 to Sunday 20 September across all 33 London boroughs, opening more than 800 buildings entirely free of charge — the organisers describe it as the world's largest architecture festival. Buildings available for drop-in visits include Foster + Partners' Riverside headquarters in Battersea, Herne Hill Velodrome by Hopkins Architects, St Bartholomew's Hospital, the Quentin Blake Centre for Illustration by Tim Ronalds Architects, Kew House by Piercy &amp; Company, the University of Greenwich at Stockwell Street by Heneghan Peng Architects and the Resonance FM Studios by James Pooley Architecture. New this year are themed "collections" grouping buildings under Homes with Stories to Tell, Hidden Histories, Green London and Meet the Architects. Also open across the week are 10 Downing Street, the BT Tower and two Richard Rogers buildings, Lloyd's of London and 22 Parkside. Popular buildings and guided tours require free advance booking, and capacity is limited.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://cdn.rt.emap.com/wp-content/uploads/sites/4/2026/08/07163812/FH_HudsonArchitects_KingsLynnLibrary_FullRes-2-560x315.jpg" alt="King's Lynn Library and the widened street at its entrance / 金斯林图书馆外观与入口前加宽的街道" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">IN DEPTH</span>
+    <div class="ft-title">Cut the bulk first, then wrap it in shingles: at GBP 6,545 per sqm, King's Lynn Library turned a nightclub, car park and Argos store into a 57 kWh/sqm/yr public building</div>
+    <div class="ft-meta">Cross-checked: <span class="src">Dezeen</span> · <span class="src">The Architects' Journal (cost and technical case study)</span> · <span class="src">Hudson Architects (architect)</span> · <span class="src">Norfolk County Council (client)</span> · <span class="src">Borough Council of King's Lynn &amp; West Norfolk</span> · <span class="src">Elliott Wood (structural engineer)</span></div>
+    <div class="ft-desc">
+      <p>King's Lynn Library by Hudson Architects sits in the centre of King's Lynn, Norfolk. The client is Norfolk County Council, the main contractor Mace, the structural engineer Elliott Wood and the M&amp;E engineer Hoare Lea. Gross internal area is 2,261 sqm; the site start was January 2025, completion March 2026, and the building opened on 16 March 2026. Construction cost was GBP 14.8 million, or GBP 6,545 per sqm, with wider investment across the town of roughly GBP 17 million.</p>
+      <p><strong>Concept: moving the library was about moving its location.</strong> The first problem here was not architectural but locational — the old library sat on the edge of town and was persistently underused. The new one is inserted into a disused commercial building in the town centre, a building with three previous lives stacked into it: nightclub, car park and Argos store. In other words, the reason to convert this building was not how much it was worth but how many people pass the plot it stands on. The new library is three times the size of the old one. For a public cultural facility that is a very plain cost comparison: converting an awkward building in the right place beats building a good one in the wrong place.</p>
+      <p><strong>Structure: keep the frame, but shrink it first.</strong> The technically notable move is subtraction. The team retained the existing concrete frame, but not intact — in the architects' account they "removed an entire floor, introduced a new atrium and carefully reworked the structure." Removing a floor does two things. It cuts the overall bulk so this commercial box drops back to the scale of the surrounding historic town, and in doing so it frees space for a widened public street in front of the entrance. This is a counter-intuitive but common judgement in stock conversion: the value of an existing structure lies in its frame and foundations, not in every one of its floors, and to make the new programme viable it is often more effective to remove downward than to add upward. Original frame elements stay visible inside, leaving the building's layered history on the surface. The atrium then organises the new programme: on the first floor, long desks run around its edge with sightlines through both levels.</p>
+      <p><strong>Material: fibre cement shingles, using shade variation instead of pattern.</strong> The upper levels are wrapped in fibre cement shingles. Shingles rather than large panels, because small units can follow the irregular outline of a converted volume with far more tolerance than a large-format rainscreen; and the key detail is that several shades were mixed to produce a mottled rather than uniform surface, echoing the tone and texture of the town's existing brick and stone. This is a conventional and effective way of buying material richness under a cost constraint — the texture comes not from process complexity but from arranging colour variation within one cheap component. The interior works the same way: the ground-floor children's library takes a castle theme, with arched and crenellated play structures and shelving set beneath a ceiling of wavy timber acoustic baffles, a technical component for reverberation control doing formal work at the same time.</p>
+      <p><strong>Performance and consequence: 57 kWh/sqm/yr is the real result.</strong> Published energy use is 57 kWh/sqm/yr with a BREEAM Excellent rating, delivered by a combination of natural ventilation, daylighting, air source heat pumps, photovoltaics and a biodiverse blue-green roof. Not one of those is new technology; the value is that they were used together on an existing concrete-framed building and reached that figure. For readers in architecture, this case matters because it puts three ledgers of a conversion project on the same page: location (footfall), structure (keep the frame, trade one floor slab for bulk reduction and a street) and operation (57 kWh/sqm/yr). Read alongside the rest of this issue — the Tashkent diesel station, the Shenzhen primary school — it belongs to the same class of judgement: the existing building precedes the design, and the design's job is to decide what it can still carry, and how much you are willing to remove to get there. The project is shortlisted in the Civic category of the 2026 AJ Architecture Awards. Photography: Fred Howarth.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Debris pavilion, Tehran: salvaged concrete blocks as partitions with their hollow cores facing visitors, inside a demountable steel frame skinned in welded recycled aluminium</div>
+  <div class="ni-meta">Sources: <span class="src">designboom</span> · <span class="src">DAP Studio (designer)</span> · <span class="src">freeyork</span></div>
+  <div class="ni-desc">Debris, a pavilion scheme by DAP Studio published on 13 September 2026, is an architectural competition proposal and was not built. It takes Tehran's demolition waste directly as its primary building material: a demountable steel frame, an outer skin of recycled aluminium sheet welded into a continuous surface, internal partitions built from concrete blocks salvaged from demolished buildings with their hollow cores turned toward visitors, mirrored interior surfaces, and broken concrete scattered across the floor rather than concealed. The urban context the designers set out is Tehran's density and its continuing cycle of demolition and reconstruction, in which buildings are frequently pulled down and replaced before the end of their useful life, placing pressure on the city's ecological and infrastructural systems. Conceptually the project draws on Georges Bataille on excess and rejected matter, moving what urban development normally excludes to the centre of architectural expression. To be clear: this is a competition entry, not a completed building, and the methods and effects described are the designers' own.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">205 North Quay, Brisbane: copper-coloured ellipses shade the east and west elevations using less material than a conventional system, across 30 storeys and 43,700 sqm</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen</span> · <span class="src">Archello</span> · <span class="src">Hassell (architect)</span> · <span class="src">REX (architect)</span> · <span class="src">Specifier Source</span> · <span class="src">Cbus Property (client)</span></div>
+  <div class="ni-desc">The 205 North Quay office tower in Brisbane, Australia, was designed by Australian studios Hassell and Richards &amp; Spence with American practice REX for client Cbus Property: 30 levels and 43,700 sqm, opened in December 2025. Responding to Brisbane's harsh subtropical sun, copper-coloured ellipse-shaped shades were added to the two longer elevations, east and west. According to the designers and Dezeen the system uses less material than a traditional shading assembly while reducing solar impact and retaining daylight and clear views; the breathable facade supports natural ventilation and lowers the building's overall energy use. The design was informed by the climatic logic of traditional Queenslander houses. Amenities include Brisbane's first whole-floor wellness facility with a 25-metre lap pool, an 18-metre open-air public plaza with a 210-seat auditorium, outdoor terraces on every level and rooftop collaboration space.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Bonsai Pavilion, Shenzhen Dutch Flower Town: 435 sqm of mass timber, the original pitched-roof silhouette kept and the decorative iron trellis columns removed</div>
+  <div class="ni-meta">Sources: <span class="src">gooood</span> · <span class="src">Hangcheng Studio, hcs (designer)</span></div>
+  <div class="ni-desc">The Bonsai Pavilion by Hangcheng Studio (hcs) stands in the Dutch Flower Town precinct of Nanshan District, Shenzhen: 435 sqm, designed 2022–2023 and built 2023–2024. The conversion keeps the silhouette of the original pitched roof while removing the decorative iron trellis columns, which the designers describe as a reshaping with "no event" to it — visually continuous with its surroundings, but with clearer structural logic and easier maintenance. The structure is mass timber, and natural wood was chosen over the industrial materials common elsewhere in the precinct so that the material would work with the flowers it shelters, establishing a retail environment keyed to authenticity. The space is programmed as a flower street you can walk through: part open seasonal shelter, part flexible marketplace hub.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The Chang'an Academy roof: where it reads as timber it is wood-grain metal panel, chosen for fire safety and maintenance</div>
+  <div class="ni-meta">Sources: <span class="src">Parametric Architecture</span> · <span class="src">e-architect</span> · <span class="src">Dezeen</span> · <span class="src">Home Journal</span></div>
+  <div class="ni-desc">Returning to one of this issue's headlines, Chang'an Academy · Xi'an Public Library deserves a separate note on one constructional trade-off. The 70,016.9 sqm building sets out to evoke the timber impression of a traditional Chinese roof, unfolding along the Ba River, dipping at the centre and curving up at both ends — but the surfaces that read as timber are not timber. They are wood-grain metal panels, specified for fire safety and long-term maintenance. This is now a common route for large contemporary public buildings handling the imagery of traditional timber construction: keep the massing and eaves relationships as tradition has them, and switch the surface to a controllable component such as metal or fibre cement. Read against the other cases in this issue, the trade-off is worth noting twice over: King's Lynn substitutes fibre cement shingles for the feel of brick and stone, Chang'an Academy substitutes wood-grain metal for wood. Both use an industrial component, under code and maintenance constraints, to carry a material impression. Whether such substitutions succeed depends on the precision of the setting-out, the shade variation and the corner details — not on whether the material is "authentic."</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.mataderomadrid.org/sites/default/files/media/image/2020/01/Design%20Earth_Pacific%20Cemetery_Cosmorama_0.jpg" alt="Design Earth's Pacific Cemetery: Cosmorama, from Twelve Cautionary Urban Tales at Matadero Madrid / Matadero Madrid《Twelve Cautionary Urban Tales》展中 Design Earth 的作品" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">IN DEPTH</span>
+    <div class="ft-title">Carry one principle to its end: why Superstudio's twelve ideal cities from 1971 are being pulled back out in the age of algorithmic governance</div>
+    <div class="ft-meta">Cross-checked: <span class="src">designboom</span> · <span class="src">Architectural Design (original, December 1971)</span> · <span class="src">Casabella (January 1972)</span> · <span class="src">SOCKS Studio</span> · <span class="src">Matadero Madrid</span> · <span class="src">Idea Journal</span> · <span class="src">MAXXI / Centre Pompidou / SFMOMA collections</span></div>
+    <div class="ft-desc">
+      <p>On 12 September 2026, designboom revisited Superstudio's Twelve Cautionary Tales for Christmas: Premonitions of the Mystical Rebirth of Urbanism, generally known as 12 Ideal Cities. The work appeared in December 1971 in Architectural Design volume XLII, was republished in January 1972 in Casabella as Premonizioni della parusia urbanistica, and was reworked the same year into a multimedia slide show. Its principal author was Superstudio member Gian Piero Frassinelli (also cited as Piero Frassinelli).</p>
+      <p><strong>Concept: the dystopian method is not to make things ugly, but to push the benefits to the limit.</strong> Each of the twelve tales carries one drawing. Each posits a fictional city, develops a single principle, and follows it to its logical terminus. designboom's summary is accurate: "Superstudio takes familiar problems, gives them perfect solutions, then follows those solutions until they become something else entirely." This is argument by inversion — the critique is not aimed at design failing, but at design succeeding. For students that matters more than any of the individual images: the danger in utopian narrative is usually not that the goal is bad, but what is left over once the goal has been completely achieved.</p>
+      <p><strong>Three cities, three limits.</strong> In the 2,000-Ton City an automated environment satisfies every need its inhabitants have; the price is that a ceiling panel sits above each one, and the moment the system detects a rebellious thought, that panel comes down and crushes them. A wholly satisfied life and a wholly unopposed life are, here, the same thing. The New York of Brains preserves human brains in containers linked electronically, dispensing with the body altogether — this is what you get when you carry the definition "a city is a communication network" to its end. The City of the Book writes every rule of living into a manual that inhabitants carry, so that order is no longer produced through space but through text, and governance shifts from architecture to procedure. Automation, networking, proceduralisation: the three tales map onto the three things most discussed today.</p>
+      <p><strong>Why now.</strong> designboom's reason is that contemporary technologies increasingly shape urban life and daily existence. That can be read more concretely. The mechanism Superstudio posited — an environment that automatically satisfies needs — could in 1971 only be proposed as extreme parable. Today recommendation algorithms, dynamic pricing, access control and crowd management systems already execute a comparable logic at small scale: the environment keeps guessing what the user wants and supplying it in advance, and the cost is that the user finds it progressively harder to ask for anything outside the system. That shifts 12 Ideal Cities from historical document back to working tool. What it offers is a test procedure: carry the mechanism you are designing to its own limit, and look at what it leaves behind at that end.</p>
+      <p><strong>Where to see it, and how it has been used.</strong> Originals sit in the collections of MAXXI in Rome, the Centre Pompidou in Paris and SFMOMA in San Francisco, and the 1971 AD issue still circulates in the rare book trade. Academically, Idea Journal has published "From the Horror of Us and Our Surroundings: Architectures of Unbuilding in Le dodici città ideali," addressing the question of unbuilding in the work. The most complete curatorial reuse was Twelve Cautionary Urban Tales at Nave 16, Matadero Madrid, from 13 February 2020 to 31 January 2021: curator Ethel Baraona Pohl invited twelve architects and artists — Assemble, Design Earth, MAIO Architects and Merve Bedir among them — to make one installation each against the original twelve-part structure, refilling the frame with the housing crisis, inequality and environmental questions. Admission was free. For readers at Syracuse this is a complete case chain that can go straight into a research studio or a theory seminar: a primary document, a line of academic discussion, and a contemporary exhibition that re-performs it.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Collateral Events submissions for the 2027 Venice Architecture Biennale close on 18 September: non-profit institutions only, exhibition 8 May – 21 November 2027</div>
+  <div class="ni-meta">Sources: <span class="src">La Biennale di Venezia (organiser)</span> · <span class="src">ArchDaily</span> · <span class="src">Archinect</span> · <span class="src">designboom</span> · <span class="src">Architectural Record</span></div>
+  <div class="ni-desc">Submissions for Collateral Events of the 20th International Architecture Exhibition (Biennale Architettura 2027) close on 18 September 2026 — four days from today. Eligibility is limited to "public or private non-profit institutions operating directly and primarily in the field of architecture, or in any case of art." Collateral Events are independently organised and take place at venues across the city outside the Biennale's main sites at the Giardini and the Arsenale; applicants must work from the official procedure document and submit the application form. The exhibition runs from 8 May to 21 November 2027, curated by Wang Shu and Lu Wenyu under the title Do Architecture — For the Possibility of Coexistence Facing a Real Reality, and the curators also oversee the Collateral Events selection. One note for younger readers: the Biennale College Architettura 2026/2027 call for under-30 practitioners already closed on 24 June 2026, with results announced on 20 July; up to four projects are selected, each with a production budget capped at EUR 25,000 and a completion deadline of 2 April 2027, to be presented out of competition within the main exhibition.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Pavilion Atlas 2026: registration closes 16 September, submissions 19 October, EUR 20,000 in total prizes plus a student award</div>
+  <div class="ni-meta">Sources: <span class="src">Buildner (organiser)</span> · <span class="src">Dezeen competitions</span> · <span class="src">ArchDaily</span> · <span class="src">Bustler</span> · <span class="src">Competitions.archi</span></div>
+  <div class="ni-desc">Pavilion Atlas 2026, run by Buildner, asks entrants to design a conceptual pavilion for a country of their choosing, around the question of how a country can present itself to the world through architectural storytelling. There are no restrictions on location, budget or buildability; judging weights spatial storytelling, clarity of purpose and imaginative execution. The organisers note that proposals may be abstract or literal, futuristic or grounded in tradition, but should convey something essential about the country as it is felt, lived or imagined. Key dates: last-minute registration runs 14 May to 16 September, the submission deadline is 19 October 2026 at 23:59 London time, and winners are announced on 8 December 2026. Total prize money is EUR 20,000 — EUR 10,000 first, EUR 5,000 second, EUR 3,000 third — with six honourable mentions plus a EUR 1,000 Buildner Student Award and a EUR 1,000 Buildner Sustainability Award. For students, this is one of the few entries still open to register this week.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">CCA Tashkent publishes its first-year programme: residencies three times a year, plus Central Asia's first curatorial library</div>
+  <div class="ni-meta">Sources: <span class="src">e-flux</span> · <span class="src">CCA Tashkent (institution)</span> · <span class="src">Wallpaper*</span> · <span class="src">Euronews</span></div>
+  <div class="ni-desc">Alongside its 6 September opening, the Centre for Contemporary Arts Tashkent has set out its first institutional year: beyond exhibitions there are artist residencies, internships, fellowships and professional development programmes. Residencies run three times annually, taking up to four residents at the Namuna mahalla site working in contemporary art, design, crafts, architecture, culinary arts, moving pictures or sound art, plus one to two researchers, curators or writers at the Khast Imom mahalla location; each cohort includes at least one Uzbek practitioner, with mentorship from an international selection committee. Facilities include production studios, workshops and Central Asia's first curatorial library, and the institution's stated direction emphasises collaboration with local artisans and community engagement, with an annual Navruz Gala and a Tashkent Public Art Festival planned. Applications go through the open call page at ccat.uz — architecture is one of the practice areas explicitly listed — and the current round's deadline should be confirmed against the institution's own announcement.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Twelve Cautionary Urban Tales: the contemporary remake of Superstudio's twelve, useful as theory-seminar material</div>
+  <div class="ni-meta">Sources: <span class="src">Matadero Madrid (organiser)</span> · <span class="src">e-flux</span> · <span class="src">designboom</span></div>
+  <div class="ni-desc">To accompany this issue's reading of Superstudio's 12 Ideal Cities, one closed but well documented exhibition is worth recording: Twelve Cautionary Urban Tales ran from 13 February 2020 to 31 January 2021 at Nave 16, Matadero Madrid, curated by Ethel Baraona Pohl, free to enter. The show borrowed Superstudio's 1971 twelve-part structure intact and invited twelve international architects and artists to produce one installation each, among them Assemble, Design Earth, MAIO Architects and Merve Bedir, spanning different generations and disciplines. The curator's stated aim was to "redraw, reconceptualize, and unfold our conventional understanding of what a city is," folding the housing crisis, inequality and environmental questions back into the original allegorical frame. For readers writing theory papers or building a research studio, the usefulness of this thread is that it links a 1971 document, a 2020 exhibition and present-day questions into a single citable line.</div>
+</div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
