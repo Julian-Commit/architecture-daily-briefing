@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-15</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="Europe's largest 3D-printed housing scheme takes in residents: 36 student apartments in Denmark at about €1,880/m², inside the subsidised-housing ceiling；York Central phase one ap…">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 010 · 2026-09-15 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="Europe's largest 3D-printed housing scheme takes in residents: 36 student apartments in Denmark at about €1,880/m², inside the subsidised-housing ceiling；York Central phase one ap…">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-15-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images.adsttc.com/media/images/6aa7/c9ce/069c/1b01/89fb/72fa/large_jpg/saga-space-architects-and-3dcp-group-complete-36-unit-3d-printed-student-village-in-denmark_5.jpg?1789381124">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 010 · 2026-09-15 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="Europe's largest 3D-printed housing scheme takes in residents: 36 student apartments in Denmark at about €1,880/m², inside the subsidised-housing ceiling；York Central phase one ap…">
+<meta name="twitter:image" content="https://images.adsttc.com/media/images/6aa7/c9ce/069c/1b01/89fb/72fa/large_jpg/saga-space-architects-and-3dcp-group-complete-36-unit-3d-printed-student-village-in-denmark_5.jpg?1789381124">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 010 · 2026-09-15 · 陆先生建筑日报 | Architecture Daily","description":"Europe's largest 3D-printed housing scheme takes in residents: 36 student apartments in Denmark at about €1,880/m², inside the subsidised-housing ceiling；York Central phase one ap…","datePublished":"2026-09-15","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-15-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://images.adsttc.com/media/images/6aa7/c9ce/069c/1b01/89fb/72fa/large_jpg/saga-space-architects-and-3dcp-group-complete-36-unit-3d-printed-student-village-in-denmark_5.jpg?1789381124"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 010</div>
+    <div>September 15, 2026 Tuesday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-15-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p><p>Two of today's stories put cost at the centre. In Holstebro, Denmark, Skovsporet has delivered 36 3D-printed student apartments and taken in its first residents, built for roughly €1,880 per square metre — inside Denmark's statutory budget ceiling for subsidised housing. For once, 3D concrete printing appears not as a pavilion or a show home but as an ordinary housing project that cleared a subsidised-housing budget and approval process. In England, the first phase of York Central won detailed planning approval on 14 September: 110 acres of railway brownfield, a £2bn scheme, 1,014 homes in phase one with 20 per cent affordable. In Guangzhou, the Marubi Headquarters is now published in full: 68,000 m² on a 5,770 m² site, capped at 138 metres, four stacked and offset volumes that force the structure onto transfer trusses. ArchDaily named the 20 winners of its sixth Next Practices Awards, from Niger, Haiti, Mozambique, Vietnam and Ecuador among others. Also today: VISTA in Austria, Sordo Madaleno's sunken gallery in Baja, thirteen public toilets in Shanghai's Xuhui District, and a rooftop addition in Prague.</p></p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6aa7/c9ce/069c/1b01/89fb/72fa/large_jpg/saga-space-architects-and-3dcp-group-complete-36-unit-3d-printed-student-village-in-denmark_5.jpg?1789381124" alt="Shared outdoor space at Skovsporet 3D-printed student village, Holstebro, Denmark / 丹麦霍尔斯特布罗 Skovsporet 3D 打印学生村的户外共享空间" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">MATERIALS</span>
+    <div class="hl-title">Europe's largest 3D-printed housing scheme takes in residents: 36 student apartments in Denmark at about €1,880/m², inside the subsidised-housing ceiling</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">designboom</span> · <span class="src">3D Printing Industry</span> · <span class="src">VoxelMatters</span> · <span class="src">SAGA Space Architects</span> · <span class="src">Yanko Design</span></div>
+    <div class="hl-desc">Skovsporet sits in Holstebro, western Denmark, next to the VIA University College campus. The client is the social housing organisation NordVestBO; the buildings are designed by SAGA Space Architects with MS+ Arkitekter, and the 3D concrete printing (3DCP) was carried out by 3DCP Group. The scheme comprises 36 single-storey apartments in six clusters, 1,650 m² in total, with units of 38 to 50 m², built over 12 months and receiving its first students this month. Per 3D Printing Industry, construction cost came to roughly €1,880 per square metre excluding design, engineering, utilities and site works; rents start at €670 a month for a 50 m² unit, and total expenditure fell below Denmark's statutory budget ceiling for subsidised housing. Printing was done by a three-person crew with a single COBOD BOD3 printer; one 275 m² building containing six apartments took five working days to print.</div>
+    <a href="https://www.archdaily.com/1185029/saga-space-architects-and-3dcp-group-complete-36-unit-3d-printed-student-village-in-denmark" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://yorknorthyorks-ca.gov.uk/wp-content/uploads/2026/09/York-Central-Aerial-scaled.jpg" alt="Aerial view of the York Central site, railway brownfield land west of York Station / York Central 场地鸟瞰，约克站西侧的铁路棕地" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">URBANISM</span>
+    <div class="hl-title">York Central phase one approved on 14 September: 110 acres of railway brownfield, £2bn, 1,014 homes and a new western entrance to York Station</div>
+    <div class="hl-meta">Sources: <span class="src">Architects' Journal</span> · <span class="src">York &amp; North Yorkshire Combined Authority</span> · <span class="src">RailBusinessDaily</span> · <span class="src">Built Environment News</span> · <span class="src">Allies and Morrison</span> · <span class="src">3DReid</span></div>
+    <div class="hl-desc">City of York Council approved the Reserved Matters Application for York Central's Phase 1C on 14 September 2026. The site is roughly 110 acres of former railway land immediately west of York Station, one of the largest city-centre brownfield regeneration projects in the UK, with total investment of about £2 billion. Phase one covers 1,014 mixed-tenure homes with 20 per cent affordable, a 213-bedroom hotel, a 9,210 m² innovation hub, 6,430 m² of retail and leisure, a new western entrance to York Station and what the authority describes as extensive parkland. Allies and Morrison is masterplanner; individual buildings are by Haworth Tompkins, Cartwright Pickard, Whittam Cox and 3DReid, with public realm and landscape by Grant Associates. Developers McLaren Regeneration and Arlington Real Estate expect to start on site next year, with the first buildings occupied in early 2029 and phase one complete during 2030.</div>
+    <a href="https://www.architectsjournal.co.uk/news/top-practices-win-approval-for-huge-2bn-york-central-regeneration-scheme" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6aa8/104e/069c/1b01/89fb/74bc/large_jpg/20-practices-expanding-architectures-agency-winners-of-the-archdaily-2026-next-practices-awards_1.jpg?1789399135" alt="Composite of works by the winners of the ArchDaily 2026 Next Practices Awards / ArchDaily 2026 Next Practices Awards 获奖事务所作品集图" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">ACADEMIA</span>
+    <div class="hl-title">ArchDaily names 20 winners of its sixth Next Practices Awards: Niger, Haiti, Mozambique, Vietnam and Ecuador on the list</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (organiser's announcement, 15 September)</span> · <span class="src">ArchDaily (jury announcement, 4 September)</span> · <span class="src">ArchDaily Next Practices archive</span></div>
+    <div class="hl-desc">ArchDaily announced the 20 winning practices of its sixth Next Practices Awards on 15 September 2026. The organiser calls this edition "our strongest and most globally representative to date", citing work in extreme climates, rural communities, informal cities and displacement-affected territories, and drawing on engineering, ecology, digital fabrication, material research, vernacular and Indigenous knowledge, advocacy and critical research. The winners are ACTA – Action Through Architecture (Niger), AD—WO (Switzerland/US), AGENCIA TPBA (Brazil), Arctic Design Group, Atelier Guo (China), Balsa Crosetto Piazzi (Argentina), CLUSTER (Egypt), Craft Narrative (India), Emergent Studios (Australia), Enrico Dusi Studio (Italy), EVA Studio – Emergent Vernacular Architecture (Haiti/UK), Exutoire (Vietnam), FABER (France), Fahrenheit.Works (Portugal), MANUFACTURA (Mexico), RAMA Estudio (Ecuador), SOCA – Studio of Contemporary Architecture, Studio Eidola, Talles Lopes and Xi Bassile (Mozambique). The award has run since 2020; its first five editions recognised 105 practices from 44 countries.</div>
+    <a href="https://www.archdaily.com/1185003/20-practices-expanding-architectures-agency-winners-of-the-archdaily-2026-next-practices-awards" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2024%2F0219%2Fc4fda987j00s93u3k0114d000u000kbm.jpg&amp;thumbnail=750x2147483647&amp;quality=75&amp;type=jpg" alt="The four stacked, offset volumes of Marubi Headquarters, Guangzhou, with Canton Tower in the distance / 广州丸美总部大楼的四个堆叠错位体块，远景为广州塔" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">PROJECTS</span>
+    <div class="hl-title">Marubi Headquarters, Guangzhou: 68,000 m² on a 5,770 m² site, capped at 138 metres, with four offset volumes that push the structure onto transfer trusses</div>
+    <div class="hl-meta">Sources: <span class="src">gooood</span> · <span class="src">Shing &amp; Partners Design Group (architect)</span> · <span class="src">Haizhu District Government, Guangzhou</span> · <span class="src">Guangzhou Planning and Natural Resources Bureau</span> · <span class="src">Sina Finance</span> · <span class="src">The Paper</span></div>
+    <div class="hl-desc">The Marubi Headquarters stands on Xingang East Road in the Pazhou West district of Haizhu, Guangzhou. The client is cosmetics group Marubi; the architect is Shing &amp; Partners Design Group (汉森伯盛), with design in 2022 and completion in 2025. The site measures only 5,770 m² and carries 68,000 m² of floor area, while the tower is held to 138 metres by a local height cap. The response was to break the mass into four stacked, offset volumes, each rotated and cantilevered towards the north-west — the primary viewing angle from the Pearl River. That degree of twist means the vertical load path normally found in a tall building no longer holds, so the structure relies on transfer trusses to re-establish equilibrium; the transfer also freed the corner columns, producing open corner rooms with 4.2-metre ceilings. Close to 40 per cent of the ground floor is left open beneath a 12-metre clearance for cross ventilation in the subtropical climate, and a steel spiral stair 13.6 metres in diameter, with a 12-metre unsupported run, links five levels from basement to the fourth-floor podium and connects the underground retail directly to the metro.</div>
+    <a href="https://www.gooood.cn/the-headquarters-building-of-marubi-by-shing-partners.htm" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6a8c/1c06/ab59/ca01/8994/6fb2/large_jpg/arte-abierto-javier-sordo-madaleno-bringas_5.jpg?1787567204" alt="The exposed-concrete gallery court of Arte Abierto Baja, sunk four metres below grade / Arte Abierto Baja 下沉 4 米的清水混凝土展廊" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">PROJECTS</span>
+    <div class="hl-title">A gallery with no roof: Sordo Madaleno sinks Arte Abierto Baja four metres into the ground, 180 m², reached only by a 17-metre ramp</div>
+    <div class="hl-meta">Sources: <span class="src">Dezeen</span> · <span class="src">designboom</span> · <span class="src">ArchDaily</span> · <span class="src">Arquitectura Viva</span> · <span class="src">Divisare</span> · <span class="src">gooood (Chinese release, 15 September)</span></div>
+    <div class="hl-desc">Arte Abierto Baja, by Mexican practice Sordo Madaleno Arquitectos, is an open-air exhibition space at the Cabo del Sol resort in Los Cabos, Baja California Sur, and forms part of the practice's wider masterplan for the retail development Anima Village. Dezeen published it on 22 August; gooood released Chinese material on 15 September. The 180 m² exhibition area sits four metres below grade, approached along a 17-metre semi-covered ramp that stages a gradual shift from the activity of the complex to a place for contemplation. At its centre is a cubic room enclosed by five-metre walls of exposed concrete that edit the view down to sky and treetops alone, so the shadows on the wall surfaces change through the day. The enclosure is monolithic — exposed concrete and stone — and puts the work in direct dialogue with the Baja landscape. The gallery opens with an installation by Mexican artist Abraham Cruzvillegas.</div>
+    <a href="https://www.archdaily.com/1183853/arte-abierto-javier-sordo-madaleno-bringas" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://n.sinaimg.cn/spider20241119/178/w626h352/20241119/c704-73d0846daf2b6e073ecb3ab07046cab1.png" alt="The 12-metre-high open ground floor and 13.6-metre-diameter steel spiral stair at Marubi Headquarters / 丸美总部大楼首层 12 米通高架空层与直径 13.6 米的钢结构旋转楼梯" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">IN DEPTH</span>
+    <div class="ft-title">A 5,770 m² site asked to hold 68,000 m²: at Marubi Headquarters the constraint was translated into a structural problem</div>
+    <div class="ft-meta">Cross-checked: <span class="src">gooood</span> · <span class="src">Shing &amp; Partners Design Group (architect)</span> · <span class="src">Haizhu District Government (joint completion inspection notice)</span> · <span class="src">Guangzhou Planning and Natural Resources Bureau (post-approval disclosure)</span> · <span class="src">Sina Finance</span> · <span class="src">The Paper</span> · <span class="src">NetEase (topping-out report)</span></div>
+    <div class="ft-desc">
+      <p>The Marubi Headquarters occupies a plot on Xingang East Road in Pazhou West, Haizhu District, Guangzhou. The architect is Shing &amp; Partners Design Group; the client is the cosmetics company Marubi. Designed in 2022 and completed in 2025, it has four basement levels and twenty-nine storeys above ground, with the tower held to 138 metres by a local height cap. The basic figures already contain the whole problem: a 5,770 m² site carrying 68,000 m² of floor area — a very high plot ratio — with the height locked down.</p>
+      <p><strong>Concept: treat the constraint as the source of character rather than an obstacle.</strong>The architect's stated position is that the limits were not obstacles but the generator of the building's identity. As rhetoric that means little; what matters is that it lands on a verifiable operation. With the plan restricted by the site and the height restricted by the cap, the only remaining variable was the vertical position of the volumes relative to one another. The tower was therefore broken into four stacked and offset volumes, each rotated and cantilevered towards the north-west — the direction from which the building is mainly seen across the Pearl River. That move does two things at once: it gives a tower flattened by a height cap a legible silhouette again, and it claws back floor area through the cantilevers to compensate for the small footprint.</p>
+      <p><strong>Structure: once the mass twists, the vertical load path stops working.</strong>This is the hard part of the project and the part worth reading closely. The architect's own words: a twist at this scale means the vertical load path common to tall buildings no longer holds, and a new equilibrium has to be established through structural transfer trusses. In other words the offsets are not a cladding gesture — they move the columns of upper volumes off the columns below, so at certain levels the loads have to travel horizontally before rejoining the vertical system. That is the work of a transfer truss. The cost is the depth and steel tonnage of the transfer levels themselves; the benefit is stated plainly by the architect, which is that the transfer removed the corner columns and produced open corner spaces with 4.2-metre ceilings. In an office tower the corner is the highest-value position, with the best views, so deleting the corner column converts directly into usable value. That is also the test for whether a twisted form of this kind is justified: did the twist buy a specific spatial gain, or only a sense of movement on the elevation?</p>
+      <p><strong>Spatial strategy: give the ground floor away, and make vertical circulation an event.</strong>The second move happens at grade. Nearly 40 per cent of the ground floor is left open under a 12-metre clearance. In Guangzhou's hot, humid subtropical climate that has a physical rationale: removing the enclosure at ground level lets air move through, produces a cooler microclimate at the base of the building, and hands the area back to the city. Paired with it is a steel spiral stair 13.6 metres in diameter with a 12-metre unsupported run, linking five levels from basement one to the fourth floor of the podium and connecting the underground retail straight into the metro. According to the project material published by gooood, the stair has been certified by Guinness World Records for the greatest unsupported spiral-stair section height. A record is not in itself a measure of architectural quality, but the technical fact behind it is real: a 12-metre run with no intermediate support means the loads have to be absorbed by the steel helical shell of the stair itself. The building also sets observation decks and sky terraces at several heights, and uses an arcade system to make semi-outdoor gathering space available around the clock — the arcade being Guangzhou's most basic climatic and commercial interface type, and a direct citation of local typology in the podium of a corporate tower.</p>
+      <p><strong>Context: the Pazhou West headquarters cluster is solving the same problem.</strong>Pazhou West is a district designated in recent years for artificial intelligence and the digital economy, and a series of corporate headquarters have landed on narrow plots along the Pearl River, all facing the same three conditions at once: small sites, strict height caps, and a brief that asks for a landmark. Shing &amp; Partners' earlier Shangpin Home Collection headquarters in the same district took the opposite route, reinforcing horizontal lines with an extra-wide glass curtain wall on a 3.1-metre horizontal module to echo the river. Put side by side, the two projects show two answers to the same constraint: one extends horizontally, the other stacks and offsets vertically. What matters for readers is that neither begins from a formal preference; both are derived from the same specific question of how to achieve legibility under a height cap. At city scale, this generation of high-density headquarters gives much of its ground plane over to open floors and arcades — private land compensating for a shortfall in public space, which has become one of the more common and more effective trades on heavily developed plots in China's first-tier cities.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">VISTA Science Experience Center completes in Austria: 1,500 m² of glass under a reflective roof on the ISTA campus</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">STUDIO MAKS (architect)</span></div>
+  <div class="ni-desc">Designed by Dutch practice STUDIO MAKS (leads Marieke Kums and Marlene Scheuringer), the VISTA Science Experience Center sits on the campus of the Institute of Science and Technology Austria (ISTA) in Klosterneuburg. It measures 1,500 m², was completed in 2026 and was published by ArchDaily on 15 September. The building is a visitor and science experience centre; the architects describe it as bringing "research, landscape, and public life together under one reflective roof", with the volume emerging from the park landscape of the campus. Glass is the primary material, with facade systems by Guardian Glass and Schüco. Structural and acoustic engineering by Bollinger + Grohmann, MEP by In Plan Ingenieure, client and project management by VIVIT Immo. Photography: Iwan Baan.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Mini Atalhada in the Azores: a 13 m² footprint turned into a 35 m² house, with a perforated-steel stair to keep the light moving</div>
+  <div class="ni-meta">Sources: <span class="src">designboom</span> · <span class="src">SO Arquitetos (architect)</span></div>
+  <div class="ni-desc">Mini Atalhada, by Portuguese practice SO Arquitetos (Bruno Furtado and Gonçalo Blétière Lopes), is in Atalhada, Lagoa, on São Miguel in the Azores, and was published by designboom on 14 September 2026. The host structure was a disused storage building with a footprint of only 13 m²; rather than spreading horizontally, the conversion stacks vertically to reach 35 m² of floor area, with entrance and utilities at the bottom, sleeping above, and a living level with kitchen and work area at the top, where the brightest spaces face the sea. The hardest element in a house this small is the stair, and the architects answered with a compact assembly of perforated metal sheet with timber treads — in their words, "light passes through it, as do views from one level to another" — so the stair does not further fragment an already minimal plan. Structure is reinforced concrete; materials are exposed concrete, pale timber, black window frames and dark ceramic finishes. Completed 2026. Photography: Ivo Tavares Studio.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The Kiosk in Dhermi, Albania: a 10 m² timber retail structure, reconfigured season by season</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">CITYFÖRSTER (architect)</span></div>
+  <div class="ni-desc">CITYFÖRSTER's The Kiosk, in the coastal village of Dhermi in southern Albania, was published by ArchDaily on 15 September. It measures just 10 m², was completed in 2025 and is built in timber; lead architect Boris Tikvarski, with Martin Sobota, Adonel Myzyri, Ani Muraku and Petre Simonescu. The design answers the sharply seasonal swings in commercial demand along the Dhermi coast: a portable retail structure whose components can be recombined for different seasonal uses, set out in the project's usage variation diagrams. Photography: Ani Muraku.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Yearly Plan House, Chengdu: the original column grid stays, but recessed capitals make the upper gallery read as detached</div>
+  <div class="ni-meta">Sources: <span class="src">gooood</span> · <span class="src">HUI PAN ARCHITECTS (architect)</span></div>
+  <div class="ni-desc">Yearly Plan House by HUI PAN ARCHITECTS (潘晖建筑设计工作室) is in Luhu, Chengdu, Sichuan: 400 m², completed 2026, design team Pan Hui, Li Yingpei and Yu Zelong, published by gooood on 15 September. An existing commercial structure is converted into a mixed-use space, with retail and fitting rooms on the ground floor and a gallery, founder's lounge and VIP rooms above. The key structural move is to retain the original column grid while recessing the column capitals, weakening the joint between column and slab so that the second-floor gallery volume appears to float free of its supports. The ground floor opens on all four sides towards the street life of Chengdu; a large frosted-glass skylight above filters direct sun into diffuse light. Materials are a light grey hand-applied textured coating, hand-finished European and American oak flooring, forged iron details and frosted glass.</div>
+</div></div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://alliesandmorrison.imgix.net/projects/_1200x630_crop_center-center_82_none/PRO_16172_York-Central_02_sketch.jpg?mtime=1763545702" alt="Masterplan sketch for York Central by Allies and Morrison / Allies and Morrison 的 York Central 总体规划分析图" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">IN DEPTH</span>
+    <div class="ft-title">Land fenced off by the railway for more than a century is finally going to be built on: at York Central the hard problem was never the design, it was getting in</div>
+    <div class="ft-meta">Cross-checked: <span class="src">Architects' Journal</span> · <span class="src">York &amp; North Yorkshire Combined Authority</span> · <span class="src">RailBusinessDaily</span> · <span class="src">Built Environment News</span> · <span class="src">Allies and Morrison (masterplanner)</span> · <span class="src">3DReid (building architect)</span> · <span class="src">World Construction Network</span></div>
+    <div class="ft-desc">
+      <p>On 14 September 2026 City of York Council approved the Reserved Matters Application for Phase 1C of York Central. The site lies immediately west of York Station and covers about 110 acres (roughly 44.5 hectares) of former railway land, making it one of the largest city-centre brownfield regeneration projects in the UK, with total investment of around £2 billion. Phase one as approved comprises 1,014 mixed-tenure homes with 20 per cent affordable, a 213-bedroom hotel, a 9,210 m² innovation hub, 6,430 m² of retail and leisure space, a new western entrance to York Station and parkland the authority describes as extensive. Allies and Morrison leads the masterplan; buildings are by Haworth Tompkins, Cartwright Pickard, Whittam Cox and 3DReid, with public realm and landscape by Grant Associates. The developers are McLaren Regeneration and Arlington Real Estate. Construction is expected to begin next year, with first occupation in early 2029 and phase one complete during 2030.</p>
+      <p><strong>Concept: the central problem here is access, not density.</strong>York is a city defined by its medieval walls, with the station pressed against their outer face — and the railway land west of the tracks has been effectively sealed off from city life for more than a century. Not because it is far, but because tracks, sidings and fences form a boundary that is hard to cross. The first question for this project is therefore not what to build but how anyone gets there. The least glamorous item in the phase one schedule is also the most consequential: a new western entrance to York Station. Only once the station works as a route in both directions does the land behind it turn from the back of the city into the front. Projects of this kind are usually decided by one or two connections rather than by total floor area.</p>
+      <p><strong>Spatial strategy: settle access and public space first, then argue about the mix.</strong>The phase one programme reads like a standard British regeneration recipe: housing as the base, hotel and innovation hub as the economic engine, retail and leisure for street activity, parkland as environmental compensation. What is worth noting is the division of labour — one masterplanner sets the framework, four practices take individual buildings, one landscape practice holds the public realm. That "one masterplan, many architects" structure is close to standard on large British brownfield sites, the aim being to keep street scale and frontage continuous while avoiding the uniformity that comes of a whole district drawn by a single office. Grant Associates' remit over the public realm matters especially: in a scheme phased across years, public space is often the only element running through the whole thing, so putting it in one pair of hands is what allows plots finished years apart to read as a single place.</p>
+      <p><strong>Process: what a Reserved Matters Application actually means.</strong>For readers outside the British planning system, the term is worth unpacking. Large UK projects usually secure outline planning permission first, fixing land use, quantum and broad principles, while the specifics — appearance, layout, scale, landscaping, access — are "reserved" for later applications approved one at a time. That is why the same York Central keeps reappearing in the news across different years: what was approved this week is the detailed design of phase one, not the viability of the project. The practical implication for students is that in this system design work is split into two stages — winning the principle, then resolving the detail. The first is policy and negotiation work; only the second resembles architectural design as usually understood. And almost all of a project's schedule risk sits in the first stage.</p>
+      <p><strong>Context: railway brownfield is the last big land bank in European cities.</strong>York Central belongs to a wider category. As rail operations change, the yards, goods depots and maintenance land in European city centres are being released; these sites share three advantages — excellent location, large area, consolidated ownership — and three problems: contamination, live railway operations that cannot be interrupted, and poor access. Set against New York's Interborough Express, which this paper covered on 14 September and which keeps a freight corridor in transport use, York Central takes the other route: transport land converted to city blocks, at the price of having to solve access itself. The 20 per cent affordable requirement is middling by current English standards, and in a historic city with long-standing affordability pressure that figure will probably remain a live local political argument. First occupation only in 2029 means three years between a consent for 1,014 homes and any actual supply — the common lag of every large brownfield scheme, and the thing most easily overlooked when housing policy is judged by planning-permission numbers.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Jersey City approves 1,517 units in twin 47-storey towers with zero off-street parking</div>
+  <div class="ni-meta">Sources: <span class="src">Hoodline</span> · <span class="src">Jersey City Planning Board resolution</span> · <span class="src">C3D Architecture (architect)</span></div>
+  <div class="ni-desc">The Jersey City Planning Board approved the redevelopment application for Homestead Market Towers at 548-555 Summit Avenue, New Jersey, on 3 September 2026. The developer is Namdar Group and the architect C3D Architecture. The scheme is a pair of connected towers, each 47 storeys and 513 feet, with 1,517 homes in total — phase one 863 units including 87 affordable, phase two 654 units including 66 affordable — comprising 1,142 studios, 214 one-bedrooms, 96 two-bedrooms and 32 three-bedrooms. At roughly 10 per cent affordable it meets the city's 2021 Inclusionary Zoning Ordinance. Also included are five ground-floor retail spaces, 41 hotel rooms, co-working space and a pedestrian plaza. The headline figure is the parking: zero off-street spaces, on a site next to the Journal Square PATH station with direct pedestrian links to the Homestead Place corridor.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Thirteen public toilets for Shanghai's Xuhui District: about 822 m² of design area, eight built, conceived as urban waystations rather than sanitary fittings</div>
+  <div class="ni-meta">Sources: <span class="src">gooood</span> · <span class="src">VIA VIASCAPE design (designer)</span> · <span class="src">Xuhui District Greening and City Appearance Administration Bureau (client)</span></div>
+  <div class="ni-desc">VIA VIASCAPE design (leads SUN Yijia and ZHOU Mi) published its Xuhui Toilet Project on 15 September. Commissioned by the Xuhui District Greening and City Appearance Administration Bureau in Shanghai, it covers 13 facilities — four freestanding, seven accessory and two combination types — of which eight were complete by June 2026, with a total design area of about 822 m² and a design period from November 2022 to August 2026. The position taken is to treat the public toilet as an urban waystation: beyond sanitation, each includes rest areas, vending and shared hand-washing zones knitted into the surrounding public space. Daylight strategies include floor-to-ceiling glazing at the wash basins, lowered sills in the urinal zones and glass blocks to soften direct light. The designers' account of visibility is worth noting: the buildings should be immediately identifiable to those who need them, yet free of pronounced features that might interfere with ordinary urban experience. Rather than a single template, each site uses its own strategy — embedded growth, site adaptation, modular combination, interface linkage, functional optimisation. Materials: metal, concrete, glass, white fair-faced concrete, red brick and glass block. Photography: CreatAR Images.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Harfa rooftop extension, Prague: the original roof truss is kept and built into, not replaced — four apartments for €1m</div>
+  <div class="ni-meta">Sources: <span class="src">gooood</span> · <span class="src">matěj šebek architekti (architect)</span></div>
+  <div class="ni-desc">The Harfa rooftop extension by Czech practice matěj šebek architekti is at U Harfy 535/2 in Prague, on the boundary of the Libeň and Vysočany districts. The host building dates from the early twentieth century and contained 16 apartments. The addition covers 323 m² built-up, 298 m² gross and 210 m² usable, adding four small apartments at roof level, two of them duplexes with bedroom volumes opening onto courtyards; project year 2021, completion 2026, budget around €1,000,000. The central decision was not to strip out and replace the original roof truss but to insert the new structure within it, with exposed steel working alongside the old timber so that features such as the chimneys remain visible. A new lift was slotted into an existing light well rather than taking space from the central stair. Materials are red brick, exposed steel, metal roofing, ceramic, glass and French windows onto continuous terraces. The architects state explicitly that they did not maximise the return, choosing restraint instead — a considered contemporary layer inserted into an existing structure.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">2026 ASLA Landmark Award goes to Lurie Garden, Chicago: twenty-two years on, the 14-foot shoulder hedge is still filtering the skyline</div>
+  <div class="ni-meta">Sources: <span class="src">gooood</span> · <span class="src">American Society of Landscape Architects (award citation)</span> · <span class="src">GGN (designer)</span></div>
+  <div class="ni-desc">The American Society of Landscape Architects has given its 2026 Landmark Award to the Lurie Garden at Millennium Park, Chicago, completed in 2004 by GGN (Gustafson Guthrie Nichol), with Shannon Nichol, Jennifer Guthrie and Kathryn Gustafson as lead designers, Piet Oudolf as perennial plantsman, Terry Guen Design Associates as local consultant and KPFF as engineer. Key strategies: a 14-foot shoulder hedge that protects the garden's interior while filtering views of downtown Chicago; native prairie and marsh plantings laid out as continuous landforms rather than isolated beds, divided into "Light" (dry) and "Dark" (wet) zones; and a wood-decked "Seam" marking Chicago's early street elevations, narrating the shift from natural lakeshore to filled land. The jury noted that the garden "retains its original design integrity while continuing to provide significant public, cultural, and ecological value". The garden now runs apprenticeships, youth education and citizen-science insect monitoring.</div>
+</div></div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/3d-printed-concrete-cork-36-student-homes-denmark-skovsporet-saga-space-architects-ms-plus-arkitekter-designboom-1200-1.jpg" alt="3D-printed concrete walls and cork interior finishes at Skovsporet student village / Skovsporet 学生村的 3D 打印混凝土墙体与软木内饰" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">IN DEPTH</span>
+    <div class="ft-title">The first 3D-printed housing that does not need the word "first": what Skovsporet proves is that it repeated six times and stayed on budget</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily</span> · <span class="src">designboom</span> · <span class="src">3D Printing Industry</span> · <span class="src">VoxelMatters</span> · <span class="src">SAGA Space Architects (architect)</span> · <span class="src">3DCP Group (contractor)</span> · <span class="src">Yanko Design</span></div>
+    <div class="ft-desc">
+      <p>Skovsporet stands in Holstebro in western Denmark, beside the VIA University College campus. The client is the social housing organisation NordVestBO; buildings by SAGA Space Architects with MS+ Arkitekter; 3D concrete printing (3DCP) by 3DCP Group. The scheme runs to 36 single-storey apartments in six clusters, 1,650 m² in total, units of 38 to 50 m², built over 12 months, with the first students moving in this month.</p>
+      <p><strong>Concept: take the technology's working envelope as the design premise.</strong>It helps to be clear about what 3D concrete printing currently does well. It is good at extruding continuous vertical walls; it is not good at horizontal members, and it is not good at multi-storey structure. Skovsporet works entirely within that envelope — single-storey, low, dispersed into six small clusters. This is not timidity; it converts a technical condition into a settlement form. The 36 units are not lined up in one long block but form a student village organised around shared outdoor space, courtyards and walking paths. For student housing, a low dispersed layout is in any case better at producing encounters than a double-loaded corridor, so the technical limit and the brief happen to pull in the same direction.</p>
+      <p><strong>Spatial strategy: locate the print beds first, then the buildings.</strong>The single fact that best explains the method is how the site was handled: print beds were positioned between the existing trees, and about 90 per cent of the trees on site were retained. Note the order. Conventional construction fixes the building outline first and then clears whatever vegetation stands in the way; on-site printing equipment needs a level working strip, so the design instead went looking for the gaps between trees and placed the buildings into them. Ninety per cent tree retention was not achieved by transplanting or replanting — it is a direct consequence of a layout decision. That suggests something worth studying: how on-site additive construction engages a site may matter more than the formal freedom it is usually advertised for.</p>
+      <p><strong>Material innovation: three decarbonisation moves stacked in one project.</strong>The first is cement substitution. The printing concrete was batched on site using FUTURECEM, a lower-carbon cement developed by Aalborg Portland; per 3D Printing Industry its emissions run up to 30 per cent below conventional cement. The second is more radical: the project also used cement-free printed elements made with MEVOcem, supported by Innovation Fund Denmark. Eliminating Portland cement altogether is the end point of concrete decarbonisation, and seeing it in a real housing project rather than a laboratory specimen is the detail here most worth following. The third is the interior: timber, cork panelling and glass, with cork serving both as finish and as part of the thermal and acoustic performance. The reason to separate the three is that 3D printing is not intrinsically low-carbon. It saves formwork and cuts waste, but it is still concrete; the actual emissions reduction comes from replacing the binder. Conflating those two is the most common error in assessing projects of this kind.</p>
+      <p><strong>Context: repeatability and a cost ceiling matter more than any "first".</strong>3DCP Group chief executive Mikkel Brich put it precisely: "The technical breakthrough was not printing one successful structure. It was repeating the process across six clusters while improving speed, maintaining accuracy." That is the line between demonstration and construction. The figures back it up: a three-person crew with a single COBOD BOD3 printer; one 275 m² building containing six apartments printed in five working days. On cost, 3D Printing Industry reports roughly €1,880 per square metre for construction, excluding design, engineering, utilities and site works, with rents from €670 a month for a 50 m² unit, and total expenditure below Denmark's statutory budget ceiling for subsidised housing — the article does not state the ceiling itself. COBOD co-founder Philip Lund-Nielsen calls it the largest example of the technology in Europe so far. For architecture readers the value of the project is not formal or spectacular: it is among the first 3D-printed housing schemes to pass all the way through the budget and approval framework of subsidised housing. For a decade this technology's news cycle has been single pavilions, show homes and "world's first" claims, all of which failed to answer cost and repeatability. Skovsporet answers with specific numbers and six repetitions.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Librairie Avant-Garde Huize Baiwu Bookstore: China's first permanent building with a full bamboo-scrimber structural system, relieving the rammed-earth walls of load</div>
+  <div class="ni-meta">Sources: <span class="src">gooood</span> · <span class="src">Jiakun Architects (architect)</span></div>
+  <div class="ni-desc">Jiakun Architects' conversion of an abandoned rammed-earth granary in Baiwu Village, Huize County, Yunnan, into a branch of Librairie Avant-Garde covers about 670 m² and was completed in April 2025. Four strategies: an independent new structural system in bamboo scrimber (重组竹) that relieves the original rammed-earth walls of load-bearing duty, allowing the historic fabric to stay largely intact; the original wall surfaces stripped, consolidated and finished in gold paint, a reference to Huize's history in the copper trade; a terraced garden as the central gathering space, serving both cultural events and everyday community use; and bamboo scrimber used throughout structure, shelving and furniture for a single material register. The architects state this is the first permanent building in China to use a complete bamboo-scrimber structural system. Secondary materials are coal gangue brick, metal details and the retained rammed earth.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">A pink inflatable canopy for New York's Summer Streets: installed and removed within a day, no specialised tools</div>
+  <div class="ni-meta">Sources: <span class="src">designboom</span> · <span class="src">NYC DOT Art Program</span></div>
+  <div class="ni-desc">designboom published The Bower, a temporary public installation by architect and artist Elsa Ponce, on 15 September 2026. Commissioned by the NYC DOT Art Program for Summer Streets 2026, it appeared on Park Avenue and at Foley Square across three Saturdays. The structure is made of lightweight inflatable forms designed to be installed and removed within a single day without specialised tools; engineering by Tory Struck of Five Phase Engineering. Its geometry comes from dappled tree shadows and its palette shifts from pale lilac to pastel pink, referencing the jacarandas of Ponce's Mexican upbringing. Her statement of the premise: "Shade is free, but access to it is not evenly distributed" — pointing at neighbourhoods with scarce tree canopy. Visitors traced the canopy's moving shadows in coloured chalk, turning the pavement into a collective drawing. Photography: Carlos Galek Sefchovich.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ArchDaily on long-span steel: span is not a question of size but of what remains once the columns are taken out of the plan</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span></div>
+  <div class="ni-desc">ArchDaily published the technical feature "Building at Scale: How Long-Span Steel Expands Architectural Possibilities" on 15 September, covering the logic of long-span steel in airports, stadiums, convention centres and industrial buildings — how trusses, box girders and space grids deliver column-free volume, and the knock-on consequences for member depth, deflection control and connection detailing as spans grow. Pieces in this series are produced by ArchDaily with material and component manufacturers rather than as reporting; it is listed here for readers wanting a systematic view of structural selection. This paper has not independently verified the project figures cited in the article.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The MEVOcem cement-free printed elements at Skovsporet: worth noting on their own</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">VoxelMatters</span> · <span class="src">3DCP Group (contractor)</span></div>
+  <div class="ni-desc">Alongside the on-site batched concrete using the lower-carbon cement FUTURECEM, the Skovsporet project covered in this section's feature also included cement-free 3D-printed elements made with MEVOcem, supported by Innovation Fund Denmark. The reason to list it separately: 3D printing saves formwork and cutting waste, but while the binder remains Portland cement the carbon reduction is limited, and the real savings come from replacing the cement itself. Fully cement-free printed elements appearing in a subsidised housing scheme already handed over and occupied — rather than as laboratory specimens or a pavilion — is a substantive step for this line of development. Published material does not state the quantity or location of these elements within the project, and this paper will not speculate.</div>
+</div></div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6a97/1275/d9a0/5901/87c6/89d0/large_jpg/archdaily-2026-next-practices-awards-meet-the-jury_1.jpg?1788285577" alt="The jury of the ArchDaily 2026 Next Practices Awards / ArchDaily 2026 Next Practices Awards 评委会" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">IN DEPTH</span>
+    <div class="ft-title">Niger, Haiti and Mozambique are on the winners' list: the sixth Next Practices has moved the coordinates of "emerging" away from Europe and North America</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (winners announcement, 15 September)</span> · <span class="src">ArchDaily (jury announcement, 4 September)</span> · <span class="src">ArchDaily Next Practices archive</span> · <span class="src">Counterspace / Estudio Ome / Dorte Mandrup / EAST Architecture Studio / World Monuments Fund (published information from jurors' institutions)</span></div>
+    <div class="ft-desc">
+      <p>ArchDaily published the 20 winners of its sixth Next Practices Awards on 15 September 2026. The award has run since 2020 and its first five editions recognised 105 practices from 44 countries. One caveat up front: this is a result announced by the organiser itself, and what this paper can verify is the list, the jury and the historic figures — not the selection process. The reading below is based on the winners' published countries and self-descriptions.</p>
+      <p><strong>The list is itself the argument: the geography of emerging practice has changed.</strong>Among the 20 winners, ACTA – Action Through Architecture is based in Niger; EVA Studio – Emergent Vernacular Architecture works across Haiti and the UK; Xi Bassile is in Mozambique; Exutoire in Vietnam; RAMA Estudio in Ecuador; MANUFACTURA in Mexico; CLUSTER in Egypt; Craft Narrative in India; AGENCIA TPBA in Brazil; Balsa Crosetto Piazzi in Argentina; Atelier Guo in China. The remainder are AD—WO (Switzerland/US), Arctic Design Group, Emergent Studios (Australia), Enrico Dusi Studio (Italy), FABER (France), Fahrenheit.Works (Portugal), SOCA – Studio of Contemporary Architecture, Studio Eidola and Talles Lopes. Set this list beside any "young practices to watch" roster from twenty years ago and the difference is structural: the metropolitan West is no longer the default coordinate for the frontier.</p>
+      <p><strong>The selection frame is not typological but situational.</strong>The organiser names its areas of interest as extreme climates, rural communities, informal cities and displacement-affected territories, with knowledge drawn from engineering, ecology, digital fabrication, material research, vernacular and Indigenous knowledge, advocacy and critical research. The classification is worth noting: not by building type (housing, cultural, educational), not by style, but by the difficulty of the conditions the practice works in. That quietly redefines what a "practice" is — an organisation that combines research, advocacy and building is a different animal from a firm that receives commissions and produces designs, and this list leans clearly towards the former. EVA Studio has Emergent Vernacular Architecture in its name; ACTA has Action Through Architecture in its own. The position is written into the letterhead.</p>
+      <p><strong>The jury explains where the frame comes from.</strong>This edition's jurors are Sumayya Vally (principal of Counterspace, resident architect at Ibraaz, teaching at Columbia GSAPP and the Bartlett, UCL); Susana Rojas Saviñón (co-founder of the landscape practice Estudio Ome in Mexico City and London); Oanh Nguyen Henriksen (partner and director of business development and communications at Dorte Mandrup, and a board member of the Dreyers Foundation); Nicolas Fayad and Charles Kettaneh (co-founders of EAST Architecture Studio, 2022 Aga Khan Award recipients); and Javier Ors Ausín (director of thematic programs at the World Monuments Fund, a preservation specialist in modernist architecture). The mix includes landscape, heritage conservation, and communications and institutional management rather than a row of design celebrities — and the presence of a director of business development and communications on a jury says, in itself, that the organiser treats a practice's ability to communicate and operate as part of what is being judged. The jury was announced on 4 September — carried as a brief in this paper's No. 004 on 8 September — and the winners on 15 September. The organiser has not published the number of submissions.</p>
+      <p><strong>What this is good for, for readers at Syracuse Architecture.</strong>A list like this has two uses. The near one is practical: a good share of the 20 are young, small, and combine research with building, which makes this a directly searchable set of targets for students hoping to work outside conventional practice — EVA Studio (Haiti/UK), Exutoire (Vietnam) and CLUSTER (Egypt) in particular work on the ground in specific regions over long periods. The further use is about framing. If the standard for "frontier" has shifted from formal innovation to the capacity to work under extreme conditions, then the skills to accumulate in school shift accordingly: alongside drawing and modelling, fieldwork, local material testing and collaboration with communities and institutions are becoming the core competencies of this kind of practice. One caution: an award list reflects a jury's judgement and a publication's attention structure, not the state of the profession. It is more useful read as a list of questions than as an authoritative ranking.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Downtown Design Riyadh opens for its second edition on 15 September at JAX District, running to the 18th</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen Events Guide</span> · <span class="src">Downtown Design (organiser)</span> · <span class="src">Commercial Interior Design</span> · <span class="src">Arab News</span></div>
+  <div class="ni-desc">The second edition of Downtown Design Riyadh runs from 15 to 18 September 2026 at JAX District in Diriyah Al Jadidah, Riyadh, Saudi Arabia, staged in partnership with the Architecture and Design Commission of the Ministry of Culture. The fair shows original and limited-edition work by international and regional studios alongside immersive installations, industry programming and contributions from local practitioners. This edition was moved to September from its original dates. JAX District is a cultural and arts quarter converted from industrial warehouses, and has become the principal venue for contemporary design events in Saudi Arabia in recent years.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ArchDaily's "Beyond the Replica": the problem with digital heritage is not precision but that visitors cannot tell evidence from interpretation</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Virtual Avebury project research</span> · <span class="src">Digital Ajanta project material</span></div>
+  <div class="ni-desc">ArchDaily published Ananya Nayak's essay "Beyond the Replica: Digital Heritage and the Limits of Preservation" on 15 September, on the uses and limits of 3D scanning and VR reconstruction in architectural preservation. Cases cited include India's Digital Ajanta project, which uses 3D scanning and VR to reconstruct the Ajanta Caves in Maharashtra, enabling remote access and non-intrusive research; Virtual Avebury in the UK, which reconstructed a Neolithic landscape as it stood around 2300 BCE and, in testing with more than 1,200 participants, found that "the more believable participants considered the simulation, the stronger their reported sense of place"; the Baths of Caracalla in Italy, described as the first large Italian archaeological site entirely usable in 3D; and a 360-degree VR experience of Persepolis in Iran. The author's central problem: when reconstructions mix scanned evidence with interpretive additions, "the difference can become difficult for a visitor to perceive", and technological precision is easily misread as historical accuracy. Useful material for preservation and digital-representation seminars.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ArchDaily on the International Day of Democracy: encounter, equity and the symbolic power of architecture</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span></div>
+  <div class="ni-desc">15 September is the United Nations International Day of Democracy, and ArchDaily marked it with the feature "On the International Day of Democracy: Encounter, Equity and the Symbolic Power of Architecture", examining the relationship between public space and democratic practice through the three lenses of encounter, equity and architecture's symbolic power. The piece is commentary and compilation rather than new project data; it is listed for readers pursuing research in public space theory. The positions taken in it belong to the author and ArchDaily's editors, and this paper offers no judgement on them.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ArchDaily's "When the Water Comes": how Lagos negotiates with its returning floods</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span></div>
+  <div class="ni-desc">ArchDaily published the long-form piece "When the Water Comes: How Lagos Negotiates with Its Returning Floods" on 15 September, on urban adaptation under seasonal flooding in Lagos, Nigeria — the relationship between informal settlements and waterfront development, and how urban form and daily life adjust once flooding becomes a condition rather than an event. It reads as a direct footnote to the Next Practices Awards feature in this issue: extreme climates and informal cities appear both in an award's selection criteria and in the ordinary life of a specific city. This paper has not independently verified the rainfall, population and land-use figures cited in the article.</div>
+</div></div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
