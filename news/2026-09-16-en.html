@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-16</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="Shougang International Exhibition Town documented: Allies and Morrison and CCTN turn Blast Furnace No. 4 into Hall 1, with 171,462 sqm to become the permanent home of CIFTIS；Turne…">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 011 · 2026-09-16 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="Shougang International Exhibition Town documented: Allies and Morrison and CCTN turn Blast Furnace No. 4 into Hall 1, with 171,462 sqm to become the permanent home of CIFTIS；Turne…">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-16-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://oss.gooood.cn/uploads/2026/09/00-Shougang-International-Exhibition-Town-by-Allies-and-Morrison-CCTN-Design-Consortium-6bw-472x303.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 011 · 2026-09-16 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="Shougang International Exhibition Town documented: Allies and Morrison and CCTN turn Blast Furnace No. 4 into Hall 1, with 171,462 sqm to become the permanent home of CIFTIS；Turne…">
+<meta name="twitter:image" content="https://oss.gooood.cn/uploads/2026/09/00-Shougang-International-Exhibition-Town-by-Allies-and-Morrison-CCTN-Design-Consortium-6bw-472x303.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 011 · 2026-09-16 · 陆先生建筑日报 | Architecture Daily","description":"Shougang International Exhibition Town documented: Allies and Morrison and CCTN turn Blast Furnace No. 4 into Hall 1, with 171,462 sqm to become the permanent home of CIFTIS；Turne…","datePublished":"2026-09-16","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-16-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://oss.gooood.cn/uploads/2026/09/00-Shougang-International-Exhibition-Town-by-Allies-and-Morrison-CCTN-Design-Consortium-6bw-472x303.jpg"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 011</div>
+    <div>September 16, 2026 Wednesday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-16-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p>Today's thread is the arithmetic of treating old structures as assets. Full documentation appeared for Shougang International Exhibition Town in Beijing: a consortium of Allies and Morrison and CCTN Design has inserted 171,462 sqm of exhibition and conference buildings into a former steelworks of some 280 hectares, with Hall 1 converted directly from Blast Furnace No. 4 — described by the designers as Beijing's first on-site industrial heritage reuse project of its kind — and the complex set to become the permanent home of CIFTIS. In London, Turner Prize winner Assemble has taken on Bromley Hall of c. 1485, thought to be among the city's oldest surviving brick houses, on a 25-year lease phased out to beyond 2032. In Hong Kong, M+ has opened its fifth-anniversary exhibition "Herzog & de Meuron: In Focus", tracing the practice's working process through ten projects in China from 2002 to 2021, drawn from a donation of more than 200 models, prototypes and sketches. Valparaíso in Chile has turned carpentry, rammed earth and statuary restoration into a three-day congress. And in São Paulo, MASP's subterranean passage of some 50 metres opened on 11 September, linking Lina Bo Bardi's 1968 building to the new one.</p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://oss.gooood.cn/uploads/2026/09/00-Shougang-International-Exhibition-Town-by-Allies-and-Morrison-CCTN-Design-Consortium-6bw-472x303.jpg" alt="首钢国际会展小镇核心区，新建展馆与保留的高炉遗存并置 / Core area of Shougang International Exhibition Town, new halls set against retained blast-furnace structures" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">PROJECTS</span>
+    <div class="hl-title">Shougang International Exhibition Town documented: Allies and Morrison and CCTN turn Blast Furnace No. 4 into Hall 1, with 171,462 sqm to become the permanent home of CIFTIS</div>
+    <div class="hl-meta">Sources: <span class="src">gooood (published 16 September)</span> · <span class="src">Allies and Morrison (project page)</span> · <span class="src">CCTN Design (co-architect)</span></div>
+    <div class="hl-desc">The project sits in Shougang Park, Shijingshan District, Beijing, roughly 19 km from the city centre. The client is Shougang Group Co. Ltd; the designers are a consortium of Allies and Morrison (AAM) and CCTN Design, with lead architects Alfredo Caraballo and Bo Hongtao. AAM's project page states the practice won the international competition for the park masterplan and the exhibition and conference complex in early 2025; the park covers some 280 hectares on the banks of the Yongding River. The project information published by gooood on 16 September lists a total floor area of 171,462.1 sqm, of which Hall 1 (conversion) is 24,775.0 sqm, Halls 2, 3 and 4 plus ancillary buildings account for 106,901.9 sqm above ground, and 39,785.2 sqm is below ground; design ran from September 2025 to March 2026 and construction from October 2025 to August 2026. Hall 1 is a conversion of Shougang's Blast Furnace No. 4, which the designers describe as Beijing's first on-site industrial heritage reuse project of its kind (2023). Also retained on site are the dedusting fan house, the elevated material bunkers and the historic approach bridge of Blast Furnace No. 1, with routes linking Blast Furnace No. 3, Blast Furnace No. 2 and Coke Oven No. 1. The three exhibition halls and two conference centres will serve as the permanent home of CIFTIS, China's largest trade in services fair. Photography: Tian Fangfang, ARCH-IVE, Bo Hongtao.</div>
+    <a href="https://www.gooood.cn/shougang-international-exhibition-town-by-allies-and-morrison-cctn-design-consortium.htm" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6aa5/ea88/c1eb/5301/897f/18a9/large_jpg/assemble-to-transform-grade-ii-listed-bromley-hall-into-a-new-creative-and-light-industrial-workspace-in-london_6.jpg?1789258401" alt="伦敦 Bromley-by-Bow 的 Bromley Hall，约 1485 年的都铎砖砌宅邸 / Bromley Hall in Bromley-by-Bow, London, a Tudor-era brick house of c. 1485" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">URBANISM</span>
+    <div class="hl-title">Turner Prize winner Assemble takes on one of London's oldest brick houses: Bromley Hall, c. 1485, on a 25-year lease with an option to purchase and 14,000 sq ft of workspace in phase one</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (14 September)</span> · <span class="src">Architects' Journal</span> · <span class="src">Low Carbon Buildings</span></div>
+    <div class="hl-desc">The British practice Assemble, winner of the 2015 Turner Prize, has secured the lease of Bromley Hall in Bromley-by-Bow, east London. Built around 1485, the Grade II*-listed house is thought to be one of the oldest surviving brick houses in London; the earliest structures on the site date to around 1255. Its previous uses read as a history of the East End: residence of a mistress of Henry VIII, hunting lodge, Civil War gunpowder factory, merchants' retreat, missionary headquarters, paediatric hospital and calico printing works. Three buildings are in scope: Bromley Hall (c. 1485), the Old Poplar Library (c. 1904–05) and a container building known as RedBox. The lease runs 25 years with an option to purchase, and the works are phased: from 2026 to 2029 Assemble and the first tenants move in while basic capital works begin, including communal spaces in Bromley Hall such as the Blount Room and a shared kitchen; from 2029 to 2032 the purchase completes and major capital works start, including a new link building beside Bromley Hall and a larger workspace building; from 2032 onwards development completes, the site is fully tenanted, and a long-term programme of exhibitions, workshops and talks opens up. Phase one adds 14,000 sq ft to Assemble's existing workspace provision, with the long-term aim of doubling that figure. Assemble's own words: "Bromley Hall brings together many strands that we care about, from resourceful reuse and retrofit of buildings, to supporting the creative economy."</div>
+    <a href="https://www.archdaily.com/1184991/assemble-to-transform-grade-ii-star-listed-bromley-hall-into-a-new-creative-and-light-industrial-workspace-in-london" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6a94/9916/c615/2701/88ac/46da/large_jpg/herzog-and-de-meuron_10.jpg?1788123460" alt="香港 M+「赫尔佐格与德梅隆：聚焦」展厅内的木质展柜与工作模型 / Wooden vitrines and working models in Herzog &amp; de Meuron: In Focus at M+, Hong Kong" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">ACADEMIA</span>
+    <div class="hl-title">M+ opens its fifth-anniversary exhibition "Herzog &amp; de Meuron: In Focus" in Hong Kong: ten projects in China, over 200 process materials, and vitrines copied from the practice's open storage in Basel</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">M+ Museum (official site)</span> · <span class="src">The Standard (Hong Kong)</span> · <span class="src">Galerie Magazine</span> · <span class="src">Dezeen Events Guide</span></div>
+    <div class="hl-desc">"Herzog &amp; de Meuron: In Focus" opened on 12 September 2026 in the M+ Focus Gallery at M+ in Hong Kong's West Kowloon Cultural District, running to January 2027 as one of the museum's fifth-anniversary exhibitions. The curators are Ikko Yokoyama and Iris Ng. The show is organised around ten projects, built and unbuilt, that the practice undertook in China between 2002 and 2021, among them the National Stadium in Beijing (2002–2008) and Tai Kwun Centre for Heritage and Art in Hong Kong (2006–2018), with more than 200 models, prototypes, material samples, sketches and archival items on display. The material comes from a phased donation by Herzog &amp; de Meuron to the M+ Collection: phase one was the section model of the Beijing National Stadium, given in 2023; phase two is the 200-plus process materials shown here. The display uses replicas of the wooden vitrines developed for Kabinett, the practice's open archive storage established in Basel in 2015 — that is, the furniture in which the office keeps its own working process, brought into the gallery as it is. Curator Ikko Yokoyama's framing: "By showcasing the models, materials, methods, and research of these important architectural projects, we invite visitors to explore the experimentation and decision-making behind each work, from early ideas to built form."</div>
+    <a href="https://www.archdaily.com/1184216/m-plus-hong-kong-exhibition-traces-herzog-and-de-meurons-design-process-across-china" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6aa9/b18b/6be9/8701/8719/6097/large_jpg/oficios-en-obra_15.jpg?1789505941" alt="瓦尔帕莱索传统建造工艺的匠人工作现场 / A master builder at work in Valparaíso's traditional construction trades" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">MATERIALS</span>
+    <div class="hl-title">Valparaíso stages "Oficios en Obra", 9–11 October: carpentry, rammed earth and public statuary restoration presented as a viable path through the climate and economic crisis</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (16 September)</span> · <span class="src">Municipality of Valparaíso (organiser announcement)</span> · <span class="src">Radio Festival</span></div>
+    <div class="hl-desc">"Oficios en Obra: Encuentro de Innovación y Salvaguarda para el Patrimonio de Valparaíso" takes place on 9, 10 and 11 October 2026 at the Parque Cultural de Valparaíso, the city's former prison. It is organised by the municipality's Department of Heritage Management (Departamento de Gestión Patrimonial) and financed by Chile's Fund for Cultural Heritage, with all activities free and open to the public. The trades covered include carpentry, mould-making, rammed-earth construction (construcción en tierra), public statuary restoration and other heritage techniques involving structural timber and industrial technologies. The three-day programme comprises dialogue panels, keynote talks, hands-on workshops, live demonstrations, knowledge-transfer sessions, heritage routes, trade stands and two days of music, organised around five thematic areas: integrating tradition and innovation, transmission of knowledge between generations, sustainability, gender equity in male-dominated trades, and city-specific heritage management. Valparaíso was inscribed on the World Heritage List in 2003 as an "outstanding testimony to the early phase of globalisation" in its role as the leading Pacific merchant port of the 19th century; the organisers position these trades as "an alternative path forward" amid climate crisis and economic instability.</div>
+    <a href="https://www.archdaily.com/1185160/a-new-gathering-in-valparaiso-chile-brings-together-master-builders-to-safeguard-traditional-trades" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://viagem.cnnbrasil.com.br/wp-content/uploads/sites/5/2026/09/passagem-subterranea-masp.jpg" alt="MASP 新建地下通道内 Beatriz Milhazes 的作品《Pietrolina》 / Beatriz Milhazes's work Pietrolina inside MASP's new subterranean passage" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">URBANISM</span>
+    <div class="hl-title">MASP's subterranean passage opens in São Paulo on 11 September: some 50 metres linking Lina Bo Bardi's 1968 building to the new one, with a painting close to 100 metres long inside</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (Brazil focus, 16 September)</span> · <span class="src">CNN Brasil</span> · <span class="src">Portal Tela</span></div>
+    <div class="hl-desc">The new subterranean passage at the São Paulo Museum of Art (MASP, Museu de Arte de São Paulo) opened to the public on 11 September 2026, connecting Lina Bo Bardi's 1968 building with the recently opened Pietro Maria Bardi building. It runs roughly 50 metres and has been in works since 2023; reports describe it as the first underground connection of this scale in a Latin American museum. Inside is a new work by the Brazilian artist Beatriz Milhazes titled "Pietrolina", after MASP's founding couple Pietro Maria Bardi and Lina Bo Bardi. The piece runs close to 100 metres in total, combining a painted section of about 60 metres with reflective elements to make an immersive walk. The passage answers a specific constructional problem: the old MASP is a building lifted bodily on two pairs of red portal frames, and its elevated ground-level plaza is the whole point of the house — not something to cut through in order to reach the new building. Any connection between the two therefore has to be made below grade, where the services and metro along Avenida Paulista further squeeze the available section.</div>
+    <a href="https://www.archdaily.com/1185206/brazil-in-focus-this-month-in-architecture-landscape-and-collective-practice" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://oss.gooood.cn/uploads/2026/09/004-Shougang-International-Exhibition-Town-by-Allies-and-Morrison-CCTN-Design-Consortium-960x640.jpg" alt="空中连廊、工业遗存、城市与远山的层叠视线 / Layered view of skybridge, industrial heritage, the city and distant mountains" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">IN DEPTH</span>
+    <div class="ft-title">Refusing the standard exhibition hall: how Shougang breaks 171,462 sqm into a settlement and uses a blast furnace as its front door</div>
+    <div class="ft-meta">Cross-checked: <span class="src">gooood (project documentation, 16 September)</span> · <span class="src">Allies and Morrison (project page)</span> · <span class="src">CCTN Design (co-architect)</span> · <span class="src">designboom (Blast Furnace No. 3 museum report)</span> · <span class="src">ArchDaily (earlier Shougang Park projects)</span> · <span class="src">CIFTIS official material</span></div>
+    <div class="ft-desc">
+      <p>Shougang International Exhibition Town occupies Shougang Park in Shijingshan District, Beijing. The client is Shougang Group Co. Ltd, and the designers are a consortium of Allies and Morrison (AAM) and CCTN Design, with lead architects Alfredo Caraballo and Bo Hongtao. AAM's project page states the practice won the international competition for the masterplan and the exhibition and conference complex in early 2025; the documentation published by gooood on 16 September gives a total floor area of 171,462.1 sqm, of which Hall 1 (conversion) accounts for 24,775.0 sqm, Halls 2, 3 and 4 plus ancillary buildings for 106,901.9 sqm above ground, and 39,785.2 sqm below ground. The wider park covers some 280 hectares on the banks of the Yongding River, served as a venue for the Beijing 2022 Winter Olympics, and entered its post-Olympic transformation from 2021.</p>
+      <p><strong>Concept: a "naturally grown micro-city", which is to say a rejection of the standard exhibition typology.</strong>The designers' stated concept is a "naturally grown micro-city", and the operative move is de-standardisation — instead of the usual set of equally sized parallel long-span boxes, the scheme builds a settlement-like urban fabric to achieve what the designers call an exhibition layout in which the experience of the city comes first. There is a practical basis for this. The efficiency logic of a conventional convention centre produces enormous single volumes, wide vehicular forecourts and functionally isolated blocks; Shougang Park offers the opposite conditions, a site strewn with blast furnaces, bunkers, coke ovens and approach bridges of wildly varying scale, fixed in position and not available for demolition. Rolling out standard halls here would mean clearing the site first — and clearing the site is precisely what destroys its value. Breaking the halls into several volumes and arranging them around the retained structures treats the site constraint as the basis of the plan.</p>
+      <p><strong>Spatial strategy: two axes, three depths of view, a three-dimensional circulation system.</strong>Three operations are set out explicitly. First, two intersecting axes: a north–south green axis of industrial heritage crosses an east–west axis of urban activity in the middle of the site, the former stringing together Blast Furnaces No. 3 and No. 2 and Coke Oven No. 1, the latter carrying footfall and commercial frontage. Second, three depths of view — distant landscape (Shijingshan and the Yongding River), middle-ground industrial remains, and near-field lanes and courtyards — that is, sorting "what you look at" by distance so that a visitor keeps switching scale along a single route. Third, a three-dimensional circulation system of skybridges, sunken courtyards and a cascading folded escalator run; one such run connects basement, ground, second and third floors and the roof garden of Hall 3, producing what the designers describe as a zigzag, mountain-like roofscape, and explicitly framed as importing the Chinese garden principles of the wandering path and shifting scenery into a contemporary building. One point worth students' attention: roof gardens are usually the first casualty in exhibition buildings because they conflict directly with hall clear heights and structural loading. Making one the destination of a public route means structure and circulation had to yield to it from the outset.</p>
+      <p><strong>Structure and materials: a blast furnace as the body of a building, not as a monument.</strong>The key technical fact is Hall 1 — Shougang's Blast Furnace No. 4, converted into the permanent Shougang International Convention and Exhibition Center, which the designers describe as Beijing's first on-site industrial heritage reuse project of its kind (2023). The distinction matters. Industrial heritage is usually handled in one of two ways: demolish and keep a sculptural fragment, or freeze the structure as a museum exhibit (the route taken by CCTN's earlier Blast Furnace No. 3 Museum in the same park). Converting Blast Furnace No. 4 is a third option — the furnace itself becomes the structural and spatial body of a working exhibition building, carrying real footfall, real loads and real fire requirements. It is the hardest option, and the one that best demonstrates the claim that already-spent carbon is an asset. Also retained are the dedusting fan house, the elevated bunkers, the historic approach bridge of Blast Furnace No. 1 and furnace bases dating from the Japanese occupation. The new-build fabric is aluminium panel, glass and coatings, with folded roof geometry and sections of suspended structure; AAM additionally describes a rust-red armature system that links the buildings and organises pedestrian routes — rust-red being the existing palette of a steelworks, which is a low-cost way of absorbing new elements into an inherited material language.</p>
+      <p><strong>Context and consequence: exhibition architecture as the vehicle for heritage reuse.</strong>The three halls and two conference centres will be the permanent home of CIFTIS. That commitment defines the project's nature: this is not a one-off cultural event building but infrastructure that must absorb heavy use every year. Putting such a programme into an industrial heritage site is a risky choice — exhibition use imposes rigid requirements on column grids, clear heights, goods circulation and egress widths, all of which sit awkwardly against the scale of what has been retained. Orms' BT Tower conversion (reported here on 13 September) and King's Lynn Library (14 September) both followed the line that existing structure sets the ceiling for new programme; Shougang is an order of magnitude larger, and at 171,462 sqm the retained structures are no longer the whole subject of the design but one constraint among several that must be accommodated. The thing to watch is operational data — whether a settlement-like layout with three-dimensional circulation can match the dispersal efficiency of standard halls under CIFTIS-scale peak loads. Projects like this are settled not by drawings but by the debrief after the first major fair.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ME House, Asunción: on a standard 12×30 m urban lot, semi-pressed brick laid vertically becomes a filter screen, with double roofs and louvres doing the thermal work</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 16 September)</span> · <span class="src">Equipo de Arquitectura</span></div>
+  <div class="ni-desc">ME House by the Paraguayan practice Equipo de Arquitectura stands in Asunción, covers 390 sqm and completed in 2022; gooood published its Chinese documentation on 16 September. The site is a typical 12×30 metre urban lot — the most common condition in the city, deep and narrow, so daylight and ventilation can only be solved from the two ends. The stated aim was a house of natural materials with vegetation present, natural light in every space, cross ventilation and spatial amplitude. Semi-pressed brick is laid vertically and shifted through varied patterns to form a filter screen on the street face: it blocks sightlines for privacy without interrupting ventilation, and doubles as a trellis for climbing plants. Horizontal elements are polished concrete, unifying the interior surfaces. Thermal comfort comes from a combination of double roofs, louvres and ceramic filtering layers working together — a conventional but effective set of moves for a hot, humid climate without relying on mechanical cooling. Vegetation is brought inside as well, so the spaces shift with the seasons.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Studio Libeskind's Daechi Ssangyong, Seoul: six 49-storey towers, close to 1,000 homes, facade-integrated photovoltaics</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen</span> · <span class="src">ArchDaily</span> · <span class="src">Studio Libeskind</span></div>
+  <div class="ni-desc">Studio Libeskind, working with the Korean practices Samoo and HJ Design Partners, has designed six residential towers for the Daechi Ssangyong redevelopment in Daechi-dong, Gangnam, Seoul, to be built by Samsung Engineering and Construction Group. The scheme replaces five existing buildings containing 630 homes; the new towers rise to 49 storeys and provide close to 1,000 residences in total. Light-toned vertical facade elements form patterns of curving bands that shift as people and the sun move around the buildings, and the envelope incorporates building-integrated photovoltaic (BIPV) panels. The studio frames the aim as reconnecting residents with the landscape. Construction is expected to begin in early 2027 and complete in 2030.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">"31 Columns" in Medellín: Studio Cadena replaces enclosure with repetition inside a coffee shop</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 16 September)</span> · <span class="src">Studio Cadena</span></div>
+  <div class="ni-desc">31 Columns, by the Colombian practice Studio Cadena, is a coffee shop interior in Medellín, published by gooood on 16 September. The central move is to substitute a repeated array of columns for conventional walled enclosure — zones are not divided by partitions but implied by the density and rhythm of the column grid. It is a case of using a structural element directly as the instrument of spatial division: the columns are both load-bearing and the only defining element, so sightlines stay continuous across the whole plan while bodily movement is modulated again and again by the column spacing.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">BOTHAUS Developer Center, Shanghai: 300 sqm in which HCCH Studio makes a robot space feel "low-tech"</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 16 September)</span> · <span class="src">HCCH Studio</span></div>
+  <div class="ni-desc">HCCH Studio's BOTHAUS Developer Center occupies 300 sqm at China Enterprise Riverfront Wisdom Plaza on the Yangpu waterfront in Shanghai, containing exhibition space, a coffee bar, meeting rooms and a reception area; design and construction ran from October 2025 to February 2026. The studio deliberately avoids a high-tech aesthetic in favour of a "low-tech feel", imagining the space as "a kind of home" where "technology is experienced as an ambient condition rather than displayed as a visual object" — the robots here act as hosts, making coffee and performing maintenance. In practice the walls use low-reflectance finishes, the floor is kept relatively even and the ceiling is partly exposed, three decisions that serve both robotic positioning accuracy and human comfort; within the continuous space, shifts between wood, metal, glass and tactile mixed-colour panels define the functional zones rather than partitions.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://cdn.rt.emap.com/wp-content/uploads/sites/4/2026/08/01085505/BeFunky-collage-2-F-27-scaled-e1788254909710-560x315.jpg" alt="Bromley Hall 场地上的三栋建筑与 Assemble 的改造构想 / The three buildings on the Bromley Hall site and Assemble's proposals" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">IN DEPTH</span>
+    <div class="ft-title">A 25-year lease phased out past 2032: what Assemble is building in a house from 1485 is not a restoration but a financial model for workspace supply</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (14 September)</span> · <span class="src">Architects' Journal</span> · <span class="src">Low Carbon Buildings</span> · <span class="src">Assemble (first-party statements)</span> · <span class="src">British Listed Buildings records</span></div>
+    <div class="ft-desc">
+      <p>Assemble won the Turner Prize in 2015 and is one of the few British practices that operates as a collective and has spent years in the business of property and workspace supply. What it has now secured is Bromley Hall in Bromley-by-Bow, east London — an early Tudor brick house of around 1485, Grade II*-listed, thought to be among the oldest surviving brick houses in the city, on a site whose earliest structures date to around 1255. The building's list of former uses is itself a history of the East End: residence of a mistress of Henry VIII, hunting lodge, Civil War gunpowder factory, merchants' retreat, missionary headquarters, paediatric hospital, calico printing works. Two further buildings share the site: the Old Poplar Library (c. 1904–05) and a container building called RedBox.</p>
+      <p><strong>Concept: secure the time first, design later.</strong>The part of this story that most deserves a student's attention is not the building but the deal structure — a 25-year lease with an option to purchase, phased in three stages. From 2026 to 2029 Assemble and the first tenants move in while basic capital works proceed. From 2029 to 2032 the purchase completes and major works begin, including a new link building beside Bromley Hall and a larger workspace building. From 2032 onwards the development completes, the site is fully tenanted, and it shifts into a long-term programme of exhibitions, workshops and talks. A fundraising campaign is planned during phase one. This inverts the usual sequence: normally you finance, then design, then build, then let. Here the practice takes the right to occupy first, gets people using the place, and lets the resulting income and attention underwrite the capital works. For a Grade II*-listed building the logic is concrete — listed-building consent is slow and its outcome uncertain, so deferring large capital spend until both consent and the pattern of use are better understood is a way of reducing risk.</p>
+      <p><strong>Spatial strategy: make the oldest room the most public room.</strong>Little detail of the spatial work is public yet, but the direction is clear: phase one concentrates on communal space inside Bromley Hall — the Blount Room and a shared kitchen. The ground-floor Blount Room will be opened to the community, able to accommodate up to 30 people, bookable by studio holders and the public, with affordable rates for non-commercial uses. This choice is worth unpacking. In listed-building conversions the room of greatest historic value is usually treated as the least touchable and the least used; here the reverse applies, and the oldest space becomes the one in heaviest daily public use. Two conditions make that possible: heritage officers must accept the argument that use is a form of conservation, and the operator must be able to absorb the maintenance cost of heavy use. Assemble's own framing is that "Bromley Hall brings together many strands that we care about, from resourceful reuse and retrofit of buildings, to supporting the creative economy."</p>
+      <p><strong>Delivery: new volumes carry performance, old volumes carry history.</strong>The division of labour between the three buildings is what makes this technically workable. Bromley Hall, as a listed building, can absorb almost no deep insulation, airtightness or services retrofit — envelope upgrades in such buildings are constrained by wall breathability and the historic value of internal finishes. The Old Poplar Library (c. 1904–05) and the RedBox container building are far less constrained, while the link building and larger workspace building of phase two are entirely new and can be built to contemporary performance standards. In other words, light-industrial functions needing tight environmental control, heavy loading or tolerance for noise and dust can go into the new volumes, while Bromley Hall carries assembly, meeting and display — programmes undemanding in environmental terms and highly rewarded by atmosphere. This is a general strategy in listed retrofit: do not ask every building to do everything; match performance demand to building age.</p>
+      <p><strong>Context and consequence: the supply problem is more urgent than the architectural one.</strong>Phase one adds 14,000 sq ft (roughly 1,300 sqm) to Assemble's existing provision, with the long-term aim of doubling it. In London terms that is not a large number, but the significance lies in tenure and term. Creative and light-industrial workspace in London has been squeezed out by residential development for fifteen years, and the driver is not only rent level but lease length: short leases cannot support a tenant's investment in equipment and fit-out. Taking a 25-year lease with an option to purchase is, in substance, buying time on tenants' behalf. Bromley-by-Bow sits in the Lower Lea Valley, among the areas under the heaviest development pressure since the 2012 Olympics, and precisely where non-residential, low-yield, long-tenure uses are most easily displaced. Compared with King's Lynn Library (reported here on 14 September), which converted a nightclub and multi-storey car park into a public building, the difference is that Bromley Hall does not depend on a single injection of public capital but tries to make the conversion generate its own cash flow. If that model clears the phase-two hurdle in 2029, its value as a precedent will exceed that of any drawing.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Santa Barbara adopts the State Street Master Plan on 1 September: a 6–1 vote, roughly $96 million, retractable bollards controlling traffic block by block</div>
+  <div class="ni-meta">Sources: <span class="src">The Santa Barbara Independent</span> · <span class="src">Noozhawk</span> · <span class="src">edhat</span> · <span class="src">City of Santa Barbara (official notice)</span></div>
+  <div class="ni-desc">Santa Barbara City Council voted 6–1 on 1 September 2026 to adopt the final State Street Master Plan, prepared by architect and urban planner Stefanos Polyzoides over close to five years. State Street is the city's main commercial spine, closed to cars during the pandemic and the subject of a long-running dispute over whether vehicles should return. The plan's central technical device is a retractable bollard system letting the city control vehicle access block by block, preserving flexibility between full pedestrianisation and limited traffic rather than forcing a single decision. edhat reports a total cost of roughly $96 million, with funding not yet identified. The plan had won support from every city board before the vote; nearly 800 public comments were received between April and June, with about 250 further written comments ahead of the meeting.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Prado Neighborhood Park, Medellín: 5,500 sqm in which every stone, gravel and brick taken down stays on site and is used again</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 16 September)</span> · <span class="src">arq. Edgar Mazo</span></div>
+  <div class="ni-desc">The Park in the Prado Neighborhood by the architect Edgar Mazo occupies 5,500 sqm in the north-east of Medellín, Colombia, completed in 2021 and published by gooood on 16 September. The site was a degraded piece of urban land on a moderate slope, littered with abandoned structures and waste. The architect describes the project as "a metaphor of what arises, emerges and grows in a natural way", and two moves are worth recording. First, the material from demolition — stone, gravel, brick, steel and concrete — is entirely reused on site, with no demolition waste exported at all. Second, the slope is worked into terraces that infiltrate and retain water. Planting is native: 95 trees, 135 plants and 2,600 sqm of ground cover, executed with vernacular construction techniques. As a way of handling derelict urban land, this is a sample with both cost and carbon pushed very low.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Berlin's SEZ exhibition, "The Im/possibility of an Island": a 1981 water sports centre facing demolition, on show until 20 September</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 16 September)</span> · <span class="src">Ludwig Heimbach Architektur (curators)</span></div>
+  <div class="ni-desc">"SEZ—The Im/possibility of an Island" is on at the BHROX Bauhaus Reuse pavilion on the central island of Ernst-Reuter-Platz in Berlin, until 20 September 2026. SEZ (Sport- und Erholungszentrum) was a water sports and recreation complex that opened in 1981, built by HOCHTIEF AG with lead architect Günter Reiss of West Berlin; its terraced pool areas, staggered roof spaces and particular spatial logic produced an autonomous environment in the middle of the city, with its own climate and its own sense of time. The exhibition doubles as a collection of materials and a reading room, presenting original drawings, surveys, sketches and photographs alongside the original presentation model in badly deteriorated condition. The curators emphasise SEZ's architectural achievement while setting the debate within the realities of resource sustainability and Berlin's housing need: although recognised as culturally significant, this publicly owned building faces demolition pressure — advocates argue for its adaptive reuse potential, while officials prioritise housing development on the site.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The Xuhui Toilet, Shanghai: VIASCAPE turns public lavatories into "urban way stations with a view"</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 15 September)</span> · <span class="src">VIASCAPE design</span></div>
+  <div class="ni-desc">VIASCAPE design's Xuhui Toilet project in Shanghai's Xuhui District was published by gooood on 15 September. The design treats the most basic piece of municipal infrastructure as an urban way station under the theme of a rest stop with a view — providing outlooks towards street and greenery and the possibility of a short pause, while still meeting hygiene and maintenance requirements. Public lavatories have long been handled as purely functional structures in the urban public realm, their position, orientation and openings usually dictated by drainage runs and ease of management. Bringing landscape outlook in as a design variable means small municipal structures of this kind can carry a public role beyond their function.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://municipalidaddevalparaiso.cl/wp-content/uploads/2026/08/55457444116_e522cfed10_k.jpg" alt="瓦尔帕莱索的传统建造工艺现场 / Traditional construction trades at work in Valparaíso" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">IN DEPTH</span>
+    <div class="ft-title">Bringing the trades into the conference hall is not nostalgia: Valparaíso is using a three-day congress to address a technical problem — the people who know how are disappearing</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (16 September)</span> · <span class="src">Department of Heritage Management, Municipality of Valparaíso</span> · <span class="src">Radio Festival</span> · <span class="src">Emisoras Crystal</span> · <span class="src">UNESCO World Heritage List records</span></div>
+    <div class="ft-desc">
+      <p>"Oficios en Obra: Encuentro de Innovación y Salvaguarda para el Patrimonio de Valparaíso" takes place on 9, 10 and 11 October 2026 at the Parque Cultural de Valparaíso, itself a conversion of the former municipal prison. The organiser is the municipality's Department of Heritage Management, funding comes from Chile's Fund for Cultural Heritage, and all activities are free. The trades covered include carpentry, mould-making, rammed-earth construction (construcción en tierra), public statuary restoration and other heritage techniques involving structural timber and industrial technologies.</p>
+      <p><strong>The real problem: not lost materials, lost sequences.</strong>Reading this as "protecting traditional culture" misses its technical content. Valparaíso's urban fabric consists of timber houses on steep slopes, corrugated iron (calamina) cladding, stone retaining walls and funiculars (ascensores). Drawings for most of this do not exist; the knowledge lives as procedure in the hands of the trades — how timber is selected and seasoned for sea air and high humidity, how iron sheet is lapped and fixed so it does not leak, how a retaining wall is drained on a slope at risk of landslip. When the people who can perform those sequences leave the industry, the problem is not that materials are unavailable but that the repair cannot be executed: with ample funding and lawful consent in hand, there may still be nobody who can put a stretch of hillside timber construction back the way it was. This is the latent risk shared by heritage cities everywhere, and it is why the congress gives "transmission of knowledge between generations" a thematic strand of its own.</p>
+      <p><strong>Why now: climate and economic pressure arriving together.</strong>The organisers explicitly position these trades as "an alternative path forward" amid climate crisis and economic instability. The argument has two parts. On climate, the embodied carbon of rammed earth, structural timber and local stone is far below that of cement and steel, and most of it can be sourced on or near the site. Set against the Danish 3D-printed housing at Skovsporet reported here on 15 September, these are two answers to the same question — one compressing labour and programme through a new process, the other shortening the material chain through an existing one. On economics, Valparaíso sits in a high-seismicity zone and has suffered years of wildfire and hillside fires, so a great deal of damaged building stock falls under repair rather than new build; repair is labour-heavy and material-light in its cost structure, which means the local supply of craftspeople directly determines whether repair is feasible and at what price. When external capital and industrialised products become less available, the relative competitiveness of local craft goes up.</p>
+      <p><strong>The programme: one of the five strands deserves particular note.</strong>The three days comprise dialogue panels, keynote talks, hands-on workshops, live demonstrations, knowledge-transfer sessions, heritage routes, trade stands and two days of music, organised around five thematic areas: integrating tradition and innovation, transmission of knowledge between generations, sustainability, gender equity in male-dominated trades, and city-specific heritage management. The fourth — gender equity — is unusual on a heritage-craft agenda, but it bears directly on the supply problem described above: if the recruitment pool for building trades is in practice only half the population, the craft dies out twice as fast. Treating it as a standalone strand rather than an aside indicates that the organisers regard the number of craftspeople as a variable they can act on. Also worth noting is "integrating tradition and innovation", which corresponds to a live technical dispute: how far modern materials and tools may be introduced into heritage repair — substituting engineered glulam for original large sections, say, or CNC-prefabricating mouldings. That boundary is not settled by principle but by the loading and durability conditions of each specific element.</p>
+      <p><strong>Context and consequence: a port city inscribed in 2003 is repairing its construction end.</strong>Valparaíso was inscribed on the World Heritage List in 2003 as an outstanding testimony to the early phase of globalisation in its role as the leading Pacific merchant port of the 19th century. World Heritage status usually brings planning and funding instruments but rarely addresses the labour problem at the construction end — which is why many heritage cities hold complete protective legislation and still fall steadily behind on actual repair. What is methodologically useful here is the level at which the congress is organised: the host is a municipal heritage department rather than a culture ministry or a university, the venue is an already-converted public building, and the target audience explicitly spans craftspeople, institutions, companies, universities and communities. For architectural education, the point to note is that gatherings like this are becoming a second channel of knowledge transmission outside the schools. This paper reported on 6 September that the Oslo Architecture Triennale has put the return of load-bearing stone on its programme as a seminar called "The New Stone Age" — the real bottleneck in low-carbon construction is usually not materials science but craft and labour, which is precisely the end Valparaíso is working on.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Luxelakes CorNori, Chengdu: 300 sqm of prefabricated Douglas fir glulam and CLT, a 2×2 m roof grid that gives way to trees and steep ground</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 16 September)</span> · <span class="src">Atelier OO</span></div>
+  <div class="ni-desc">Atelier OO's Luxelakes CorNori sits in the third phase of Luxelakes Red Stone Park in Chengdu, Sichuan, with a floor area of 300 sqm. A continuous timber roof plane floats across the site at varying levels, gathering commercial space and the public route through the park under one shelter. The roof follows a 2×2 m modular grid and simply steps back where trees or steep ground intervene — a way of fixing existing site elements as invariants and adapting the building components to them. The structure is prefabricated glulam in Douglas fir, with cross-laminated timber (CLT), concrete and glass. The point of a lightweight timber structure here is to achieve substantial cantilevers with relatively small member depths while keeping foundation and construction disturbance to the slope and tree roots to a minimum.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Santa Cruz School Kindergarten, São Paulo: 3,417 sqm on a modular hybrid of mass timber, concrete, steel and drywall</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily</span> · <span class="src">Andrade Morettin Arquitetos Associados</span> · <span class="src">ArchDaily Brazil focus (16 September)</span></div>
+  <div class="ni-desc">The Santa Cruz School Kindergarten by Andrade Morettin Arquitetos Associados in São Paulo covers 3,417 sqm and completed in 2026. The plan turns around a central courtyard that serves both as the main social and play space and as a buffer between the school and the adjacent Marginal Pinheiros expressway: the building acts as an acoustic barrier while opening towards the north. Classrooms ring the courtyard, each linked to its own backyard, securing daylight, cross-ventilation and outdoor activity. A ramp leads to the upper floor, where the cafeteria, offices and art studios open onto covered terraces. The structure is a modular system combining mass timber, concrete, steel and drywall partitions, chosen so the spaces can be reconfigured as the school's educational programme changes. Photography: Nelson Kon.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Harfa rooftop extension, Prague: building on top of an existing block to add space to small apartments</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 15 September)</span> · <span class="src">Matěj Šebek architekti</span></div>
+  <div class="ni-desc">The Harfa rooftop extension in Prague, by the Czech practice Matěj Šebek architekti, builds on the roof of an existing apartment block to add usable space and spatial value to the small flats below. Rooftop extension is a standard European device for adding residential floor area without consuming new land, and its technical constraints concentrate in two places: the residual load capacity of the existing structure sets the weight ceiling, so the addition normally has to be lightweight; and construction must proceed while residents below remain in occupation, which pushes the work towards a high degree of prefabrication.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">For reference: Alquist's 3D-printed commercial buildings with Walmart land this year — a 5,000 sq ft Alabama addition printed in seven days by four workers and two printers</div>
+  <div class="ni-meta">Sources: <span class="src">PR Newswire (Alquist press release, 24 November 2025)</span> · <span class="src">Engineering News-Record</span> · <span class="src">CNBC</span></div>
+  <div class="ni-desc">Following on from this paper's 15 September report on the Skovsporet 3D-printed student housing in Denmark, here is a counterpart on the commercial side. The US 3D concrete printing company Alquist, headquartered in Greeley, Colorado, announced on 24 November 2025 a programme with Walmart Inc. and other commercial retailers to deliver more than a dozen construction projects across the United States — described by the company as the largest-scale deployment of 3D-printed commercial building technology in US history — landing through 2026. To support that scale Alquist adopted a new partnership model in which the general contractor FMGI owns and leases the Alquist A1X printers, financed and serviced by the construction and equipment rental dealer Hugg &amp; Hall. Two projects are complete: an almost 8,000 sq ft addition to a Walmart store in Athens, Tennessee, for online order pickup and delivery, and a 5,000 sq ft addition in Owens Crossroads, Alabama — the latter erected in seven days by four workers running two printer robots. Note that these are single-storey retail additions on regular plans, not directly comparable to housing in structural or services complexity.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6a94/94e8/c615/2701/88ac/46d6/large_jpg/herzog-and-de-meuron_3.jpg" alt="M+「赫尔佐格与德梅隆：聚焦」展出的工作模型与材料样本 / Working models and material samples on show in Herzog &amp; de Meuron: In Focus at M+" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">IN DEPTH</span>
+    <div class="ft-title">The furniture an office keeps its drafts in, moved into the gallery: M+ shows Herzog &amp; de Meuron's process through ten projects in China, not its results</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily</span> · <span class="src">M+ Museum (organiser)</span> · <span class="src">The Standard (Hong Kong)</span> · <span class="src">Galerie Magazine</span> · <span class="src">Dezeen Events Guide</span> · <span class="src">Herzog &amp; de Meuron Kabinett public records</span></div>
+    <div class="ft-desc">
+      <p>"Herzog &amp; de Meuron: In Focus" opened on 12 September 2026 in the M+ Focus Gallery at M+ in Hong Kong's West Kowloon Cultural District and runs to January 2027, as one of the museum's fifth-anniversary exhibitions. The curators are Ikko Yokoyama and Iris Ng. The show is organised around ten projects, built and unbuilt, that the practice undertook in China between 2002 and 2021 — among them the National Stadium in Beijing (2002–2008) and Tai Kwun Centre for Heritage and Art in Hong Kong (2006–2018) — with more than 200 models, prototypes, material samples, sketches and archival items on display.</p>
+      <p><strong>Curatorial concept: what is exhibited is decision-making, not the finished object.</strong>The commonest failure mode of an architecture exhibition is to reduce buildings to a set of photographs and final drawings — the visitor sees conclusions and never sees how they were reached. This show does the opposite. Curator Ikko Yokoyama's framing: "By showcasing the models, materials, methods, and research of these important architectural projects, we invite visitors to explore the experimentation and decision-making behind each work, from early ideas to built form." The operative term in the object list is "process materials": among the 200-plus items are a great many study models, trial prototypes and material samples — precisely the intermediate artefacts that a monograph would normally delete. For students this makes the exhibition unusually usable: a study model states directly that a formal option was tried, revised and abandoned, which is information no finished photograph can supply.</p>
+      <p><strong>Display strategy: storage furniture as exhibition furniture.</strong>The most notable technical decision here is the vitrine. Objects are shown in replicas of the wooden cases used in Kabinett, the practice's open archive storage established in Basel in 2015. This is not a stylistic citation but a position on how an archive should be seen. Kabinett exists so that the office can reach into its own accumulated work at any time; the proportions of the cases, the open shelving and the labelling system are all designed for use rather than for viewing. Bringing that furniture into a museum as it is places the visitor inside the office's working conditions rather than along a carefully composed narrative route. The cost is a loss of theatricality; the gain is information density — for an exhibition about process, that is the correct trade.</p>
+      <p><strong>Institutional layer: this is a phased acquisition, not only an exhibition.</strong>Behind the show sits a phased donation from Herzog &amp; de Meuron to the M+ Collection. Phase one was the section model of the Beijing National Stadium, given in 2023; phase two is the 200-plus process materials shown here, which expand the museum's architecture holdings. That structure matters more than the exhibition itself. The custody of architectural archives is a chronic problem — a practice's working process usually has no stable institutional home, and large quantities of material are dispersed or destroyed once the founders step back. Handing process material systematically to a public museum with climate-controlled storage, cataloguing capacity and a commitment to long-term public access is one of the few workable answers currently available. M+ has been building its design and architecture collection since 2012, and this acquisition further increases its weight as an architectural archive within the region.</p>
+      <p><strong>Context and consequence: the ten projects are effectively two decades of Chinese commissioning.</strong>The span from 2002 to 2021 is not arbitrary — it covers almost exactly the peak period in which major Chinese public commissions went to international practices. The National Stadium (2002–2008) belongs to the era of Olympic-scale public works; Tai Kwun (2006–2018) marks Hong Kong's turn from new build towards the reuse of historic fabric; the later projects arrive in a period of tightened budgets and stricter approvals. Set side by side, the ten read not only as the evolution of one practice's method but as a record of how the commissioning conditions themselves changed: early projects licensed extreme structural experiment, later ones work within existing buildings and constraints. That is the same arc as Shougang International Exhibition Town, reported in this issue — twenty years ago a stadium could be invented from nothing; today a blast furnace is a condition to be accommodated. The exhibition runs to January 2027, which makes it one of the year's most worthwhile architecture shows for anyone in Hong Kong or planning a winter visit.</p>
+    </div>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Aarhus School of Architecture stages OPEN26 on 18 September: titled "Mies Didn't Come Home That Night", six stages and more than 50 contributors reopen modernism's utopias</div>
+  <div class="ni-meta">Sources: <span class="src">Aarhus School of Architecture (organiser)</span> · <span class="src">ArchDaily</span></div>
+  <div class="ni-desc">The sixth OPEN Architecture Festival, hosted by the Aarhus School of Architecture in Denmark, takes place on 18 September 2026 under the title "Mies Didn't Come Home That Night". The organisers set the question as a look back at modernism and its utopian ambitions: what those visions made possible, what they left behind, and whether utopia can be reactivated as a strategic tool for examining complex present-day challenges and generating new architecture. The format is a single concentrated day of discussions, interviews, exhibitions and artistic interventions running in parallel across six stages, with more than 50 contributors from around the world. Treating utopia as a method rather than as an object of style history is a recurring orientation in European architecture schools' public programming — and a direct window onto where a school stands pedagogically.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ArchDaily publishes its September Brazil focus: the MASP passage, Santa Cruz Kindergarten, a "Territory-Park" after the 2019 dam collapse, and Alan Chu's hilltop lookout</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (16 September)</span></div>
+  <div class="ni-desc">ArchDaily's regional series "Brazil in Focus" published its monthly Brazilian round-up on 16 September 2026. It covers AGENCIA TPBA (Rio de Janeiro) and Talles Lopes (Anápolis, Goiás) among the winners of the 2026 ArchDaily Next Practices Awards; Territory-Park by MACh Architects and Connatural at Córrego do Feijão, a landscape-led recovery of the site following the 2019 dam collapse; the Santa Cruz School Kindergarten by Andrade Morettin Arquitetos Associados in São Paulo, arranged around a central courtyard and built in mass timber; Mirante de São Jorge, Alan Chu's hilltop lookout near the Chapada dos Veadeiros National Park; and both the MASP subterranean passage that opened on 11 September and ArtRio 2026, running 16–20 September at Axia Marina da Glória in Rio.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Rio launches its first Semana de Arte on 16 September: twelve days, around 90 per cent free, with ArtRio opening alongside and several architectural installations</div>
+  <div class="ni-meta">Sources: <span class="src">The Rio Times</span> · <span class="src">ArchDaily (Brazil focus, 16 September)</span> · <span class="src">ArtRio (organiser)</span></div>
+  <div class="ni-desc">Rio de Janeiro's first Semana de Arte runs from 16 to 27 September 2026, twelve days with around 90 per cent of the programme free. ArtRio 2026 opens alongside it, from 16 to 20 September at Axia Marina da Glória, gathering 76 galleries across its main programmes, and extending beyond the pavilions through site-specific installations and outdoor interventions. Two pieces sit closest to architecture: Heberth Sobral's "Caminho de Casa", which builds a spatial installation from the cobogó, Brazil's traditional perforated concrete block, on themes of memory, belonging and transformation; and Gabriel Massan's seven-metre-high inflatable "Soft Power", placed in the gardens outside the exhibition stands. The Jardim das Esculturas, curated by Christiane Laclau, brings together works by 18 artists set against Sugarloaf Mountain, Guanabara Bay and Burle Marx's gardens in Parque do Flamengo.</div>
+</div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
