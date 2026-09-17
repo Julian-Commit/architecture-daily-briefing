@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-17</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="The Met breaks ground on the Tang Wing: Frida Escobedo becomes the first woman to design a wing in the museum's 156 years, 126,000 sq ft, $670m fully raised, opening 2030；ZHA-led …">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 012 · 2026-09-17 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="The Met breaks ground on the Tang Wing: Frida Escobedo becomes the first woman to design a wing in the museum's 156 years, 126,000 sq ft, $670m fully raised, opening 2030；ZHA-led …">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-17-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.archpaper.com/wp-content/uploads/2026/09/met3.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 012 · 2026-09-17 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="The Met breaks ground on the Tang Wing: Frida Escobedo becomes the first woman to design a wing in the museum's 156 years, 126,000 sq ft, $670m fully raised, opening 2030；ZHA-led …">
+<meta name="twitter:image" content="https://www.archpaper.com/wp-content/uploads/2026/09/met3.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 012 · 2026-09-17 · 陆先生建筑日报 | Architecture Daily","description":"The Met breaks ground on the Tang Wing: Frida Escobedo becomes the first woman to design a wing in the museum's 156 years, 126,000 sq ft, $670m fully raised, opening 2030；ZHA-led …","datePublished":"2026-09-17","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-17-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://www.archpaper.com/wp-content/uploads/2026/09/met3.jpg"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 012</div>
+    <div>September 17, 2026 Thursday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-17-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p><p>The day's most consequential event happened on Fifth Avenue: on 15 September the Metropolitan Museum of Art broke ground on the Oscar L. Tang and H.M. Agnes Hsu-Tang Wing, making Mexican architect Frida Escobedo the first woman to design a wing in the museum's 156-year history. Her answer to the facade is a set of <em>celosías</em> — a limestone lattice proportioned 80 per cent solid, 10 per cent clear glass, 10 per cent stone screen with glass behind it. One assembly is asked to do three jobs at once: shade the galleries, frame Central Park, and protect the collection.</p><p>Three other stories are likewise about method rather than subject. The Benghazi 2050 plan delivered by a seven-party consortium led by Zaha Hadid Architects is not a master plan but a Digital Planning Hub meant to keep running after handover. Intro Columbus topped out at 44 CLT panels a day to become the tallest mass timber student housing in the United States, ten weeks ahead of target. And a new ETH Zürich study throws usefully cold water on low-carbon concrete: what governs how fast the rebar corrodes is mostly climate, not the mix.</p></p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/met3.jpg" alt="大都会艺术博物馆唐氏翼楼的 celosías 石制花格立面效果图 / Rendering of the celosías limestone lattice facade of the Met's Tang Wing" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">Projects</span>
+    <div class="hl-title">The Met breaks ground on the Tang Wing: Frida Escobedo becomes the first woman to design a wing in the museum's 156 years, 126,000 sq ft, $670m fully raised, opening 2030</div>
+    <div class="hl-meta">Sources: <span class="src">The Architect's Newspaper (16 Sept)</span> · <span class="src">The Art Newspaper (15 Sept)</span> · <span class="src">ARTnews</span> · <span class="src">Hyperallergic</span> · <span class="src">6sqft</span></div>
+    <div class="hl-desc">The Metropolitan Museum of Art broke ground on the Oscar L. Tang and H.M. Agnes Hsu-Tang Wing on the morning of 15 September 2026, in a ceremony held in the museum's European Sculpture Court. Mexican architect Frida Escobedo attended alongside Met director Max Hollein and several elected officials. Across all reports, Escobedo is identified as the first woman to design a wing in the museum's 156-year history. The five-storey wing totals 126,000 square feet, of which 69,500 square feet is new exhibition space — enough to enlarge the museum's twentieth- and twenty-first-century galleries by close to 50 per cent. It sits at the southwest corner of the building, replacing the former Lila Acheson Wallace Wing, and stays within the existing footprint. The museum announced that the full $670 million had been raised, entirely from private sources, covering construction costs and part of an endowment; the wing forms one component of an overall transformation of roughly $1.5 billion. Completion is expected in 2030.</div>
+    <a href="https://www.archpaper.com/2026/09/tang-wing-groundbreaking/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6aaa/ce65/8a93/3f01/88f2/3369/large_jpg/benghazi-2050_12.jpg?1789578859" alt="班加西 2050 城市计划的空间策略图示 / Spatial strategy diagram for the Benghazi 2050 city plan" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">Urbanism</span>
+    <div class="hl-title">ZHA-led consortium of seven reveals Libya's Benghazi 2050 plan: the deliverable is not a master plan but a Digital Planning Hub built to keep updating</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (17 Sept)</span> · <span class="src">designboom</span> · <span class="src">Zaha Hadid Architects</span></div>
+    <div class="hl-desc">Benghazi 2050: Next Generation City Plan was produced by a seven-party consortium with clearly divided roles. A&amp;O TEC and Prior+Partners covered regional and urban planning, economic strategy and governance; Homa handled land use, built form and socioeconomic strategy; Systematica took transport and mobility; Buro Happold the natural environment and utilities; Fichtner energy and infrastructure; Zaha Hadid Architects the spatial vision, scenario design, digital platform interface design and technology integration; and Silicon Shore web services, deployment and hosting. Benghazi is a historic port city on Libya's Mediterranean coast. The work has two outputs: a Vision and Spatial Strategy that translates a reading of the city's character and collective memory into an adaptable development framework, and a Digital Planning Hub, an evidence-based model of the city. The stated principles are connection over fragmentation and restoration over demolition — public transport and pedestrian routes linking the historic core, waterfront, residential neighbourhoods and metropolitan centres; new employment and knowledge districts to absorb growth; and integrated nature zones supporting water management and ecological diversity. The framework is explicitly defined as adaptable rather than fixed.</div>
+    <a href="https://www.archdaily.com/1185260/zha-led-team-reveals-vision-and-digital-planning-hub-for-benghazis-2050-city-plan-in-libya" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/INTRO-Columbus_rendering_exterior_DLR-Group-scaled.jpg" alt="Intro Columbus 木结构学生公寓外观效果图 / Exterior rendering of the Intro Columbus mass timber student housing" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">Materials</span>
+    <div class="hl-title">Tallest mass timber student housing in the US tops out: Intro Columbus, 13 storeys and 158 feet, twelve timber floors on a single concrete podium, ten weeks early</div>
+    <div class="hl-meta">Sources: <span class="src">The Architect's Newspaper (16 Sept)</span> · <span class="src">Construction Dive (16 Sept)</span> · <span class="src">Building Design+Construction</span> · <span class="src">Wood Central</span></div>
+    <div class="hl-desc">Intro Columbus stands at High Street and Ninth Avenue in Columbus, Ohio, adjacent to The Ohio State University. It topped out on 8 September 2026, roughly ten weeks ahead of an original November target. The building is 13 storeys and 158 feet (about 48 metres), covering 242,000 square feet with 186 residential units and 493 beds; a single-storey concrete podium carries twelve timber floors above it. Harbor Bay Ventures is the developer, DLR Group served as design architect, architect of record and interior designer, Elford Construction is general contractor, Forefront Structural Engineers the structural engineer, and the timber was manufactured by SmartLam North America in Alabama. The structure combines prefabricated glued laminated timber (glulam) columns and beams with cross-laminated timber (CLT) floor panels, joined wood-to-wood using Simpson Strong-Tie connectors. Crews averaged 44 CLT panels a day and advanced at two and a half floors every two to three weeks, taking about one year from groundbreaking to structural completion. Reports identify it as the tallest mass timber student housing in the United States and the first mass timber project in Columbus, with delivery planned for summer 2027 ahead of the 2027–28 academic year.</div>
+    <a href="https://www.archpaper.com/2026/09/dlr-group-designed-mass-timber-student-housing-project/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6aaa/972c/4f64/5201/8803/1504/large_jpg/brutalist-asia-a-new-publication-reframing-the-history-of-brutalism-from-japan-to-lebanon_3.jpg?1789564722" alt="《Brutalist Asia》书中收录的亚洲粗野主义建筑摄影 / Photography of Asian Brutalist architecture featured in Brutalist Asia" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">Academia</span>
+    <div class="hl-title">Brutalist Asia published: 28 countries, 140 buildings, eight essays — the first survey of Brutalism across the whole continent</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (17 Sept)</span> · <span class="src">Blue Crow Media (publisher)</span> · <span class="src">STIRworld</span></div>
+    <div class="hl-desc">Brutalist Asia is published by Blue Crow Media as part of the press's long-running Brutalist and Modernist series, shipping from mid-September 2026. According to the publisher and ArchDaily, it is the first major survey of Brutalist architecture across the entire Asian continent: 28 countries, 140 buildings, more than 150 photographs, and eight original essays by Bob Pang, John Barr, Bhawna Dandona, Christele Harrouk, Kyung Taek Lee, Caryn Paredes-Santillan, Pinai Sirikiatikul, Soroush Mohajery and Amirhosein Rad, treating the architectural histories of Japan, Korea, Hong Kong, Thailand, the Philippines, India, Iran and Lebanon respectively. The book sets celebrated landmarks — Le Corbusier's Palace of Assembly in Chandigarh, Kenzo Tange's Yoyogi National Gymnasium in Tokyo, Khalil Khoury's Interdesign Building in Beirut (1973–97) — alongside many works that have rarely appeared in print, among them Joseph Philippe Karam's The Egg, Raoul Verney's Red Cross (1973) and Khalil Khoury's Manar Complex (1982). Its central contention is that architects across Asia did not simply import a style but "adopted, questioned, and transformed" the architectural language in response to their own political, climatic and cultural conditions.</div>
+    <a href="https://www.archdaily.com/1185224/brutalist-asia-a-new-publication-reframing-the-history-of-brutalism-from-japan-to-lebanon" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/Club-North-Entry-scaled.jpg" alt="Airbnb 住房加速器首笔投资支持的保障性住房项目入口 / Entry of an affordable housing project backed by Airbnb's Housing Accelerator" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">Urbanism</span>
+    <div class="hl-title">Airbnb commits $250m to a Housing Accelerator: last-dollar financing aimed at unlocking $5bn in stalled projects, plus five $1m construction-technology prizes</div>
+    <div class="hl-meta">Sources: <span class="src">The Architect's Newspaper (15 Sept)</span> · <span class="src">Planetizen</span> · <span class="src">Airbnb newsroom (14 Sept)</span> · <span class="src">Smart Cities Dive</span> · <span class="src">HousingWire</span></div>
+    <div class="hl-desc">Airbnb unveiled its Housing Accelerator on 14 September 2026, investing $250 million with the stated aim of unlocking $5 billion for stalled housing projects. The mechanism is what the company calls last-dollar financing — supplying the final missing piece of a project's capital stack so that schemes which have secured most of their funding but cannot break ground are able to proceed. The programme has three arms: capital deployment, policy advocacy and innovation. The advocacy arm supports zoning, permitting and building code reform, and contributes funding to AURA, a pro-housing organisation in Austin. The innovation arm will award five prizes of $1 million each to innovators and entrepreneurs developing technologies and designs that make homes easier, faster and cheaper to build. The first investment is $6.4 million toward 201 affordable units in the St. John redevelopment in Austin, Texas, with architecture by Lemmo Architecture and Design.</div>
+    <a href="https://www.archpaper.com/2026/09/airbnb-announces-housing-accelerator/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/met3.jpg" alt="唐氏翼楼的石制花格屏在日光下形成的虚实关系 / The interplay of solid and void in the Tang Wing's stone lattice screen under daylight" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">In Depth</span>
+    <div class="ft-title">80 per cent solid, 10 per cent clear glass, 10 per cent stone screen: Escobedo compresses shading, framing and conservation into a single facade</div>
+    <div class="ft-meta">Cross-checked: <span class="src">The Architect's Newspaper (16 Sept)</span> · <span class="src">The Art Newspaper (15 Sept)</span> · <span class="src">ARTnews</span> · <span class="src">Hyperallergic</span> · <span class="src">6sqft</span> · <span class="src">Archinect</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: unfinishedness as a starting point.</strong> Escobedo's point of departure was the museum's own uncarved stone. On the Fifth Avenue facade, blocks above the columns that were meant to be carved into figures were left permanently as rough masses when funds ran out — the Met's most famous evidence of incompletion. Her formulation: "It suggested the idea of becoming — that architecture, and perhaps institutions too, are never entirely finished. They continue changing, accumulating, and adding meaning." This is not decoration on a press release. A building that must replace the former Lila Acheson Wallace Wing and stay inside the existing footprint begins from the premise that a museum is a thing repeatedly rewritten.</p>
+      <p><strong>Material and assembly: the three-part ratio.</strong> The facade borrows from <em>celosías</em> — the Spanish term for a lattice or screen, long used in Mexican architecture and traceable to Arab and North African traditions of shading screens. Escobedo translates it into limestone. Per 6sqft, the elevation is proportioned at 80 per cent solid, 10 per cent clear glass, and 10 per cent stone screen with glass behind it. That ratio has to reconcile three requirements that pull against one another: galleries for modern and contemporary art need tight control of direct light to protect the collection; visitors need a visual connection to Central Park; and the envelope is expected to shade the building and cut energy use. The value of a lattice is precisely that it is not a binary of open and closed. The thickness of the stone creates depth, depth produces self-shading, light is attenuated rather than cut off, and sightlines are released at particular angles.</p>
+      <p><strong>Spatial strategy: a three-storey base and two setbacks.</strong> The five-storey volume reads as a three-storey base, a recessed fourth floor and a further setback at the fifth. The direct product of that section is 18,500 square feet of terrace across the upper floors. The existing Iris and B. Gerald Cantor Roof Garden grows from 7,500 to 10,000 square feet and moves to the fourth floor, with a café on the fifth. The nature of that change deserves attention: the Cantor Roof Garden had been open only during the warmer months, and after relocation and expansion the outdoor rooms facing the Manhattan skyline and Central Park become available year-round. For a museum receiving visitors in the millions, converting seasonal space into year-round space is a gain as real as added gallery area.</p>
+      <p><strong>Background and consequence.</strong> The 69,500 square feet of new exhibition space enlarges the twentieth- and twenty-first-century galleries by close to half — long considered the Met's weak flank relative to MoMA and the Whitney. The $670 million has been raised in full and entirely privately, covering construction and part of an endowment, within an overall transformation of roughly $1.5 billion; the wing opens in 2030. For students, what is worth retaining is the constraint set: no enlargement of the footprint, no alteration to the museum's established presence on Fifth Avenue, and a contemporary building to be placed beside a Classical elevation. The answer offered is a screen with thickness, not a form.</p>
+    </div>
+    <a href="https://www.archpaper.com/2026/09/tang-wing-groundbreaking/" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Micro-regeneration on Ouyang Road, Shanghai: Scenic Architecture works 62 square metres by acupuncture, not demolition</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (17 Sept)</span> · <span class="src">Scenic Architecture Office</span></div>
+  <div class="ni-desc">Scenic Architecture Office (principal architect Zhu Xiaofeng) has completed a micro-regeneration project on Ouyang Road in Shanghai's Hongkou District, with a design area of 62 square metres, finished in 2026. It comprises three nodes, named by ArchDaily as Changshou Nursing Home, Oh-yeah Pocket Park and Wild Grass Hut. The office describes its method as acupuncture-like intervention: rather than demolishing and rebuilding, it reorganises circulation and public space around three principles — mending, daily life and symbiosis — with the aim of repairing gaps in the urban fabric and reawakening a dormant neighbourhood character. The figure of 62 square metres is itself the point of such practice. In the regeneration of existing communities the area available to a designer is often tiny, and success turns on the precision with which the points are chosen rather than on volume.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">La Salle School, Bogotá: 26,095 square metres in which FP Arquitectura treats void, landscape and circulation as teaching instruments</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (16 Sept)</span> · <span class="src">FP Arquitectura</span></div>
+  <div class="ni-desc">The Colombian office FP Arquitectura has completed the La Salle School in Bogotá: 26,095 square metres, finished in 2025, for the client Colegio de La Salle, with lead architects Iván Forgioni, José Puentes and Juan José López and Constructora Marval as general contractor. The structure is concrete, with brick used extensively in exposed conditions (supplied by Ladrillera Santafé). The architects describe the intention as "an architecture that does not merely contain learning but amplifies it, making void, landscape, and circulation the central instruments of the educational experience." In practice, circulation is not treated as leftover space between rooms; together with landscape and the voids left at each level it constitutes the campus's primary public space. This is a well-established Latin American approach: in a temperate climate, corridors, terraces and courtyards are made semi-outdoor and carry the social programme, reducing the interior area that requires mechanical conditioning.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Val Mira, South Tyrol: monolithic concrete towers set into a steep vineyard, described by the architects as artificial rocks</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (17 Sept)</span> · <span class="src">AGA – Andreas Gruber Architekten</span></div>
+  <div class="ni-desc">Val Mira by AGA – Andreas Gruber Architekten sits in the Eisacktal valley at Ritten (Renon) in South Tyrol, Italy: 145 square metres, completed in 2026, in lodging use. Two residential towers form a courtyard-like ensemble. The material is concrete, and the towers are monolithic volumes embedded in a steep vineyard slope. The architects' formulation is "compact in floor plan, generous in feeling," positioning the pair as "sculptural placements within a cultural landscape" and as "artificial rocks standing massively and restrained within nature." On Alpine sites, where slopes are severe, buildable area is limited and the landscape is protected, choosing a vertically compact volume over a horizontal spread is a conventional way of translating a site constraint directly into a sectional strategy.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">AIA names seven winners of the 2026 Small Project Award: a quarry turned public swimming hole, a farm, a riverside structure</div>
+  <div class="ni-meta">Sources: <span class="src">AIA (official announcement)</span> · <span class="src">Archinect / Bustler</span> · <span class="src">Residential Design</span></div>
+  <div class="ni-desc">The American Institute of Architects has announced the winners of its 2026 Small Project Award, with seven projects honoured as part of a wider awards programme spanning ten project categories this year. Confirmed winners include Augusta Quarry at Fort Dickerson Park by Sanders Pace Architecture, which converts a disused marble quarry in Knoxville, Tennessee into a public swimming destination; Land's Sake Farm by PAYETTE; Camp Meeker by Renée del Gaudio Architecture; River Hub at Graco Park in Minneapolis by Snow Kreilich Architects; and a sinuous pavilion at the northern edge of Downtown Cary Park in Cary, North Carolina. The usefulness of this particular award is that its thresholds of budget and size are low, which makes the winners far more comparable to student work and small practice output than the large-project categories.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/zha-benghazi-libya-urban-growth-digital-planning-hub-designboom-5.jpg" alt="班加西滨水区与历史核心的空间愿景图示 / Spatial vision for Benghazi's waterfront and historic core" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">In Depth</span>
+    <div class="ft-title">Delivering a dynamic digital twin instead of a master plan: Benghazi 2050 turns planning from a finished product into a tool that keeps running</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (17 Sept)</span> · <span class="src">designboom (17 Sept)</span> · <span class="src">Zaha Hadid Architects</span> · <span class="src">Prior+Partners</span> · <span class="src">Buro Happold</span> · <span class="src">Systematica</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: changing what a plan hands over.</strong> The notable thing about Benghazi 2050: Next Generation City Plan is not its form but the nature of its deliverable. A conventional master plan is a product frozen at one moment: it hardens a set of assumptions into drawings and targets, the city then departs from those assumptions, and the drawings lose validity year by year. Here the two outputs are a Vision and Spatial Strategy plus a Digital Planning Hub, the latter explicitly described as a dynamic digital twin — something that evolves as new information is added rather than dating as time passes. ArchDaily and designboom both stress the same point: the proposal defines no single architectural intervention.</p>
+      <p><strong>What is inside the hub.</strong> As disclosed by the team, the platform integrates geographic information systems (GIS), three-dimensional urban models, population data, land-use information, transport networks, infrastructure detail, environmental resilience studies and future planning scenarios. Its practical function is to provide a shared evidence base, so that a specific proposal can be weighed within the context of the whole city rather than approved in isolation. The significance is governmental more than technical. Benghazi has been through prolonged conflict and destruction, which makes baseline data on tenure, population and existing built conditions a scarce resource in its own right — and multiple parties each holding their own version of that data is a common starting point for planning failure.</p>
+      <p><strong>Spatial strategy: connection over fragmentation, restoration over demolition.</strong> The vision's principles are summarised as connection over fragmentation and restoration over demolition. Three concrete components follow: public transport and pedestrian routes stitching together the historic core, the waterfront, residential neighbourhoods and metropolitan centres; new employment and knowledge districts to absorb growth; and nature zones integrated into the city to support water management and ecological diversity. Benghazi is a historic port city on Libya's Mediterranean coast, and one explicit aim is to reconnect the city to its waterfront and its historic centre — the two things port cities generally lost over the twentieth century.</p>
+      <p><strong>Division of labour, and why it matters.</strong> The consortium's allocation of roles is worth recording on its own: A&amp;O TEC and Prior+Partners on regional and urban planning, economic strategy and governance; Homa on land use, built form and socioeconomic strategy; Systematica on transport and mobility; Buro Happold on the natural environment and utilities; Fichtner on energy and infrastructure; Silicon Shore on web services and hosting; and ZHA on spatial vision, scenario design, digital platform interface design and technology integration. In other words, ZHA's role here is not to supply form but to integrate a spatial vision with a digital interface — a shift in position worth noting for a practice known above all for its formal language. The whole framework is defined as adaptable, allowing the city's transformation to be measured, evaluated and adjusted continuously through to 2050.</p>
+    </div>
+    <a href="https://www.designboom.com/architecture/zha-benghazi-libya-urban-growth-digital-planning-hub/" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">London's Havering adopts Plan 2040: a 16-year blueprint for what it calls London's super suburb, with the Romford masterplan redone</div>
+  <div class="ni-meta">Sources: <span class="src">East London Times</span> · <span class="src">Havering Council (official announcement)</span></div>
+  <div class="ni-desc">The Cabinet of the London Borough of Havering approved The Havering Plan 2040 on 16 September 2026 — a strategic roadmap spanning sixteen years to 2040, covering economic development, educational expansion, housing restructuring and town centre regeneration, organised around the principles of "Havering First" and "The Havering Way." The plan includes a reimagined Romford Masterplan involving a full renaissance of Romford Market, park improvements, public realm upgrades, and joint enforcement with police to address crime and cleanliness. Implementation proceeds in two stages: the approved first stage sets the strategic vision and flagship schemes, while the second will fold those goals into annual council budgets with specific timelines and performance metrics. Council leader Keith Prince put it this way: "we are laying something before the people of Havering and we expect to be held to account on it."</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Gary's City Methodist Church goes to the wreckers: a $5.3m demolition contract, after a preservation scheme fell $4.2m short</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect's Newspaper (16 Sept, op-ed)</span> · <span class="src">Chicago Sun-Times (5 Sept)</span> · <span class="src">Inside INdiana Business</span> · <span class="src">NWI Times</span></div>
+  <div class="ni-desc">City Methodist Church at 577 Washington Street in downtown Gary, Indiana will be demolished. The Northwest Indiana Regional Development Authority awarded a $5.3 million demolition contract to Homrich Wrecking on 2 September 2026, ending years of preservation effort. The church was completed in 1925 with an extraordinary $385,000 donation from U.S. Steel; its own congregation abandoned the cathedral-sized building just fifty years later, in 1975, after which half a century of freeze-thaw cycles, a severe fire and a roof collapse turned it into one of the most recognisable ruins in the United States. In 2025 the city and the University of Notre Dame's Housing and Community Regeneration Initiative proposed retaining the bell tower within a planned City Renaissance Park, and the Chicago firm Bailey Edward prepared a conceptual design converting the church into a ruin garden — but full stabilisation would have cost $4.2 million, and the city could not find a funding partner to carry it. The stated grounds for demolition are that the structure is unsafe and unrecoverable, with emphasis on its proximity to the 21st Century Academy charter school and the Genesis Towers senior housing complex.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Austin eliminates the fee-in-lieu near light rail: unanimous vote on 10 September requires bonus-density projects to build affordable units on site</div>
+  <div class="ni-meta">Sources: <span class="src">Planetizen</span> · <span class="src">Austin Current (11 Sept)</span> · <span class="src">Austin Free Press</span> · <span class="src">KXAN</span></div>
+  <div class="ni-desc">Austin City Council voted unanimously on 10 September 2026 to require that projects seeking to build larger than normally permitted near the city's future light rail stations include affordable housing on site. The change tightens the citywide density bonus programme approved shortly beforehand — a zoning tool allowing developers to build bigger and taller in exchange for community benefits including affordable housing. Elsewhere in the city, developers using the programme may still pay into Austin's Housing Trust Fund and let the city build the units somewhere else; this vote removed that fee-in-lieu option for projects along the rail corridors. The rule addresses a specific mismatch in transit-oriented development: if affordable housing can be converted into cash and relocated to the urban periphery, then the accessibility created by the rail investment is separated from the households who need it.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The Housing Accelerator's first cheque lands in Austin: $6.4m toward 201 affordable units at St. John, architecture by Lemmo Architecture and Design</div>
+  <div class="ni-meta">Sources: <span class="src">Airbnb newsroom</span> · <span class="src">Community Impact (Austin)</span> · <span class="src">Planetizen</span> · <span class="src">The Architect's Newspaper</span></div>
+  <div class="ni-desc">As the first investment under the $250 million Housing Accelerator, Airbnb has committed $6.4 million to the St. John redevelopment in Austin, Texas, supporting 201 affordable units there, with architecture by Lemmo Architecture and Design. The project had been stalled for a long period — precisely the condition the programme targets, where most of the capital is secured but a final gap prevents construction from starting. Airbnb is also funding AURA, a pro-housing organisation in Austin, to push zoning, permitting and building code reform. Worth noting is how this money lands on top of the local policy environment: Austin City Council had just tightened its density bonus rules along the light rail corridors on 10 September, requiring bonus-density projects to build affordable units on site. Both things happened in the same city in the same month.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/INTRO-Columbus_rendering_exterior_DLR-Group-scaled.jpg" alt="Intro Columbus 的胶合木柱梁与 CLT 楼板构成的木构架 / The glulam post-and-beam frame and CLT floor plates of Intro Columbus" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">In Depth</span>
+    <div class="ft-title">Forty-four CLT panels a day: what Intro Columbus actually achieved is not being tallest but handing the saved weeks to the other trades</div>
+    <div class="ft-meta">Cross-checked: <span class="src">The Architect's Newspaper (16 Sept)</span> · <span class="src">Construction Dive (16 Sept)</span> · <span class="src">Building Design+Construction</span> · <span class="src">Wood Central</span> · <span class="src">DLR Group</span> · <span class="src">Engineering News-Record</span></div>
+    <div class="ft-desc">
+      <p><strong>Structure: one concrete podium, twelve timber floors.</strong> Intro Columbus stands at High Street and Ninth Avenue in Columbus, Ohio, next to The Ohio State University: 13 storeys, 158 feet (about 48 metres), 242,000 square feet, 186 units and 493 beds. The sectional logic is the most common one in tall timber today — a single-storey concrete podium takes the commercial frontage, fire and wet-area requirements, with twelve fully timber floors above. The frame is prefabricated glued laminated timber (glulam) columns and beams with cross-laminated timber (CLT) floor panels, joined wood-to-wood with Simpson Strong-Tie metal connectors. The timber was manufactured by SmartLam North America in Alabama; DLR Group served as design architect, architect of record and interior designer; Harbor Bay Ventures is developer, Elford Construction general contractor, and Forefront Structural Engineers the structural engineer.</p>
+      <p><strong>Schedule: 44 panels a day, two and a half floors every two to three weeks.</strong> The building topped out on 8 September 2026, roughly ten weeks ahead of an original November target, about a year from groundbreaking to structural completion. The governing figure is an average of 44 pre-cut CLT panels installed per day, advancing two and a half floors every two to three weeks. It is worth pausing on the causation. CLT is fast not because wood is light but because the panels are cut in a factory and arrive needing only lifting and connecting — site work shifts from fabrication to assembly. Forefront Structural's principal put the consequence plainly: "Every day we save on the superstructure is a day the other trades get back, and that compounds." That sentence explains what ten weeks early actually means: enclosure, interiors and MEP begin in parallel sooner, rather than the calendar simply moving forward.</p>
+      <p><strong>Carbon and provenance: the number that gets skipped.</strong> Building Design+Construction reports a projected reduction of 1,128 metric tons of embodied carbon relative to conventional concrete-and-steel construction; Wood Central describes the same figure as carbon sequestered in the frame. The two framings point to the same order of magnitude but count different things, which is worth flagging when citing it. More transferable is the provenance: manufacturing and sourcing through SmartLam in Alabama cut transport-related emissions by roughly 55 per cent compared with European timber alternatives. That holds for timber projects anywhere, including those now advancing in China — in the embodied carbon ledger of long-span and tall timber, transoceanic shipping is routinely underestimated, and it happens to be the one line a procurement decision can change directly.</p>
+      <p><strong>Why student housing.</strong> The project is the tallest mass timber student housing in the United States and the first mass timber building in Columbus, with delivery planned for summer 2027 for the 2027–28 academic year. There are good reasons student housing became the opening for tall timber. Unit layouts repeat heavily, which suits modular prefabrication; the construction period must align strictly with the academic calendar, so schedule certainty carries unusual value; and occupants are receptive to exposed wood — half the building retains exposed timber ceilings, including all bedrooms and living rooms, meaning the timber is simultaneously structure, finish and schedule strategy, and the suspended ceiling trade disappears. The distance between a demonstration project and standard practice is usually closed by exactly this kind of highly repetitive building type.</p>
+    </div>
+    <a href="https://www.archpaper.com/2026/09/dlr-group-designed-mass-timber-student-housing-project/" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">New ETH study: in low-carbon concrete, corrosion rate is governed mostly by climate rather than mix — wet can be 100 times faster than dry</div>
+  <div class="ni-meta">Sources: <span class="src">ETH Zürich (September)</span> · <span class="src">Nature Communications</span> · <span class="src">TechXplore</span> · <span class="src">Anthropocene Magazine</span></div>
+  <div class="ni-desc">Cristhiana Albert and colleagues at ETH Zürich have published "Rethinking concrete durability for low-carbon concretes through climate-informed corrosion modelling" in Nature Communications. The modelling framework quantitatively couples time-resolved climate data, moisture transport within low-carbon concrete, and steel corrosion kinetics, examining three concrete mixes across four locations with sharply different climates: Zurich, Bergen, Manaus and Huailai, China. The findings come in two layers. The initial carbonation phase may indeed proceed faster in low-carbon concrete; but after carbonation, what determines how quickly the embedded steel rusts is principally weather and humidity rather than the mix — steel in wet concrete can corrode up to 100 times faster than steel in dry concrete, while the differences among the three mixes studied had a far smaller effect. The study therefore points at an institutional problem: current standards aim to protect steel from corrosion for as long as possible, and in practice that orientation disadvantages environmentally preferable new concretes relative to traditional ones, hindering their adoption.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The original 1968 moulds, restored and reopened: a brand-new Futuro House lands in a Helsinki botanic garden</div>
+  <div class="ni-meta">Sources: <span class="src">Archipanic</span> · <span class="src">Helsinki Design Week</span> · <span class="src">Marimekko</span> · <span class="src">Time Out Helsinki</span></div>
+  <div class="ni-desc">The Futuro House, designed by the Finnish architect Matti Suuronen in 1968, is an elliptical prefabricated dwelling of fibreglass-reinforced plastic (FRP) raised on legs, conceived to be lightweight, easily transported and installable almost anywhere. Its manufacturer, Polykem, built about twenty before going out of business in 1973. What is new here is a manufacturing story: a small team learned that the original moulds still existed some 300 kilometres north of Helsinki, drove up, reached an agreement with the family that had kept them, restored the moulds and built a new Futuro exactly as the originals were built. During Helsinki Design Week the unit lands in the Kaisaniemi Botanic Garden, its interior reimagined by Marimekko using prints by the Danish textile artist and designer Vibeke Rohland, created during a year-long residency at the company's printing factory in Herttoniemi. Revivals of 1960s plastic prefabrication usually stop at replicas or models; this one went as far as reopening the original tooling.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Structure as teaching aid: SOM's Grimes Engineering Center at Berkeley exposes every connection, including a shape memory alloy tension-rod system</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect's Newspaper (16 Sept)</span> · <span class="src">SOM</span> · <span class="src">AIA California (2026 Design Award)</span> · <span class="src">Daily Californian</span></div>
+  <div class="ni-desc">The Grimes Engineering Center, designed by SOM (Skidmore, Owings &amp; Merrill) for the University of California, Berkeley, is a 35,570-square-foot glazed addition costing roughly $110 million, funded entirely by philanthropy. It opened on 21 April 2025 and has received a 2026 AIA California Design Award; The Architect's Newspaper published a feature assessment on 16 September 2026. The building overlooks Memorial Glade at the centre of campus, sitting on the axis running from the Campanile to the Classical Core, its transparent volume set against the Brutalist character of the original building below it. The detail that should interest architecture and engineering students is a construction decision: the structural systems are intentionally exposed, so that engineering students can directly examine connections, gussets, braces, a rod-hung stair, and a shape memory alloy (SMA) tension-rod system. Shape memory alloys recover their original form after being deformed under load; their value in seismic tension rods lies in small residual deformation after an earthquake. Installing a still-emerging component of this kind in a teaching building and leaving it visible effectively turns the building itself into a teaching aid.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Five $1m prizes aimed at construction technology: Airbnb's accelerator makes building faster and cheaper its own separate track</div>
+  <div class="ni-meta">Sources: <span class="src">Airbnb newsroom (14 Sept)</span> · <span class="src">The Architect's Newspaper (15 Sept)</span> · <span class="src">Smart Cities Dive</span></div>
+  <div class="ni-desc">Of the three tracks within the $250 million Housing Accelerator, the third — alongside capital deployment and policy advocacy — is innovation: Airbnb will establish five awards of $1 million each for innovators and entrepreneurs developing technologies and designs that make homes easier, faster and cheaper to build. The track is worth the attention of readers following materials and construction because of where the money comes from. Over the past several years, demonstration projects in 3D-printed construction, modular prefabrication and cement-free binders have depended largely on government subsidy, university research funding or building-products companies' own budgets. This is prize money from a platform company, judged explicitly against the cost of delivering a single home. Criteria shape which technologies rise: measured by easier, faster and cheaper, the likely beneficiaries are repeatable and scalable methods rather than one-off demonstrations.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6aaa/972c/4f64/5201/8803/1504/large_jpg/brutalist-asia-a-new-publication-reframing-the-history-of-brutalism-from-japan-to-lebanon_3.jpg?1789564722" alt="《Brutalist Asia》内页中的清水混凝土建筑摄影 / Fair-faced concrete architecture photographed in the pages of Brutalist Asia" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">In Depth</span>
+    <div class="ft-title">Moving the origin of Brutalism off Europe: 28 countries, 140 buildings, eight essays, and a question about whose modernity</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (17 Sept)</span> · <span class="src">Blue Crow Media (publisher)</span> · <span class="src">STIRworld</span> · <span class="src">Prestel (Brutalist Japan, same field)</span> · <span class="src">MoMA (West African modernism, for comparison)</span></div>
+    <div class="ft-desc">
+      <p><strong>What the book is arguing with.</strong> The standard narrative of Brutalism begins in Europe: the term derives from the French <em>béton brut</em>, was consolidated into a movement in 1950s Britain by Alison and Peter Smithson and the critic Reyner Banham, and spread outward from there. What Brutalist Asia takes on is the assumption buried in "spread outward" — that Asia's fair-faced concrete architecture was a passively received stylistic import. The book's central contention is that architects across Asia did not transplant a style but "adopted, questioned, and transformed" the language in response to their own political, climatic and cultural conditions. The argument is not about whether Brutalism existed in Asia, but about where its origin point is placed.</p>
+      <p><strong>Scope and structure.</strong> Published by Blue Crow Media as part of the press's long-running Brutalist and Modernist series, the book ships from mid-September 2026. It covers 28 countries, 140 buildings and more than 150 photographs, with eight original essays by Bob Pang, John Barr, Bhawna Dandona, Christele Harrouk, Kyung Taek Lee, Caryn Paredes-Santillan, Pinai Sirikiatikul, Soroush Mohajery and Amirhosein Rad, treating Japan, Korea, Hong Kong, Thailand, the Philippines, India, Iran and Lebanon respectively. That table of contents is itself part of the argument: placing Hong Kong beside Beirut, and Tehran beside Manila, means no longer sorting by distance from London.</p>
+      <p><strong>The selection: the known and the barely printed.</strong> The book includes acknowledged landmarks — Le Corbusier's Palace of Assembly at Chandigarh, Kenzo Tange's Yoyogi National Gymnasium in Tokyo, Khalil Khoury's Interdesign Building in Beirut (1973–97) — alongside a substantial body of work that has rarely appeared in publication, such as Joseph Philippe Karam's The Egg, Raoul Verney's Red Cross (1973) and Khalil Khoury's Manar Complex (1982). The range of architects is wide: Kenzo Tange, Paul Rudolph, Balkrishna V. Doshi, Raj Rewal, Charles Correa, Kim Swoo Geun, Leandro V. Locsin and Le Corbusier, together with a cohort of Lebanese practitioners — Joseph Philippe Karam, Khalil Khoury, Georges Khoury, Antoine Romanos and Grégoire Serof. The density of the Lebanese material deserves particular notice: Beirut's modernist output of the 1960s and 1970s has long been obscured by the narrative of the civil war.</p>
+      <p><strong>Why the book is useful in a studio.</strong> Fair-faced concrete spread through Asia for a set of reasons distinct from Europe's. Climate: heavy walls and deep overhangs carry real thermal value in hot, humid, high-insolation regions. Economy: in newly independent states without mature steel supply chains, concrete was the more obtainable material. Politics: large public buildings were a direct means for new nations to assert modernity and autonomy. Those three lines sit in productive contrast with the questions addressed by MoMA's current exhibition Architects of Liberation: Modernism in Western Africa (through 2 January 2027) — two regions answering the same question about nation-building, in the same period, with much the same material. For students at Syracuse, the practical gap this book fills is horizontal: survey courses tend to move from the Smithsons and Banham straight to Japanese Metabolism, leaving the connections between Hong Kong, Tehran, Manila and Beirut without a text to work from.</p>
+    </div>
+    <a href="https://www.archdaily.com/1185224/brutalist-asia-a-new-publication-reframing-the-history-of-brutalism-from-japan-to-lebanon" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">MoMA's Architects of Liberation: Modernism in Western Africa — some 450 works, seven countries, 50-plus lenders, through 2 January 2027</div>
+  <div class="ni-meta">Sources: <span class="src">MoMA exhibition page</span> · <span class="src">The Architect's Newspaper (15 Sept)</span> · <span class="src">Architectural Record</span> · <span class="src">Domus</span></div>
+  <div class="ni-desc">Architects of Liberation: Modernism in Western Africa opened at the Museum of Modern Art on 5 July 2026 and runs through 2 January 2027 in the Robert B. Menschel Galleries on the museum's third floor; The Architect's Newspaper published an assessment on 15 September. It is the first major exhibition to examine African modern architecture from the late 1950s through the early 1980s in the context of political independence in the region, spanning seven countries — Benin, Cameroon, Côte d'Ivoire, Ghana, Nigeria, Senegal and Togo — with approximately 450 architectural drawings, scale models and archival photographs drawn from the collections of more than 50 lenders across 17 countries. It is organised by Martino Stierli, The Philip Johnson Chief Curator of Architecture and Design, with guest curator Ikem Stanley Okoye (associate professor, University of Delaware) and curatorial associate Mallory Cohen. The exhibition's argument is that newly independent African states wanted to project, both inward and outward, a forward-looking, progressive and cosmopolitan self-image, and that modern architecture carried that aspiration while engaging the political ideas of Pan-Africanism and Africanization.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Dezeen Awards 2026 master jury named: Ma Yansong and Daniel Libeskind join, with shortlists released 21–23 September</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen (17 Sept, organiser announcement)</span></div>
+  <div class="ni-desc">Dezeen announced the master jury for Dezeen Awards 2026 on 17 September 2026. Architects Ma Yansong (MAD Architects) and Daniel Libeskind (Studio Libeskind) join, alongside designers Martin Lotti and Jo Barnard and architects Dominique Petit-Frère and Aziza Chaouni. The master jury's task is to determine 49 winning projects from the shortlisted entries. Shortlists will be published in batches between 21 and 23 September, with all winners announced at the Dezeen Awards 2026 party at the Royal Opera House in London on 16 November. The programme had previously published three regional Top 50 lists covering Europe, the Middle East and Africa; the Americas; and Asia-Pacific.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Out in Architecture, Volume II: 22 new accounts, with the introduction published as an op-ed in The Architect's Newspaper</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect's Newspaper (15 Sept, excerpt)</span> · <span class="src">Out in Architecture (editors)</span> · <span class="src">Blurb (publisher)</span></div>
+  <div class="ni-desc">Out in Architecture, Volume II collects 22 new first-person accounts by LGBTQIA+ architects, designers and practitioners who have chosen to show up fully, on the page and in the profession. The book is assembled by the editorial collective Out in Architecture and published through Blurb at $24; the collective is dedicated to spotlighting the voices and experiences of the queer community in the architecture, engineering and construction (AEC) industry, and its editors state the aim of propelling conversation into action and institutional change. The Architect's Newspaper published the book's introduction as an op-ed on 15 September 2026, organised around three themes: identity beyond the architecture profession, the intersection of practice and identity, and reclaiming space. For students, first-person professional accounts of this kind are scarce material — the literature on what actually happens after entering practice is thin.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">New entry in ArchDaily's September Escapism series: Studio Ghibli's domestic scenes read as the spatial ritual of coming home</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (17 Sept, editorial topic)</span></div>
+  <div class="ni-desc">On 17 September ArchDaily published "The Sacred Ordinary: Studio Ghibli and the Ritual of Coming Home," one of a series under the site's September editorial theme of Escapism. The essay takes the houses and everyday scenes of Studio Ghibli's animation as its analytical object, considering how transitional or liminal spaces — porches, entry vestibules, kitchens, stairs — carry the ritual function of returning home, and how the films treat the ordinary itself as a source of the sacred through repeated depiction of mundane domestic actions and spatial sequences. Spatial analysis using fictional imagery of this kind is a common entry exercise in architectural theory courses; its value lies less in the conclusion than in the requirement to reduce a felt quality back to specific spatial elements and sequences. Earlier pieces in the September series have addressed megastructures, underwater cities and digital environments.</div>
+</div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
