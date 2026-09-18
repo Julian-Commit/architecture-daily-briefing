@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-18</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="richter architectes delivers a €10m cultural centre in Gisors, France: a three-screen cinema and media library totalling 2,676 sqm, on a backfilled parking lot with pre-war indust…">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 013 · 2026-09-18 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="richter architectes delivers a €10m cultural centre in Gisors, France: a three-screen cinema and media library totalling 2,676 sqm, on a backfilled parking lot with pre-war indust…">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-18-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images.adsttc.com/media/images/6aab/3945/d8c8/8201/89ac/ccae/large_jpg/cultural-centre-in-gisors-richter-architectes-et-associes_7.jpg?1789606273">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 013 · 2026-09-18 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="richter architectes delivers a €10m cultural centre in Gisors, France: a three-screen cinema and media library totalling 2,676 sqm, on a backfilled parking lot with pre-war indust…">
+<meta name="twitter:image" content="https://images.adsttc.com/media/images/6aab/3945/d8c8/8201/89ac/ccae/large_jpg/cultural-centre-in-gisors-richter-architectes-et-associes_7.jpg?1789606273">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 013 · 2026-09-18 · 陆先生建筑日报 | Architecture Daily","description":"richter architectes delivers a €10m cultural centre in Gisors, France: a three-screen cinema and media library totalling 2,676 sqm, on a backfilled parking lot with pre-war indust…","datePublished":"2026-09-18","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-18-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://images.adsttc.com/media/images/6aab/3945/d8c8/8201/89ac/ccae/large_jpg/cultural-centre-in-gisors-richter-architectes-et-associes_7.jpg?1789606273"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 013</div>
+    <div>September 18, 2026 Friday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-18-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p>This issue deliberately steps around several threads already given headline and in-depth treatment here in the past fortnight — the Lucas Museum, the Doha pavilion, London Design Festival and the Buenos Aires Biennial appear today only as new developments. Four things are genuinely new. In France, richter architectes has delivered a cultural centre in Gisors: a three-screen cinema and a media library for €10 million, built on a backfilled parking lot with pre-war industrial infrastructure buried under it, groundwater problems and flood risk. Adif named the winner of the Valencia Central Station competition, where a Sener-led team with RSHP and ERRE beat 13 bids with a scheme that sinks the whole station underground and stitches the old Estación del Norte to the future Parque Central along a landscape axis. Mecanoo and RDHA's hybrid mass timber Lawson Centre has opened in Toronto, with concrete confined to foundations, cores and stairwells. And from China, MOHURD put numbers on urban renewal for the 15th Five-Year Plan: 115,000 older residential compounds, 575,000 lifts, 50,000 hectares of green space. Plus the RIBA International Prize 2026 shortlist: two retrofits, two projects in Bangladesh, and no new cultural landmark in sight.</p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6aab/3945/d8c8/8201/89ac/ccae/large_jpg/cultural-centre-in-gisors-richter-architectes-et-associes_7.jpg?1789606273" alt="吉索尔文化中心的混凝土与木材外观及其临水公共空间 / Exterior of the Gisors cultural centre in concrete and timber, with its waterside public space" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">PROJECTS</span>
+    <div class="hl-title">richter architectes delivers a €10m cultural centre in Gisors, France: a three-screen cinema and media library totalling 2,676 sqm, on a backfilled parking lot with pre-war industry buried beneath it, groundwater and flood risk</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (18 Sept)</span> · <span class="src">Chroniques d'architecture</span> · <span class="src">richter architectes</span> · <span class="src">CdC du Vexin Normand (client)</span> · <span class="src">Boxoffice Pro</span></div>
+    <div class="hl-desc">Gisors sits in the Eure département of France, in the Vexin Normand. The cultural centre is by richter architectes et associés for the Communauté de Communes du Vexin Normand, completed in 2026, with a total floor area of 2,676 sqm and a construction cost of €10 million excluding VAT. It comprises two parts: a cinema of roughly 1,444 sqm and a media library of roughly 1,232 sqm (French sources give approximately 1,450 and 1,200 sqm — the figures differ slightly), plus around 8,000 sqm of public outdoor space and an underground car park. The cinema has three auditoria of 250, 120 and 78 seats, 448 in total, the largest convertible for live performance. The principal materials are concrete and timber. Consultants: structural engineering by C&amp;E Ingénierie, electrical by BET G.Jost, acoustics by Gamba, landscape by Bruno Kubler, MEP and sustainability by Solares Bauen; photography by Luc Boegly. The site had long sat at the margin of the town centre — backfilled ground with pre-war industrial infrastructure buried beneath it, groundwater issues and flooding risk, surfaced as a car park, functioning in the urban fabric as both a bottleneck and a landscape fracture. As ArchDaily puts it, the architects "have not sought to erase the constraints of the site, but rather to work with them and to turn them around so that a new urban geography could emerge".</div>
+    <a href="https://www.archdaily.com/1185273/cultural-center-in-gisors-richter-architectes-et-associes" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6aad/065e/8d91/7901/8920/558d/large_jpg/rshp-and-erre-selected-to-design-new-valencia-central-station_1.jpg?1789724275" alt="瓦伦西亚中央车站方案的连续顶棚与地下站台效果图 / Rendering of the sweeping canopies and underground platforms of the new Valencia Central Station" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">URBANISM</span>
+    <div class="hl-title">RSHP and ERRE win Valencia Central Station with Sener: first out of 13 bids (Kengo Kuma among them), a €6.1m design contract, the whole station underground and the historic Nord facades kept</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (18 Sept)</span> · <span class="src">Dezeen (16 Sept)</span> · <span class="src">Architects' Journal</span> · <span class="src">Trenvista</span> · <span class="src">Arquitectura Viva</span></div>
+    <div class="hl-desc">The evaluation committee of Adif Alta Velocidad, Spain's high-speed rail infrastructure manager, has selected a proposal led by the engineering and technology group Sener, with British practice RSHP (Rogers Stirk Harbour + Partners) and Valencia-based ERRE, to design the new Valencia Central Station. According to the Architects' Journal the team topped a 13-strong shortlist that included Kengo Kuma &amp; Associates; Adif AV confirmed a contract of €6.1 million including VAT, with Sener bidding more than 24 per cent below the tender baseline. The scheme moves the station and its tracks underground, integrating high-speed rail, commuter rail, metro, tram, bus, taxi and active mobility, and adopts a through-track configuration so trains can run north–south rather than terminating. Below ground sit entrances, concourses, waiting areas, platforms, retail and parking. The existing Estación del Norte — designated a Site of Cultural Interest — will be refurbished with its facades preserved, and a landscape axis with pedestrian routes and cycle lanes will link it to the new station and the future Parque Central. The team cites five governing principles: railway functionality, urban integration, architectural identity, constructability and operational safety, delivered through a modular prefabricated system aimed at cutting the carbon footprint.</div>
+    <a href="https://www.archdaily.com/1185353/rshp-and-erre-selected-to-design-new-valencia-central-station-in-spain" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6aac/1221/d8c8/8201/89ac/cfde/large_jpg/trinity-colleges-lawson-centre-for-sustainability-officially-opens-to-the-community_3.jpg?1789661809" alt="Lawson 可持续中心外观：外露木结构与香槟色铝构件 / Exterior of the Lawson Centre for Sustainability with exposed timber and champagne-coloured aluminium" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">MATERIALS</span>
+    <div class="hl-title">Mecanoo and RDHA's Lawson Centre for Sustainability opens in Toronto: hybrid mass timber, 357 beds, geothermal heat pump and a rooftop farm — Trinity College's first new building since 1979</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (18 Sept)</span> · <span class="src">Trinity College (14 Sept)</span> · <span class="src">Mecanoo (architect)</span> · <span class="src">UrbanToronto</span></div>
+    <div class="hl-desc">The Lawson Centre for Sustainability stands at Trinity College, University of Toronto, designed by Dutch practice Mecanoo with Toronto-based RDHA, and opened to the community on 14 September 2026. It is Trinity College's first new building since 1979 and its most ambitious capital project in more than six decades. The building holds 262 residential units and 357 beds across single, double and studio types, 15 per cent of them barrier-free, plus a ground-floor café, a second-floor community kitchen, a 200-capacity event pavilion on the fourth floor, a lecture hall, teaching spaces, faculty offices and open study areas. East and west volumes are arranged in a T. The structure is hybrid mass timber: glulam columns and beams with CLT floor slabs, concrete confined to foundations, elevator cores, stairwells and the anchoring of major timber elements, with the timber sourced in Ontario. Servicing includes a high-performance envelope, a geothermal heat pump and rainwater cisterns, with a photovoltaic array planned for a later phase. A rooftop urban farm supplies seasonal produce to the community kitchen, and the courtyards are planted with local pollinator species and drought-tolerant indigenous vegetation. Trinity College states the project targets zero carbon and LEED Platinum certification; the design already won a 2025 Holcim Foundation Award for Best Practice in Sustainable Design. An original 14-storey high-rise proposal was replaced by this low-rise, walkable massing to sit with the campus's existing Neo-Gothic and modernist fabric.</div>
+    <a href="https://www.archdaily.com/1185316/mecanoo-and-rdhas-lawson-centre-for-sustainability-opens-at-trinity-college-with-a-farm-to-table-approach" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://n.sinaimg.cn/spider20260918/600/w800h600/20260918/21ee-7ecebee2120f6fe1f3df2e1ba4e99685.jpg" alt="国务院新闻办「十五五」住房城乡建设主题新闻发布会 / Press conference on housing and urban-rural development under China's 15th Five-Year Plan" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">URBANISM</span>
+    <div class="hl-title">China puts numbers on urban renewal for the 15th Five-Year Plan: 115,000 old residential compounds, 5,000 "complete communities", 575,000 residential lifts, 50,000 hectares of urban green space</div>
+    <div class="hl-meta">Sources: <span class="src">State Council Information Office briefing (18 Sept)</span> · <span class="src">Sina Finance</span> · <span class="src">ifeng</span> · <span class="src">FX168</span></div>
+    <div class="hl-desc">On 18 September 2026 the State Council Information Office held a briefing in its "Starting the 15th Five-Year Plan" series, covering high-quality development in housing and urban-rural construction. Zhang Qiang, director of the Urban Management Supervision Bureau at the Ministry of Housing and Urban-Rural Development (MOHURD), set out a series of quantified targets for the 2026–2030 period: renovation work to start on 115,000 older urban residential compounds; "complete community" (完整社区) upgrades in 5,000 communities; 575,000 residential lifts renewed or newly installed; 50,000 hectares of urban green space built or upgraded; and 1,500 older street blocks and factory districts upgraded. Dilapidated housing renovation, urban village redevelopment and underground pipe network works were also listed, without published figures. The national 15th Five-Year Plan outline calls for high-quality urban renewal, and the State Council has issued a dedicated Urban Renewal Plan for the period setting out 10 development indicators, 23 key tasks and 14 major programmes. For architecture and planning students, this set of numbers defines the working ground in China's built environment for the next five years: the main theatre is the existing stock rather than new construction, and much of it sits at the meso and micro scale of the compound, the street block and the factory district.</div>
+    <a href="https://finance.sina.com.cn/tech/roll/2026-09-18/doc-inisfprh8510674.shtml" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://cdn.mos.cms.futurecdn.net/y2SuWi9ZCHuK2Xp5WHoLqe-2482-80.jpg" alt="RIBA 国际奖 2026 入围项目之一 / One of the four projects shortlisted for the RIBA International Prize 2026" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">ACADEMIA</span>
+    <div class="hl-title">RIBA International Prize 2026 shortlist: two retrofits, two projects in Bangladesh, winner announced at the Stirling Prize ceremony on 15 October</div>
+    <div class="hl-meta">Sources: <span class="src">Wallpaper* (16 Sept)</span> · <span class="src">World-Architects</span> · <span class="src">Architects' Journal</span> · <span class="src">RIBA</span> · <span class="src">Low Carbon Buildings</span></div>
+    <div class="hl-desc">The Royal Institute of British Architects announced the four-project shortlist for the RIBA International Prize 2026 on 16 September, in the award's tenth anniversary cycle. The shortlist is: Royale Belge in Watermael-Boitsfort, Brussels, where Caruso St John Architects with Bovenbouw Architectuur and DDS+ converted a cross-shaped 1960s insurance headquarters by René Stapels and Pierre Dufau into a city hub; Z33 House for Contemporary Art, Design and Architecture in Hasselt, Belgium, by Francesca Torzo Architetto, set inside a walled Beguinage enclave; BRAC University in Dhaka, Bangladesh, by WOHA — a 13-storey vertical campus for some 20,000 students built on a former landfill, using passive cooling and natural cross-ventilation; and the Green Field Factory of Karupannya Rangpur Limited in Rangpur, Bangladesh, by Nakshabid Architects, a seven-storey textile factory drawing on the vernacular Bengali homestead and putting worker wellbeing and community space alongside production rather than behind it. Neil Gillespie chairs the RIBA Awards group. RIBA describes the common ground as "design improves daily life while responding to a changing climate". The winner will be announced live at the Stirling Prize ceremony in London on 15 October 2026.</div>
+    <a href="https://www.wallpaper.com/architecture/riba-international-prize-2026-shortlist" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6aab/3945/d8c8/8201/89ac/ccae/large_jpg/cultural-centre-in-gisors-richter-architectes-et-associes_7.jpg?1789606273" alt="吉索尔文化中心的混凝土体量与木质内里在临水一侧形成的虚实关系 / The interplay of concrete mass and timber lining on the waterside elevation of the Gisors cultural centre" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">IN DEPTH</span>
+    <div class="ft-title">Pre-war factory buried underneath, groundwater, and it floods: the Gisors cultural centre did not remove those three constraints — it made them generate the plan</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (18 Sept)</span> · <span class="src">Chroniques d'architecture</span> · <span class="src">richter architectes</span> · <span class="src">CdC du Vexin Normand (client)</span> · <span class="src">Boxoffice Pro</span> · <span class="src">Luc Boegly (photography)</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: don't erase the constraints, turn them into urban geography.</strong> This plot had long been a liability in Gisors. It sits at the edge of the town centre, the ground is backfilled, pre-war industrial infrastructure lies buried beneath it, there are groundwater problems and flood risk, and the surface was given over to parking. French coverage describes it as "an urban bottleneck as much as a landscape fracture". The conventional response is to spend heavily clearing the substrate and raising levels, then put a conventional public building on top. richter architectes went the other way — as ArchDaily reports it, the architects "have not sought to erase the constraints of the site, but rather to work with them and to turn them around so that a new urban geography could emerge". That sentence is drawable here: a site you cannot excavate freely and which has to assume inundation is already telling you which programme can go down, which must come up, and how ground levels should be organised.</p>
+      <p><strong>Spatial strategy: two volumes and one shared public ground.</strong> The 2,676 sqm of floor area splits into two pieces — a cinema of roughly 1,444 sqm and a media library of roughly 1,232 sqm (French sources record 1,450 and 1,200; the figures differ slightly) — set adjacent to each other and read together as a single cultural centre, with an underground car park beneath. The number that actually defines this project is the third one: around 8,000 sqm of public outdoor space, roughly three times the building area. The client was not simply buying two buildings; it was buying back a piece of usable town ground, which is the same answer as the one the "landscape fracture" problem demanded. The cinema's three auditoria seat 250, 120 and 78, 448 in total, with the largest convertible for live performance — a cinema-plus-theatre configuration common in small-town public culture buildings, for the practical reason that a single-use auditorium cannot fill a calendar at this population size.</p>
+      <p><strong>Material and technique: concrete and timber, and a long consultant list.</strong> The principal materials are concrete and timber. On a site with groundwater and flood exposure, concrete takes the work that has to deal with water — foundations, retention, sunken volumes — while timber handles what needs acoustic performance and tactility indoors. The consultant roster is worth noting: structure by C&amp;E Ingénierie, electrical by BET G.Jost, acoustics by Gamba, landscape by Bruno Kubler, MEP and sustainability by Solares Bauen. That is an unusual team for a 2,676 sqm project, and the reason is programmatic. A cinema and a library pull acoustics in opposite directions — one needs isolation and controlled reverberation, the other quiet but openness — and the presence of a passive-and-environmental engineering consultant like Solares Bauen indicates energy and comfort were engaged from the design stage rather than bolted on later.</p>
+      <p><strong>Context and consequence.</strong> The client is the Communauté de Communes du Vexin Normand, a rural intermunicipal body; the cost is €10 million excluding VAT and completion was 2026. That works out to roughly €3,737 per square metre — restrained for a public project that includes technically demanding auditoria and sits on poor ground. The value of this case for students is not the form but the method: faced with a plot nobody wanted, the first design act is judging which constraints are worth paying to remove and which should be accepted and converted into grounds for form. In Gisors the latter won out — and what it bought was three times the building's area in public ground.</p>
+    </div>
+    <a href="https://www.archdaily.com/1185273/cultural-center-in-gisors-richter-architectes-et-associes" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">A seven-storey textile factory on the RIBA International Prize shortlist: Nakshabid builds courtyards, four water bodies and deep verandahs into the production floor</div>
+  <div class="ni-meta">Sources: <span class="src">Wallpaper* (16 Sept)</span> · <span class="src">RIBA</span> · <span class="src">Archello</span> · <span class="src">The Business Standard</span> · <span class="src">ArchiDiaries</span></div>
+  <div class="ni-desc">The Green Field Factory of Karupannya Rangpur Limited stands in Alamnagar, Rangpur, Bangladesh, designed by Dhaka practice Nakshabid Architects under architect Bayejid Mahbub Khondker. Construction began in 2013 and industrial operations started in early 2017 on completion of the first phase. The seven-storey building takes its form from the rural Bengali homestead, organising courtyards, water bodies, gardens and deep verandahs into the production space to produce naturally ventilated workshops; four large water bodies sit at the southern entrance facade, doubling as microclimate regulators. The factory holds LEED Platinum certification for operations and maintenance. RIBA's citation says it "has been conceived to inspire the workers to feel at home, to stimulate their senses in terms of sight, sound, and comfort". In an industry that usually measures a building by output per square metre alone, a factory that gives water and courtyards to its workforce reaching an international shortlist is itself a story about how industrial architecture gets judged.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Caruso St John turns a cross-shaped 1960s office tower into a city hub: Royale Belge makes the RIBA International Prize shortlist</div>
+  <div class="ni-meta">Sources: <span class="src">Wallpaper* (16 Sept)</span> · <span class="src">Architects' Journal</span> · <span class="src">World-Architects</span></div>
+  <div class="ni-desc">The Royale Belge building in Watermael-Boitsfort, Brussels, was designed by René Stapels and Pierre Dufau in the 1960s on a cross-shaped plan as an insurance company headquarters. Caruso St John Architects, with Bovenbouw Architectuur and DDS+, has converted it into a mixed-use hub open to the city, in what is described as a sensitive reuse and adaptation of the modernist structure. It is one of two retrofits on this year's four-project RIBA International Prize shortlist — the other being Francesca Torzo's Z33. In an international award still dominated by new build, half the shortlist being adaptive reuse is a signal in itself.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Trinity College cut a planned 14-storey tower down to a low-rise: the Lawson Centre chose campus fit over floor area</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (18 Sept)</span> · <span class="src">Mecanoo (architect)</span> · <span class="src">UrbanToronto</span></div>
+  <div class="ni-desc">Mecanoo and RDHA's Lawson Centre for Sustainability began as a 14-storey high-rise proposal and was built instead as a low-rise, walkable massing of east and west wings in a T-configuration, on the grounds that it should sit with Trinity College's existing Neo-Gothic and modernist buildings. Champagne-coloured aluminium accents punctuate the elevations, and the residence floors use varying window rhythms to break up repetition. At a moment when dense campus development is close to the default answer, a decision to trade height for fit is worth noting; the cost is that the same 357 beds take up a larger footprint.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Lucas Museum follow-up: a $1.9m subcontractor suit before opening, and a split critical reception (this briefing covered its completion in No. 003 and No. 005)</div>
+  <div class="ni-meta">Sources: <span class="src">Hoodline (Sept)</span> · <span class="src">Artforum</span> · <span class="src">Cultured</span></div>
+  <div class="ni-desc">This briefing set out the Lucas Museum of Narrative Art's completion and its 1,271 doubly curved FRP panels twice already, in No. 003 (6 September) and No. 005 (9 September), so only two new developments are added here. First, weeks before the 22 September opening, a subcontractor filed a $1.9 million lawsuit over unpaid bills, alleging the project skirted California's public-works payment rules. Second, the pre-opening reviews gathered by Artforum come down clearly on both sides: supporters point to the public ground the building releases — an 11-acre asphalt parking lot becoming a 13-acre landscape campus — while detractors argue the self-contained futurist form fails to engage Exposition Park's existing context, and local critic Christopher Knight has questioned the curatorial category of "narrative art" itself. Both positions are reported as stated, without adjudication.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6aad/065e/8d91/7901/8920/558d/large_jpg/rshp-and-erre-selected-to-design-new-valencia-central-station_1.jpg?1789724275" alt="瓦伦西亚中央车站的顶棚骨架将天光与空气导入地下站台 / The canopy frame of Valencia Central Station filtering daylight and air down to the underground platforms" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">IN DEPTH</span>
+    <div class="ft-title">Bury the whole station, then work out how to make it not feel buried: Valencia Central Station is really solving an urban stitching problem</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (18 Sept)</span> · <span class="src">Dezeen (16 Sept)</span> · <span class="src">Architects' Journal</span> · <span class="src">Trenvista</span> · <span class="src">Arquitectura Viva</span> · <span class="src">Adif AV</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: a roof without walls, not a building.</strong> Dezeen describes the scheme as a wall-less structure sheltered by a series of sweeping canopies that recall the historic Estación del Norte. The site forces that posture. Once platforms and tracks are all below grade, what remains at street level is no longer a concourse building that needs enclosing — it is a device for covering, orienting and admitting light. The team's own account is blunt about the aim: the canopy frame filters light and air down to the platforms so the building will "feel like it isn't underground". For a hub that must absorb high-speed rail, commuter rail, metro, tram, bus and taxi every day, that sentence has real weight. Daylight and natural ventilation in an underground concourse determine how long people can stand to be in it.</p>
+      <p><strong>Spatial strategy: through-tracks turn a terminus into a crossing.</strong> The scheme adopts a through-track configuration allowing trains to pass north–south, and this is the single most consequential decision in the project. Valencia's existing Estación del Norte is a terminus: trains must reverse out, which caps throughput and turns the rail corridor into an uncrossable edge through the city. Going through-running solves operations and urban stitching with one move — the long strip of land previously occupied by approach tracks is released as crossable city surface, while entrances, concourses, waiting areas, platforms, retail and parking are organised below.</p>
+      <p><strong>Construction and carbon: modular prefabrication.</strong> The proposal commits to a modular construction system with prefabrication and names carbon reduction as part of its energy-efficiency measures. On a project measured in decades and built in a city centre alongside a railway that stays in service, prefabrication is not only an emissions question — it is the means of compressing on-site work to a minimum. The five stated principles — railway functionality, urban integration, architectural identity, constructability and operational safety — place constructability and safety on equal footing with form, which tells you how the team is structured: the lead is the engineering group Sener, with RSHP and ERRE as members.</p>
+      <p><strong>Context and consequence.</strong> Per the Architects' Journal the team topped 13 bids, with Kengo Kuma &amp; Associates among those beaten; Adif AV confirmed a €6.1 million contract including VAT, Sener having bid more than 24 per cent below baseline. The existing Estación del Norte, a designated Site of Cultural Interest, will be refurbished with its facades preserved and linked to the new station and the planned Parque Central by a landscape axis carrying pedestrian routes and cycle lanes. That link matters more than it sounds: Valencia's Parque Central is itself one of the most significant rail-land redevelopment cases in Spain over the past two decades, so the station brief is not a standalone object but the last and hardest segment of a stitching line already under way. Floor area, track count, total investment and programme have not been published; scheme details will change as the design develops.</p>
+    </div>
+    <a href="https://www.archdaily.com/1185353/rshp-and-erre-selected-to-design-new-valencia-central-station-in-spain" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The structure behind the numbers: China's Urban Renewal Plan for 2026–2030 sets 10 indicators, 23 key tasks and 14 major programmes, plus 1,500 street-block and factory-district upgrades</div>
+  <div class="ni-meta">Sources: <span class="src">State Council Information Office briefing (18 Sept)</span> · <span class="src">Sina Finance</span> · <span class="src">ifeng</span></div>
+  <div class="ni-desc">Beyond the headline figures — 115,000 older residential compounds, 5,000 "complete communities", 575,000 lifts and 50,000 hectares of green space — the 18 September briefing also set out the policy architecture. The national 15th Five-Year Plan outline calls for high-quality urban renewal, and the State Council has issued a dedicated Urban Renewal Plan for the period containing 10 development indicators, 23 key tasks and 14 major programmes. The task list further includes upgrades to 1,500 older street blocks and factory districts, alongside dilapidated housing renovation, urban village redevelopment and underground pipe network works (no figures published for those three). For students planning thesis work or research on existing-stock regeneration in China, this plan is the principal policy anchor for the next five years.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The commercial side of the Valencia competition: 13 bids, a €6.1m contract, more than 24 per cent below baseline</div>
+  <div class="ni-meta">Sources: <span class="src">Trenvista</span> · <span class="src">Architects' Journal</span> · <span class="src">Adif AV</span></div>
+  <div class="ni-desc">Adif Alta Velocidad confirmed that the design contract for Valencia Central Station is worth €6.1 million including VAT and has gone to Sener Mobility, which is reported to have bid more than 24 per cent below the tender baseline and to have ranked first among 13 bids. Kengo Kuma &amp; Associates was among the teams that did not prevail. Design media usually leave these figures out, but they are useful for understanding how international competitions actually run: in public infrastructure, juries typically assess technical proposal and price together, and architecture practices often participate as members of an engineering consortium rather than as the lead.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Tower Hamlets approves the Fish Island co-living scheme: 280 co-living studios plus 44 affordable homes in blocks of seven and ten storeys</div>
+  <div class="ni-meta">Sources: <span class="src">East London Times (Sept)</span> · <span class="src">Tower Hamlets Council planning record</span></div>
+  <div class="ni-desc">Tower Hamlets Council granted planning consent in September 2026 to developer McLaren Property for a co-living and residential scheme at Fish Island, Hackney Wick, London E3. The scheme comprises 280 co-living studio units for single occupancy plus 44 purpose-built affordable homes, in two main structures of seven and ten storeys. It is the final piece of the long-running Neptune Wharf masterplan and completes the regeneration of this former industrial parcel in east London. The Hackney Wick and Fish Island corridor has been under sustained regeneration since the 2012 Olympics, with the local authority steering disused industrial zones towards mixed neighbourhoods of housing, creative studios and public realm — how large a share co-living takes within that mix is worth following as a question of typology.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Paris 12th: a horse-age stable that became a mechanical workshop, then stood empty, is now a 1,980 sqm community sports centre</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (18 Sept)</span> · <span class="src">THINK TANK architecture</span> · <span class="src">RATP Real Estate</span></div>
+  <div class="ni-desc">The USMT Bizot Sports Centre at 37 avenue du Docteur Arnold Netter in the 12th arrondissement of Paris is THINK TANK architecture's conversion of an industrial building belonging to RATP, the Paris transport operator. It was originally built as a horse stable in the era of horse-drawn transport, later converted into a mechanical workshop and storage facility, and then stood abandoned. The converted building runs to 1,980 sqm and serves the US Métro sports organisation, consolidating activities previously dispersed across several sites. Structure and materials are wood, glass and steel, with extensive glazing bringing in daylight and structural elements left visible so the industrial building stays legible. Environmental engineering is by FBC Franck Boutté Consultants using bioclimatic strategies, heating comes from the Paris district heating network (CPCU) and water management is through Eau de Paris. The client is RATP's real-estate valorisation department, delivered by RATP Real Estate. How transport operators convert their idle industrial land into public facilities is an increasingly important route in European regeneration.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.mecanoo.nl/Portals/www/Images/News/1_2024%2003%2025.jpg" alt="Lawson 可持续中心外露的胶合木梁柱与 CLT 楼板 / Exposed glulam columns, beams and CLT floor slabs at the Lawson Centre for Sustainability" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">IN DEPTH</span>
+    <div class="ft-title">Concrete kept to foundations, cores and stairwells: the "hybrid" in the Lawson Centre is not a compromise, it is a division of labour</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (18 Sept)</span> · <span class="src">Mecanoo (architect)</span> · <span class="src">Trinity College (14 Sept)</span> · <span class="src">UrbanToronto</span> · <span class="src">Holcim Foundation Awards 2025</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: put eating inside the definition of sustainability.</strong> The Lawson Centre is organised not around envelope performance but around a food chain: a rooftop urban farm producing seasonal crops → a second-floor community kitchen for food education → shared kitchens on each residence floor → a ground-floor café and new dining hall open to the community. Mecanoo and Trinity College call this the farm-to-table approach. What it achieves is a translation: sustainability stops being a set of invisible mechanical metrics and becomes a daily activity that 357 resident students handle with their hands. Courtyards planted with local pollinator species and drought-tolerant indigenous vegetation belong to the same logic — the landscape here is teaching material, not decoration.</p>
+      <p><strong>Structure and material: a clear division of labour.</strong> The system is hybrid mass timber. Per Mecanoo, glulam (glued laminated timber) carries beams and columns, CLT (cross-laminated timber) forms the floor slabs, and concrete is explicitly confined to three places — foundations, the elevator core, the stairwells — plus the anchoring of major timber elements. This is not timber topped up with concrete where timber ran out; it is an allocation of tasks by mechanical and fire behaviour. Vertical circulation shafts supply lateral stiffness and fire separation, foundations handle load transfer and uplift, and the repetitive floor structure everywhere else goes to components that can be shop-fabricated and erected fast. The timber is sourced in Ontario, and the plans use repeating layouts to suit batch manufacture. Creative director Francine Houben has said it was important to keep the timber structure exposed as much as possible so it is seen in the building — a decision that serves both biophilic experience and pedagogical display, but which also means fire and acoustics must be resolved through char-layer calculation and floor build-up rather than gypsum encasement.</p>
+      <p><strong>Systems and performance.</strong> A high-performance envelope, a geothermal heat pump and rainwater cisterns form the baseline, with roofscapes prepared for a later photovoltaic array. Trinity College states the project targets zero carbon and LEED Platinum. The design already holds a 2025 Holcim Foundation Award for Best Practice in Sustainable Design. It should be said plainly that timber volume, sequestered carbon, fire strategy detail and erection programme have not been published; this briefing does not speculate on them.</p>
+      <p><strong>Context and consequence.</strong> This is Trinity College's first new building since 1979 and its largest capital project in over six decades, with 262 residential units and 357 beds (single, double and studio), 15 per cent barrier-free, plus a lecture hall, teaching spaces, faculty offices and a 200-capacity fourth-floor event pavilion. The original 14-storey high-rise was replaced with a low-rise walkable massing to suit the campus's Neo-Gothic and modernist fabric. Read it alongside this week's other timber story — Intro Columbus, the tallest mass timber student housing in the United States — and the pattern is clear: North American university residences have become the main proving ground for mass timber, for a very practical reason. Dorms are among the most repetitive, most prefabrication-friendly building types there are.</p>
+    </div>
+    <a href="https://www.mecanoo.nl/News/ID/664/Natural-beauty-Mass-timber-at-Trinity-Colleges-Lawson-Centre-for-Sustainability" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ETH Zurich in Nature Communications: climate, not mix design, governs low-carbon concrete durability — wet concrete can corrode up to 100 times faster than dry</div>
+  <div class="ni-meta">Sources: <span class="src">Anthropocene Magazine (Sept 2026)</span> · <span class="src">Nature Communications (Albert et al.)</span> · <span class="src">ETH Zurich</span></div>
+  <div class="ni-desc">The paper, "Rethinking concrete durability for low-carbon concretes through climate-informed corrosion modelling", is led by Christhiana Albert at ETH Zurich and published in Nature Communications. The team modelled corrosion for three concrete formulations across four climatically distinct cities — Zurich, Bergen, Manaus and Huailai — and found that rebar corrosion rate is governed principally by moisture exposure, with wet concrete corroding up to roughly 100 times faster than dry, while differences between mixes proved comparatively minor. The authors argue that durability provisions in building standards should be calibrated to a structure's actual location rather than applied uniformly worldwide — today's one-size-fits-all codes are unnecessarily blocking low-carbon concrete in climates where it would perform perfectly well.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Holcim and Canary Wharf make carbon-negative concrete: biochar admixture, a footprint of −14 kg CO₂ per cubic metre</div>
+  <div class="ni-meta">Sources: <span class="src">Holcim</span> · <span class="src">Sustainable Brands</span></div>
+  <div class="ni-desc">In a trial with Canary Wharf Group in London, Holcim embedded biochar made from forestry residues and used coffee grounds into cement, concrete and mortars, producing the company's first net-zero concrete with a footprint of −14 kg CO₂ per cubic metre — a negative figure, meaning 14 kg of net carbon stored per cubic metre. Holcim states performance was not compromised. The biochar route works by locking the stable carbon skeleton left after biomass pyrolysis into building material for the long term, and is complementary to the supplementary cementitious materials (SCM) route, which cuts clinker content instead. Current assessments put the combined potential of SCMs, alkali-activated and geopolymer concretes, carbon capture and utilisation (CCU) and recycled aggregates at roughly 30–50 per cent emissions reduction.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Three material experiments at London Design Festival: bacteria-grown coral tiles, a 3D-printed ceramic facade with built-in habitat, and oak salvaged from a Brutalist building</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen (3 Sept)</span> · <span class="src">London Design Festival</span> · <span class="src">Livingetc</span></div>
+  <div class="ni-desc">This briefing covered the festival's opening and its Pangolin Shield landmark pavilion in No. 009 (13 September); what follows are three exhibits at the same event, not previously mentioned, that bear directly on construction. Biotech company Biomason showed bacteria-grown tiles inspired by coral, formed through microbially induced calcium carbonate precipitation rather than high-temperature firing. Design studio Phyta Biodesign presented a 3D-printed ceramic facade system with wildlife habitat cavities integrated into the components themselves, building habitat creation into the envelope. And Prima Materia made furniture from oak salvaged from a Brutalist building in Holborn. Between them the three map onto biofabrication, additive manufacturing and material reuse — worth watching together rather than separately.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">On the code side: the 2024 IBC allows 100 per cent exposed timber ceilings and beams in Type IV-B, up from 20 per cent in 2021</div>
+  <div class="ni-meta">Sources: <span class="src">Autodesk Digital Builder</span> · <span class="src">International Code Council (IBC 2021/2024)</span> · <span class="src">USDA Mass Timber Strategy</span></div>
+  <div class="ni-desc">The last two editions of the International Building Code (IBC) opened substantial room for mass timber: construction Types IV-A, IV-B and IV-C introduced in the 2021 and 2024 editions permit buildings up to 18, 12 and 9 storeys respectively. A key 2024 revision allows Type IV-B to expose 100 per cent of mass timber ceiling and beam surfaces, where the 2021 ceiling was only 20 per cent. That revision bears directly on whether an approach like the Lawson Centre's — keep the timber exposed as much as possible — is even permissible. In timber design, how much wood you can leave visible is frequently not an aesthetic decision but a code limit. On the supply side, the USDA's Mass Timber Strategy counted seven CLT plants across five US states and 20 glulam manufacturers across 11 states as of May 2023.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://cdn.mos.cms.futurecdn.net/y2SuWi9ZCHuK2Xp5WHoLqe-2482-80.jpg" alt="RIBA 国际奖 2026 四强项目之一的空间场景 / A spatial view of one of the four projects shortlisted for the RIBA International Prize 2026" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">IN DEPTH</span>
+    <div class="ft-title">Two retrofits, two projects in Bangladesh, not a single new cultural landmark: what the RIBA International Prize shortlist says in its tenth year</div>
+    <div class="ft-meta">Cross-checked: <span class="src">Wallpaper* (16 Sept)</span> · <span class="src">World-Architects</span> · <span class="src">Architects' Journal</span> · <span class="src">Building Design</span> · <span class="src">RIBA</span> · <span class="src">Low Carbon Buildings</span></div>
+    <div class="ft-desc">
+      <p><strong>The list itself: four projects, two kinds of operation.</strong> RIBA announced the four-strong shortlist for the International Prize on 16 September, with Neil Gillespie chairing, in the award's tenth year. The four are: Royale Belge in Brussels (Caruso St John Architects with Bovenbouw Architectuur and DDS+); Z33 House for Contemporary Art, Design and Architecture in Hasselt, Belgium (Francesca Torzo Architetto); BRAC University in Dhaka, Bangladesh (WOHA); and the Green Field Factory of Karupannya Rangpur in Rangpur, Bangladesh (Nakshabid Architects). The first two are adaptations of and insertions into existing buildings. The second two are new build — but neither is a cultural landmark in the usual sense. One is a university, the other a textile factory.</p>
+      <p><strong>Spatial strategy: a vertical campus and a homestead, two climate answers.</strong> WOHA's BRAC University is a 13-storey vertical campus for some 20,000 students, built on a former landfill in Dhaka. In a city of extreme density and scarce land, stacking the campus is the premise; the real design work is making a 13-storey building habitable in Bangladesh's hot and humid climate without running on full air conditioning. Reporting stresses its passive cooling strategies and natural cross-ventilation, supported by extensive planting. Nakshabid Architects' Green Field Factory runs the opposite way: seven storeys, its form drawn from the vernacular Bengali homestead, bringing courtyards, water and shade into an industrial building. The design is characterised as worker-first — the health, social and rest spaces of the workforce placed alongside production efficiency rather than subordinate to it.</p>
+      <p><strong>Structure and material: two scales of retrofit.</strong> Royale Belge is a cross-shaped 1960s insurance headquarters by René Stapels and Pierre Dufau, and its interest lies in how typical it is of postwar modernist office building — deep plan, curtain wall, standard floors. Converting that stock into mixed-use city fabric is never hard because of form; it is hard because floor-to-floor heights, plan depth, structural grid and fire escape have to be made to fit new uses. Z33 operates at another scale altogether: Francesca Torzo embedded a contemporary art institution inside a walled Beguinage enclave in Hasselt, using local materials and traditional craft so that the new work speaks to the old walls in the grain of its masonry. Together they make the point that retrofit is usually more technically demanding than new build — and that international awards have historically under-recognised it.</p>
+      <p><strong>Context and consequence.</strong> RIBA summarises the common ground as design that improves daily life while responding to a changing climate. Read in context the signal sharpens: this briefing reported earlier in the week on ArchDaily's sixth Next Practices Awards, whose winning practices came from Niger, Haiti, Mozambique, Vietnam and Ecuador. Both lists point the same way — the geographic centre of gravity in international awards is moving, and the building types being honoured have shifted from cultural landmarks to universities, factories, housing and retrofit. For students weighing applications abroad or a career direction, this is worth reading carefully: climate adaptation, reuse of existing buildings and occupant wellbeing are displacing formal innovation as the spine of jury language. The winner is announced live at the Stirling Prize ceremony in London on 15 October 2026.</p>
+    </div>
+    <a href="https://www.wallpaper.com/architecture/riba-international-prize-2026-shortlist" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Fitting a contemporary art institution inside a walled Beguinage: Francesca Torzo's Z33 is shortlisted for the RIBA International Prize</div>
+  <div class="ni-meta">Sources: <span class="src">Wallpaper* (16 Sept)</span> · <span class="src">World-Architects</span> · <span class="src">RIBA</span></div>
+  <div class="ni-desc">Z33 House for Contemporary Art, Design and Architecture stands in Hasselt, Belgium, designed by Francesca Torzo Architetto, and is embedded within a walled Beguinage enclave. The Beguinage is a building type particular to the Low Countries — semi-religious communities of women housed in small dwellings around inward-facing courtyards and gardens, several of them now World Heritage sites. Per RIBA and Wallpaper*, Torzo's approach uses local materials and traditional craftsmanship so the new work converses with the old walls in the grain of its masonry rather than winning by contrast. For anyone studying infill in historic settings it repays reading alongside the exhibition building type: the large, undisturbed wall surfaces galleries need are geometrically at odds with a block formed of small enclosing dwellings.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ArchDaily essay "Architectural Heterotopias": reading five temporary installations through Foucault, and treating "another world" as something buildable</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (18 Sept, by Susanna Moreira)</span> · <span class="src">exhibitor materials</span></div>
+  <div class="ni-desc">ArchDaily published Susanna Moreira's essay "Architectural Heterotopias: Temporary Installations as Alternative Worlds" on 18 September. It borrows Michel Foucault's concept of heterotopia — tangible, real-world spaces operating by their own internal logic, as distinct from the unreachable utopia — to argue that temporary installations are how architects actually build a worldview and use it to challenge conventional spatial paradigms. Five cases are cited: Room by Tamara Wibowo Architects, on the tension between nature and the built environment; When the Earth Began to Look at Itself by Syn Architects for Desert X, on the nomadic subject; The Waterfall that Went Silent by Umeå School of Architecture in Laponia, Sweden, on technological progress against environmental loss; Vessel by Erazo Pugliese, framing landscape views to sharpen awareness of wind; and Under the Same Sun by Stephanie Deumer, a solar-powered greenhouse where projected live-feed imagery sustains photosynthesis. For students working on thesis or competition installations, it is a ready-made theoretical frame with a case list attached.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The third Biennale dello Stretto opens today in Reggio Calabria: theme "Mutazioni", 18 September to 13 December, across both shores of the Strait of Messina</div>
+  <div class="ni-meta">Sources: <span class="src">Artribune (Sept)</span> · <span class="src">The Plan</span> · <span class="src">Professione Architetto</span> · <span class="src">StrettoWeb</span></div>
+  <div class="ni-desc">The third edition of the Biennale dello Stretto opens on 18 September 2026 and runs to 13 December, created by architect Alfonso Femia and promoted by Fondazione Le città del futuro, under the scientific direction of Alfonso Femia, Annalisa Metta and Salima Naji. The theme is "Mutazioni" (Mutations), framing the city — under combined climatic, digital and social pressure — as a living organism subject to increasingly rapid and misaligned forces. Venues span both shores of the Strait of Messina: the streets of Messina, the military architecture of Campo Calabro, and the National Archaeological Museum of Reggio Calabria, with inaugural days from 18 to 22 September. Research threads include coexistence between species, the consequences of climate change for urban space, the margins between water and city, new forms of dwelling, Mediterranean landscape and gardens, and the transformation of southern Italian territories.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">A 13-storey vertical campus on a former landfill: WOHA's BRAC University serves 20,000 students on passive cooling rather than full air conditioning</div>
+  <div class="ni-meta">Sources: <span class="src">Wallpaper* (16 Sept)</span> · <span class="src">RIBA</span> · <span class="src">Low Carbon Buildings</span></div>
+  <div class="ni-desc">Singapore practice WOHA's BRAC University in Dhaka, Bangladesh, is shortlisted for the RIBA International Prize 2026. The project is a 13-storey vertical campus for around 20,000 students, built on a former landfill site and opening part of its public space to the city. Its central design problem is reducing dependence on mechanical cooling in Bangladesh's hot, humid climate: the answer is passive cooling, natural cross-ventilation and extensive planting. For anyone studying high-density campuses or tropical climate-responsive design, it reads well against WOHA's existing Singapore work — the same tropical high-rise strategy, and the question of how it adjusts in a city with entirely different resources.</div>
+</div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
