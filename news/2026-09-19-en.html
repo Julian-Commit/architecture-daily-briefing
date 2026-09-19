@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-19</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="Frida Escobedo buries MALBA's expansion under Plaza Perú: 3,840 m² doubles the exhibition space, construction from 2027, opening late 2029 or early 2030 — alongside a USD 50m trus…">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 014 · 2026-09-19 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="Frida Escobedo buries MALBA's expansion under Plaza Perú: 3,840 m² doubles the exhibition space, construction from 2027, opening late 2029 or early 2030 — alongside a USD 50m trus…">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-19-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.designboom.com/twitterimages/uploads/2026/09/MALBA-frida-escobedo-extension-announcement-designboom-FB.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 014 · 2026-09-19 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="Frida Escobedo buries MALBA's expansion under Plaza Perú: 3,840 m² doubles the exhibition space, construction from 2027, opening late 2029 or early 2030 — alongside a USD 50m trus…">
+<meta name="twitter:image" content="https://www.designboom.com/twitterimages/uploads/2026/09/MALBA-frida-escobedo-extension-announcement-designboom-FB.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 014 · 2026-09-19 · 陆先生建筑日报 | Architecture Daily","description":"Frida Escobedo buries MALBA's expansion under Plaza Perú: 3,840 m² doubles the exhibition space, construction from 2027, opening late 2029 or early 2030 — alongside a USD 50m trus…","datePublished":"2026-09-19","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-19-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://www.designboom.com/twitterimages/uploads/2026/09/MALBA-frida-escobedo-extension-announcement-designboom-FB.jpg"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 014</div>
+    <div>September 19, 2026 Saturday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-19-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p>Today's threads all answer the same question: which way should a building grow? Frida Escobedo's answer is downward — MALBA's expansion in Buenos Aires tucks 3,840 square metres beneath Plaza Perú without giving up a single square metre of the public square above. Design Museum Gent's answer is to push into the old city: its new DING wing, five storeys of timber clad in 82,000 bricks pressed from the city's own demolition waste, reopens on 3 October. LTL Architects' answer is to start over with a different material — straw boards compressed to roughly 370 kg/m³ that serve at once as structure, insulation and interior finish, with 111 stacked courses left exposed as the wall surface. And the colour guideline released in Shenzhen moves the question to the opposite end of the scale: when construction shifts from new build to existing stock, colour becomes one of the few variables that can still change a city's face at scale. Anna Puigjaner, meanwhile, takes this year's RIBA Charles Jencks Award — her decade-long Kitchenless City research is about the same thing: redistributing space rather than adding it.</p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/MALBA-frida-escobedo-extension-announcement-designboom-FB.jpg" alt="Frida Escobedo Studio 为 MALBA 设计的秘鲁广场地下扩建方案效果图 / Rendering of Frida Escobedo Studio's underground expansion for MALBA beneath Plaza Perú" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">Projects &amp; Design</span>
+    <div class="hl-title">Frida Escobedo buries MALBA's expansion under Plaza Perú: 3,840 m² doubles the exhibition space, construction from 2027, opening late 2029 or early 2030 — alongside a USD 50m trust</div>
+    <div class="hl-meta">Sources: <span class="src">designboom (Sept 18)</span> · <span class="src">The Art Newspaper (Sept 17)</span> · <span class="src">Infobae (Sept 18)</span> · <span class="src">MALBA</span> · <span class="src">Frida Escobedo Studio</span></div>
+    <div class="hl-desc">The Museo de Arte Latinoamericano de Buenos Aires (MALBA) has selected Mexican architect Frida Escobedo to design an expansion the museum has been pursuing for more than a decade. The scheme places all 3,840 m² of new space beneath the adjacent Plaza Perú, doubling the exhibition area of the existing 7,455 m² building while the square above remains in use as public space. The new programme includes temporary exhibition galleries, an auditorium that can operate independently or as part of the visitor circuit, flexible spaces for public programming, workshops and storage, plus a sculpture garden, new entrances, a landscaped courtyard of roughly 600 m², and an open garden leading to a staircase on Salguero Street. According to The Art Newspaper, construction is expected to begin in 2027, with opening targeted for late 2029 or early 2030. The idea dates back to 2011; Buenos Aires approved it in 2012 on the basis of an early scheme by Uruguayan architect Carlos Ott, with a thirty-year window for construction — the present design is being advanced inside that window. Three further announcements came with the design: founder Eduardo Costantini has established a USD 50 million trust (he currently covers an annual operating deficit of USD 3–4 million and says he is prepared to fund construction himself if needed); he has donated the Daros Latinamerica Collection — 1,232 works by 117 artists, mostly from the 1950s to the 2010s — plus 17 works from his personal collection including Frida Kahlo's <em>Diego y yo</em> (1949); and the Costantini family will become a minority on the board, shifting the institution toward a US-style endowment model in order to recruit new donors.</div>
+    <a href="https://www.designboom.com/architecture/frida-escobedo-studio-malba-underground-expansion-museo-arte-latinoamericano-buenos-aires-expansion/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/compressed-agricultural-waste-complete-building-system-new-york-house-ltl-architects-designboom-1200.jpg" alt="All Straw House 外墙的预制茅草雨幕与收分体量 / The prefabricated thatch rainscreen and tapered massing of the All Straw House" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">Materials &amp; Construction</span>
+    <div class="hl-title">LTL Architects completes the All Straw House: straw compressed to about 370 kg/m³ serves as structure, insulation and finish at once, with 111 exposed courses forming the interior wall</div>
+    <div class="hl-meta">Sources: <span class="src">designboom (Sept 15)</span> · <span class="src">Architectural Record (September 2026 issue)</span> · <span class="src">Archinect</span> · <span class="src">MaterialDistrict</span> · <span class="src">LTL Architects</span></div>
+    <div class="hl-desc">The All Straw House stands in New York's Hudson Valley, designed by LTL Architects (principals Paul Lewis, Marc Tsurumaki and David J. Lewis) with Guy Nordenson and Associates as structural engineer, prefabricated over two months at the Princeton University Architecture Lab and assembled on site. The house is built from 16 large prefabricated straw units. The compressed straw board reaches roughly 370 kilograms per cubic metre — more than three times the density of a conventional straw bale — and it is precisely that density that lets a single material carry structure, insulation and interior finish simultaneously, without the separate load-bearing frame and render coat that conventional straw-bale construction requires. Inside, 111 courses of straw are left exposed as the finished surface, with a timber ring beam inserted every 22 courses for lateral stability. The exterior rainscreen is formed of 33 prefabricated thatch panels, six to eight inches thick, each overlapping the one below by 21 inches. The straw boards were manufactured by Durra Panel, fastenings by Beck Fastening, thatching by McGhee + Co. Roof Thatchers; photography by Michael Moran. The prototype was supported by Princeton University's Sustainability of our Planet fund. In the architects' words: "The density of the material, its ability to be compressed and stacked, and its limits in forming the building all become design parameters" — the building's tapered profile is what the corbelling limit of straw and the required roof pitch, taken together, leave behind.</div>
+    <a href="https://www.designboom.com/architecture/compressed-agricultural-waste-complete-building-system-new-york-house-ltl-architects/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://cdn.sanity.io/images/o536pqvs/production/b48fd8efcb8bae6c90e3a447e115c5a1a472191e-3500x2800.jpg?w=1600&amp;auto=format" alt="根特设计博物馆新翼 DING：木结构与根特废料砖立面 / DING, the new wing of Design Museum Gent, in timber with its Gent Waste Brick façade" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">Materials &amp; Construction</span>
+    <div class="hl-title">Design Museum Gent's DING wing is finished and reopens 3 October: 8,600 m², five storeys of timber, and a façade of 82,000 unfired bricks pressed from the city's own demolition waste</div>
+    <div class="hl-meta">Sources: <span class="src">Carmody Groarke</span> · <span class="src">Design Museum Gent</span> · <span class="src">BC Materials (material development)</span> · <span class="src">The Architect's Newspaper (Fall 2026 openings preview)</span> · <span class="src">Dezeen</span> · <span class="src">architectura.be</span></div>
+    <div class="hl-desc">Design Museum Gent reopens on 3 October 2026 with its new wing, DING. The project sits in the historic core of Ghent, a UNESCO World Heritage city, with a total floor area of 8,600 m², designed by London practice Carmody Groarke with ATAMA and RE-ST — the competition-winning scheme was titled "Museum in the Width" — with structural engineering by Ney &amp; Partners, services by Boydens Engineering and acoustics by Daidalos Peutz, for clients Sogent and the museum. The new wing is five storeys and built principally in timber, part of an effort to make the museum fossil-free and highly flexible. The technical interest is the façade: the Gent Waste Brick was developed by Carmody Groarke with materials designers BC Materials and Local Works Studio, and contains 63% recycled aggregate from the city of Ghent itself — mainly crushed concrete, masonry and glass from demolished buildings. The bricks are never kiln-fired; they are lime-bound and cure by carbonation at ambient conditions. The product was certified in September 2022; between February and July 2024, 82,000 blocks were produced over 104 working days at the Arsenaal site less than 5 kilometres from the museum, at 1,200–1,320 a day. BC Materials' comparison: a Gent Waste Brick carries roughly one-third the embodied carbon of a typical Belgian fired clay brick. The project is worth reading against this issue's other lead, the All Straw House — in neither case did the architects select from an existing catalogue; they made the material first and derived the construction from it.</div>
+    <a href="https://carmodygroarke.com/work/design-museum-gent" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.e-flux.com/test/ecef638d-a92c-47ac-b04e-2e0fc6625270?width=1200&amp;height=630" alt="MAIO 在罗马尼亚蒂米什瓦拉的装置《Nursery: 1306 Plants》 / MAIO's installation Nursery: 1306 Plants for Timisoara, Romania" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">Academia &amp; Exhibitions</span>
+    <div class="hl-title">Anna Puigjaner wins the 2026 RIBA Charles Jencks Award: Professor of Architecture and Care at ETH Zurich, receiving the prize and lecturing at the AA on 9 October</div>
+    <div class="hl-meta">Sources: <span class="src">e-flux (September)</span> · <span class="src">Archinect / Bustler</span> · <span class="src">World-Architects</span> · <span class="src">RIBA</span> · <span class="src">The Cosmic House</span></div>
+    <div class="hl-desc">The Royal Institute of British Architects has named architect and researcher Anna Puigjaner the 2026 recipient of the RIBA Charles Jencks Award. The prize goes annually to an individual or practice that has recently made a major international contribution to both the theory and the practice of architecture, and is funded by an endowment Charles Jencks established with his 1992 Nara Gold Medal prize money. Past honorees include Rem Koolhaas, Zaha Hadid, Steven Holl and Herzog &amp; de Meuron, along with more recent winners Dogma, Forensic Architecture and DAAR. Puigjaner co-founded the Barcelona practice MAIO and has held the chair of Architecture and Care in the Department of Architecture at ETH Zurich since January 2023 — a cross-disciplinary professorship endowed by the Stavros Niarchos Foundation as part of the ETH Rehab Initiative. RIBA says her work with MAIO "has reframed the question of how to live together collectively," repositioning housing as a matter of collective infrastructure and social care. The jury comprised RIBA President Chris Williamson, The Cosmic House founder Lily Jencks, Dr Adrian Lahoud, Edwin Heathcote and Samaneh Moafi, choosing from four nominees; the others were Arno Brandlhuber, Fernanda Canales and Mabel Wilson. The award presentation and lecture take place on 9 October 2026, 6–9pm, at the Architectural Association School of Architecture, 19 Lansdowne Walk, London, followed by an interview with Thomas Aquilina of New Architecture Writers.</div>
+    <a href="https://www.e-flux.com/announcements/6787948/anna-puigjaner-to-receive-riba-charles-jencks-award-2026" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://mmx.prnasia.com/media/MS1990753/20260917082004EDT_image_1.jpg?id=OA2955488&amp;p=medium600" alt="第四届中国建筑文化论坛现场发布《既有建筑外观色彩更新设计导则》 / Release of the Design Guidelines for Exterior Colour Renewal of Existing Buildings at the 4th China Architectural Culture Forum" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">Urbanism &amp; Planning</span>
+    <div class="hl-title">China releases its first colour standard for urban renewal: the <em>Design Guidelines for Exterior Colour Renewal of Existing Buildings</em>, launched in Shenzhen on 17 September at the 4th China Architectural Culture Forum</div>
+    <div class="hl-meta">Sources: <span class="src">PR Newswire Asia (Sept 17)</span> · <span class="src">Nippon Paint China</span> · <span class="src">ifeng Shenzhen</span> · <span class="src">China Architectural Culture Centre (organiser)</span></div>
+    <div class="hl-desc">On 17 September 2026 the 4th China Architectural Culture Forum — themed "Deepening the Substance of Renewal, Shaping Urban Character" and hosted by the China Architectural Culture Centre — convened in Shenzhen, where the <em>Design Guidelines for Exterior Colour Renewal of Existing Buildings</em> were formally released. According to the lead editors, this is China's first group standard devoted specifically to colour design within urban renewal. It was co-edited by Nippon Paint China and the China Academy of Building Research, initiated in 2024 by the China Architectural Culture Centre, the China Academy of Building Research and Nippon Paint, and developed over roughly three years with the Academy of Arts &amp; Design at Tsinghua University among other contributors. The logic of the document is to move colour from "a decorative choice" to "a checkable design variable": it weighs the surrounding natural environment, regional culture, building function and material performance, sets out differentiated colour strategies for residential, commercial, industrial and educational building types, and establishes quantitative criteria for colour combination, brightness and saturation so that designers, contractors and administrators share a single reference. The problem it names directly is the sameness of Chinese cities — qiān chéng yī miàn, "a thousand cities with one face." For architecture and planning students the significance is not the colour chips: once renewal of existing stock becomes the main arena, and most existing buildings cannot have their structure or massing touched, exterior colour is one of the few variables still open to large-scale, low-cost redesign — and until now it had almost no citable technical basis.</div>
+    <a href="https://www.prnasia.com/story/548393-1.shtml" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/MALBA-frida-escobedo-extension-announcement-designboom-FB.jpg" alt="下沉庭院把天光与空气引入 MALBA 的地下展厅 / A sunken courtyard bringing daylight and air into MALBA's underground galleries" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">In Depth</span>
+    <div class="ft-title">Putting 3,840 m² under a public square without taking a metre of it: Escobedo's MALBA scheme is less an addition than a re-sorting of the whole museum</div>
+    <div class="ft-meta">Cross-checked: <span class="src">designboom (Sept 18)</span> · <span class="src">The Art Newspaper (Sept 17)</span> · <span class="src">Infobae (Sept 18)</span> · <span class="src">Cadena Láser</span> · <span class="src">MALBA</span> · <span class="src">Frida Escobedo Studio</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: replace the word "expansion" with "continuity."</strong> Urban museums usually grow in one of two ways — add storeys, or build a neighbouring block and connect it with a bridge. Both pay the same price: a piece of ground. MALBA's existing building is 7,455 m², sitting in Buenos Aires's Palermo district next to Plaza Perú; a conventional expansion would have consumed that square. Escobedo's scheme goes under instead: all 3,840 m² of new floor area sits beneath the plaza, and the plaza above remains a working public square. designboom summarises the scheme with a single word — continuity — and it is worth being precise about what is continuous. Not the building mass, but the urban ground. That distinction matters for students: going under and lifting up both avoid occupying a site, but they are opposite urban gestures. The first surrenders the building's external image and buys, in exchange, a piece of ground whose ownership does not change.</p>
+      <p><strong>Spatial strategy: not a longer circuit, but the end of the single circuit.</strong> The new programme covers temporary galleries, an auditorium, flexible spaces for public programming, workshops and storage, plus a sculpture garden, new entrances, a landscaped courtyard of roughly 600 m² and an open garden leading down to a staircase on Salguero Street. The decisive item is how the auditorium is defined: it can operate independently or as part of the visitor circuit. This, designboom writes, gives the expansion "a second scale beyond its added square footage, stretching Malba's activity across more hours and allowing several parts of the institution to function at once." A conventional museum is a line — ticket, entrance, galleries, exit — and when it closes, everything stops. What Escobedo offers is a plan that can be split into several independent loops: the galleries can be shut while the auditorium hosts an evening lecture; the sculpture garden can stay open to the street while a workshop is in session. That is why designboom calls it "a reorganization of Malba as much as an addition." The 600 m² sunken landscaped courtyard and the new entrances handle the other hard problem: orientation and daylight are what underground space loses first, and a planted opening with sky in it works better than any wayfinding system.</p>
+      <p><strong>Structure and technique: we know the question, not yet the answer.</strong> The project is in design; neither the museum nor any of the published reports has released the structural system, excavation and dewatering approach, waterproofing detail or services strategy, and this paper will not speculate. But the brief is already legible. Excavating nearly 4,000 m² beneath a city square that stays open to the public — without interrupting its use, and without disturbing mature trees or the existing museum's foundations — puts far heavier demands on shoring and construction sequencing than an above-ground building of the same area. Add the need to bring daylight into underground galleries and to hold the temperature, humidity and vibration tolerances that artworks require, and those three items — shoring, daylighting, environmental control — are typically where the cost and the programme of such a project are decided. The Art Newspaper gives the milestones: construction from 2027, opening late 2029 or early 2030, roughly three years on site.</p>
+      <p><strong>Background and consequence: a fourteen-year-old permit, and a USD 50m trust.</strong> The expansion was first proposed in 2011 at roughly 3,840 m² — the same figure announced now. Buenos Aires approved it in 2012 on the basis of an early scheme by Uruguayan architect Carlos Ott, granting a thirty-year construction window. Escobedo therefore did not inherit a blank sheet but a permit with a legally fixed envelope; her task was to reorganise the contents within a volume already agreed. The governance changes announced alongside the design deserve equal attention. Founder Eduardo Costantini has set up a USD 50 million trust (he currently covers an annual operating deficit of USD 3–4 million); he has donated the Daros Latinamerica Collection — 1,232 works by 117 artists — plus 17 works from his own holdings including Frida Kahlo's <em>Diego y yo</em> (1949); and the Costantini family will step back to a minority position on the board, moving toward a US-style endowment model. Costantini was direct about why this scheme won: "One of the things we liked about her project was how it brings the two buildings together." Read together, what was announced this week is less an expansion design than the full choreography of a privately founded museum converting itself into a long-term public institution — the architecture is one movement in it. For Escobedo personally, this is the second international museum commission in two years, after the Metropolitan Museum's Tang Wing, which broke ground on 15 September (reported in our No. 012).</p>
+    </div>
+    <a href="https://www.theartnewspaper.com/2026/09/17/malba-museum-buenos-aires-frida-escobedo-architect-expansion" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">In Seoul's Yeonhui-dong, a 1968 single-storey house was kept because its ceilings were higher than the neighbours': a.co.lab's Saekdong House, 126 m²</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (Sept 18)</span> · <span class="src">a.co.lab</span> · <span class="src">Choi Yongjoon and Kyung Roh (photography)</span></div>
+  <div class="ni-desc">Saekdong House is in Yeonhui-dong, Seoul, designed by a.co.lab (lead architects Isak Chung and Jinpyo Hong, lead team Jihyeong Lee, design team Juyoun Lee), 126 m², completed in 2026. The name comes from <em>saekdong</em>, the traditional Korean pattern of coloured stripes. The subject of the renovation is a single-storey residence built in 1968, and what made it worth keeping is specific: both its ground-floor level and its ceiling heights are noticeably greater than those of neighbouring houses of the same period. In old-house renovation that is a scarce asset, because once ceiling height is demolished it cannot be recovered. The design therefore chose retention over replacement, extending within the existing spatial dimensions to meet contemporary living requirements. Exposed timber beams run through the interior, with concrete, glass and brick as secondary materials. For students working on adaptive reuse, the reading is this: first inventory which conditions on the site are non-renewable — ceiling height, orientation, mature trees, structural span — and only then decide where the renovation's boundary falls.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">HCCH Studio builds a deliberately "low-tech" reception hall on Shanghai's Yangpu waterfront: 300 m², for an embodied-intelligence company</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (Sept 19)</span> · <span class="src">HCCH Studio</span> · <span class="src">Qingyan Zhu (photography)</span></div>
+  <div class="ni-desc">Bothaus Coffee – Sudo Developer Center occupies the lower floor of a tower on Shanghai's Yangpu waterfront, serving as the reception and exhibition space for Sudo Technology's offices and robotics laboratory. It covers 300 m² and was completed in 2026. HCCH Studio led the design, with a team of Hao Chen, Chenchen Hu, Qisen Yang, Puchun Zhang and Yazhou Ding. The client brief asked for a "low-tech feel" — the reasoning being that the deeper technology embeds itself in everyday life, the less conspicuous it ought to be. Materials are glass, concrete, brick and wood. That a company working on embodied intelligence chose to present itself through a coffee shop with no visible trace of technology says more about how tech firms now regard the sign of "futurity" than any parametric façade could.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">A climate visitor centre in Oerlinghausen, Germany: 681 m², with DBCO using wood as structure and as finish, inside and out</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (Sept 19)</span> · <span class="src">DBCO</span> · <span class="src">Patrick Johannsen (photography)</span></div>
+  <div class="ni-desc">The Klimaerlebniswelt (Climate Experience World) visitor centre sits in Oerlinghausen, North Rhine-Westphalia, designed by DBCO (leads Martin Keßler and Gesa Robbert), 681 m², completed in 2024. It is the entry building for a public climate-education attraction and contains exhibition and foyer space. The approach is direct: wood runs through interior and exterior alike, acting as both structure and finish with no applied decorative layer. A building whose subject is climate makes its material choice part of the exhibition content — and small public buildings of this kind often make better teaching cases than large cultural projects, precisely because every construction junction is still visible.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Common Days, a three-storey gathering space in Maros, Indonesia: 269 m², perforated terracotta screens filter the morning sun and draw in hill breezes, with andesite laid in squares inside</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (Sept 19)</span> · <span class="src">INS Studio</span></div>
+  <div class="ni-desc">Common Days is located in Maros, South Sulawesi, on the outskirts of Makassar, designed by INS Studio under principal Wisnu Wardhana, with a built area of 269 m². Each level has a job: the ground floor is a coffee shop acting as the social hub; the second floor is workspace with meeting rooms and an outdoor terrace; the roof garden is left flexible for exhibitions and community gatherings. The materials are all locally sourced — andesite stone laid in a distinctive square pattern dominates the interiors, a perforated terracotta breeze-block screen forms the exterior envelope, and locally manufactured terracotta tiles finish the second-floor terrace. The perforated skin solves a specific climatic problem: filtering the intense morning sun on the front elevation while letting natural ventilation from the surrounding hills pass straight through. The third storey serves another purpose, lifting sightlines clear of the surroundings so that Bukit Cenrana, the local landmark, reads whole. A moss wall cultivated by local gardeners lines the workspace.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6aa3/a3d0/9637/5601/88df/3d0f/large_jpg/asmara-heritage-project-documenting-a-colonial-project-that-became-a-national-symbol_4.jpg?1789109216" alt="阿斯马拉街景：意大利殖民时期建成的现代主义建筑群 / A street in Asmara lined with modernist buildings from the Italian colonial period" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">In Depth</span>
+    <div class="ft-title">4,300 buildings, 481 hectares, a 1,300-page nomination: how Asmara turned a colonial city into the modernist settlement inscribed on the World Heritage List in its entirety</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (feature, Sept 18)</span> · <span class="src">UNESCO World Heritage Centre</span> · <span class="src">RIBA Journal</span> · <span class="src">EEAS (European External Action Service)</span> · <span class="src">Shabait, Eritrean Ministry of Information</span> · <span class="src">Dawan Africa</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: a modernist city inscribed whole.</strong> On 8 July 2017, at the 41st session of the World Heritage Committee in Poland, Asmara — the capital of Eritrea — was inscribed on the World Heritage List as "Asmara: A Modernist African City." The inscription carried two firsts: it was the first modernist urban site anywhere to be listed in its entirety, and Africa's first explicitly modernist World Heritage Site. UNESCO's citation describes it as an exceptional example of early modernist urbanism at the beginning of the twentieth century and of its adaptation to an African context. Note where the emphasis falls: what is being valued is not a handful of celebrated buildings but an entire planning logic and its mutation in a foreign setting — which is exactly why the case matters to architecture and planning students.</p>
+      <p><strong>Spatial strategy: drawing a heritage boundary around a whole city.</strong> The inscribed property covers 481 hectares, with a buffer zone of 1,203 hectares — 1,684 hectares in total — encompassing the historic urban core of the capital. Within it are roughly 400 modernist buildings from the Italian colonial period (1893–1941). But the figure that conveys the labour involved is a different one: the complete three-volume UNESCO submission ran to 1,300 pages, accompanied by a survey of more than 4,300 buildings and public spaces and over 80,000 scanned archival documents and drawings. Set those numbers side by side and the argument becomes clear — 400 is the roll of masterpieces; 4,300 is the city. Heritage definition here is not a matter of selecting monuments but of conceding that the ordinary fabric of a city carries value as a whole. Asmara survived intact enough to be listed this way for an unromantic reason: a long period of relative isolation insulated it from the redevelopment that swept most cities in the second half of the twentieth century.</p>
+      <p><strong>Form and type: Rationalism, Futurism, Art Deco — and a petrol station.</strong> The buildings cited in ArchDaily's feature include St Mary's Orthodox Cathedral, Our Lady of the Rosary Catholic Cathedral and the Fiat Tagliero building. Stylistically, Art Deco, Futurism and Rationalism all appear. Fiat Tagliero is the most-quoted case: a 1938 petrol station whose two wings cantilever more than thirty metres each without columns, in the shape of an aircraft. It recurs in architectural history not only for its silhouette but because landing the machine aesthetic of Italian Futurism directly on an everyday service facility was rare in Italy itself. That is Asmara's characteristic condition: modernism here is not the language of monuments but the language of petrol stations, cinemas, markets and apartment blocks. The other side must be stated plainly — this urban fabric was produced under colonial rule, and the title of ArchDaily's feature names the tension outright: a colonial project that became a national symbol. In Asmara the value of the heritage and the politics that produced it cannot be separated.</p>
+      <p><strong>Conservation machinery, and what remains uncertain.</strong> Management is coordinated between the Central Region Administration and the Asmara Heritage Project, covering building permits, conservation approvals, maintenance standards and heritage planning. The planning instruments — an Urban Conservation Master Plan and accompanying technical regulations — set requirements for building heights, materials, façades and restoration practice. Supported intervention clusters, backed by UNESCO and the European Union, include completing the Conservation Master Plan, drafting planning norms and regulations, an advanced professional training course in conservation, training for artisans and skilled workers, and public engagement and awareness activities. Those last two matter more than they sound: for a city holding 4,300 historic buildings, whether it can keep supplying craftspeople who can repair render, steel windows and terrazzo will determine conservation outcomes more than any written code. For students at Syracuse Architecture, Asmara is worth reading as a control case. When modernist heritage conservation is discussed, the default scenario is the restoration of a single celebrated building in Europe or North America. Asmara poses a different problem: how to maintain a city that is itself the monument, under sharply limited resources.</p>
+    </div>
+    <a href="https://www.archdaily.com/1184936/asmara-heritage-project-documenting-a-colonial-project-that-became-eritreas-national-symbol" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Google reveals a new design for the Thompson Center's 17-storey atrium in Chicago: part of the original mosaic stays, Sanford Biggers will make a 30-foot glazed terracotta sculpture, and opening slips to 2028</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect's Newspaper (Sept 16)</span> · <span class="src">Block Club Chicago (Sept 16)</span> · <span class="src">WBEZ / Chicago Sun-Times (Sept 16)</span> · <span class="src">Chicago YIMBY</span> · <span class="src">Google blog</span></div>
+  <div class="ni-desc">On 16 September 2026 Google released a new set of interior and exterior renderings for the redevelopment of Chicago's James R. Thompson Center. The block-wide, 17-storey building was designed by Helmut Jahn, and Jahn's firm is carrying out the redevelopment. The new scheme enlarges the central opening at the base of the 17-storey atrium and inserts a cascading staircase combined with terraced seating and retail. The most notable change against renderings released two years ago is that a portion of the original mosaic is now retained, where it had previously been shown removed. Announced at the same time was an art commission: Sanford Biggers will create a 30-foot outdoor sculpture titled <em>Vector</em>, built from glazed terracotta panels patterned after nineteenth-century quilts, with the patterns researched from the collections of the Illinois State Museum and the Chicago History Museum. Google also confirmed that the building will no longer open in late 2027, and will instead open to all in 2028.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Park(ing) Day Toronto runs 18–20 September: more than 35 parking spaces become temporary parks, coordinated by Dubbeldam, with grants of up to CAD 500</div>
+  <div class="ni-meta">Sources: <span class="src">Canadian Architect</span> · <span class="src">Azure Magazine</span> · <span class="src">Toronto Society of Architects</span> · <span class="src">Dezeen Events Guide</span> · <span class="src">parkingdaytoronto.ca</span></div>
+  <div class="ni-desc">Park(ing) Day is a global participatory public art project held on the third weekend of September, in which people temporarily convert on-street, boulevard or lot parking spaces into tiny parks and places for art, play and activism. The 2026 Toronto edition runs 18–20 September and invites architects, landscape architects, designers, artists, students, community groups and individuals to take part. Park(ing) Day Toronto has been organised and coordinated by Dubbeldam Architecture + Design since the practice launched it locally in 2022, and has since grown to more than 35 activations across Toronto and the GTA; Dubbeldam has run a grants programme since 2024 offering up to CAD 500 for eligible activations. The premise takes one sentence: urban public space belongs to people, not by default to cars. For students it is one of very few exercises that needs no permit and no budget, and completes a full design–build–occupy–dismantle cycle in a single weekend.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The European Prize for Urban Public Space marks 25 years with its US premiere in New York: CCCB and CCNY's Spitzer School organise the show around ten themes</div>
+  <div class="ni-meta">Sources: <span class="src">Archinect (CCNY release)</span> · <span class="src">Dezeen Events Guide</span> · <span class="src">CCCB</span> · <span class="src">City College of New York</span></div>
+  <div class="ni-desc">The exhibition "Design Matters: In Favor of Urban Public Space" is presented by the Centre de Cultura Contemporània de Barcelona (CCCB) together with the Spitzer School of Architecture at the City College of New York, marking the twenty-fifth anniversary of the European Prize for Urban Public Space; the US premiere opened on 10 September 2026. The prize has been organised biennially by the CCCB since 2000 and platforms projects that create, transform and recover public space in European cities. The exhibition documents projects across the prize's twenty-five-year history through ten distinct themes, spanning the smallest to the largest scales of intervention, and is accompanied by a series of public events in which practitioners, teachers and thinkers discuss the pressures on urban environments. The CCCB has separately announced that entries for the 13th edition of the prize are open from 10 December to 26 February. For students in North America this is a rare chance to see the full spectrum of European public-space practice assembled locally.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Three homes in Durán, Ecuador, built as neighbourhood infrastructure: La Colmena gives its 335 m² ground floor back to the street</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (Sept 18)</span> · <span class="src">Natura Futura Arquitectura</span> · <span class="src">Ancestra</span> · <span class="src">JAG Studio (photography)</span></div>
+  <div class="ni-desc">La Colmena ("the hive") is in Durán, a satellite city of Guayaquil, Ecuador, designed by Ancestra with Natura Futura, 335 m², completed in 2026. A retired couple bought a deteriorated property and converted it into three residential units. The point of the project is not inside the dwellings: the neighbourhood has long been marked by combined social and urban decline, and rather than sealing the housing off for self-protection, the design makes the ground floor a flexible space open to community use — a strategy the architects call shared neighbourhood infrastructure. The primary structure and material is concrete, supported by bioclimatic strategies suited to the hot-humid climate. In an urban context where walls and gates are the default answer to safety, trading the ground floor for natural surveillance from the street is a judgement that takes both nerve and specific design to support.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.architecturalrecord.com/ext/resources/Issues/2026/09-September/2609-All-Straw-House-Hudson-Valley-New-York-F.jpg?height=635&amp;t=1789471185&amp;width=1200" alt="哈德逊河谷的 All Straw House：茅草雨幕包裹的收分体量 / The All Straw House in the Hudson Valley, its tapered volume wrapped in a thatch rainscreen" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">In Depth</span>
+    <div class="ft-title">When one material is structure, insulation and wall at once: LTL compresses straw to 370 kg/m³, and the material decides the shape of the house</div>
+    <div class="ft-meta">Cross-checked: <span class="src">designboom (Sept 15)</span> · <span class="src">Architectural Record (September 2026 issue)</span> · <span class="src">Archinect</span> · <span class="src">MaterialDistrict</span> · <span class="src">LTL Architects</span> · <span class="src">Guy Nordenson and Associates (structure)</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: not building with straw, but building <em>in</em> straw — a tectonics.</strong> Straw-bale construction has more than a century of history in North America, but it has stayed in the position of infill: a timber frame carries the load, bales are packed into it, and render protects the outside. What LTL Architects (principals Paul Lewis, Marc Tsurumaki and David J. Lewis) set out to test with the All Straw House in New York's Hudson Valley is a different proposition — if straw is compressed hard enough, can it stop being infill and become the structure itself? The answer lands on a number: the compressed straw board used here reaches roughly 370 kilograms per cubic metre, more than three times the density of a conventional bale. At that density the material acquires compressive capacity, thermal performance and a surface that can be left exposed — collapsing frame, insulation layer and interior finish into a single layer. Archinect describes the direction as a new straw tectonics, and the phrase is accurate: the shift happens at the level of construction logic, not material substitution.</p>
+      <p><strong>Form: the geometry was not drawn, it was calculated from the material.</strong> The house is assembled from 16 large prefabricated straw units, produced over two months at the Princeton University Architecture Lab and trucked to site. Inside, 111 courses of straw are left exposed as the finished surface, with a timber ring beam inserted every 22 courses to provide lateral stability — the only non-straw structural intervention in the building, its position and spacing set directly by the course count. The tapered, inward-stepping massing is not a stylistic choice: straw corbelling has a limit on how far each course can project inward, and the roof must reach a certain pitch to shed water. Squeeze those two constraints together and one shape remains. In the architects' own words: "The density of the material, its ability to be compressed and stacked, and its limits in forming the building all become design parameters." That sentence is worth copying out. It describes a route to form that runs opposite to parametric modelling — constraints first, form afterwards.</p>
+      <p><strong>Construction: straw fears water, so 33 thatch panels hang outside it.</strong> Moisture is the weak point of high-density straw, so the rain barrier is handled as a separate system: 33 prefabricated thatch panels, six to eight inches thick, each overlapping the one below by 21 inches, stacking into a tightly packed reed surface. This is a textbook rainscreen — the outer layer sheds water without sealing, allowing the cavity behind it to ventilate and dry, which decouples waterproofing from insulation. The division of labour is worth recording too: straw boards by Durra Panel, fastenings by Beck Fastening, thatching by McGhee + Co. Roof Thatchers, structure by Guy Nordenson and Associates, photography by Michael Moran. That a prototype this small required four specialist suppliers plus a top-tier structural office is itself the finding: the cost of such experiments lies not in the material but in the fact that, absent a mature supply chain, every junction has to be solved from scratch.</p>
+      <p><strong>Background and consequence: a prototype house answering an industry-scale question.</strong> The project was supported by Princeton University's Sustainability of our Planet fund and is explicitly a prototype, not a market house. Its significance is that it pushes bio-based materials — a direction discussed at length in recent years — to the point where a structural engineer will sign off on them. Straw sequesters carbon as it grows, so the carbon case for replacing mineral- or fossil-based assemblies is straightforward; the obstacle was never the carbon arithmetic but load capacity, fire and moisture. The All Straw House does not claim all three are solved. What it does is advance two of them — structure and moisture — and leave behind reusable figures: 370 kg/m³, 111 courses, a ring beam every 22 courses, 33 thatch panels, 21-inch laps. <em>Architectural Record</em> called it, in its September 2026 issue, a new way of building. That is heavy praise for a small house; but given that it answers both how it is built and why it has this shape, the praise is not excessive.</p>
+    </div>
+    <a href="https://www.architecturalrecord.com/articles/18372-in-new-yorks-hudson-valley-a-diminutive-shelter-made-of-straw-offers-a-new-way-of-building" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Read the Gent Waste Brick as an industrial ledger: two permanent workers, 104 working days, 82,000 blocks, 1,200–1,320 a day</div>
+  <div class="ni-meta">Sources: <span class="src">BC Materials (producer)</span> · <span class="src">Carmody Groarke</span> · <span class="src">Dezeen</span> · <span class="src">Fast Company</span> · <span class="src">Archinect</span></div>
+  <div class="ni-desc">This issue's lead story covers what the Gent Waste Brick is made of; set out here is how it was produced, because that is what decides whether an experimental material can actually clad an 8,600 m² building. Production was sited at the Arsenaal, a former railway facility less than 5 kilometres from the museum — not for symbolism but to hold transport emissions down. Between February and July 2024, 82,000 blocks were made over 104 working days at 1,200–1,320 a day, by a crew of just two permanent workers plus rotating support. The process is mixing, pressing, setting and curing, using hydraulic presses and conveyor systems, all electrically driven. Not firing the bricks is the decisive carbon move: lime carbonates and binds at ambient conditions, cutting out the single most energy-intensive step in fired brick, and the result carries roughly one-third the embodied carbon of a standard Belgian clay brick. Community brick-making workshops ran alongside production. The figures give students a comparable scale: two people, five months, eighty thousand bricks — that is what "circular recycled material" looks like on a construction site when you write it into a design statement.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ArchDaily feature: when architects stop selecting materials and start producing them — Material Cultures' hemp panels, BC architects' compressed earth blocks, Studio Ossidiana's shell terrazzo</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (feature, Aug 25)</span> · <span class="src">Material Cultures</span> · <span class="src">BC architects &amp; materials</span> · <span class="src">Studio Ossidiana</span></div>
+  <div class="ni-desc">Published on 25 August, this ArchDaily feature is the theoretical background to two of this issue's lead stories and is worth recording here. It surveys practices that have folded material research, processing, fabrication and construction into the design workflow. Material Cultures develops bio-based materials from hemp it grows itself: at Flat House on Margent Farm in Cambridgeshire, hemp cultivated across 20 acres became prefabricated panels and cladding, the first use of the practice's hemp-fibre product. BC architects, with its BC materials arm, turns waste resources into building components; Regional House in Edegem used compressed-earth blocks from local clay together with hempcrete insulation, with 19,000 blocks produced during a three-week workshop by more than 150 volunteers. Studio Ossidiana adjusts the composition of concrete — pigments, stones and aggregates — as at Art Pavilion M in Almere, whose Surf and Turf terrazzo incorporates local shells and horticultural by-products. The conclusion is that these architects no longer specify pre-manufactured materials but "source resources, develop mixtures, test components, and organize fabrication." Note that BC materials is also the developer of the Gent Waste Brick in this issue's lead — not a coincidence, but the same people on the same path.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ArchDaily feature: architectural fabrics are turning the envelope from a weather barrier into an adjustable system</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (feature, Sept 18)</span></div>
+  <div class="ni-desc">ArchDaily published a feature on 18 September surveying the expanding role of architectural fabrics and technical textiles in the building envelope. Conventionally the envelope is understood as a static interface; tensile membranes, coated fabrics and mesh textiles — being extremely light, capable of long spans, and translucent and adjustable — are letting the envelope handle shading, air movement, daylight control and structural form at the same time. The value of such a survey is not in the specific products but in the selection logic it suggests: when a single material can merge several construction layers, what is really saved is not cost but the number of junctions and trade sequences — which points at the same thing as this issue's lead story, where one material serves as structure, insulation and finish in the All Straw House.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">One more figure from the All Straw House: 16 prefabricated units, two months in the lab — keeping the uncertainty in the workshop rather than on site</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (Sept 15)</span> · <span class="src">Archinect</span> · <span class="src">MaterialDistrict</span> · <span class="src">LTL Architects</span></div>
+  <div class="ni-desc">This issue's lead story and in-depth piece cover the material logic of the All Straw House; here is the organisational decision that is easy to skip past. The entire house was broken into 16 large prefabricated straw units, produced over two months at the Princeton University Architecture Lab before being trucked to the Hudson Valley for assembly. For a material with no mature code and no crew that has handled it before, that decision is the critical one: compaction density, alignment between courses, the seating of ring beams — variables like these are heavily exposed to weather and to crew experience if resolved outdoors on a live site. Moved into a lab, they sit inside a controlled environment, and the site is left with lifting and connection only. Students working on material-experiment topics routinely underestimate this: whether a new material reaches a building usually depends less on its performance curve than on whether a matching prefabrication and assembly process can be designed for it.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.e-flux.com/test/ecef638d-a92c-47ac-b04e-2e0fc6625270?width=1200&amp;height=630" alt="MAIO 作品《Nursery: 1306 Plants》，摄影 Laurian Ghinițoiu / MAIO's Nursery: 1306 Plants, photographed by Laurian Ghinițoiu" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">In Depth</span>
+    <div class="ft-title">From the Kitchenless City to a chair in Architecture and Care at ETH: Puigjaner's Jencks Award signals that housing research has changed its question</div>
+    <div class="ft-meta">Cross-checked: <span class="src">e-flux (September)</span> · <span class="src">Archinect / Bustler</span> · <span class="src">World-Architects</span> · <span class="src">RIBA</span> · <span class="src">ETH Zurich Department of Architecture</span> · <span class="src">Harvard GSD Wheelwright Prize (2016)</span></div>
+    <div class="ft-desc">
+      <p><strong>The prize: given only to those whose theory and practice both count.</strong> The RIBA Charles Jencks Award states its criterion precisely — a major recent international contribution to both the theory and the practice of architecture. That "both" is the operative word: neither pure theorists nor pure practitioners qualify. The endowment comes from the prize money Charles Jencks received with the 1992 Nara Gold Medal. Past honorees include Rem Koolhaas, Zaha Hadid, Steven Holl and Herzog &amp; de Meuron, and more recently Dogma, Forensic Architecture and DAAR. Read those recent years in sequence and a tendency is clear: the award's centre of gravity has moved from individuals who advanced the discipline through formal language toward collectives and scholars who redefine what the discipline takes as its object. Puigjaner belongs to the second line. This year's jury comprised RIBA President Chris Williamson, The Cosmic House founder Lily Jencks, Dr Adrian Lahoud, Edwin Heathcote and Samaneh Moafi; the three other nominees were Arno Brandlhuber, Fernanda Canales and Mabel Wilson.</p>
+      <p><strong>The research: from one kitchen to the economic structure of the dwelling.</strong> Puigjaner became widely known through the 2016 Wheelwright Prize at Harvard GSD — a USD 100,000 travelling research grant for an early-career architect — awarded for "Kitchenless City: Architectural Systems for Social Welfare." The entry point is tiny: why does the standard plan of the modern dwelling require a private kitchen in every unit? Following that question she spent two years studying collective housing models in China, Korea, India, Russia, Sweden and Brazil, starting from the historic type of the housing block with a collective kitchen and its associated dining rooms, lounges and service areas. The force of this line of work is that it converts an apparently technical question of plan configuration back into a question of economics and gendered labour: a private kitchen means domestic work is atomised inside each unit and cannot be socialised — and statistically that work falls mainly to women. Which is to say the housing plan is not neutral.</p>
+      <p><strong>From research to a chair: care as a category in architecture.</strong> In January 2023 Puigjaner took up the professorship of Architecture and Care in the Department of Architecture at ETH Zurich, a cross-disciplinary chair endowed by the Stavros Niarchos Foundation as part of the ETH Rehab Initiative. The same year she launched the Care XYZ project within the department, investigating the spatiality of shared kinships and attempting to reimagine care systems through both the commons and the institutional. The disciplinary significance of this step exceeds the personal: when a leading technical university establishes an architecture chair named for care, the subject has moved out of critical discourse and into the teaching establishment. RIBA's citation — that her work with MAIO "has reframed the question of how to live together collectively," repositioning housing as collective infrastructure and social care — is a summary of exactly this trajectory.</p>
+      <p><strong>What it offers students, and where to catch her.</strong> MAIO is the Barcelona practice Puigjaner co-founded, and its built work and its research are two sides of one thing: projects such as 110 Rooms make "rooms of equal size with no assigned function" a planning principle, letting residents decide which room is a bedroom and which a living room. That is not a stylistic preference; it is the research landing directly in plan. For students working on housing, the method is transferable: start by asking where a taken-for-granted planning convention came from and who bears its cost, then use the plan to revise it — rather than starting from massing studies. The award presentation and lecture take place on 9 October 2026, 6–9pm, at the Architectural Association, 19 Lansdowne Walk, London, followed by an interview led by Thomas Aquilina of New Architecture Writers; the AA generally streams or later posts its public lectures, so it can be followed from abroad.</p>
+    </div>
+    <a href="https://www.e-flux.com/announcements/6787948/anna-puigjaner-to-receive-riba-charles-jencks-award-2026" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">North American architecture schools hit the dense stretch of the autumn lecture season: Harvard GSD runs three in a week from 22 September, with Neri&amp;Hu and Kashef Chowdhury on the list and Sylvia Lavin closing on 23 November</div>
+  <div class="ni-meta">Sources: <span class="src">Harvard GSD (announced August)</span> · <span class="src">The Architect's Newspaper</span> · <span class="src">Archinect</span> · <span class="src">e-flux</span></div>
+  <div class="ni-desc">Autumn 2026 public lecture series are now under way across US architecture schools, and the next fortnight is the first dense stretch. At Harvard's Graduate School of Design: landscape architect Gary Hilderbrand speaks on 22 September on "Writing on the Surface of the Earth" as the Frederick Law Olmsted Lecture; Lyndon Neri and Rossana Hu of Neri&amp;Hu present "Liminal Ground" on 24 September; and Bangladeshi architect Kashef Chowdhury gives "Meditations in Entropy" on 28 September as an Aga Khan Program Lecture. Later in the season come Maria Claudia Clemente and Francesco Isidori (21 October), August Lehrecke (2 November), Adrien Verschuere (5 November) and Dana Cuff (9 November), with Sylvia Lavin closing the series on 23 November. RPI, USC and CCNY's Spitzer School have published their own line-ups. Most public lectures are free to outside audiences, and many are streamed or posted afterwards — for students at Syracuse, several of these schools are within commuting distance in New York State.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">New York's Archtober returns for a 16th edition under the theme "In Our Hands": 1–31 October, nearly 100 partners, and a first newsstand installation on a subway platform</div>
+  <div class="ni-meta">Sources: <span class="src">Archinect</span> · <span class="src">Center for Architecture (press release)</span> · <span class="src">Archtober</span> · <span class="src">Dezeen Events Guide</span></div>
+  <div class="ni-desc">Archtober, New York City's architecture and design festival, runs its 16th edition from 1 to 31 October 2026, coordinated by the Center for Architecture. This year's theme is "In Our Hands" — the organisers' gloss being that the future is not something that simply happens to us but something we shape together. Events span all five boroughs with nearly 100 partners and sponsors, and include exhibitions, workshops, talks, screenings and tours. New for 2026 is a newsstand activation on the downtown 6-train platform at 51st &amp; Lexington, in collaboration with Data Vandals. Archtober director Katie Mullen's framing is that the subway is an ideal setting for conversations about the city, bringing the festival's premise — seeing the city through a new lens — directly into New Yorkers' daily routes. Students at Syracuse and other schools across the Northeast can plan an October trip around it.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Rice opens "Houston, Untitled" on 25 September: Rory Gardiner photographs the Astrodome and Rice Stadium back inside their urban context</div>
+  <div class="ni-meta">Sources: <span class="src">Rice School of Architecture</span> · <span class="src">e-flux (Fall 2026 events announcement)</span> · <span class="src">Rice Architecture events</span></div>
+  <div class="ni-desc">"Houston, Untitled" is part of Rice School of Architecture's Houston Archive Project and presents photographs by Rory Gardiner, running 25 September to 5 December 2026, with an opening on 25 September from 5 to 7pm at Cannady Hall, the school's new building by Swiss practice Karamuk Kuo. The subjects are two mid-century Houston landmarks — the Astrodome, the world's first air-conditioned indoor stadium, and Rice Stadium — but the framing is not architectural portraiture; both are photographed back inside the surrounding urban fabric. A Rice Design Chat accompanies the show, addressing preservation, heritage and the city's changing identity. What is instructive here is the photographic method itself: conventional architectural photography extracts its subject from its setting, while archival practice insists on keeping the setting in frame — and the two approaches produce entirely different accounts of architectural history.</div>
+</div>
+
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ArchDaily feature on architectural heterotopias: read temporary installations as alternative worlds, not as small buildings</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (feature, Sept 18)</span></div>
+  <div class="ni-desc">ArchDaily published "Architectural Heterotopias: Temporary Installations as Alternative Worlds" on 18 September, borrowing Michel Foucault's concept of heterotopia to examine how temporary installations operate as alternative realities. The argument has direct use for students: installations are often treated as small buildings to practise on, but their real peculiarity is temporal — because they are destined for removal, they are freed from durability, code and operational burdens, which makes them the one vehicle that can test a spatial proposition to completion. It is worth reading against this issue's academia lead on Anna Puigjaner: one manufactures an alternative reality briefly through installation, the other revises the established one slowly through the plan. What they share is treating the conventions of space as something that can be questioned.</div>
+</div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
