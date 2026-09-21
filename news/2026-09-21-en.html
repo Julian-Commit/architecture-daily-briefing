@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-21</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="Dezeen Awards 2026 architecture shortlist announced: 152 projects across 19 categories from 36 countries, with category winners revealed live at the Royal Opera House on 16 Novemb…">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 016 · 2026-09-21 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="Dezeen Awards 2026 architecture shortlist announced: 152 projects across 19 categories from 36 countries, with category winners revealed live at the Royal Opera House on 16 Novemb…">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-21-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://static.dezeen.com/uploads/2026/09/dezeen-awards-2026-architecture-shortlist_dezeen_2364_col_9.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 016 · 2026-09-21 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="Dezeen Awards 2026 architecture shortlist announced: 152 projects across 19 categories from 36 countries, with category winners revealed live at the Royal Opera House on 16 Novemb…">
+<meta name="twitter:image" content="https://static.dezeen.com/uploads/2026/09/dezeen-awards-2026-architecture-shortlist_dezeen_2364_col_9.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 016 · 2026-09-21 · 陆先生建筑日报 | Architecture Daily","description":"Dezeen Awards 2026 architecture shortlist announced: 152 projects across 19 categories from 36 countries, with category winners revealed live at the Royal Opera House on 16 Novemb…","datePublished":"2026-09-21","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-21-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://static.dezeen.com/uploads/2026/09/dezeen-awards-2026-architecture-shortlist_dezeen_2364_col_9.jpg"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 016</div>
+    <div>September 21, 2026 Monday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-21-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p>Today is the International Day of Peace, and ArchDaily marks it with an essay on where architecture sits between conflict and coexistence — from UNESCO's restoration of Al-Tahera Church in Mosul to Crossboundaries' micro community park in Songzhuang, Beijing. Its argument is careful: architecture does not resolve conflict, but spatial decisions shape recovery, memory and coexistence in concrete ways. On the same day, the European Citizens' Initiative Right to Housing! Now and Forever opened signature collection on the claim that Europe has no housing shortage but an accessibility crisis — 47 million empty homes and 23 million square metres of vacant offices against a renovation rate of 1% a year. In awards, the Dezeen Awards 2026 architecture shortlist landed: 152 projects, 19 categories, 36 countries. In built work, gmp folded a 170,000-square-metre sports complex into the hills of Yibin, while BIG raised a 185,000-square-metre temporary city in Madrid that will be dismantled on 11 October — every component sized from day one for its next life.</p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://static.dezeen.com/uploads/2026/09/dezeen-awards-2026-architecture-shortlist_dezeen_2364_col_9.jpg" alt="Dezeen Awards 2026 建筑短名单入围作品 / Projects on the Dezeen Awards 2026 architecture shortlist" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">Academia &amp; Exhibitions</span>
+    <div class="hl-title">Dezeen Awards 2026 architecture shortlist announced: 152 projects across 19 categories from 36 countries, with category winners revealed live at the Royal Opera House on 16 November</div>
+    <div class="hl-meta">Sources: <span class="src">Dezeen (21 Sept)</span> · <span class="src">Dezeen Awards 2026 official shortlist page</span> · <span class="src">Dezeen Awards categories and dates pages</span> · <span class="src">ArchitectureAU</span> · <span class="src">Wallonie-Bruxelles Architectures</span></div>
+    <div class="hl-desc">Dezeen published the architecture shortlist for Dezeen Awards 2026 on 21 September 2026, in partnership with Trimble. A total of 152 projects made the cut across 19 architecture categories, entered by studios based in 36 countries including China, Finland, Kuwait, Portugal, Thailand and Uruguay. Among the projects Dezeen singled out: a UK country house with walls of unstabilised rammed earth; a trio of squat guesthouses in Ukraine combining glass walls with thatched roofs; the Al-Mujadilah Center and Mosque for Women in Qatar, roofed with a perforated, blanket-like structure of stone-clad steelwork; a Japanese office that reworks the machiya typology with "breathing" metal awnings; and Prestige University in India, a sprawling brick-clad building modelled on stepwells. Shortlisted studios include Dorte Mandrup, Farshid Moussavi Architects, Herzog &amp; de Meuron, Diller Scofidio + Renfro and Foster + Partners. Mainland Chinese entries appear on the list, among them House under the Pagoda in Beijing, the COFCO Qianhai Innovation Center in Shenzhen and the Wuhan Qianzishan Waste-to-Energy Power Plant. The 19 category winners will be announced live at the Dezeen Awards 2026 party at the Royal Opera House in London on 16 November, then compete for architecture project of the year. Interiors and design shortlists follow in the coming days. This briefing covered the regional Top 50 lists in No. 008 and the master jury — which includes Ma Yansong and Daniel Libeskind — in No. 012.</div>
+    <a href="https://www.dezeen.com/2026/09/21/dezeen-awards-2026-architecture-shortlist/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6aae/e198/8d91/7901/8920/596b/large_jpg/the-homes-of-tomorrow-are-already-built-right-to-housing-now-and-forever-signature-collection-is-open_11.jpg?1789845931" alt="欧洲公民倡议「居住权！现在与永远」宣传影像 / Campaign imagery for the European Citizens Initiative Right to Housing! Now and Forever" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">Urbanism &amp; Planning</span>
+    <div class="hl-title">European Citizens' Initiative Right to Housing! Now and Forever opens signature collection: 1.2 million signatures in one year, on the claim that Europe has no housing shortage but an accessibility crisis — 47 million empty homes, 23 million sqm of vacant offices, and a 1% annual renovation rate</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (21 Sept)</span> · <span class="src">EU Citizens' Initiative official register</span> · <span class="src">EUKI</span> · <span class="src">Citizens' Initiative Forum (HouseEurope! retrospective)</span> · <span class="src">European Economic and Social Committee (EESC)</span></div>
+    <div class="hl-desc">Right to Housing! Now and Forever is a formally registered European Citizens' Initiative (ECI) organised by a committee of seven EU citizens from several member states. Signature collection opened on 14 September 2026 with a target of 1.2 million signatures within one year — the legal threshold is one million valid signatures, and collecting a surplus is standard practice to absorb losses during national verification. If the target is met, the European Commission is obliged to respond formally. The initiative's central claim deserves attention from anyone studying architecture: Europe does not face a housing crisis so much as a crisis of accessibility. "The homes of tomorrow are already built today, at the prices of yesterday." The supporting figures sit uncomfortably side by side: more than 1.1 million EU residents lack access to housing, while 47 million homes and 23 million square metres of office space stand empty. Nearly 75% of Europe's oldest buildings remain energy inefficient, and building renovation proceeds at only 1% a year. The proposal rests on three axes — Use (regulate short-term rentals and vacancy, convert empty homes and offices into housing, make renovation the default through incentives and fast permits), Invest (direct public money to people rather than speculation, reform fiscal rules to enable housing investment, create an EU housing fund) and Protect (enforce affordability and sustainability standards, keep residents in place during EU-funded renovation, establish an EU Housing Agency). More than 40 organisations across 19 member states have joined.</div>
+    <a href="https://www.archdaily.com/1185409/the-homes-of-tomorrow-are-already-built-european-citizens-initiative-for-the-right-to-housing-opens-signature-collection" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/big-shakira-temporary-city-madrid-reusable-structures-designboom-7.jpg" alt="马德里 Macondo Park：彩色织物包裹的临时构筑群 / Macondo Park in Madrid, a family of temporary structures wrapped in coloured fabric" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">Materials &amp; Construction</span>
+    <div class="hl-title">BIG builds a 185,000-sqm temporary city in Madrid for Shakira's residency: trusses, scaffolding, containers and stage ground support all specified for a next life, with dismantling set for 11 October</div>
+    <div class="hl-meta">Sources: <span class="src">designboom (20 Sept)</span> · <span class="src">Arquitectura Viva</span> · <span class="src">Archilovers</span> · <span class="src">idealista (on-site report, 27 May)</span> · <span class="src">BIG (design architect)</span></div>
+    <div class="hl-desc">Macondo Park occupies the 185,000-square-metre Iberdrola Music venue in Villaverde, southern Madrid. Bjarke Ingels Group (BIG) designed it for the singer Shakira, with associate and design lead Stefani Fachini de Araujo; it operates from 18 September to 11 October 2026. At its centre is a temporary stadium for more than 50,000 people — roughly 30,000 in tiered seating and 20,000 in the arena area — surrounded by 12 pavilions, more than 500 trees, colour-coded pathways, and spaces for markets, food, art, fashion, cinema and children. The name comes from Macondo, the fictional town in Gabriel García Márquez's One Hundred Years of Solitude, and the whole site is conceived as a small Latin American city organised around the shows. For readers following construction, the component list is the real story: BIG developed no new components for this temporary city. It drew instead on the existing inventory of the large-events industry — trusses, scaffolding, containers and stage ground support systems — wrapped in brightly coloured fabric so that one pragmatic skeleton reads as a family of distinct structures. Every element was specified with its next life in mind: structures and fabrics are intended for reuse, the artificial grass will be relocated to schools and playgrounds, and the trees return to the nursery.</div>
+    <a href="https://www.designboom.com/architecture/big-shakira-temporary-city-madrid-reusable-structures/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://oss.gooood.cn/uploads/2026/09/00-yibin-sports-center-by-gmp-472x303.jpg" alt="宜宾体育赛事中心：绿化屋面把大跨场馆藏进丘陵地形 / Yibin Sports Center, its green roofs folding the long-span venues into the rolling terrain" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">Projects &amp; Design</span>
+    <div class="hl-title">gmp's Yibin Sports Center published on gooood: around 170,000 sqm with a 15,000-seat main arena, its long-span structures buried in rolling terrain behind UHPC modular façades and green roofs — in use since 16 July for the Sichuan Provincial Games</div>
+    <div class="hl-meta">Sources: <span class="src">gooood (published 21 Sept)</span> · <span class="src">gmp (design architect)</span> · <span class="src">Yibin Municipal Government</span> · <span class="src">Sichuan Online (international competition report)</span> · <span class="src">Sichuan Tourism News (completion report)</span> · <span class="src">CCTV Sports (15th Sichuan Provincial Games)</span></div>
+    <div class="hl-desc">The Yibin Sports Center in Sichuan, China, was designed by the German practice gmp · von Gerkan, Marg and Partners with the Sichuan Provincial Architectural Design Institute and the Shanghai Institute of Architectural Design &amp; Research. Gross floor area is roughly 170,000 square metres: a 15,000-seat main arena, a 3,000-seat swimming pool and a fitness centre of more than 30,000 square metres. The scheme's founding decision was to refuse conventional site levelling. Rather than flattening the hills and placing volumes on the resulting slab, the design follows the existing topography under a "one centre, two clusters, three valleys" framework, channelling water into streams and shaping valleys so that the mass recedes into the landscape. Two programme clusters — sports and performance, swimming and fitness — sit on either side of a central water body, with peninsular shoreline configurations lengthening the water's edge. Façades use modular ultra-high performance concrete (UHPC) curtain wall units; extensive green roofs conceal the long-span structures from view. The project came out of an international design competition and opened on 16 July 2026 as part of the wider Yibin sports and culture complex, serving as a core venue of the 15th Sichuan Provincial Games for gymnastics, basketball and swimming.</div>
+    <a href="https://www.gooood.cn/yibin-sports-center-by-gmp.htm" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6ab1/0dba/d8c8/8201/89ac/da01/large_jpg/on-the-international-day-of-peace-architecture-between-conflict-and-coexistence_9.jpg?1789988292" alt="国际和平日专题配图：纪念性构筑 / Feature image for the International Day of Peace essay, a commemorative structure" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">Academia &amp; Exhibitions</span>
+    <div class="hl-title">International Day of Peace: ArchDaily maps architecture between conflict and coexistence along three threads, from UNESCO's restoration of Al-Tahera Church in Mosul to a micro community park in Songzhuang, Beijing</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (21 Sept)</span> · <span class="src">United Nations International Day of Peace</span> · <span class="src">UNESCO (Mosul restoration programme)</span> · <span class="src">Crossboundaries (Songzhuang project architect)</span> · <span class="src">Architecture for Peace</span></div>
+    <div class="hl-desc">The United Nations observes 21 September as the International Day of Peace. ArchDaily published an essay to mark it, and its framing is deliberately restrained: peace is neither static nor self-sustaining, but an ongoing social process shaped by economic equity, institutional integrity and the quality of civic life. The piece therefore declines to present architecture as a solution to political conflict, examining instead how spatial decisions bear on recovery, memory, displacement and coexistence. Cases are grouped along three threads. The first covers spaces for encounter, inclusion and civic life, including educational spaces in Honduras by the Architecture for Peace initiative and the Songzhuang Micro Community Park in Beijing by Crossboundaries. The second addresses heritage destruction, post-conflict recovery and collective memory, taking in the Za'atari refugee camp in Jordan and UNESCO's restoration of Al-Tahera Church in Mosul, Iraq. The third concerns memory, memorials and the representation of conflict, including the Kadinjača Memorial Complex. For architecture and planning students, the value of this list is that it moves "peace" from rhetoric to discussable objects: how a camp's temporariness hardens into decades of settlement, how far rebuilding a destroyed church is also rebuilding a community, and how memorials are reread generations later.</div>
+    <a href="https://www.archdaily.com/1185438/on-the-international-day-of-peace-architecture-between-conflict-and-coexistence" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://oss.gooood.cn/uploads/2026/09/006-yibin-sports-center-by-gmp-960x562.jpg" alt="宜宾体育赛事中心：环中央水体展开的两组功能组团 / Yibin Sports Center, with two programme clusters arranged around a central water body" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">In Depth</span>
+    <div class="ft-title">Don't level the site, keep the valleys: gmp's Yibin Sports Center uses 170,000 sqm to argue that a long-span venue can be a piece of terrain</div>
+    <div class="ft-meta">Cross-checked: <span class="src">gooood (published 21 Sept)</span> · <span class="src">gmp (design architect)</span> · <span class="src">Yibin Municipal Government</span> · <span class="src">Xuzhou District Government</span> · <span class="src">Sichuan Online (international competition)</span> · <span class="src">Sichuan Tourism News / 517sc (completion)</span> · <span class="src">CCTV Sports (Provincial Games)</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: the decision not to flatten comes first; everything else follows.</strong>Sports buildings are the most reliably anti-topographic of all building types. Long-span structures want a level base, event crowds want broad concourses, and parking and broadcast vehicles want large areas of hardstanding. Most provincial and municipal sports centres therefore take the same route — bulldoze the site into a slab, then place geometric volumes on it. The Yibin site sits in a landscape of low hills interlaced with water, and the first move by gmp, working with the Sichuan Provincial Architectural Design Institute and the Shanghai Institute of Architectural Design &amp; Research, was to refuse that route: no wholesale levelling, but a reorganisation of the vertical section along the existing undulation, channelling water into streams and shaping valleys and slopes. The cost is greater design and construction difficulty and a more complex earthwork and structural logic. What comes back is architecturally more interesting: a mass of roughly 170,000 square metres that, seen from a distance, does not read as a group of buildings but as a worked piece of terrain. For students taking on large public buildings, this is a trade-off worth studying — landform building is not a styling device but a vertical decision taken on day one and very hard to reverse later.</p>
+      <p><strong>Spatial strategy: one centre, two clusters, three valleys — breaking a megastructure into walkable pieces.</strong>The plan is organised as "one centre, two clusters, three valleys". The central water body is the centre; the two clusters — sports and performance (with the 15,000-seat main arena) and swimming and fitness (with the 3,000-seat pool and a fitness centre of more than 30,000 square metres) — sit on either side of it; and the three valleys, shaped from the existing topography, carry drainage, pedestrian circulation and sightlines at once. Peninsular shoreline configurations lengthen the water's edge, turning what could have been a monotonous lakeside loop into a sequence of advancing and retreating bays. The practical payoff is a question of scale: a single 15,000-seat arena is very hard to make humane at ground level, but splitting the two clusters across water and stitching them together with valleys and paths cuts the spectator's route into shorter segments, while everyday users — people exercising, running or walking — never have to cross an empty event concourse. Reconciling event-day and everyday use is usually the hardest contradiction in operating a sports centre; here everyday circulation is handed to the landscape system rather than to a plaza.</p>
+      <p><strong>Structure and materials: UHPC modular façades plus green roofs, a two-layer disappearing act.</strong>The mass disappears through two moves. On the roof, extensive planting is laid directly over the long-span structures, so that from above or afar the fifth elevation merges with the surrounding slopes — the literal basis for calling this a landform building. On the elevations, the scheme uses modular ultra-high performance concrete (UHPC) curtain wall units. UHPC earns its place here for three reasons: its strength allows very thin panels, so unit self-weight stays low and the panels can hang from widely spanning secondary structure; it can be cast precisely into complex curved and perforated profiles, suiting a mass that changes continuously along the terrain; and its durability and water resistance exceed ordinary precast concrete, which matters in Yibin's humid, rainy climate. Modularity solves a second problem: where the volume rises and falls with the ground and the façade boundary keeps shifting, combinable standard units absorb the variation and avoid a proliferation of one-off panels. One caveat: published material does not disclose the specific structural system of the main arena roof — space frame, truss or cable, nor its span data — and this briefing will not speculate.</p>
+      <p><strong>Context and impact: a venue built for the Provincial Games that has to outlive them.</strong>The project came out of an international design competition, with the global call issued in November 2023, and opened on 16 July 2026 together with the wider Yibin sports and culture complex. It serves as a core venue of the 15th Sichuan Provincial Games — jointly hosted by three cities, Yibin among them — for gymnastics, basketball and swimming. Beyond the competition venues, the complex includes a large lakeside park. That configuration answers the most common failure mode of Chinese provincial and municipal sports facilities: post-event abandonment. Writing a 30,000-square-metre public fitness centre and a lakeside park into the same masterplan, rather than retrofitting them afterwards as a patch, is where this project's operational logic runs ahead of many of its peers. gooood published the full set of drawings and photographs on 21 September 2026, which is the basis for this report. Readers should note that completion (July 2026) and publication (September) routinely differ by months or years in architectural media; cite the completion year.</p>
+    </div>
+    <a href="https://www.gooood.cn/yibin-sports-center-by-gmp.htm" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Overlapping Spaces, Okinawa / IGArchitects: reinforced-concrete walls, columns and one large roof overlap to make a subtropical house that is neither fully inside nor fully outside</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (21 Sept)</span> · <span class="src">IGArchitects (design architect)</span></div>
+  <div class="ni-desc">Overlapping Spaces sits in Okinawa, Japan, designed by Masato Igarashi of IGArchitects. Rather than dividing the house into conventional rooms, the scheme generates space through the overlap of reinforced-concrete walls, columns and a single large roof: views, light, air and movement pass between the structural elements, and boundaries are deliberately left ambiguous. In a subtropical climate the large roof does the practical work — it establishes a generous sheltered environment first, after which the placement of walls decides where the house opens and where it closes, instead of relying on a sealed envelope plus air conditioning to handle heat and heavy rain. Read it alongside the same practice's House of Wall Forest in Tokyo (in this issue's Materials &amp; Construction section): one architect, one project in concrete and one in timber, both asking how structure itself can take on the work of division and orientation.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Common Days, Maros, Indonesia / INS Studio: a 269 sqm three-storey gathering space where andesite and perforated terracotta screens handle shading and ventilation together</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (20 Sept)</span> · <span class="src">INS Studio (design architect)</span></div>
+  <div class="ni-desc">Common Days is in Maros, a small town on the outskirts of Makassar, Indonesia, designed by INS Studio under principal architect Wisnu Wardhana, with a floor area of 269 square metres. The three levels run coffee shop on the ground floor, workspace with meeting rooms and an outdoor terrace above, and a rooftop garden for exhibitions and community events, oriented towards Bukit Cenrana, the town's recognisable landmark hill. Materials are sourced locally: walls, flooring and the coffee bar use andesite stone laid in a square pattern, while the envelope is a perforated screen of terracotta brick. That screen is the project's key piece of construction — it filters direct morning sun while letting breezes off the surrounding hills pass through, keeping the interior usable without mechanical cooling. The moss wall installation was carried out by local gardeners.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">HaloPlaza Hangzhou Vanke / Nikken Sekkei: 110,000 sqm stacked into a vertical city next to the Liangzhu ruins, with a central atrium ventilated by stack effect</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 21 Sept)</span> · <span class="src">Nikken Sekkei (design architect)</span></div>
+  <div class="ni-desc">HaloPlaza Hangzhou Vanke in Zhejiang Province was designed by Nikken Sekkei, with a building area of 110,000 square metres, completed in June 2023; gooood published the full project on 21 September 2026. The scheme stacks volumes as though several buildings were layered onto a second and third ground plane, inserting raised public space between programme layers, while a central atrium uses stack effect to drive natural ventilation and lower ambient temperature. The site adjoins the Neolithic Liangzhu ruins, and the design also rehabilitates an abandoned canal into an environmental feature and an accessible piece of public space. Worth flagging: this is a 2023 building, and today's item is a publication event rather than a completion. Publication and completion dates in architectural media routinely diverge by years — cite the completion year in coursework.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The Car House, Shunyi, Beijing / guò bàn er: a 110 sqm house expanded to 290 sqm, with a curved cobblestone "road" running straight into the living room</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (20 Sept)</span> · <span class="src">guò bàn er (design architect)</span></div>
+  <div class="ni-desc">The Car House is in Shunyi District, roughly 35 km northeast of central Beijing, designed by the practice guò bàn er and completed in August 2026. The existing house measured 110 square metres; the reworked dwelling provides 290 square metres of living space plus a 180-square-metre garden. The client's brief was specific — to drive vintage cars and motorcycles into the living room — so the architects introduced a curved "road" of rough cobblestone paving that runs through the interior and anchors a gathering space together with a central fireplace and a circular sofa area. A curved wall zones the plan while keeping the kitchen, studio and courtyard visible; a glazed light well brings daylight into the children's studio; public areas are held at a uniform 3.5-metre ceiling height; and folding façade elements open the interior to the garden. The architects sum up their position in a line worth remembering on any tight-budget renovation: generous ceiling height and daylight are the real luxuries, not expensive finishes.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6aae/e198/8d91/7901/8920/596b/large_jpg/the-homes-of-tomorrow-are-already-built-right-to-housing-now-and-forever-signature-collection-is-open_11.jpg?1789845931" alt="「居住权！现在与永远」欧洲公民倡议视觉 / Visual identity of the Right to Housing! Now and Forever European Citizens Initiative" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">In Depth</span>
+    <div class="ft-title">47 million empty homes and 1.1 million people without housing, at the same time: a European Citizens' Initiative redefines the housing crisis as an accessibility crisis — and hands architects a concrete task list</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (21 Sept)</span> · <span class="src">EU Citizens' Initiative official register</span> · <span class="src">Citizens' Initiative Forum (HouseEurope! retrospective)</span> · <span class="src">EUKI</span> · <span class="src">European Economic and Social Committee (EESC)</span> · <span class="src">PES Group, European Committee of the Regions</span></div>
+    <div class="ft-desc">
+      <p><strong>The central claim: not that too little is built, but that what is built goes unused.</strong>Right to Housing! Now and Forever opened signature collection on 14 September 2026, and what deserves the discipline's attention is less its politics than its reframing of the problem. The dominant narrative treats Europe's housing difficulty as a supply shortfall, with faster new construction as the answer. This initiative argues the opposite: Europe is not short of homes, it is short of access. The numbers are uncomfortable side by side — more than 1.1 million EU residents lack access to housing while 47 million homes and 23 million square metres of office space stand empty. Hence the line ArchDaily used as its headline: the homes of tomorrow are already built today, at the prices of yesterday. For architecture students, that sentence implies a shift in where the profession's weight sits. If the problem lies in the existing stock rather than in new supply, the main arena of design moves from "design a new building" to conversion, subdivision, extension and change of use — and the skills that work demands (assessing existing structures, retrofitting fire and egress, remedying daylight and ventilation, negotiating tenure and code) carry far less weight in most architecture curricula than the design of new buildings does.</p>
+      <p><strong>The mechanism: what an ECI is, and why the target is 1.2 million.</strong>The European Citizens' Initiative (ECI) is a direct-democracy instrument at EU level. A committee of citizens from at least seven member states launches it; once the European Commission formally registers it, collection begins; and if one million valid signatures are gathered within a year, with per-country thresholds met in enough member states, the Commission must respond formally, stating whether it will legislate and why. Setting the target at 1.2 million rather than one million hedges against verification losses — member states strike out duplicates, ineligible entries and incomplete records, so over-collecting is standard practice. The limit of the instrument matters too: an ECI can compel a response, not legislation. That is the key to reading the previous round's outcome — HouseEurope!, which focused narrowly on building renovation, closed on 31 January 2026 without reaching the threshold. The adjustment this time is explicit: the scope is no longer confined to renovation technique, the coalition behind it is broader, and financing tools and access are folded in.</p>
+      <p><strong>Three axes: use, invest, protect.</strong>Each axis maps onto executable policy tools. Use means regulating short-term rentals and vacancy, converting empty homes and offices into housing, and making renovation the first rather than the last option through incentives and fast permits. That last point is the sharp one: in most European countries, permitting a renovation of an existing building is slower and less predictable than permitting new construction, and reversing that institutionally would change developer behaviour more than any technical subsidy. Invest means directing public funding to people rather than speculation, reforming fiscal rules so governments can invest in housing, and establishing an EU housing fund. Protect means setting and enforcing affordability and sustainability standards, ensuring EU-funded renovation does not push existing residents out — renoviction, displacement carried out under the cover of refurbishment — and creating an EU Housing Agency for transparent governance.</p>
+      <p><strong>The technical premise and the real obstacle: a 1% renovation rate.</strong>Two figures set the difficulty. Nearly 75% of Europe's oldest buildings are energy inefficient, and building renovation runs at 1% a year. At that pace, working through the existing stock once takes a century. Turning 47 million empty homes into habitable ones means solving three problems simultaneously: where the money for energy retrofit comes from, where residents live during the work, and whether rents after completion rise beyond what those residents can pay. The third is precisely why the Protect axis exists, and it is where initiatives of this kind most often fail — energy retrofit raises a building's value technically, and the market reads that as a legitimate reason to raise rent. More than 40 organisations have joined, spanning Austria, Belgium, Croatia, the Czech Republic, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Luxembourg, the Netherlands, Poland, Portugal, Slovenia, Spain and Sweden. For readers in China there is a useful parallel: the target of renovating 115,000 old residential compounds in the 15th Five-Year Plan faces the same stock-first logic and the same question of who bears the cost afterwards, albeit through entirely different institutional and financial machinery.</p>
+    </div>
+    <a href="https://www.archdaily.com/1185409/the-homes-of-tomorrow-are-already-built-european-citizens-initiative-for-the-right-to-housing-opens-signature-collection" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">MOHURD outlines an upgraded "Construction in China" for the 15th Five-Year Plan: green and intelligent construction, strict limits on supertall buildings, 100+ new historic districts and 10,000+ newly designated historic buildings</div>
+  <div class="ni-meta">Sources: <span class="src">State Council Information Office briefing (18 Sept)</span> · <span class="src">Science and Technology Daily (18 Sept)</span> · <span class="src">China News Service (19 Sept)</span> · <span class="src">MOHURD Information Centre</span></div>
+  <div class="ni-desc">At the State Council Information Office briefing of 18 September, Chen Shaowang, vice-minister of housing and urban-rural development, set out the ministry's plans for the construction industry and for architectural design. This briefing covered the urban-renewal legislation and the RMB 97 billion central budget allocation from the same event in No. 015; what follows is the industry and design-management side. Over the 15th Five-Year Plan period the ministry will pursue quality upgrading of the construction industry, cultivate new productive forces in the sector, develop green construction and intelligent construction as new building methods, and promote the application of AI and other new-generation information technologies in smart cities, intelligent construction and smart homes. More directly relevant to designers: strengthen the management of architectural design, implement the principle of "适用、经济、绿色、美观" (functional, economical, green, attractive), encourage the transmission and innovation of design traditions, reinforce the positive guiding role of exemplary works, raise design quality, and strictly limit supertall buildings. On heritage, the quantified targets are 100 or more newly designated historic and cultural districts and 10,000 or more newly designated historic buildings nationally, plus the upgrading of 1,500 old streets and factory districts. "Strictly limit supertall buildings" appearing alongside "10,000 newly designated historic buildings" sketches the direction in which domestic practice will shift over the next five years.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Sasaki Shanghai's Huangshi Bay coastal park masterplan wins a 2026 ASLA Analysis &amp; Planning Honor Award: 988 acres of shoreline, with aquaculture moved inland and the coast returned to ecology and the public</div>
+  <div class="ni-meta">Sources: <span class="src">Sasaki (design firm)</span> · <span class="src">ASLA 2026 Professional Awards announcement (24 Aug)</span> · <span class="src">gooood (published 19 Sept)</span> · <span class="src">Pro Landscaper USA</span></div>
+  <div class="ni-desc">"Where Industry Meets the Tide: A New Horizon for Huangshi Bay", by Sasaki's Shanghai office, received an Honor Award in the Analysis &amp; Planning category of the 2026 ASLA Professional Awards. The 988-acre (about 400-hectare) project is in the Yantai Huang-Bohai New District, Shandong Province, for the district's Natural Resources Planning Bureau. The Huangshi Bay shoreline, where the Yellow Sea meets cliffs, beaches and estuaries, is a cradle of marine biodiversity, and generations of fishing culture have shaped the region; but the uncontrolled expansion of aquaculture disrupted ecosystems, blocked public access and left the coast more vulnerable to disaster. The masterplan relocates aquaculture operations inland to reclaim the shoreline for ecological and community use while maintaining economic output. Three strategies carry it: a "living buffer" that reconstructs beach-dune systems and native plant habitat to improve coastal resilience; three compounding models that allow modernised marine nurseries to remain on site at low environmental impact; and "memory mapping" drawn from interviews with villagers, which revives fishing heritage and restores public waterfront access through a continuous trail network. This briefing reported the 2026 ASLA Landmark Award (Lurie Garden, Millennium Park, Chicago) in No. 010; this is a different category of the same cycle.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Illa Glòries, 60 social housing units, Barcelona / SV60 Cordón &amp; Liñán: 8,942 sqm organised through section rather than plan, with a central courtyard linking "climatic corridors" to every façade level</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 21 Sept)</span> · <span class="src">SV60 Cordón &amp; Liñán Arquitectos (design architect)</span></div>
+  <div class="ni-desc">The project sits at Plaça de les Glòries 2-4-6 in Barcelona, designed by SV60 Cordón &amp; Liñán Arquitectos: 60 social housing units, 8,942 square metres gross, designed 2019–2020 and completed in 2025. Its most instructive move is that the building's operation is organised through the architectural section rather than the plan. A central courtyard connects to the façade at every level, producing an internal cavity that runs through the whole building; these voids are treated as equal in importance to the solid, forming adaptable indoor-outdoor transitional spaces that the architects call climatic corridors — they encourage neighbourly contact and improve climatic performance at once. Dwelling units are set out on a 3.00 × 3.00 metre module, so rooms can expand into or contract away from the façade space, improving energy efficiency. Materials are concrete, metal and glass. Against today's lead story on housing accessibility in Europe, this is a concrete counterpart: the quality of social housing depends less on the floor area of each unit than on how the collective voids are organised.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://static.designboom.com/wp-content/uploads/2026/09/big-shakira-temporary-city-madrid-reusable-structures-designboom-6.jpg" alt="Macondo Park：由桁架、脚手架与集装箱构成的展亭群 / Macondo Park, its pavilions assembled from trusses, scaffolding and containers" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">In Depth</span>
+    <div class="ft-title">A city that lives 23 days: BIG invented no new components for Macondo Park, and the entire design sits in the question of how it comes apart and where the parts go</div>
+    <div class="ft-meta">Cross-checked: <span class="src">designboom (20 Sept)</span> · <span class="src">Arquitectura Viva</span> · <span class="src">Archilovers</span> · <span class="src">idealista (on-site report, 27 May)</span> · <span class="src">illustrarch</span> · <span class="src">BIG (design architect)</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: turning the back of house into a city.</strong>Macondo Park occupies the 185,000-square-metre Iberdrola Music venue in Villaverde, southern Madrid, designed by Bjarke Ingels Group (BIG) for Shakira's Madrid residency, with associate and design lead Stefani Fachini de Araujo. It operates from 18 September to 11 October 2026 — 23 days. The name comes from Macondo, the fictional town in Gabriel García Márquez's One Hundred Years of Solitude. The spatial logic of a conventional touring venue is a stage plus an empty field, with the audience left unorganised before and after the show. Here the premise is inverted: the entire site is planned as a temporary small town, and the concert is only one of its functions. At the centre is a temporary venue for more than 50,000 people (roughly 30,000 in tiered seats and 20,000 in the arena area), around which unfold 12 pavilions, more than 500 trees, colour-coded pathways and spaces for markets, food, art, fashion, cinema and children. Treating the waiting time as a design subject in its own right is uncommon in large-event architecture.</p>
+      <p><strong>Spatial strategy: colour instead of signage, pavilions instead of zones.</strong>The hardest problem on a temporary site is wayfinding. Visitors arrive for the first time with no urban memory to draw on, and the standard answer is a dense layer of signs and stewards. BIG builds the orientation into the space instead: a colour-coded path system strings the 12 pavilions together, and because each pavilion is wrapped in a different fabric colour it acquires a legible identity. People remember "the red side", not "zone B3". More than 500 trees and areas of artificial grass turn what would otherwise be a hard event surface into ground you can linger on, so that 50,000 people leaving do not all funnel down a single route. For students working on temporary or event architecture, there is a transferable principle here: on a site with no urban context, colour and planting are absorbed by the body faster than any signage system.</p>
+      <p><strong>Structure and construction: every component drawn from existing event-industry stock.</strong>This is the decision most worth recording. BIG developed no new components for this temporary city, drawing instead on categories already standardised and available for hire across the large-events supply chain: trusses, scaffolding, containers and stage ground support systems. These are unglamorous engineering parts; the whole design action is to wrap them in bright fabric so that one pragmatic skeleton reads as a family of distinct structures. The point is not only cost. Hired components come with established erection and dismantling procedures, documented load data and crews who already know them, which means a 23-day run does not require structural safety to be reinvented. And because the components already belong to a circulating rental pool, dismantling produces no orphaned bespoke parts with nowhere to go. Custom-fabricated structures for one-off events, by contrast, are frequently described as recyclable and very rarely recycled.</p>
+      <p><strong>Context and impact: circular design is tested by where everything goes afterwards.</strong>BIG's disposal plan is specific: structures and fabrics for reuse, artificial grass donated to schools and playgrounds, trees returned to the nursery. That list deserves to be taken seriously, because it converts "sustainable" from an adjective into a checkable logistics arrangement — every material category is assigned a next destination rather than vaguely labelled recyclable. Temporary architecture has long been a blind spot in discussions of construction carbon: concerts, trade fairs and sporting events generate large quantities of structures used for a handful of days, and their embodied carbon is startlingly high per unit of use because the amortisation period is so short. Only two things genuinely reduce that figure — extending component life through reuse, or shortening component journeys through local hire — and Macondo Park does both. The limits should be stated plainly: this briefing has no carbon accounting for the project, and the assessment above rests on the design team's published component strategy and disposal arrangements rather than third-party quantification. The overall environmental impact of a temporary city built for a pop residency also depends on factors outside the project boundary, audience travel above all.</p>
+    </div>
+    <a href="https://www.designboom.com/architecture/big-shakira-temporary-city-madrid-reusable-structures/" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">House of Wall Forest, Tokyo / IGArchitects: a field of structural timber walls replaces rooms, asking whether wood can deliver the spatial clarity usually associated with concrete</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (20 Sept)</span> · <span class="src">IGArchitects (design architect)</span></div>
+  <div class="ni-desc">House of Wall Forest is in Tokyo, designed by Masato Igarashi of IGArchitects. The scheme abandons conventional room enclosure in favour of a "field of structural timber walls": the walls define space, carry load, guide movement and frame views all at once, and space emerges between and around them as a continuous flow rather than a sequence of separated rooms. The architect states the question directly — whether timber can convey the spatial clarity normally associated with reinforced concrete while retaining wood's material character. The framework is deliberately left open to different uses and interpretations so it can absorb changes in how the occupants live. For students comparing masonry walls, shear walls and frame systems in a structures course, this is a literal case of structure as space; the same practice's concrete house in Okinawa, in this issue's Projects &amp; Design section, makes a useful counterpoint.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Antler Restaurant, Changbai Mountain foothills, Jilin / Origin Architect: 1,680 sqm in a herringbone glulam-and-steel module system that reinterprets the Sushen people's cuoluozi and diyinzi</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 20 Sept)</span> · <span class="src">Origin Architect (design architect)</span></div>
+  <div class="ni-desc">The Antler Restaurant in Lujiao Village lies in the Baoma Economic Zone, Chibei District, Changbai Mountain Protection and Development Zone, Jilin Province, designed by Origin Architect with a building area of 1,680 square metres, designed in 2024 and completed in 2026. Its reference points are two indigenous building types of the ancient Sushen people — the conical tent known as cuoluozi and the semi-subterranean dwelling known as diyinzi — an attempt to reconnect with a regional building tradition that has largely disappeared locally. Construction uses a herringbone modern timber module system: the primary structure is glued laminated timber (spruce and pine from the Russian Far East) with steel joints, roofed in overlapping timber shingles, supplemented by steel, glass, concrete and laterite stone; the kitchen switches to herringbone steel columns for fire resistance. Five hexagonal spatial modules form a continuous interior, extending outward as "branches" that terminate in transparent glass viewing façades. The undulating ridge line evokes deer antlers and shamanic movement. The hard constraint the design has to answer is a snow season lasting six months — which is why the overlapping shingle roof and steep profile here are not purely formal choices.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">EAGLERISE Superfactory and Global Headquarters, Ji'an, Jiangxi / Yunchao Xu Atelier (Shenzhen General Institute): 320,000 sqm in which photovoltaics, drainage and skylights merge into one "matrix module"</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 21 Sept)</span> · <span class="src">Yunchao Xu Atelier / Shenzhen General Institute of Architectural Design and Research (design architect)</span></div>
+  <div class="ni-desc">The EAGLERISE Superfactory and Global Headquarters in Ji'an, Jiangxi Province, was designed by Yunchao Xu Atelier at the Shenzhen General Institute of Architectural Design and Research: 210,000 square metres of land, 320,000 square metres of floor area, of which 250,000 square metres is the intelligent manufacturing system, completed in 2026. The difficulty with industrial buildings is that production-line logic leaves almost no room for form; this project's answer is to treat the energy system itself as the architectural language. The "matrix module" combines photovoltaic panels, drainage and daylighting skylights into a single roof component, so energy logic and architectural form share one dimensional grid, and the rooftop photovoltaic arrays are laid out to form the company logo, legible from the air. On the elevations, a 500-metre eastern interface is sequenced by production-line identifiers 01 to 06, with colour grading from deep blue to a new-energy green, while the staff support zone is unified in perforated aluminium panels. At night an LED matrix takes over the façade. For students working on industrial buildings, the discussable point is this: when production process squeezes formal freedom to a minimum, the leverage moves from massing to the degree of integration achieved in the roof system and the skin.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://static.dezeen.com/uploads/2025/05/al-mujadilah-centre-and-mosque-diller-scofidio-renfro-hero_dezeen_2364_col_0-852x479.jpg" alt="入围项目：卡塔尔女性清真寺 Al-Mujadilah / Shortlisted project: the Al-Mujadilah Center and Mosque for Women in Qatar" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">In Depth</span>
+    <div class="ft-title">152 projects, 36 countries: on the Dezeen Awards 2026 architecture shortlist, rammed earth, thatch and stepwells stand on the same list as Herzog &amp; de Meuron</div>
+    <div class="ft-meta">Cross-checked: <span class="src">Dezeen (announced 21 Sept)</span> · <span class="src">Dezeen Awards 2026 official shortlist page</span> · <span class="src">Dezeen Awards categories page</span> · <span class="src">Dezeen Awards prices and dates page</span> · <span class="src">ArchitectureAU</span> · <span class="src">Wallonie-Bruxelles Architectures</span></div>
+    <div class="ft-desc">
+      <p><strong>The list itself: scale, categories and geography.</strong>Dezeen announced the Dezeen Awards 2026 architecture shortlist on 21 September 2026, in partnership with Trimble. The 152 shortlisted projects are spread across 19 architecture categories and come from studios in 36 countries, with Dezeen specifically naming China, Finland, Kuwait, Portugal, Thailand and Uruguay. Structurally the list says more than any single project on it. The category structure of an award decides what counts as "a kind of work", and the geographic spread reflects the attention boundary of the international architectural press. Nineteen categories means housing, culture, education, workplace and rework are each judged separately, so a small project is not forced to compete directly with a large cultural building — which has a direct bearing on the odds for students and young practices. Dezeen Awards also runs a separate student category.</p>
+      <p><strong>The projects Dezeen singled out: the distribution of materials and types is telling.</strong>The five projects highlighted in the announcement read almost as a sample of contemporary practice: a UK country house with walls of unstabilised rammed earth (pure rammed earth without cement or other stabilisers); a trio of squat guesthouses in Ukraine combining glass walls with thatched roofs; the Al-Mujadilah Center and Mosque for Women in Qatar by Diller Scofidio + Renfro, roofed with a perforated, blanket-like form of stone-clad steelwork; a Japanese office reinterpreting the machiya typology through "breathing" metal awnings; and Prestige University in India, brick-clad and modelled on stepwells. Also named are the Sydney Fish Market in Australia and the Petit Quai Footbridge in France. Set side by side, the taste of contemporary international awards is fairly legible: low-carbon and locally sourced materials (earth, thatch, brick), contemporary translations of traditional typologies (machiya, stepwell), and urban projects with an explicit public dimension.</p>
+      <p><strong>Studios on the list, and the mainland Chinese entries.</strong>Shortlisted studios include Dorte Mandrup, Farshid Moussavi Architects, Herzog &amp; de Meuron, Diller Scofidio + Renfro and Foster + Partners — large names and small independent offices appearing on one list is a principal difference between Dezeen Awards and the traditional professional-institute prizes. Mainland Chinese projects are represented, among them House under the Pagoda in Beijing, the COFCO Qianhai Innovation Center in Shenzhen and the Wuhan Qianzishan Waste-to-Energy Power Plant. The third is worth pausing on: a waste-to-energy plant reaching an international architecture shortlist reflects the migration of infrastructure architecture from "engineering" into "architecture" as a category — a thread running from BIG's CopenHill in Copenhagen through to the present, with Chinese equivalents now accumulating.</p>
+      <p><strong>Schedule, and this briefing's tracking chain.</strong>The 19 category winners will be announced live at the Dezeen Awards 2026 party at the Royal Opera House in London on 16 November 2026, after which all 19 compete for architecture project of the year. Interiors and design shortlists follow over the coming days. This briefing has tracked two earlier stages of the cycle: No. 008 reported the three regional Top 50 lists introduced for the first time this year (Europe/Middle East and Africa, the Americas, Asia-Pacific) and flagged that the shortlist would land between 21 and 23 September; No. 012 reported the master jury, which includes Ma Yansong of MAD and Daniel Libeskind. Today's architecture shortlist is the first node on that timetable, and it arrived as announced. For students preparing submissions to international awards, the full chain is itself a reusable reference — entry period, regional lists, jury announcement, shortlist, ceremony — and both the rhythm and the criteria have been consistent.</p>
+    </div>
+    <a href="https://www.dezeen.com/2026/09/21/dezeen-awards-2026-architecture-shortlist/" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">World Design Cities Conference 2026 opens in Shanghai on 28 September, with the main exhibition opening early on 26 September: more than 100 events including a dedicated architecture forum series</div>
+  <div class="ni-meta">Sources: <span class="src">Yicai (17 Sept)</span> · <span class="src">Tencent News (17 Sept)</span> · <span class="src">ifeng (17 Sept)</span> · <span class="src">Sina Finance (28 Aug, date confirmation)</span></div>
+  <div class="ni-desc">The 2026 World Design Cities Conference (WDCC) runs from 28 to 30 September in Shanghai, with the main venue at 689 Jumen Road in Huangpu District and the principal exhibition opening to the public early, on 26 September, over the Mid-Autumn holiday. This year's theme is "Design Without Boundaries". The programme follows a "2+1+3+X" structure: 2 core elements (opening ceremony and main exhibition); 1 Industrial Culture Development Conference hosted by the Industrial Culture Development Center of the Ministry of Industry and Information Technology; 3 referring to three thematic forums, four key activities and forum series across five design fields — industrial, fashion, architecture, digital and service; and X, more than 50 city-wide linked events. Total programming exceeds 100 sessions. For architecture students in Shanghai or returning to China around the National Day holiday, architecture stands as one of the five named design fields with its own forum series, making this one of the few concentrated opportunities to engage with the leading edge of the domestic design industry.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">PRESENCE in Seoul: Simone Bossi with COOR shows nine photographs on lightweight cotton paper held by custom oak battens, hanging each image back into the space it was taken in</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 21 Sept)</span> · <span class="src">Simone Bossi (artist)</span> · <span class="src">COOR / Atelier KHJ (space design)</span></div>
+  <div class="ni-desc">PRESENCE is a collaboration between the architectural photographer Simone Bossi and the Korean fashion label COOR, staged in COOR's Seoul flagship store, a space designed by Atelier KHJ. Nine works are shown, printed on lightweight cotton paper and held by custom red-toned oak battens, mixing colour and black-and-white images; some photographs hang in positions that correspond to the architectural fragments they depict, producing a space-within-a-space effect. The exhibition's proposition carries direct methodological weight for architecture students: it treats photography as an act of being within space rather than a description of it. In the artist's words, photography becomes a threshold where space is no longer an object captured from outside but a presence experienced from within. Viewers are expected to move and shift their gaze, completing the image with their own experience — the inverse of the objective representation that architectural drawing aims at, and the starting point for architectural photography as an independent mode of statement.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">gooood's OFFICE FACT No. 64 interviews Atelier cnS of Guangzhou: "community symbiosis" and "light intervention, plug-in" design, with architects moving from form-making into research and coordination</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 20 Sept)</span> · <span class="src">Atelier cnS (interviewee)</span></div>
+  <div class="ni-desc">The 64th instalment of gooood's OFFICE FACT series interviews Atelier cnS, the Guangzhou practice led by founders Song Gang, Zhu Zhiyuan and Zhong Guanqiu; the series producer is Xiang Ling, with editors Shi An, Si Yuan, Weng Changyan and Zhang Xiaoran. Several points are worth students' attention. First, the collaborative principle the practice calls "community symbiosis": cross-disciplinary work is not a matter of placing different specialisms side by side, but of letting knowledge from each field recombine around one real problem. Second, their position on urban renewal — architects should move out of pure form-making and into research, coordination, organisation and the solution of specific problems — with an emphasis on the refinement and systematisation of small renewal projects. Third, the concrete strategy of "light intervention, plug-in" design, valuing material reuse, on-site coordination and the integration of craft traditions. Fourth, their reading of professional boundaries: the architect should become a composite role spanning curation, community governance and more. With new construction contracting in China and stock renewal becoming the mainstream, accounts like this say more about how practice is actually changing than any awards list does.</div>
+</div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
