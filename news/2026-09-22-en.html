@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-22</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="MAD Architects&amp;#39; Lucas Museum of Narrative Art opens today in Los Angeles: 27,900 sq m, 1,271 uniquely shaped fibreglass panels, a 56-metre steel arch, and not one straight lin…">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 017 · 2026-09-22 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="MAD Architects&amp;#39; Lucas Museum of Narrative Art opens today in Los Angeles: 27,900 sq m, 1,271 uniquely shaped fibreglass panels, a 56-metre steel arch, and not one straight lin…">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-22-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images.adsttc.com/media/images/6a99/bc4a/cc78/e301/8820/dfb6/large_jpg/lucas-museum-of-narrative-art_19.jpg?1788460156">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 017 · 2026-09-22 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="MAD Architects&amp;#39; Lucas Museum of Narrative Art opens today in Los Angeles: 27,900 sq m, 1,271 uniquely shaped fibreglass panels, a 56-metre steel arch, and not one straight lin…">
+<meta name="twitter:image" content="https://images.adsttc.com/media/images/6a99/bc4a/cc78/e301/8820/dfb6/large_jpg/lucas-museum-of-narrative-art_19.jpg?1788460156">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 017 · 2026-09-22 · 陆先生建筑日报 | Architecture Daily","description":"MAD Architects&#39; Lucas Museum of Narrative Art opens today in Los Angeles: 27,900 sq m, 1,271 uniquely shaped fibreglass panels, a 56-metre steel arch, and not one straight lin…","datePublished":"2026-09-22","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-22-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://images.adsttc.com/media/images/6a99/bc4a/cc78/e301/8820/dfb6/large_jpg/lucas-museum-of-narrative-art_19.jpg?1788460156"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 017</div>
+    <div>September 22, 2026 Tuesday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-22-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p><p>Today the centre of gravity is Los Angeles. The Lucas Museum of Narrative Art, designed by Ma Yansong of MAD Architects, opened to the public on 22 September — nine years after approval, eight after groundbreaking. Its 27,900 square metres are wrapped in 1,271 uniquely shaped fibreglass panels and lifted on a 56-metre steel arch; it is MAD's first completed building in the United States, and one of very few large public buildings of recent years to reject the straight line outright. On the same day the African Futures Institute, founded by Lesley Lokko, revealed its permanent headquarters in Accra — a former tile warehouse, deliberately not a monument. Elsewhere: Studio Egret West has filed a revised masterplan for the last 16 acres of Battersea Power Station, breaking Rafael Viñoly's 2008 plan into finer-grained blocks; and the tallest mass timber student housing building in the US topped out in Columbus, Ohio, roughly ten weeks early at 44 CLT panels a day.</p></p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6a99/bc4a/cc78/e301/8820/dfb6/large_jpg/lucas-museum-of-narrative-art_19.jpg?1788460156" alt="Lucas Museum of Narrative Art, its continuous curved volume lifted above a public plaza / 卢卡斯叙事艺术博物馆：连续曲面体量与其下的抬升广场" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">Projects &amp; Design</span>
+    <div class="hl-title">MAD Architects&#39; Lucas Museum of Narrative Art opens today in Los Angeles: 27,900 sq m, 1,271 uniquely shaped fibreglass panels, a 56-metre steel arch, and not one straight line</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (22 Sep)</span> · <span class="src">designboom (3 Sep)</span> · <span class="src">Lucas Museum press release</span> · <span class="src">The Architect&#39;s Newspaper</span> · <span class="src">Arquitectura Viva</span></div>
+    <div class="hl-desc">The Lucas Museum of Narrative Art opened to the public on 22 September 2026 in Exposition Park, Los Angeles, on an 11-acre (4.5-hectare) site formerly used as surface parking. The building is 300,000 square feet (about 27,900 square metres) over five storeys. Ma Yansong, founder of MAD Architects, led the design; Stantec served as executive architect; landscape is by Mia Lehrer&#39;s Studio-MLA with Stantec. More than 150 architects, engineers and designers worked on it. The governing decision is geometric: the building contains no straight lines. Its volume rises from the ground as one continuous curved surface, carried at the centre by arched steel beams spanning 185 feet (56 metres), which frees a covered public plaza beneath, above which an elliptical Oculus rises four storeys. The envelope is made of 1,271 uniquely shaped fibreglass-reinforced polymer (FRP) panels, each averaging 8 by 32 feet (2.4 by 9.8 metres). Inside are more than 30 galleries totalling over 9,290 square metres, two 299-seat theatres (the Robert Flaherty and Slavko Vorkapich), a horseshoe-shaped research library, ten studios and classrooms, a restaurant and a shop. The project was approved in 2017 and broke ground in 2018, with an original 2025 opening. Founded by George Lucas and Mellody Hobson, the museum holds more than 40,000 works; roughly 1,300 are on view at opening, and the cinema gallery debuts with Star Wars in Motion. This briefing reported the building&#39;s completion and flagged today&#39;s opening date in No. 005 (9 September); this item confirms the opening itself with the full figures.</div>
+    <a href="https://www.archdaily.com/1184508/first-look-at-the-completed-lucas-museum-of-narrative-art-opening-september-22-2026" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6ab2/4dc4/7475/ba01/8b4e/03bf/large_jpg/african-futures-institute-transforms-former-warehouse-into-new-accra-headquarters_4.jpg?1790070279" alt="The African Futures Institute headquarters in Accra, an Urban Room carved from a former tile warehouse / 非洲未来研究院阿克拉总部：由旧瓷砖仓库改造的城市厅" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">Academia &amp; Exhibitions</span>
+    <div class="hl-title">Lesley Lokko&#39;s African Futures Institute opens its permanent headquarters in Accra: a former tile warehouse turned into an &quot;Urban Room&quot;, with design and construction developed simultaneously on site</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (22 Sep)</span> · <span class="src">African Futures Institute</span> · <span class="src">GRIOT Magazine</span> · <span class="src">La Biennale di Venezia (2023 curator announcement)</span> · <span class="src">e-flux</span></div>
+    <div class="hl-desc">The African Futures Institute (AFI) has completed its permanent headquarters in the Osu district of Accra, Ghana, converting a former tile warehouse. Professor Lesley Lokko OBE, the institute&#39;s founder, led the architectural direction, working with Patrick Gentilezza of Buro Ghana, Patti Anahory, Laurence Lord and Fred Swart. The conversion keeps the warehouse&#39;s scale and industrial character, adding only the infrastructure AFI&#39;s teaching and cultural work requires. Its principal space is an Urban Room that absorbs lectures, studio sessions, exhibitions, film screenings, workshops and public gatherings; the remainder holds offices, archive and research facilities. AFI&#39;s flagship programme, the Nomadic African Studio, is based here. Lokko is explicit about the brief: &quot;We wanted a building that could hold many futures at once. Not a monument to an institution, but a framework for activity.&quot; The most unusual aspect is procedural — design and construction were developed at the same time on site rather than sequentially. Lokko founded the Graduate School of Architecture in Johannesburg in 2015 and AFI in Accra in 2021, and curated the 18th Venice Architecture Biennale in 2023, the first edition centred on Africa and the African diaspora.</div>
+    <a href="https://www.archdaily.com/1185536/african-futures-institute-transforms-former-warehouse-into-headquarters-in-accra-ghana" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://static.dezeen.com/uploads/2026/09/studio-egret-west-battersea-power-station-masterplan-news-sq_dezeen_2364_col_0.jpg" alt="Revised masterplan for the final phases of Battersea Power Station / 巴特西发电站最终阶段总体规划修订方案" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">Urbanism &amp; Planning</span>
+    <div class="hl-title">Revised masterplan filed for Battersea Power Station&#39;s last 16 acres: Studio Egret West breaks Viñoly&#39;s 2008 plan into smaller blocks, adding 3.2 million square feet</div>
+    <div class="hl-meta">Sources: <span class="src">Dezeen (18 Sep)</span> · <span class="src">Architects&#39; Journal</span> · <span class="src">Building</span> · <span class="src">Property Week</span> · <span class="src">Battersea Power Station (developer)</span></div>
+    <div class="hl-desc">British practice Studio Egret West has submitted a revised masterplan for the remaining 16-acre brownfield site at Battersea Power Station in London. The proposal covers 3.2 million square feet (roughly 297,000 square metres) of residential, commercial and leisure space, and supersedes the original 42-acre masterplan drawn up by Uruguayan architect Rafael Viñoly in 2008. More than 2,200 homes and around 800,000 square feet of office space have already been delivered across the wider development; one phase has been approved to deliver 200 council homes in partnership with Wandsworth Council. The central move is to break the remaining phases from a small number of large volumes into clusters of smaller buildings, linked by a network of streets and courtyards, with an expanded network of public spaces described as &quot;playful, artistic and biodiverse&quot;. The plan strengthens visual connections to the historic power station and extends green space northwards into Nine Elms. It responds to feedback from a public consultation held over the summer and to shifts in how people live, work and spend leisure time. &quot;The refreshed vision is deliberately flexible, leaving room for serendipity,&quot; said Studio Egret West co-founder David West. The overall Battersea development is valued at around £9 billion.</div>
+    <a href="https://www.dezeen.com/2026/09/18/studio-egret-west-revises-battersea-power-station-masterplan-for-final-phases/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/INTRO-Columbus_rendering_exterior_DLR-Group-scaled.jpg" alt="INTRO Columbus, also known as 9th and High, a 13-storey mass timber student housing building / INTRO Columbus（9th and High）：13 层木结构学生公寓外观" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">Materials &amp; Construction</span>
+    <div class="hl-title">The tallest mass timber student housing in the US tops out in Columbus: 13 storeys, 158 feet, 242,000 sq ft, 44 CLT panels a day, ten weeks ahead of schedule, storing 1,128 tonnes more carbon than a steel-and-concrete equivalent</div>
+    <div class="hl-meta">Sources: <span class="src">The Architect&#39;s Newspaper (Sep)</span> · <span class="src">Construction Dive (16 Sep)</span> · <span class="src">Multifamily Dive</span> · <span class="src">Building Design + Construction</span> · <span class="src">Engineering News-Record</span> · <span class="src">DLR Group (architect)</span></div>
+    <div class="hl-desc">INTRO Columbus, also known as 9th and High, sits at 1497 North High Street in Columbus, Ohio, next to The Ohio State University, and topped out on 8 September 2026. The building is 13 storeys and 158 feet (about 48 metres) tall, with 242,000 square feet (roughly 22,500 square metres) containing 186 units and 493 beds in townhome and conventional apartment layouts. Designed by DLR Group, it is Columbus&#39;s first mass timber building and, according to the architect&#39;s project fact sheet, the tallest mass timber student housing building in the United States. The structure uses glulam columns and beams with cross-laminated timber (CLT) floor panels, prefabricated by SmartLam North America in Dothan, Alabama, and shipped to site pre-cut. Elford Construction of Columbus is general contractor, Forefront Structural Engineers of Chicago the structural engineer, and Coastal Ridge the property manager. The construction figures are the story: crews averaged 2.5 floors every two to three weeks and installed 44 CLT panels a day, bringing the timber frame in roughly ten weeks ahead of its original November target. The building sequesters approximately 1,128 metric tonnes of carbon more than an equivalent steel-and-concrete scheme. Groundbreaking was 8 September 2025; completion is targeted for 2027.</div>
+    <a href="https://www.archpaper.com/2026/09/dlr-group-designed-mass-timber-student-housing-project/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+
+<article class="hl">
+  <img class="hl-img" src="https://static.dezeen.com/uploads/2026/09/bugatti-skyscraper-miami-brandon-haw-yabu-pushelberg_dezeen_2364_col_0.jpg" alt="Bugatti Residences Miami, a 60-storey tower rendered as four stacked blocks / Bugatti Residences Miami：分为四段体块的 60 层塔楼渲染图" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">Projects &amp; Design</span>
+    <div class="hl-title">Bugatti unveils a 60-storey tower on the Miami River: Brandon Haw Architecture with interiors by Yabu Pushelberg, $650 million, 183 residences, the marque&#39;s first US branded residence</div>
+    <div class="hl-meta">Sources: <span class="src">Dezeen (20 Sep)</span> · <span class="src">Florida YIMBY</span> · <span class="src">CRE-sources</span> · <span class="src">VINnews</span> · <span class="src">Engineers and Architects of America</span></div>
+    <div class="hl-desc">Bugatti Residences Miami is planned for 75 SW Miami Avenue Road in Miami&#39;s Brickell neighbourhood, on a waterfront parcel with more than 300 feet (about 91 metres) of frontage along the Miami River and water access to Biscayne Bay. The 60-storey tower is designed by US practice Brandon Haw Architecture with interiors by Yabu Pushelberg. The $650 million development will yield 183 residences including four penthouses. Prosper Group, led by chief executive Jay Roberts, is developing the tower with Belgium-based Versluys Group, led by chief executive Bart Versluys. It is Bugatti&#39;s first branded residence in the United States. Renderings show the tower split into four distinct blocks with double-height voids between them, so the mass reads as stacked segments rather than a single extruded shaft; the facade borrows the marque&#39;s signature C-line. Sales are slated to launch in the first half of 2027. Branded residences have proliferated in Miami; what is worth noting architecturally is not the label but its effect on how tall buildings are articulated — when a facade has to carry brand identity, segmentation, voids and profiles tend to replace the ordinary repetition of typical floors.</div>
+    <a href="https://www.dezeen.com/2026/09/20/bugatti-skyscraper-miami-brandon-haw-yabu-pushelberg/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/mad-lucas-museum-narrative-art-early-look-inside-designboom-11.jpg" alt="Interior of the Lucas Museum, with its elliptical Oculus and surrounding curved walls / 卢卡斯叙事艺术博物馆内部：椭圆形天窗空间与环绕的曲面墙体" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">In Depth</span>
+    <div class="ft-title">Lift the museum, give the ground back: with a 56-metre steel arch and 1,271 one-off panels, Ma Yansong does something museums rarely do</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (22 Sep)</span> · <span class="src">designboom (3 Sep)</span> · <span class="src">Lucas Museum press release</span> · <span class="src">The Architect&#39;s Newspaper (Nov 2025 opening-date announcement)</span> · <span class="src">Arquitectura Viva</span> · <span class="src">e-architect</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: refusing the straight line is a means, not an end.</strong> The line most often quoted about the Lucas Museum of Narrative Art is that it contains no straight lines. Read as sculptural wilfulness, that sounds arbitrary; read against the site, it points to something practical. The plot is an 11-acre (4.5-hectare) surface car park inside Exposition Park in Los Angeles, hemmed in by the Natural History Museum, the California Science Center and stadium infrastructure — a residual space defined by asphalt and parking. MAD&#39;s response was not to insert another box, but to lift the 300,000-square-foot (27,900-square-metre) volume off the ground and stitch roof, wall and ground into one continuous surface, so the building reads as swelling out of the terrain rather than sitting on it. The curve here does connective work: it dissolves the distinction between roof and wall, and with it the museum&#39;s usual front and back. The question worth putting to students is not whether it is beautiful, but this: once a building gives up frontality, how does it organise entry, direct movement, and remain legible in the city?</p>
+      <p><strong>Spatial strategy: build a raised plaza first, then think about galleries.</strong> Lifting the volume is what makes the ground plane the real subject. A freely traversable covered plaza sits beneath the building, carried by arched steel beams spanning 185 feet (56 metres), with an elliptical Oculus rising four storeys above it and pulling daylight down. North and south lobbies sit at either end; five public elevators carry visitors to the gallery levels, three of them cylindrical glass cabs on the north side, so vertical circulation becomes visible as spectacle. The display sequence begins on the first floor with The History of Narrative Art: Heroes · Myths · The Sacred, and continues on the fourth and fifth floors with thematic galleries organised around love, family, community, fantasy, romance and adventure, alongside comics, manga, graphic novels, photography and murals — more than 30 galleries in all, over 9,290 square metres of display. Two 299-seat theatres (the Robert Flaherty and Slavko Vorkapich), a horseshoe-plan research library, ten studios and classrooms, the Skywalker Grill restaurant, a café and a shop complete the programme. Putting the public plaza under the museum rather than in front of it is the most substantive typological move here: ticket-holders and passers-by share the same sheltered space, and the paying boundary is pushed into the vertical dimension.</p>
+      <p><strong>Structure and material: 1,271 one-off FRP panels, and the fabrication logic behind them.</strong> The continuous surface lives or dies on the envelope. It is built from 1,271 uniquely shaped fibreglass-reinforced polymer (FRP) panels, each averaging 8 by 32 feet (2.4 by 9.8 metres). FRP was chosen over metal panels or precast concrete because it is light and formable — in a doubly curved system where no two pieces repeat, self-weight directly governs the economy of the secondary structure, and FRP moulding can be driven straight from the digital model. The wider palette is concrete, steel, glass, plaster and a glass-fibre-reinforced concrete (GFRC) ribbon used as a continuous profile. There is an open technical-ethical question here worth naming: FRP is a polymer composite with far less mature recycling pathways than steel or concrete, and the whole-life carbon and design-for-disassembly cost of 1,271 bespoke panels is not disclosed in the published material. We will not speculate on the numbers, but we log it as something to track. The landscape, by Mia Lehrer&#39;s Studio-MLA with Stantec, adds more than 300 new trees (jacaranda, oak, pine) plus meadows, grasses and flowering planting, a hanging garden, an amphitheatre, a waterfall fountain and ten monumental outdoor sculptures, with topography modelled on California&#39;s foothills, valleys, mesas and canyons. Stantec is also executive architect.</p>
+      <p><strong>Context and consequence: nine years, and MAD&#39;s first American building.</strong> Approved in 2017 and begun in 2018, the museum was originally due to open in 2025; it opened to the public on 22 September 2026, following a founding members&#39; preview from 5 to 11 September and an opening event on 19 September. This briefing covered the building&#39;s completion in No. 005 (9 September); this is the opening-day reading. More than 150 architects, engineers and designers were involved. Founded by George Lucas and Mellody Hobson, the museum is dedicated to narrative art — visual work that tells stories across media and periods. Its collection of more than 40,000 works was assembled by Lucas over five decades; roughly 1,300 are shown at opening, and the cinema gallery&#39;s inaugural installation, Star Wars in Motion, focuses on the land vehicles of the first six films. For Chinese readers there is a second coordinate: this is MAD Architects&#39; first completed building in the United States, and one of very few large public cultural buildings in America led by a Chinese practice. It is worth resisting the easy reading. Commissions of this kind usually depend simultaneously on a client&#39;s personal conviction and on a delivery apparatus — here Stantec as executive architect — and reducing it to a story about Chinese practices &quot;going global&quot; skips most of the institutional detail.</p>
+    </div>
+    <a href="https://www.archdaily.com/1184508/first-look-at-the-completed-lucas-museum-of-narrative-art-opening-september-22-2026" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Matsumoto Jujo, Japan / Suppose Design Office + Schemata Architects: an onsen inn broken apart and redistributed across an existing hot-spring street</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 22 Sep)</span> · <span class="src">Suppose Design Office / Schemata Architects (architects)</span></div>
+  <div class="ni-desc">Matsumoto Jujo is located in Asama Onsen, Matsumoto, Nagano Prefecture, and was completed by Suppose Design Office together with Jo Nagasaka&#39;s Schemata Architects; gooood published the full set on 22 September 2026. The basic operation runs against convention: rather than concentrating accommodation in one building, the inn&#39;s functions — guest rooms, dining, bookshop, café, bathhouse — are separated and distributed across several existing buildings in the district, so that a guest&#39;s daily movement necessarily runs through the hot-spring street itself. This &quot;hotel as a district&quot; model has become something of a type in the regeneration of Japanese regional onsen towns. It converts hospitality footfall into sustained demand for existing street-facing building stock, answering a problem single-building refurbishment cannot solve in depopulating towns. For students working on rural and small-town regeneration, it repays more analysis than a standalone boutique inn.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Xixi Xin Hotel, Hangzhou / Domani Architectural Concepts: a mid-sized hotel negotiating the seam between wetland and tech park</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 22 Sep)</span> · <span class="src">Domani Architectural Concepts (architects)</span></div>
+  <div class="ni-desc">Xixi Xin Hotel sits in the Xixi district of Hangzhou, Zhejiang, designed by Domani Architectural Concepts and published by gooood on 22 September 2026. Its location is the most characteristic condition on the edge of a large Chinese city: protected wetland on one side, a rapidly built-out technology park on the other, two utterly different scales and tempos colliding. Hotels on such seams are routinely asked to do two contradictory things at once — present a low, small-grained, soft edge to the wetland, and a legible urban frontage with enough room count to the business district. Read the drawings with that contradiction in mind. Mid-sized buildings under edge conditions are the largest and least discussed category in contemporary Chinese practice.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ChaDai tea shop, Chongqing / Inception Design Studio: a spatial experiment in ten square metres</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 22 Sep)</span> · <span class="src">Inception Design Studio (designers)</span></div>
+  <div class="ni-desc">ChaDai is a specialty tea shop in Chongqing by Inception Design Studio, with an interior of roughly ten square metres; gooood published it on 22 September 2026, with the designers describing it as &quot;a spatial experiment in 10 square metres&quot;. Micro-retail of this size makes up an enormous share of the street frontage in Chinese cities and almost never enters architectural discussion. The design problems are specific and unforgiving: fitting a preparation counter, equipment, storage, circulation and a service window into under ten square metres, where a single dimensional misjudgement directly degrades throughput. The value for readers here is not formal but planimetric — this is close to the minimum dwelling exercise of a first-year studio, except that the client grades it on revenue.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Skaftárstofa visitor centre, Vatnajökull National Park, Iceland / Arkís arkitektar: 710 sq m with a walkable turf roof leading to a glacier viewing platform</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 21 Sep)</span> · <span class="src">Arkís arkitektar (architects)</span></div>
+  <div class="ni-desc">Skaftárstofa stands at Sönghóll in Kirkjubæjarklaustur, southern Iceland, and serves as a visitor centre for Vatnajökull National Park. Designed by Icelandic practice Arkís arkitektar, it covers 710 square metres and was completed in 2024; gooood published it on 21 September 2026. The scheme departs from Icelandic building tradition, in which land was historically shaped and folded into man-made structures. The building is therefore covered with living turf taken from the site, and the roof is made walkable, ending in a viewing platform oriented toward the Öræfajökull glacier — visitors literally walk onto the building in order to walk out to the landscape. The material build-up is set out in this issue&#39;s Materials &amp; Construction briefs. Note that the completion year is 2024; this is a publication event, not a completion.</div>
+</div></div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://static.dezeen.com/uploads/2026/09/studio-egret-west-battersea-power-station-masterplan-news-hero_dezeen_2364_col_0-852x479.jpg" alt="The revised Battersea masterplan, showing clusters of smaller buildings linked by streets and courtyards / 巴特西发电站总体规划修订：小体量建筑簇群与街道庭院网络" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">In Depth</span>
+    <div class="ft-title">Breaking up the 2008 blocks: the revised plan for Battersea&#39;s last 16 acres is urban design publicly admitting the original scheme has dated</div>
+    <div class="ft-meta">Cross-checked: <span class="src">Dezeen (18 Sep)</span> · <span class="src">Architects&#39; Journal (Sep)</span> · <span class="src">Building (Sep)</span> · <span class="src">Property Week</span> · <span class="src">Battersea Power Station (masterplan page)</span> · <span class="src">Business Today / Infrastructure-now (3.2m sq ft reporting)</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: a 2008 masterplan, corrected eighteen years on.</strong> Battersea Power Station is one of London&#39;s largest and longest-running regeneration projects, covering 42 acres. The original masterplan was drawn up by Uruguayan architect Rafael Viñoly in 2008, and its urban form carries the marks of that moment: a small number of large blocks defining a clear axis, with the power station itself as the monument terminating it. Eighteen years later, more than 2,200 homes and around 800,000 square feet of offices have been delivered, and the remaining 16 acres of brownfield need a new proposal. What Studio Egret West has filed amounts to a public correction of the original urban form — replacing few-and-large with clusters of smaller buildings, connected by a network of streets and courtyards. This is a direct lesson for urban design students: masterplans have a shelf life, and any phased development running over a decade will almost certainly find its early premises obsolete by the middle phases. The question is never whether to revise, but what the already-built skeleton can still carry when you do.</p>
+      <p><strong>Spatial strategy: permeability as the operative metric.</strong> Dezeen summarised the revision as a &quot;more permeable&quot; masterplan, and the word rewards unpacking. In urban design, permeability describes the number and freedom of routes a pedestrian can choose through an area, and it is governed directly by block size: smaller blocks mean more junctions and higher permeability. Breaking large volumes into clusters is, operationally, the act of shrinking blocks and adding streets, turning edges you previously had to walk around into passages you can walk through. The revision also expands the public space network — officially described as more playful, artistic and biodiverse — and extends green space north into Nine Elms, the large adjacent regeneration area, which lifts what would be estate-scale open space into a district-scale green network. The plan additionally emphasises strengthened visual connections to the historic power station. In heritage terms that has a concrete meaning: the smaller and more dispersed the new volumes, the less the protected industrial fabric is obscured in the city&#39;s sightlines.</p>
+      <p><strong>Scale and delivery: 3.2 million square feet, and 200 council homes.</strong> The proposal covers 3.2 million square feet (roughly 297,000 square metres) of residential, commercial and leisure space, including high-rise residential, cultural and commercial buildings. One phase has been approved to deliver 200 council homes in partnership with Wandsworth Council. That figure deserves to be read honestly in context: 200 affordable homes is not a high proportion against a 42-acre, roughly £9-billion development delivering thousands of units. Affordable housing share has been the most persistent criticism of Battersea in British public debate, and the use of viability assessments to revise affordable commitments downward is a recurring structural controversy in large UK developments. We will not pass judgement on this particular revision&#39;s affordable share, because the full phase-by-phase figures are not yet public. But the reading instruction stands: whenever you open a revised masterplan, put &quot;new floor area&quot; and &quot;new affordable homes&quot; side by side.</p>
+      <p><strong>Context and consequence: planning that leaves room for the unplanned.</strong> The revision responds to feedback from a public consultation held over the summer of 2026, and to changes in how people live, work and spend leisure time — the restructuring of office demand after widespread remote work is a calculation every large mixed-use scheme in London has had to redo. Studio Egret West co-founder David West described the approach as: &quot;The refreshed vision is deliberately flexible, leaving room for serendipity.&quot; Leaving room for serendipity sounds like rhetoric, but it has a precise technical counterpart in masterplanning: instead of locking down use and massing for every plot at once, you fix the block skeleton, the public space and the frontage rules, and leave the buildings to later phases. That is a different conception of planning from the Viñoly type, which aims at a finished image. The application has been submitted but not yet consented, and the final form may still change.</p>
+    </div>
+    <a href="https://www.dezeen.com/2026/09/18/studio-egret-west-revises-battersea-power-station-masterplan-for-final-phases/" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">World Cities Day 2026 global observance set for Fuzhou, 31 October to 2 November: annual theme &quot;Renewal Empowers, Liveability Builds Dreams&quot;, with the fourth Shanghai Award and the 2026 Shanghai Manual</div>
+  <div class="ni-meta">Sources: <span class="src">21st Century Business Herald (22 Sep)</span> · <span class="src">Fujian Provincial Department of Housing and Urban-Rural Development</span> · <span class="src">Fuzhou News</span> · <span class="src">Xinhua Fujian</span></div>
+  <div class="ni-desc">A press conference was held in Beijing on 22 September announcing the global observance of World Cities Day 2026 and the fourth Global Award for Sustainable Development of Cities (the Shanghai Award). Attendees included Chen Shaowang, Vice Minister of Housing and Urban-Rural Development; Rafael Tuts, Special Representative of the Executive Director of UN-Habitat; Wang Jinfu, Vice Governor of Fujian Province; and Wu Xiande, Mayor of Fuzhou. Jointly hosted by the Ministry of Housing and Urban-Rural Development, UN-Habitat and the Fujian Provincial Government, the observance runs 31 October to 2 November in Fuzhou under the annual theme &quot;Renewal Empowers, Liveability Builds Dreams&quot;. The opening ceremony will present the fourth Shanghai Award and release the 2026 edition of the Shanghai Manual: A Guide for Sustainable Urban Development in the 21st Century. An on-site exhibition zone focuses on urban regeneration and &quot;good housing&quot;, organised in three chapters. World Cities Day falls annually on 31 October and is a UN international day established at China&#39;s initiative.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">gooood publishes &quot;Urban Acupuncture: Micro-Regeneration 2022–2026&quot;: 30 small-scale interventions from four years of coverage, re-sorted into one set</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 22 Sep)</span></div>
+  <div class="ni-desc">On 22 September 2026 gooood published a curated archive of 30 urban acupuncture projects drawn from its coverage between 2022 and 2026. The term originates with Spanish architect Manuel de Solà-Morales and was popularised through the practice and writing of Jaime Lerner, former mayor of Curitiba, Brazil. Its core claim is that low-cost, short-duration, precisely located interventions can trigger cascading improvement in the surrounding urban fabric, as an alternative to demolition and rebuilding. For students working on regeneration, the value of a collection like this is lateral comparison: a single pocket park or street refurbishment tells you almost nothing on its own, but thirty of them side by side start to reveal which intervention types — public seating systems, alley through-connections, opened roofs, reuse of derelict structures — actually work, and under what conditions of density and land tenure.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">China&#39;s housing ministry: the 15th Five-Year Plan will pursue &quot;good housing&quot; across the whole chain and whole life cycle — standards, design, materials, construction and operation</div>
+  <div class="ni-meta">Sources: <span class="src">Guangming Online (19 Sep)</span> · <span class="src">China News Service (19 Sep)</span> · <span class="src">State Council Information Office press conference (18 Sep)</span></div>
+  <div class="ni-desc">At a State Council Information Office press conference on 18 September, the Ministry of Housing and Urban-Rural Development stated that during the 15th Five-Year Plan period it will advance &quot;good housing&quot; construction across the whole chain and whole life cycle, working through five dimensions: standards, design, materials, construction, and operation and maintenance. The operative phrase is &quot;whole chain&quot;. It extends the question of housing quality beyond design alone, into material approval, construction technique and post-handover operation, which means future constraints will not sit on drawings only. This briefing covered the urban regeneration legislation and the ¥97 billion central budget allocation from the same press conference in No. 015 (20 September); this item is its housing-quality component. The practical implication for architecture is straightforward: as &quot;good housing&quot; hardens from slogan into a standards regime spanning design, materials, construction and operation, many technical parameters previously left to developer discretion will become mandatory code.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ZHA&#39;s Baku Expo City masterplan: a 198-hectare district committing to retain 92 per cent of the site&#39;s 18,000 existing trees</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (Aug)</span> · <span class="src">Dezeen (21 Aug)</span> · <span class="src">designboom</span> · <span class="src">Arquitectura Viva</span></div>
+  <div class="ni-desc">Zaha Hadid Architects has been selected to design the Baku Expo City masterplan in Azerbaijan, a 198-hectare district wrapping the existing Baku Expo Center on a pine forest site. The organising premise is woodland retention: the plan commits to preserving 92 per cent of the site&#39;s 18,000 existing trees for natural cooling and climate regulation. It responds to a decade of population growth in Baku with a mix of dwelling types from one-bedroom apartments to large family homes, integrating kindergartens, schools, local shops and markets, entertainment and cultural venues, parks, sports clubs and medical clinics. This is August news, included here as a counterpoint: it and the Battersea revision in this issue point at the same contemporary masterplanning proposition — decide first what is to be kept (trees, historic fabric, existing streets), then decide what to add, rather than the reverse.</div>
+</div></div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.dlrgroup.com/media/25_24111_00_N2_weblg.jpg" alt="9th and High, its structure of glulam columns and beams with CLT floor panels / 9th and High：胶合木柱梁与交叉层压木楼板构成的木结构主体" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">In Depth</span>
+    <div class="ft-title">Forty-four panels a day, 2.5 floors every two to three weeks: a 13-storey timber dorm in Columbus makes the case for mass timber on schedule, not sentiment</div>
+    <div class="ft-meta">Cross-checked: <span class="src">The Architect&#39;s Newspaper (Sep)</span> · <span class="src">Construction Dive (16 Sep)</span> · <span class="src">Multifamily Dive (16 Sep)</span> · <span class="src">Building Design + Construction</span> · <span class="src">Engineering News-Record (groundbreaking)</span> · <span class="src">DLR Group project fact sheet</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: putting mass timber into the hardest housing type to make money on.</strong> INTRO Columbus, also known as 9th and High, stands at 1497 North High Street in Columbus, Ohio, beside The Ohio State University. It is a 13-storey, 158-foot (about 48-metre), 242,000-square-foot (roughly 22,500-square-metre) off-campus student housing building with 186 units and 493 beds in townhome and conventional apartment layouts, designed by DLR Group. Choosing mass timber for student housing is a heavier decision than it first appears. Student housing runs the thinnest margins and the tightest schedules of any residential type: it must hand over before the autumn term begins, and a week late means an entire year of lost rent. Most American mass timber high-rises of the past decade have been offices, hotels and cultural buildings, whose clients tolerate a cost premium more easily. Putting timber into student housing asks it to prove itself under the least forgiving economics — which is arguably more interesting than the &quot;tallest mass timber student housing in the US&quot; claim (per the architect&#39;s fact sheet).</p>
+      <p><strong>Structure and material: glulam frame, CLT plates, pre-cut in the factory.</strong> The frame uses glulam (glued laminated timber) columns and beams with cross-laminated timber (CLT) floor panels. The timber was prefabricated by SmartLam North America in Dothan, Alabama, and arrived on site already cut to drawing. That supply-chain detail is the key to the project&#39;s speed: CLT erection rate is not governed by site labour but by CNC accuracy in the plant and by how delivery batches are sequenced — the site only lifts and connects, and cuts almost nothing. Elford Construction of Columbus was general contractor, Forefront Structural Engineers of Chicago the structural engineer, and Coastal Ridge the property manager. One caveat: the published material does not disclose the lateral system (whether the core is concrete or a timber-concrete hybrid) or the specific floor fire-protection build-up. At 13 storeys both are decisive technical choices, and we will not speculate.</p>
+      <p><strong>Construction data: the argument is in the numbers.</strong> Crews averaged 2.5 floors every two to three weeks and installed 44 CLT panels per day. Groundbreaking was 8 September 2025 and topping out 8 September 2026 — bringing the timber frame in roughly ten weeks ahead of its original November target. Consider what ten weeks means for a building due to deliver in 2027: it locks in a leasing season, and it saves something like two and a half months of construction loan interest, crane hire and site overhead. This is mass timber&#39;s real selling point in North America — not only that it is greener, but that it is faster, and speed converts directly into money inside a development pro forma. The sustainability figure is also published: the building sequesters roughly 1,128 metric tonnes more carbon than an equivalent steel-and-concrete scheme. Cite that number carefully. It describes biogenic carbon stored in the wood, which is not the same as a net reduction in whole-life emissions — that would also have to account for harvesting, processing, transport and end-of-life treatment.</p>
+      <p><strong>Context and consequence: what a city&#39;s first timber building actually costs.</strong> This is the first mass timber building in Columbus. &quot;First&quot; usually means an entire set of local institutional costs is being paid for the first time: the fire department reviews this drawing set for the first time, local trades erect CLT for the first time, an insurer prices a timber high-rise for the first time, labour jurisdictions get renegotiated. These costs rarely appear as line items, yet they determine whether a second and third building follow. The diffusion of mass timber high-rises in North America has followed a consistent pattern — a demonstration project appears in one state, building code height limits for timber loosen, local supply chain and permitting experience mature, and only then do costs genuinely fall. SmartLam supplying Ohio from Alabama is worth noting on its own: North American CLT manufacturing is spreading from the Pacific Northwest into the Southeast, and shorter haulage radii will directly affect timber&#39;s economics in the Midwest and East. For readers in Syracuse that supply map matters more than any rendering — whether a mass timber project in Upstate New York pencils out depends heavily on where the nearest CLT plant is.</p>
+    </div>
+    <a href="https://www.archpaper.com/2026/09/dlr-group-designed-mass-timber-student-housing-project/" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Finland&#39;s Elementic launches MO6: lignin-based wall tiles that the company says store about 2.4 kg of atmospheric CO₂ per kilogram of material</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen (4 Sep)</span> · <span class="src">Elementic (manufacturer)</span> · <span class="src">Habitare fair</span></div>
+  <div class="ni-desc">Finnish materials technology firm Elementic launched its debut collection, MO6 Eternal, at the Habitare fair in Helsinki on 4 September 2026; the MO6 brand was established in May 2026. The material is made from lignin, a byproduct of the forestry and timber industries, processed through a patented bioreactor method that strips out impurities such as oxygen, leaving carbon molecules as roughly 90 per cent of its chemistry. The company states that 1 kg of material stores approximately 2.4 kg of atmospheric CO₂, and that because the material neither decays nor resists recycling, the carbon stays locked for thousands of years. The product takes the form of thick, lightweight, rough-textured off-black wall tiles, described as fire-resistant and durable, with thermal and acoustic properties comparable to wood, available in rougher or smoother finishes and able to be coated. It is currently marketed only for dry indoor spaces, has already been delivered to a spa under construction in Paris, and targets hotels and restaurants. Elementic is developing a brick format and has ambitions for structural use. A note of caution: &quot;most carbon-storing&quot; is a manufacturer claim, and no independent third-party life cycle assessment (LCA) appears to be public — attribute the figure to the manufacturer when citing it.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Europe&#39;s largest 3D-printed apartment building completed at Bezannes, France: three storeys, 12 apartments, about 800 sq m, load-bearing structure and all walls printed on site in 34 days instead of the planned 50</div>
+  <div class="ni-meta">Sources: <span class="src">New Atlas</span> · <span class="src">3D Printing Industry</span> · <span class="src">Holcim (material supplier)</span> · <span class="src">PERI 3D Construction (contractor)</span> · <span class="src">BFT International</span></div>
+  <div class="ni-desc">ViliaSprint² stands at Bezannes near Reims, France: three storeys, 12 apartments, roughly 800 square metres of liveable space, developed by Plurial Novilia and reported by several outlets as Europe&#39;s largest 3D-printed apartment building. Printing was carried out by PERI 3D Construction using a COBOD BOD2 gantry system, extruding Holcim&#39;s TectorPrint printable concrete — part of its CO₂-reduced ECOPact range — reinforced with synthetic macro fibres. It is described as the first building in France where both the load-bearing structure and all walls were printed directly on site. The construction data is the point: printing began in March 2025, was planned for 50 days and finished in 34, overseen by three operators on site. The gain came from optimising the installation sequence for prefabricated floor slabs, halving the number of times the gantry had to be repositioned. Conventional trades (roof, windows, services) followed, with the building completed in early 2026. It also has perlite insulation, 500 square metres of photovoltaics and a hybrid gas-heat pump system, giving roughly 60 per cent energy self-sufficiency.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The material build-up at Skaftárstofa, Iceland: corrugated precast concrete panels, polished concrete floors with glacial river gravel, local timber cladding, Corten eaves and living turf taken from the site</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 21 Sep)</span> · <span class="src">Arkís arkitektar (architects)</span></div>
+  <div class="ni-desc">The construction of the Vatnajökull National Park visitor centre (Skaftárstofa, 710 sq m, Arkís arkitektar, completed 2024) reads as a checklist of how &quot;local sourcing&quot; translates into actual trades. The external walls are precast concrete panels with a corrugated surface finish. Interior floors are polished concrete with gravel from the glacial rivers embedded in the aggregate, so grinding reveals the site&#39;s geology directly underfoot. Parts of the exterior are clad in timber from Icelandic forests — a meaningful material statement in a country with very low forest cover. Eaves are Corten steel. The roof is living turf lifted straight from the site. Every material was selected for low maintenance and natural weathering: the building is allowed to discolour, moss over and oxidise rather than being held at factory condition by coatings. For students working in harsh climates, this is worth reading against the more common &quot;high-performance envelope plus mechanical control&quot; approach.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Yulan Xiangyuan community service centre, Pudong, Shanghai / OMMU Studio, Shanghai Jiao Tong University: arched openings and a perforated brick screen remake an existing building&#39;s interface</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 22 Sep)</span> · <span class="src">OMMU Architecture Studio, SJTU (architects)</span></div>
+  <div class="ni-desc">The Yulan Xiangyuan party-and-community service centre sits in Pudong, Shanghai, designed by the OMMU studio at Shanghai Jiao Tong University and published by gooood on 22 September 2026. The intervention concentrates on the interface: a new outer layer of arched openings and perforated brick screen is added outside the existing building, redefining where it meets the neighbourhood. Brick screens recur constantly in Chinese community regeneration, and the technical logic is sound — they handle shading, ventilation and partial visual permeability at once, at a fraction of the cost of a curtain wall system. The risk appears when the screen is treated as pure decorative skin: the fixing detail between brick and primary structure, rainwater shedding and long-term maintenance all tend to get simplified away. When reading projects of this kind, look at the setback between screen and original structure, the support framing, and how the screen is terminated at base and head.</div>
+</div></div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6ab2/4dc4/7475/ba01/8b4e/03bf/large_jpg/african-futures-institute-transforms-former-warehouse-into-new-accra-headquarters_4.jpg?1790070279" alt="The AFI headquarters in Accra, its Urban Room retaining the warehouse industrial scale / 非洲未来研究院阿克拉总部：保留工业尺度的城市厅" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">In Depth</span>
+    <div class="ft-title">One Urban Room and a school that refuses to be a monument: Lesley Lokko puts the African Futures Institute inside an Accra tile warehouse</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (22 Sep)</span> · <span class="src">African Futures Institute (vision page)</span> · <span class="src">GRIOT Magazine (founding coverage)</span> · <span class="src">La Biennale di Venezia (2023 curator announcement)</span> · <span class="src">e-flux</span> · <span class="src">illustrarch (2026 African Cultural Icon Award)</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: what should a school of architecture look like.</strong> The African Futures Institute (AFI) was founded in Accra, Ghana, in 2021 by Professor Lesley Lokko, who had earlier founded the Graduate School of Architecture in Johannesburg in 2015. Five years on, AFI has a permanent home: a former tile warehouse in the Osu district of Accra. Lokko led the architectural direction, working with Patrick Gentilezza of Buro Ghana, Patti Anahory, Laurence Lord and Fred Swart. She states the position plainly: &quot;We wanted a building that could hold many futures at once. Not a monument to an institution, but a framework for activity.&quot; The architectural consequence is direct — the conversion preserves the warehouse&#39;s scale and industrial character and adds only the infrastructure the teaching and cultural programme needs, without inventing a separate representational language for the idea of &quot;school&quot;. Set against two decades of new architecture school buildings worldwide — mostly strongly formed landmarks, using the building itself to assert the discipline&#39;s avant-garde credentials — AFI&#39;s choice is a deliberate reversal.</p>
+      <p><strong>Spatial strategy: give the biggest room to the least specified use.</strong> The core of the headquarters is a single Urban Room. It is not designated as classroom, auditorium or gallery, but absorbs lectures, studio sessions, exhibitions, film screenings, workshops and public gatherings; the rest is team offices, archive and research facilities. This &quot;one big room plus servant spaces&quot; organisation is among the oldest and most durable arrangements in architecture — from town halls to industrial sheds — and its advantage is especially clear in an educational institution. The kinds of activity architectural education contains change far faster than a building&#39;s lifespan, so any space precisely tailored to current pedagogy is liable to become a constraint within a decade. The warehouse&#39;s existing long span and generous clear height supply exactly the physical conditions such an unspecified room requires, which is one of the practical reasons to convert rather than build new — not simply cost or sentiment. AFI&#39;s flagship programme, the Nomadic African Studio, is based here, and its name states the institution&#39;s pedagogy: teaching is not fixed to one campus but moves between cities across the continent, which makes the headquarters an anchor and an archive rather than the sole site of instruction.</p>
+      <p><strong>Method: design and construction developed at the same time, on site.</strong> The most unusual thing about this project is not formal but procedural — design and construction were developed simultaneously on site, rather than completing a full drawing set and then handing it to a builder. That is close to impossible within mainstream Euro-American delivery systems, where contract, cost and liability are all built on the premise of drawings first. In the actual building conditions of many African cities, however, it is the more truthful model: fluctuating material supply, unstable access to skilled trades and phased budget release all undermine the assumption of building strictly to drawing. Treating those conditions as a design method rather than a defect is consistent with AFI&#39;s broader argument — not importing a standard process from elsewhere, but building a way of working out of local relations of production. For students this is a methodological question worth taking seriously: the design–construction separation taught in school is itself the product of a particular geography and a particular historical moment, not a universal.</p>
+      <p><strong>Context and consequence: the centre of gravity in architectural education shifts.</strong> Lokko is a Ghanaian-Scottish architect, educator and novelist whose career spans Johannesburg, London, Accra and Edinburgh. She curated the 18th Venice Architecture Biennale in 2023 under the title The Laboratory of the Future, the first edition centred on Africa and the African diaspora. In 2026 she received the African Cultural Icon Award in recognition of her sustained work reshaping architectural education. Read alongside this building, those facts trace a consistent line: moving the agenda-setting power of architecture out of the established Euro-American school system, and doing so not by opening a branch in Europe or America but by building a physical base in Accra. The Osu location is equally deliberate — it places the institute&#39;s work inside the everyday fabric of the city rather than in a campus enclave on the periphery. For readers in Syracuse, AFI is worth following not only as an adaptive reuse case but as an alternative answer to the question of what urban relationship a school of architecture ought to sit inside.</p>
+    </div>
+    <a href="https://www.archdaily.com/1185536/african-futures-institute-transforms-former-warehouse-into-headquarters-in-accra-ghana" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Three lectures at Harvard GSD this week: Gary Hilderbrand gives the Olmsted Lecture on 22 September, Neri&amp;Hu on 24 September, Kashef Chowdhury gives the Aga Khan Program Lecture on 28 September</div>
+  <div class="ni-meta">Sources: <span class="src">Harvard GSD public programs</span> · <span class="src">Harvard GSD (September Hilderbrand feature)</span> · <span class="src">The Architect&#39;s Newspaper (fall lecture series roundup)</span> · <span class="src">e-flux</span></div>
+  <div class="ni-desc">Harvard Graduate School of Design&#39;s fall 2026 public programme clusters three lectures this week, all at 6:30pm local time. On 22 September, Gary Hilderbrand delivers the Frederick Law Olmsted Lecture, titled Writing on the Surface of the Earth; he is the Peter Louis Hornbeck Professor in Practice of Landscape Architecture at the GSD and a partner at Reed Hilderbrand, and the lecture addresses a practice and pedagogy built on close site reading and the development of narrative through design. On 24 September, Lyndon Neri and Rossana Hu of Neri&amp;Hu present Liminal Ground, focused on boundaries and thresholds in the work of their Shanghai-based practice. On 28 September, Dhaka-based architect Kashef Chowdhury gives the Aga Khan Program Lecture, Meditations in Entropy, on how his work responds to Bangladesh&#39;s culture, history and increasingly fragile ecological conditions. Readers on the East Coast can attend in person.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Tallinn Architecture Biennale &quot;How Much?&quot; is running: 9 September to 30 November, with Linnahall — the part-abandoned Soviet complex built for the 1980 Olympics — as the main venue</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (full programme announcement)</span> · <span class="src">TAB official site, 2026.tab.ee</span> · <span class="src">Estonian Centre for Architecture</span> · <span class="src">Archisearch</span></div>
+  <div class="ni-desc">The Tallinn Architecture Biennale (TAB 2026) opened on 9 September 2026 and runs to 30 November under the theme &quot;How Much?&quot;, curated by Estonia&#39;s Stuudio TÄNA (Kertu Johanna Jõeste, Ra Martin Puhkan, Siim Tanel Tõnisson) with Mark Aleksander Fischer and Mira Samonig, and organised by the Estonian Centre for Architecture. The main venue is Linnahall, the part-abandoned Soviet-era complex built for the sailing events of the 1980 Moscow Olympics — itself a built annotation on cost and what gets left behind. Satellite venues include the Estonian Museum of Architecture, the Estonian Academy of Arts (EKA) and the contemporary art museum EKKM, with the programme extending to Tartu and Kuressaare. The main programme comprises the curatorial exhibition; the Sounds Expensive symposium held at EKA on 11 September (keynotes from UK writer and curator Phineas Harper and Canadian architectural historian Claire Zimmerman); the vision competition exhibition From Void to Value; the installation programme Budget Bougie; and the international architecture schools&#39; exhibition Capital-A Affordable Architecture. The edition examines scarcity, frugality, and architecture&#39;s hidden social, ecological and temporal costs.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Buildner announces results for The Next House: USA today — redesigning the American suburban home, with three winners, two special awards and six honourable mentions</div>
+  <div class="ni-meta">Sources: <span class="src">Buildner / architecturecompetitions.com competition page</span> · <span class="src">Dezeen Competitions</span> · <span class="src">designboom Competitions</span> · <span class="src">ArchDaily</span> · <span class="src">Bustler</span></div>
+  <div class="ni-desc">The Next House: USA, run by the international competition platform Buildner, is scheduled to announce results on 22 September 2026, selecting three winning proposals, two special award recipients and six honourable mentions. Prizes are $10,000 for first place, $5,000 for second and $3,000 for third, plus a Buildner Student Award and a Buildner Sustainability Award of $1,000 each. The brief asked entrants to redesign the American suburban home, once a symbol of a &quot;dream lifestyle&quot;. It is a well-aimed question for students at Syracuse: the detached suburban house carries far more than a floor plan problem — land use efficiency, car dependency, single-family zoning and housing affordability are all bound into it, and the wave of single-family zoning reform across several US states and cities in recent years attacks the same problem from the regulatory end. At the time of publication the full winners list had not yet appeared across platforms; check Buildner&#39;s official results page directly.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The Pavilion of Time at Paris Design Week / Wu Bin Design: a Chinese studio&#39;s installation built on the courtyard as its central image</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 22 Sep)</span> · <span class="src">Wu Bin Design (designers)</span> · <span class="src">Paris Design Week</span></div>
+  <div class="ni-desc">The Pavilion of Time is an installation created by Chinese studio Wu Bin Design for Paris Design Week, summarised by its authors as &quot;infinite time, condensed into one courtyard&quot;; gooood published it on 22 September 2026. Installations are the most common entry point for Chinese architecture and interior practices into the international exhibition circuit: the cost is controllable, the schedule short, no local licence is required, and the designer gets to address questions of cultural expression directly. It is worth noting, though, that Chinese installations built around the courtyard as central image have appeared with very high frequency in international exhibitions over the past decade, and the risk is a slide from spatial operation into symbol transfer. The test is not complicated. In its original type, the courtyard solves concrete problems — daylight, ventilation, the graded transition from public to private, the perception of time. An installation that keeps the enclosure but strips out those mechanisms is left with a Chinese-flavoured picture frame.</div>
+</div></div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
