@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-23</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="Zumthor's Fondation Beyeler expansion begins a phased opening on 26 September: three new buildings share the work of one museum, with the 1,500 m² Wyss Museum shaped in a Y-plan a…">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 018 · 2026-09-23 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="Zumthor's Fondation Beyeler expansion begins a phased opening on 26 September: three new buildings share the work of one museum, with the 1,500 m² Wyss Museum shaped in a Y-plan a…">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-23-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.designboom.com/twitterimages/uploads/2026/09/peter-zumthor-fondation-beyeler-gradual-opening-designboom-1200.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 018 · 2026-09-23 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="Zumthor's Fondation Beyeler expansion begins a phased opening on 26 September: three new buildings share the work of one museum, with the 1,500 m² Wyss Museum shaped in a Y-plan a…">
+<meta name="twitter:image" content="https://www.designboom.com/twitterimages/uploads/2026/09/peter-zumthor-fondation-beyeler-gradual-opening-designboom-1200.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 018 · 2026-09-23 · 陆先生建筑日报 | Architecture Daily","description":"Zumthor's Fondation Beyeler expansion begins a phased opening on 26 September: three new buildings share the work of one museum, with the 1,500 m² Wyss Museum shaped in a Y-plan a…","datePublished":"2026-09-23","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-23-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://www.designboom.com/twitterimages/uploads/2026/09/peter-zumthor-fondation-beyeler-gradual-opening-designboom-1200.jpg"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 018</div>
+    <div>September 23, 2026 Wednesday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-23-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p>Today's lead comes from Riehen, Switzerland: the three new buildings Peter Zumthor designed for the Fondation Beyeler begin a phased opening on 26 September — the first substantial expansion since Renzo Piano's museum of 1997, with the 1,500-square-metre Wyss Museum laid out in an irregular Y-plan that bends around an existing ginkgo and redwood. Chicago's news is also about time: Google has released new renderings for Helmut Jahn's 1985 Thompson Center, a postmodern landmark repeatedly slated for demolition that will reopen all-electric. In Inwood, New York, WORKac has completed The People's Theatre: Centro Cultural Inmigrante; in Berlin, MLZD's conversion of the Tempelhof airport tower opens its roof to the city via a single suspended steel stair; and the Oslo Architecture Triennale enters its second week under "What if Nature Comes First?" One disclosure: newly published material-and-construction stories were thin today, so we fill that slot with the construction logic of the London Design Festival's bamboo Pangolin Shield, and label its original publication date plainly.</p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/peter-zumthor-fondation-beyeler-gradual-opening-designboom-1200.jpg" alt="The Wyss Museum by Peter Zumthor at Fondation Beyeler, its rammed-concrete facade tinted warm yellow by local Jura limestone / 卒姆托为贝耶勒基金会设计的 Wyss 美术馆，夯筑混凝土外墙掺本地侏罗石呈暖黄色" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">Projects &amp; Design</span>
+    <div class="hl-title">Zumthor's Fondation Beyeler expansion begins a phased opening on 26 September: three new buildings share the work of one museum, with the 1,500 m² Wyss Museum shaped in a Y-plan around three stands of existing trees</div>
+    <div class="hl-meta">Sources: <span class="src">designboom (23 Sept)</span> · <span class="src">Fondation Beyeler, "The New Ensemble"</span> · <span class="src">ArchDaily</span> · <span class="src">HENI News</span> · <span class="src">Dezeen (2017 scheme announcement)</span></div>
+    <div class="hl-desc">The Fondation Beyeler in Riehen, outside Basel, opens Peter Zumthor's new buildings in stages from 26 September 2026, reaching full daily operation in January 2027. It is the museum's first substantial expansion in nearly three decades — since Renzo Piano's building of 1997. Zumthor did not build onto Piano. He broke the brief into three separate, modestly scaled structures. The Wyss Museum holds roughly 1,500 square metres of exhibition space over three floors; its plan is an irregular Y, generated around an existing ginkgo, a redwood and a group of plane trees. The Ammann Pavilion is a single-storey social space enclosed in glass and oak, with cherry and pear wood inside, seating up to 250 for events — and, crucially, open to the public free of charge independently of museum hours. The Erlen Torhaus, behind a stained oak timber-frame facade, handles art deliveries and exhibition preparation, linked underground to the Wyss Museum. Opening alongside them is the Erlengarten, nearly 10,000 square metres of formerly private parkland that roughly doubles the grounds, with works by Calder, Holzer, Kelly, Bourgeois, Huyghe and Whiteread. The inaugural exhibition, "Constellations," spans the Wyss Museum and Piano's building and runs from autumn 2026 into autumn 2027, shifting with the seasons. Zumthor on his intent: "I wanted my buildings to blend in so naturally, that it felt completely self-evident."</div>
+    <a href="https://www.designboom.com/architecture/peter-zumthor-fondation-beyeler-gradual-opening-basel-switzerland-wyss-museum/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6ab3/15e3/59bf/5a05/a6f0/b4f1/large_jpg/google-unveils-new-renderings-of-chicagos-thompson-center-redesign-marking-its-escape-from-demolition_2.jpg?1790121511" alt="Rendering of the redesigned Thompson Center, showing its new facade and heightened entry colonnade / 汤普森中心改造后的外观渲染图：新立面与抬高的入口柱廊" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">Urbanism &amp; Planning</span>
+    <div class="hl-title">Google releases new Thompson Center renderings: Jahn's 1985 postmodern landmark is off the demolition list, its atrium reworked by A+I, all-electric and targeting LEED Platinum, opening 2028</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (23 Sept)</span> · <span class="src">The Architect&#39;s Newspaper (22 Sept)</span> · <span class="src">Chicago YIMBY (Sept)</span> · <span class="src">Dezeen (18 Aug, new facade)</span> · <span class="src">Urbanize Chicago</span></div>
+    <div class="hl-desc">Google announced its redevelopment of Chicago's James R. Thompson Center on 16 September 2026 and has released a further batch of renderings this week. Designed by Helmut Jahn and completed in 1985, the building is among the most recognisable works of American postmodern civic architecture — and, because of high maintenance costs and poor envelope performance, it spent three decades in and out of demolition debates. In 2015 then-governor Bruce Rauner proposed selling it; preservation groups including Landmarks Illinois and Docomomo campaigned to keep it. The Prime Group bought the building in 2022 and committed to renovation rather than demolition. Google is working with Architecture Plus Information (A+I, now part of Perkins&amp;Will): the original glass-and-metal exterior has been coming off since May 2024 and is being replaced; the entry colonnade is heightened to rework the ground-floor experience; the lower atrium becomes, in A+I's words, "a cascading staircase integrated with terraced seating and retail offerings"; three levels of covered terraces bring in more daylight and connect to green space and biophilic elements; the plaza gains food, retail and seasonal event space. The renovated building will be all-electric and is designed to meet LEED Platinum targets. On the plaza will stand Vector, a 30-foot (roughly 9.1-metre) sculpture by Sanford Biggers drawing on reimagined quilt patterns, alongside a large commissioned piece made with After School Matters. Google employs more than 2,000 people in Chicago and plans to open the building to staff, tenants and the public in 2028.</div>
+    <a href="https://www.archdaily.com/1185618/google-unveils-new-renderings-of-chicagos-thompson-center-redesign-marking-its-escape-from-demolition" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/The-Peoples-Theatre-Architecture-by-WORKac_-Photography-by-Bruce-Damonte-Photo-04_LR3000px.jpeg" alt="Interior of The People&#39;s Theatre: Centro Cultural Inmigrante, its Mainstage lacquered in plum and purple / 人民剧场·移民文化中心内部：主剧场的李子色与紫色漆面" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">Projects &amp; Design</span>
+    <div class="hl-title">WORKac completes The People's Theatre: Centro Cultural Inmigrante in New York — 19,000 sq ft, $37 million, two theatres that can run simultaneously, open to the public since 19 September</div>
+    <div class="hl-meta">Sources: <span class="src">The Architect&#39;s Newspaper (22 Sept)</span> · <span class="src">Archinect</span> · <span class="src">Playbill</span> · <span class="src">Shawmut Design and Construction (contractor)</span> · <span class="src">The People&#39;s Theatre</span></div>
+    <div class="hl-desc">The People's Theatre: Centro Cultural Inmigrante sits at 407 West 207th Street in Inwood, at the northern tip of Manhattan. The building covers 19,000 square feet (about 1,765 square metres), designed by WORKac with theatre and acoustics consultant Charcoalblue and built by Shawmut Design and Construction. The ribbon-cutting was on 15 September; the doors opened to the public on 19 September. The project cost roughly $37 million, of which the City of New York earmarked $24.4 million; the Miranda Family Fund (Lin-Manuel Miranda and Luis A. Miranda Jr.) and NewYork-Presbyterian president and CEO Dr. Steven J. Corwin each pledged $1 million. There are two theatres: the Mainstage Theatre, lacquered in plum and purple, and the Ernesto Concepción Studio Theatre, which has its own direct street access so two performances can run at once. Rehearsal studios, a practice room and a gallery complete the programme. WORKac drew its forms straight from the Inwood streetscape — bodega storefronts, street art, and the nearby Seaman Drake Arch, the oldest standing arch in Manhattan. The organisation describes the building as the city's first immigrant-centred performing arts centre and the largest Latino-owned and -operated performing arts institution in New York State.</div>
+    <a href="https://www.archpaper.com/2026/09/workac-peoples-theatre/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6ab2/cad7/e78f/b301/883c/eef8/large_jpg/what-if-nature-comes-first-inside-the-oslo-architecture-triennale-2026_2.jpg?1790102257" alt="Main venue of the 9th Oslo Architecture Triennale, the 1877 Sofienberg Church / 第九届奥斯陆建筑三年展主展场：1877 年的索菲恩贝格教堂" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">Academia &amp; Exhibitions</span>
+    <div class="hl-title">The 9th Oslo Architecture Triennale, "What if Nature Comes First?", enters its second week: curated by Line Ramstad, 30-plus projects organised across four scales — Materials, Structures, Territories, Systems — in an 1877 church</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (23 Sept, on-site review)</span> · <span class="src">Oslo Architecture Triennale</span> · <span class="src">Wallpaper*</span> · <span class="src">ArchDaily (August programme announcement)</span></div>
+    <div class="hl-desc">The ninth Oslo Architecture Triennale opened on 17 September 2026 and closes on 1 October under the theme "What if Nature Comes First?", curated by Line Ramstad. This edition drops the long-run exhibition model for a two-week festival format, setting the show alongside conferences, seminars, workshops, film screenings and guided walks. The main venue is Sofienberg Church in Oslo's Grünerløkka district — an 1877 neo-Gothic brick building currently being converted from a place of worship into a local cultural venue — with the exhibition occupying both its interior and its grounds. The curatorial frame sorts more than 30 international projects into four scales: Materials (the selection and reuse of construction materials), Structures (the lifespan of buildings), Territories (the relationship between architecture and land) and Systems (the economic and regulatory machinery that shapes development). Staging the show inside a building that is itself mid-conversion makes the argument without a wall text: adaptive reuse here is not an exhibit but the condition under which the exhibition takes place. The Oslo Architecture Triennale was founded in 2000 and is the largest architecture festival in the Nordic region.</div>
+    <a href="https://www.archdaily.com/1185601/nature-as-a-starting-point-lessons-from-the-oslo-architecture-triennale-2026" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://oss.gooood.cn/uploads/2026/09/01-conversion-thf-tower-tempelhof-airport-in-berlin-by-mlzd-472x303.jpg" alt="Conversion of the THF Tower at Tempelhof Airport, Berlin, with a suspended steel staircase inserted into the existing structure / 柏林滕珀尔霍夫机场塔楼改造：植入既有结构的悬吊钢楼梯" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">Materials &amp; Construction</span>
+    <div class="hl-title">MLZD's Tempelhof airport tower conversion published in full: one suspended steel stair and two lifts inserted into 6,675 m² of existing structure, a reconfigurable exhibition floor on level six, and a stepped timber roof deck opened to the city</div>
+    <div class="hl-meta">Sources: <span class="src">gooood (published 23 Sept)</span> · <span class="src">MLZD (architect)</span> · <span class="src">Tempelhof Projekt GmbH (client, public material)</span></div>
+    <div class="hl-desc">Swiss practice MLZD's conversion of the tower at Berlin's former Tempelhof Airport (Flughafen Tempelhof) was published in full by gooood on 23 September 2026. A date first: the project itself was completed in 2023, so this is a publication rather than a completion — but its construction logic earns the space. The tower is part of the vast complex Ernst Sagebiel designed for Tempelhof under the Nazi regime; it covers 940 square metres of ground with 6,675 square metres of gross floor area. The brief was set as avoiding "restricting any future usage options as much as possible," so the intervention is compressed into three moves: a new main staircase, exhibition and event space on level six, and a roof terrace. The main stair is a suspended steel staircase inserted inside the existing structure, threading visitors past finished areas and past raw sections that were never used; one partition wall is deliberately left in a dissolving state to document the tower's history of transformation. Level six uses movable walls so the plan can be reconfigured exhibition by exhibition; the direction of the timber flooring traces the line of the original central corridor. The roof is a stepped timber platform — a new public vantage over Berlin. Two new lifts make the whole sequence barrier-free. The material palette is natural stone, steel, timber, concrete and coatings.</div>
+    <a href="https://www.gooood.cn/conversion-thf-tower-tempelhof-airport-in-berlin-by-mlzd.htm" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6a2b/d9cf/6341/4201/8a2c/399c/large_jpg/fondation-beyeler-to-open-expanded-campus-by-peter-zumthor-in-2027_1.jpg?1781258754" alt="The new ensemble at Fondation Beyeler and its enlarged park / 贝耶勒基金会新建筑群与扩大后的公园" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">In Depth</span>
+    <div class="ft-title">Not an extension, an ensemble: Zumthor splits a museum expansion into three buildings and hides them in the trees beside Piano's</div>
+    <div class="ft-meta">Cross-checked: <span class="src">designboom (23 Sept)</span> · <span class="src">Fondation Beyeler, "The New Ensemble"</span> · <span class="src">ArchDaily</span> · <span class="src">HENI News</span> · <span class="src">Dezeen (2017 scheme)</span> · <span class="src">Artnet News (2017 budget reporting)</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: replace the word "extension."</strong> Museum expansions usually go one of two ways — a volume grafted onto the existing building, or a floor dug beneath it. In Riehen, Peter Zumthor took a third route: he touched not one column of Renzo Piano's 1997 Beyeler building, and instead broke the entire brief apart, distributing it across three independent, modestly scaled structures set among the trees of the adjacent Iselin-Weber Park. The institution's own word is "ensemble," not "extension," and the choice is not merely semantic. It abandons the new-wing-versus-old-wing confrontation, and with it the idea that an institutional upgrade needs a new architectural image to represent it. For students, the typological question worth pressing is this: when a museum that already has a clear architectural identity needs to double its capacity, is what it should add floor area — or relationships?</p>
+      <p><strong>Spatial strategy: three buildings, three different negotiations with trees.</strong> The Wyss Museum carries the exhibition load: roughly 1,500 square metres over three floors. Its plan is an irregular Y, and the shape is not a compositional preference — it was forced by an existing ginkgo, a redwood and a group of plane trees on site. The building walks around them; all of them survive. The Ammann Pavilion is a single-storey social space enclosed in glass and oak, finished inside in cherry and pear wood, seating up to 250. Its critical move is operational rather than formal: it is free and open to the public independently of museum hours, meaning that people who do not buy a ticket still get an interior they can occupy at length. The Erlen Torhaus is the least conspicuous of the three — a stained oak timber frame handling art deliveries, unpacking and exhibition preparation, connected underground to the Wyss Museum. Giving a museum's least visible but most rigid logistical demand its own building, rather than burying it in a mezzanine behind the galleries, is a notably disciplined decision. Beyond the three, several historic structures were reworked: the Villa becomes a restaurant with a fireplace room and extended terrace; the Ammann Atelier becomes a base for art education workshops and school programmes; there is a music salon with a high-fidelity system and an Artist Record Collection; an experimental project space called The Folly; and the Orangerie, redesigned by India Mahdavi as a greenhouse and botanical shop.</p>
+      <p><strong>Structure and material: one stone, carried all the way through.</strong> The Wyss Museum's material logic can almost be stated in a single material — Jura limestone. The local stone appears in the facade, in benches and staircases, ground into terrazzo floors, as aggregate in the ceilings, and in the mineral plaster. The wall construction is the part to note: the rammed-concrete facade takes a warm yellow tone from the local limestone in the mix, and it was built up by hand over nearly a year. That is an increasingly rare choice in contemporary museum construction — it gives up prefabrication and speed in exchange for material continuity under light. The same stone appears in several different states of working within one building, compressing the colour-temperature difference between wall, floor and ceiling to almost nothing. The Ammann Pavilion goes the other way, using glass and wood to take the weight out; the Erlen Torhaus, in stained oak framing, is the closest of the three to an agricultural structure. Three different material strategies — and all three deliberately decline to compete with the porphyry walls and glass roof of Piano's building.</p>
+      <p><strong>Context and consequence: a decade-long privately funded project, and a park that doubles.</strong> Zumthor was invited in 2016 and the scheme was published in 2017; as Dezeen and Artnet News reported at the time, the budget was set at around CHF 100 million, entirely privately funded, with the Wyss Foundation and the Daros Collection having already pledged CHF 50 million. We have not obtained a final post-completion cost figure and will not speculate. For the public, the most concrete change may not be architectural at all: the formerly private Erlengarten — nearly 10,000 square metres — opens with the buildings, roughly doubling the park, with water lily ponds, centuries-old trees and works by Calder, Holzer, Kelly, Bourgeois, Huyghe and Whiteread. The opening runs in phases: limited access from 26 September 2026 to 14 January 2027, then full daily operation from January 2027. The inaugural exhibition, "Constellations," unfolds simultaneously across the Wyss Museum, Piano's building, the enlarged park and the repurposed historic structures, running from autumn 2026 into autumn 2027 and shifting seasonally. Zumthor states the goal in one line: "I wanted my buildings to blend in so naturally, that it felt completely self-evident." Coming from an architect known for the sheer intensity of his buildings, that sentence is the most interesting thing about the project.</p>
+    </div>
+    <a href="https://www.fondationbeyeler.ch/en/the-new-ensemble" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Prague Fire Rescue Service headquarters, Czech Republic / Architektura: a nine-storey tower behind a grid of red glass-fibre-reinforced concrete</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 23 Sept)</span> · <span class="src">Architektura (David Kraus, Miroslav Styk)</span></div>
+  <div class="ni-desc">The complex sits at Argentinská 170/00 in Prague's Holešovice district on a 6,504-square-metre site, with a built-up area of 517 square metres and 2,257 square metres of usable floor area. It was designed and built between 2018 and 2023 and completed in 2025; gooood published it on 23 September. The two-phase campus consists of a nine-storey administrative tower, a technical and operational block, and a three-level drive-through gateway structure between the phases. The facades are defined by a disciplined grid of red glass-fibre-reinforced concrete (GRC) panels, the red taken directly from the fire service's institutional identity; the connecting volumes switch to square aluminium elements at ground level for a more technical register. Elsewhere the building leaves reinforced concrete exposed and masonry unplastered, and carries an 18.2-metre steel lattice antenna mast. It is a useful case of institutional identity pushed into a facade construction system rather than delivered through signage and paint.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">XY Investments headquarters, phase three, Shanghai / Atelier Liu Yuyang Architects: cold-rolled steel, then glass, now timber — the geometry holds, the material changes</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 23 Sept)</span> · <span class="src">Atelier Liu Yuyang Architects</span></div>
+  <div class="ni-desc">The project is in Pudong, Shanghai, for client XY Investments; phase three was designed and built between August and November 2025. The "three curves" of the title track a material progression across the phases — cold-rolled steel plate, then glass, now timber — all sharing one curved geometric logic while producing entirely different spatial atmospheres. The plan follows an "archipelago" concept: functional zones keep independent identities while forming an integrated whole. A modular furniture system built on 25, 33 and 50-centimetre units allows free reconfiguration; on daylight, the practice proposes the "sunlit workspace," distributing prime daylight to all staff rather than privileging window-side seats. The tea room is a timber box nested inside the larger volume, and a flexible multi-function hall with retractable doors and stepped terraces switches between presentation space and seating. Principal materials: timber flooring (DeZign), cork (GRANORTE), wood veneer (Lixiang) and carpet (VOXFLOR).</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Pannonhalma forest educational lookout and trail, Hungary / Okka Studio: the role of the forest, built as something you walk through</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 23 Sept)</span> · <span class="src">Okka Studio</span></div>
+  <div class="ni-desc">Located at Pannonhalma in Hungary and designed by Okka Studio, published by gooood on 23 September; the practice describes the aim as showing the public the role forests play in sustaining the environment. Small forest structures of this kind have become common across Central Europe in recent years, and their difficulty is not formal but constructional: no heavy machinery on site, components carried by hand or light equipment, and foundations that must minimise disturbance to root systems — conditions that directly determine structural selection and jointing. We flag it for readers interested in rural and natural-site construction. Because detailed construction data has not yet appeared in a second independent source, we do not restate dimensions or material specifications here.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Normafa ski house extension, Hungary / Hetedik Műterem: an addition argued from the valley and the forest</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (published 23 Sept)</span> · <span class="src">Hetedik Műterem Ltd</span></div>
+  <div class="ni-desc">Normafa, in the Buda Hills west of Budapest, is one of the city's most significant near-urban recreation areas; the ski house extension is by the Hungarian practice Hetedik Műterem, published by gooood on 23 September, with the architects describing it as a response to the valley and the forest. Extending existing leisure buildings is a recurring European mountain problem: joining new volume to old, absorbing an enormous swing in occupancy between winter and summer, and working under hard height and site-coverage limits inside a protected area — together these leave very little design freedom. As with the previous item, area, structural and material figures currently appear in only one source, so we do not repeat specific numbers.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/Carousel_B_1.width-1000.format-webp.jpg" alt="Rendering of the Thompson Center atrium, with its cascading staircase and terraced seating / 汤普森中心中庭改造渲染图：瀑布式大台阶与阶梯座席" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">In Depth</span>
+    <div class="ft-title">How a postmodern building sentenced to death becomes a tech company's office: preservation, ownership and the civic ledger at the Thompson Center</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (23 Sept)</span> · <span class="src">The Architect&#39;s Newspaper (22 Sept)</span> · <span class="src">Dezeen (18 Aug)</span> · <span class="src">Chicago YIMBY</span> · <span class="src">Urbanize Chicago</span> · <span class="src">Jahn Studio project material</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: what is being renovated is not the building but its broken relationship to the city.</strong> Helmut Jahn's James R. Thompson Center, completed in 1985, has always been read as an extreme case of postmodern civic architecture: a full-height glazed atrium packing state offices, retail and a transit concourse into one section, geometrically something like a sliced cylinder wedged into a street corner. Its problem lives in the same place. The full-height atrium performed terribly — overheating in summer, bleeding energy in winter — and as the envelope aged, maintenance cost became the direct justification for three decades of demolition talk. The renovation's underlying judgement is that the atrium's publicness was right, and what failed was the envelope and the ground-floor interface. So the scheme does not fill the atrium in. It replaces the skin first, then rebuilds how the atrium meets the ground.</p>
+      <p><strong>Spatial strategy: reconnect the bottom of the atrium to the street.</strong> Architecture Plus Information (A+I, now part of Perkins&amp;Will) reimagines the lower atrium as "a cascading staircase integrated with terraced seating and retail offerings" — the atrium floor, previously circulation and display, becomes an occupiable grandstand. The entry colonnade is heightened to rework the experience of arriving; three levels of covered terraces are added to bring in daylight and connect to green space, with biophilic design elements throughout. The outdoor plaza is reprogrammed for food, retail and seasonal events rather than pure through-movement. The whole set of moves points at one diagnosis: the 1985 scheme put its publicness in the section — a spectacular atrium — and not in the plan, where its contact surface with the street was thin. This renovation addresses the plan.</p>
+      <p><strong>Structure and material: a new skin and a new energy system.</strong> The original glass-and-metal curtain wall has been coming off since May 2024, replaced by a new facade designed by Jahn; Dezeen published construction photographs of it on 18 August. The renovated building will be all-electric and is designed to meet LEED Platinum targets. That is the technically notable part: making a building all-electric when its defining feature is an enormous full-height atrium and its original design predates any meaningful energy standard is considerably harder than doing so from scratch — envelope performance, air movement and plant capacity all have to be recalculated together. On the plaza will rise Vector, a 30-foot (about 9.1-metre) sculpture by Sanford Biggers drawing on reimagined quilt patterns, alongside a large piece commissioned in partnership with the youth arts organisation After School Matters.</p>
+      <p><strong>Context and consequence: preservation worked because ownership changed hands.</strong> The survival sequence is worth stating in full. In 2015, then-governor Bruce Rauner proposed selling the building. Preservation groups including Landmarks Illinois and Docomomo campaigned to keep it, arguing its significance as postwar civic architecture and as a major work of postmodernism. In 2022 The Prime Group purchased it and committed to renovation over demolition. Google announced its redevelopment on 16 September 2026 and plans to open to staff, tenants and the public in 2028; it currently employs more than 2,000 people in Chicago. That timeline makes an unromantic but essential point: for a civic building with high maintenance costs, a preservation campaign can usually buy time, but what actually decides survival is whether a new owner willing to absorb the renovation cost turns up. There is a second side to the ledger. A building once held by the state and open to every citizen becomes, after renovation, privately held corporate property, and "open to the public" rests on an owner's commitment rather than an institutional guarantee. That is a structural pattern recurring in postmodern civic reuse worldwide, and worth tracking as a long-running question.</p>
+    </div>
+    <a href="https://www.archdaily.com/1185618/google-unveils-new-renderings-of-chicagos-thompson-center-redesign-marking-its-escape-from-demolition" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Marbella approves Andalusia's first general plan adapted to the LISTA law: urban land rises from about 40 to 53 million square metres, ending four decades of planning drift</div>
+  <div class="ni-meta">Sources: <span class="src">Marbella Town Hall (18 Sept announcement)</span> · <span class="src">Málaga Press</span> · <span class="src">The Spanish Eye</span></div>
+  <div class="ni-desc">On 18 September 2026 an extraordinary plenary of Marbella Town Council granted final approval to its new PGOM (Plan General de Ordenación Municipal), making Marbella the first municipality in Andalusia with planning adapted to Law 7/2021 (LISTA), the region's new territorial and urban planning framework. The town had been operating under a 1986 planning framework, with four decades of disorder in between. The vote passed with the governing PP, OSP and VOX in favour and the PSOE abstaining; the regional government had issued a favourable report on 22 February 2026. The plan increases urban land from roughly 40 million to 53 million square metres, intended for new infrastructure and facilities, expanded green areas and housing delivery. For readers working on planning policy, this is a ready-made case study in how expansion-led planning gets re-legitimised in a southern European resort city.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Santa Barbara adopts the State Street Master Plan 6–1: $96 million across the 400 to 1300 blocks, construction within 18 months and roughly six years of work</div>
+  <div class="ni-meta">Sources: <span class="src">The Santa Barbara Independent (2 Sept)</span> · <span class="src">City of Santa Barbara</span> · <span class="src">Noozhawk</span> · <span class="src">edhat</span></div>
+  <div class="ni-desc">Santa Barbara City Council voted 6–1 on the night of 1 September 2026 to introduce the ordinance adopting the State Street Master Plan, with Mayor Randy Rowse opposed; the ordinance was formally adopted at the 15 September meeting. The plan covers the 400 through 1300 blocks of State Street along with adjacent paseos, plazas, parking facilities and cross streets, and sets a long-range framework for transportation, public space and economic revitalisation. The cost estimate is $96 million, with construction expected to begin within 18 months and run about six years. Since the street was temporarily closed to cars during the 2020 pandemic, whether to pedestrianise it permanently has been the city's most contested question; the plan settles on a flexible, pedestrian-centred downtown, though disputes over interim operations and funding remain unresolved. A well-documented, openly contested and trackable American mid-size city case.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Apple opens the 600-capacity Apple Music Hall at Battersea Power Station: a 48-speaker spatial audio system and a 38-foot stage set between heritage brickwork and bronze balconies</div>
+  <div class="ni-meta">Sources: <span class="src">Apple Newsroom (22 Sept)</span> · <span class="src">designboom (22 Sept)</span> · <span class="src">ianVisits</span> · <span class="src">MacRumors</span></div>
+  <div class="ni-desc">Apple announced Apple Music Hall inside London's Battersea Power Station on 22 September 2026, with a capacity of 600 and an official opening date of 28 September. The premise is to compress performance, recording, mixing and global broadcast into one building: a 38-foot (about 11.6-metre) stage configurable front-facing or in-the-round; a 48-speaker spatial audio system surrounding the audience; two recording and mixing studios with multitrack capability behind the stage; and wiring for at least 16 broadcast cameras feeding a dedicated control room, compatible with both iPhone and conventional broadcast equipment. The interior works directly with the power station's industrial heritage vocabulary — retained brickwork, fluted arches and bronze balconies — with a large glass wall opening onto the concourse and the Thames. New Apple Music Radio studios sit in the same complex. We reported the revised masterplan for Battersea's final 16 acres in our 22 September issue; this is another piece landing inside the same reuse district.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Mainland context: the 2026 Jiashan Urban-Rural Renewal Creative Design Competition is open, themed "Micro-Building the Good City," August to December</div>
+  <div class="ni-meta">Sources: <span class="src">gooood competitions</span> · <span class="src">Jiashan organisers</span></div>
+  <div class="ni-desc">Jiashan in Zhejiang province has opened its 2026 urban-rural renewal creative design competition under the theme "Micro-Building the Good City," with submissions running from August to December 2026. Jiashan sits inside the Yangtze River Delta eco-green integrated development demonstration zone and is China's only county-level high-quality development demonstration point, so the brief is framed within that dual-demonstration policy context. Organisers ask for schemes that are innovative, place-specific and buildable, addressing concrete site problems and linking design, construction, operation and management into a single chain — promoting small-scale intervention, micro-renovation and people-centred, precise spatial renewal. Entry is open to architecture, planning, landscape, programming and operations professionals. For students studying in China or preparing to practise there, county-scale micro-renewal competitions are among the few chances to walk the full route from design through to operation.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://static.dezeen.com/uploads/2026/09/studio-saar-atelier-one-pangolin-shield-bamboo-pavilion-1_dezeen_2364_hero_4.jpg" alt="The Pangolin Shield, a bamboo gridshell clad in Indian police lathi shields and woven rain capes / 「穿山甲之盾」装置：竹格构壳外覆印度警用竹盾与编织蓑衣" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">In Depth</span>
+    <div class="ft-title">One bamboo gridshell, two claddings of opposite provenance: Studio Saar and Atelier One build an argument about protection and violence out of riot shields and farmers' rain capes</div>
+    <div class="ft-meta">Cross-checked: <span class="src">Dezeen (14 Sept)</span> · <span class="src">Architecture Today</span> · <span class="src">London Design Festival</span> · <span class="src">Archipanic</span> · <span class="src">Wallpaper*</span> · <span class="src">Infrastructure Now</span></div>
+    <div class="ft-desc">
+      <p><strong>A disclosure first.</strong> Of our four sections today, materials and construction genuinely had the thinnest slate of new publications. Rather than pad it out, we fill the slot with this month's London Design Festival landmark installation (12–20 September). The original reporting ran on 14 September — it is not today's news — but the construction logic deserves to be taken apart properly.</p>
+      <p><strong>Concept: the pangolin's scales as a double analogy, structural and political.</strong> The Pangolin Shield was designed by Studio Saar, which practises in both Britain and India, with structural engineering by Atelier One under founder Neil Thomas. It takes its name from the pangolin — the world's most trafficked mammal, whose overlapping scales are simultaneously its natural armour and the reason it is hunted. That contradiction is translated directly into the installation's proposition: vulnerability and protection, acceptance and displacement, and the cultural exchange between East and West. The subject is Britain and India's colonial history, and the medium is not image or text but the difference in provenance between two coverings.</p>
+      <p><strong>Structure and material: a bamboo gridshell under two skins of opposite identity.</strong> The primary structure is a bamboo gridshell. The principle is that a set of slender, initially straight members is woven into a flat grid, then arched and edge-restrained as a whole, gaining stiffness through geometric curvature rather than member depth — which means individual elements can be very thin while the assembly still covers a substantial span. Bamboo satisfies several conditions at once: its elasticity and tensile behaviour permit large bending, it is extremely light, it is renewable, and India has a mature craft tradition around it. Two layers sit on top of the shell. The first is made of Indian police shields constructed from lathis — the bamboo sticks used by police. The second is knups, the woven rain capes traditionally used by farmers in north-eastern India. Laid over one another, they produce the overlapping arrangement of a pangolin's scales. The sharpness of the material selection is this: the same plant, worked one way, becomes an instrument of suppression, and worked another way becomes a farmer's protection against monsoon rain. Stacking them on one roof lets the material make the argument.</p>
+      <p><strong>Context and consequence: the site is part of the argument.</strong> The installation stands on the newly pedestrianised stretch of the Strand, outside Somerset House and near India House, oriented towards the bust of Jawaharlal Nehru, India's first prime minister, outside the Indian High Commission. That orientation is not incidental — it draws a line of sight between the installation and the colonial geography around it. As the London Design Festival's 2026 Landmark Project it sits alongside other threads of the festival: the concurrent Material Matters fair (15–17 September, fifth edition) gathered bricks, tiles and panels made from waste, compostable biochar-based foam and regenerative biomaterials, with exhibitors including Front and Biomason. For architecture students, two things here transfer directly. First, the gridshell's logic of trading geometry for section depth, and how well that holds up under low-tech conditions. Second, a harder question: when a material carries an explicit social provenance, should the architect keep that provenance legible in the construction — and how — rather than sanding it down into exotic texture?</p>
+    </div>
+    <a href="https://www.dezeen.com/2026/09/14/studio-saar-atelier-one-pangolin-shield-bamboo-pavilion/" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Finland's Elementic launches MO6, a lignin-based wall material the company says stores about 2.4 kg of CO₂ per kilogram — roughly twice that of wood</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen (4 Sept)</span> · <span class="src">Elementic (manufacturer material)</span></div>
+  <div class="ni-desc">Finnish company Elementic has released MO6, a wall-surfacing material made from forestry and timber industry offcuts and composed almost entirely of carbon. Its core feedstock is lignin — a by-product of the forestry and timber industries that is considered difficult to use and is usually burned for energy. The company states that one kilogram of MO6 stores approximately 2.4 kilograms of atmospheric carbon dioxide, about double the figure for an equivalent weight of wood, and that the material does not decay and is easy to recycle, potentially locking carbon away for thousands of years. A necessary caveat: these sequestration figures come from the manufacturer and we have not seen independent third-party life-cycle assessment. We report them as stated without endorsing them. For readers tracking low-carbon construction, lignin is one of the few recent routes moving a residue from waste disposal into building material proper.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Atlassian Central tops out in Sydney: 180 metres, 39 storeys, a concrete core with a steel exoskeleton and roughly 10,000 m³ of engineered timber — now the world's tallest hybrid timber tower</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen (23 July)</span> · <span class="src">designboom</span> · <span class="src">Archinect</span> · <span class="src">New Atlas</span> · <span class="src">SHoP Architects / BVN</span></div>
+  <div class="ni-desc">Atlassian Central in Sydney topped out in July 2026 at 180 metres (591 feet) across 39 storeys, designed by SHoP Architects with BVN, exceeding the previous record holder — the 25-storey Ascent in Milwaukee — by roughly 100 metres. The structure pairs a concrete core with a steel exoskeleton and contains about 10,000 cubic metres of engineered timber, mostly glued-laminated (glulam) columns and cross-laminated timber (CLT) floor plates. Practical completion of the structure is expected in late 2026. The technical significance is not the "tallest" label but what the project makes explicit about the current limits of tall timber: pure timber structures remain unviable at this height, and hybrid systems are the only route past 100 metres, with steel and concrete taking lateral stability while timber carries vertical and floor loads. We will publish full figures at completion.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">BlueScope's Steel Architectural Awards ASEAN 2026 names 12 finalists from Indonesia, Malaysia, Thailand and Vietnam</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (22 Sept, marked as sponsored content)</span> · <span class="src">BlueScope (organiser)</span></div>
+  <div class="ni-desc">The Steel Architectural Awards ASEAN, presented by BlueScope, has announced 12 finalist projects advancing to regional evaluation, with entrants from Indonesia, Malaysia, Thailand and Vietnam. The programme recognises design, innovation, sustainability and the creative application of coated steel solutions. To be explicit: the ArchDaily article is sponsored content, so we relay only factual information from it and make no judgement on the quality of the finalists. For readers following Southeast Asian practice, this is one of the few sustained awards programmes organised around a material system and covering the ASEAN region; its finalist lists across years are a usable thread for tracking the standard of steel construction there.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Material Matters returns for a fifth edition at London Design Festival: waste-derived bricks, tiles and panels, biochar foams and regenerative biomaterials</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen Events Guide</span> · <span class="src">Material Matters</span> · <span class="src">London Design Festival</span></div>
+  <div class="ni-desc">The materials fair Material Matters held its fifth edition from 15 to 17 September 2026 at UNLOCKED Shoreditch in London, as part of the London Design Festival (12–20 September). Exhibits centred on bricks, tiles and panels made from waste, compostable foam powered by biochar, and regenerative biomaterials, with exhibitors including Front, Biomason, Carbon Cell and The New Materialist. Amsterdam studio Front partnered with building materials supplier Biomason on a biomimicry and biotechnology-focused presentation. The value of fairs like this for architecture students lies in a gap that usually goes unmentioned: turning a laboratory sample into a material that can be code-approved, structurally calculated and insured takes years. Reading the production status and certification progress alongside the sample is more useful than looking at the sample alone.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://d3fjcnk2gfltmm.cloudfront.net/_1200x630_crop_center-center_82_none/OAT_Abrakadabra_Kirke__0213_2026-08-27-130812_bpaz.jpg?mtime=1787836093" alt="Venue of the 9th Oslo Architecture Triennale, Sofienberg Church, now being converted into a community cultural space / 第九届奥斯陆建筑三年展展场：正在改为社区文化空间的索菲恩贝格教堂" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">In Depth</span>
+    <div class="ft-title">Put the exhibition inside a church mid-conversion: the Oslo Architecture Triennale asks an impolite question across four scales</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (23 Sept, on-site review)</span> · <span class="src">Oslo Architecture Triennale</span> · <span class="src">Wallpaper*</span> · <span class="src">ArchDaily (August programme)</span> · <span class="src">D5 Mag</span></div>
+    <div class="ft-desc">
+      <p><strong>Curatorial concept: turn "nature first" back into a question.</strong> The ninth Oslo Architecture Triennale runs under the theme "What if Nature Comes First?", curated by Line Ramstad. The phrasing matters. This is not the declaration "nature comes first" but a conditional with a question mark on the end. At a moment when sustainability rhetoric has inflated almost past usefulness, that construction shows some discipline: it concedes that architecture's current mode of production does not start from ecology, and treats "what if it did" as something to be argued rather than affirmed. The triennale runs from 17 September to 1 October 2026 and is now in its second week.</p>
+      <p><strong>Organisation: a two-week festival, four scales.</strong> This edition abandons the two-to-three-month run typical of architecture biennials and triennials for a two-week festival format, placing the exhibition alongside conferences, seminars, workshops, film screenings and guided walks. The compression involves a clear trade-off — total attendance falls, but the density of live discussion rises, which suits treating the event as a concentrated academic occasion rather than a destination. The content sorts more than 30 international projects into four escalating scales: Materials, covering the selection and reuse of construction materials; Structures, covering the lifespan of buildings; Territories, covering the relationship between architecture and land; and Systems, covering the economic and regulatory machinery that shapes development. Running from a single material all the way up to a body of regulation answers the most common failing of ecological themes in architecture exhibitions: they stop at the material and never touch the institutional.</p>
+      <p><strong>The venue is the argument.</strong> The main site is Sofienberg Church in Oslo's Grünerløkka district, an 1877 neo-Gothic brick church currently being converted from a place of worship into a community cultural venue; the exhibition uses both its interior and its grounds. That choice makes the venue the show's first exhibit: adaptive reuse here is not a case-study photograph on a wall but something happening under the visitors' feet. Wallpaper*'s on-site report also notes a sauna — a characteristically Nordic move to bring bodily experience into an architecture exhibition, and directly germane to the theme.</p>
+      <p><strong>Context and consequence: what a small festival is good for.</strong> The Oslo Architecture Triennale was founded in 2000 and is the largest architecture event in the Nordic region. Compared with the Venice Architecture Biennale it is far smaller, and gains from it: its themes tend to advance continuously across editions rather than restarting each time. Two things here are directly usable for readers at Syracuse. One is the four-scale framework itself — a ready-made analytical structure for the research phase of a studio, and one that forces you to push a material decision all the way through to regulation and finance. The other is the use of the site: if your studio problem involves adaptive reuse, treating the process of conversion as the thing to be exhibited and discussed is usually more persuasive than presenting the finished state. The inaugural Pan-African Biennale of Architecture opened in Nairobi the same month; read together, the centre of gravity of 2026's architecture events is visibly moving away from the traditional European core.</p>
+    </div>
+    <a href="https://www.oslotriennale.no/" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The first Pan-African Biennale of Architecture opens in Nairobi: curated by Omar Degan under "Shifting the Center: From Fragility to Resilience," anchored in the 1973 Kenyatta International Convention Centre</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect&#39;s Newspaper (22 Sept, on-site report)</span> · <span class="src">ArchDaily (participants announcement)</span> · <span class="src">Dezeen (curator interview)</span> · <span class="src">Wallpaper*</span> · <span class="src">Architizer</span></div>
+  <div class="ni-desc">The inaugural Pan-African Biennale of Architecture opened in Nairobi, Kenya, on 1 September 2026, founded and curated by Omar Degan, the Italian-born Somali architect who founded DO Architecture Group, under the theme "Shifting the Center: From Fragility to Resilience." Its anchor venue is the Kenyatta International Convention Centre (KICC), inaugurated in 1973 and designed by the Norwegian architect Karl Henrik Nøstvik with David Mutiso, one of Kenya's first African architects — a building that is itself a symbol of post-independence ambition. International coverage has consistently described it as the first continent-wide architecture biennale led from within Africa, with exhibitions planned from all 54 African countries and the diaspora, rotating between African cities every two years. We reported Lesley Lokko's African Futures Institute opening its permanent Accra headquarters in our 22 September issue; the two point at the same shift.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">A new journal, Wedge, will publish the Journal of Architectural Education's cancelled Palestine issue: three editorial directors, first issue next spring in print and online, no paywall</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect&#39;s Newspaper (21 Sept)</span> · <span class="src">Literary Hub</span> · <span class="src">Archinect</span> · <span class="src">Association of Collegiate Schools of Architecture (ACSA) public statement</span></div>
+  <div class="ni-desc">A new peer-reviewed scholarly architecture journal called Wedge will publish the previously cancelled Palestine issue — issue 79.2 — of the Journal of Architectural Education (JAE). The background: in February 2025 the board of directors of the ACSA, JAE's publisher, halted publication of the issue, framing the decision as a reappraisal of legal risk; JAE's editorial board then resigned en masse and the executive editor was fired. Wedge takes its name from the two things a wedge does — splitting an object through force, or prying and keeping a door, a window, a portal open. The journal is guided by 12 editorial board members and led by three editorial directors: Ozayr Saloojee, professor at Carleton University in Ottawa; Caitlin Blanchfield, professor at Cornell; and Ersela Kripa, founding partner of AGENCY. The first issue arrives next spring as a book and online, with no paywall, produced in partnership with Landscape Architecture Projections, the design research arm of Leuven University Press in Belgium, which is providing funding support. We report the facts and the parties' public statements and offer no judgement on the dispute itself.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The Gaetano Pesce Foundation launches: a nonprofit taking custody of the archive, prototypes and authorised editions, with Glenn Adamson as president</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (22 Sept)</span> · <span class="src">Salon 94 (concurrent exhibition)</span></div>
+  <div class="ni-desc">A foundation named for the Italian architect and designer Gaetano Pesce (1939–2024) has been established as a nonprofit. Giulia Tosciri is director; the design historian and close colleague Glenn Adamson is president; Michael J. Greenberg is secretary; Edward Secker is treasurer; and Alessandro Byther, creative director at Gaetano Pesce Studio, is a director. The foundation safeguards Pesce's archive of objects, drawings, prototypes and documentation while supporting exhibitions, publications, scholarship and authorised editions, with emphasis on his interdisciplinary reach across art, design, architecture, performance and social commentary. Adamson's assessment: "Radical, poet, and provocateur, Pesce is one of the most influential figures in art and design of the past century." The launch coincides with "Gaetano Pesce Studio: Continued" at Salon 94, showing the continued production of authorised editions alongside archival preservation. Pesce on his own creative freedom: "To be free means to be incoherent."</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Dezeen Awards 2026 releases three shortlists in three days: architecture (21 Sept), interiors (22 Sept), design (23 Sept)</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen (21, 22 and 23 Sept)</span> · <span class="src">Dezeen Awards</span></div>
+  <div class="ni-desc">Dezeen Awards 2026 published its three shortlists on consecutive days this week. The architecture shortlist, announced 21 September, covers 152 projects across 19 categories by studios in 36 countries, scored by a jury including Annabelle Selldorf, Daniel Libeskind, Ma Yansong, Amanda Levete and Norman Foster. The interiors shortlist followed on 22 September, scored by a jury including Jaime Hayon, Tekla Evelina Severin, Julien Sebban, Smita Thomas, Benni Allan and Wendy Saunders. The design shortlist came on 23 September, with shortlisted work by Bocci, Kvadrat and Fuseproject, scored by a jury including Martin Lotti, Zandra Rhodes, Nao Tamura, James Melia, Natasha Jen and Michael Anastassiades. Category winners will be announced on 16 November at the Royal Opera House in London. We covered the architecture shortlist in detail in our 21 September issue; this entry records the complete set without repeating it. Per our editorial policy, we do not predict award outcomes.</div>
+</div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
