@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-27</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="The first major Geoffrey Bawa retrospective in more than twenty years opened yesterday at the Vitra Design Museum: over 250 objects, scenography by Lina Ghotmeh, on view to 28 Feb…">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 021 · 2026-09-27 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="The first major Geoffrey Bawa retrospective in more than twenty years opened yesterday at the Vitra Design Museum: over 250 objects, scenography by Lina Ghotmeh, on view to 28 Feb…">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-27-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.metalocus.es/sites/default/files/styles/mopis_fullslider_desktop/public/2026-07/metalocus_vitra-museum_geoffrey-bawa_06_p.jpg?itok=m6OYl5_O">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 021 · 2026-09-27 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="The first major Geoffrey Bawa retrospective in more than twenty years opened yesterday at the Vitra Design Museum: over 250 objects, scenography by Lina Ghotmeh, on view to 28 Feb…">
+<meta name="twitter:image" content="https://www.metalocus.es/sites/default/files/styles/mopis_fullslider_desktop/public/2026-07/metalocus_vitra-museum_geoffrey-bawa_06_p.jpg?itok=m6OYl5_O">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 021 · 2026-09-27 · 陆先生建筑日报 | Architecture Daily","description":"The first major Geoffrey Bawa retrospective in more than twenty years opened yesterday at the Vitra Design Museum: over 250 objects, scenography by Lina Ghotmeh, on view to 28 Feb…","datePublished":"2026-09-27","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-27-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://www.metalocus.es/sites/default/files/styles/mopis_fullslider_desktop/public/2026-07/metalocus_vitra-museum_geoffrey-bawa_06_p.jpg?itok=m6OYl5_O"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 021</div>
+    <div>September 27, 2026 Sunday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-27-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p><p>Sunday is a thin day in the architecture press, but one item is worth making the trip for: the first major Geoffrey Bawa retrospective in more than twenty years opened yesterday at the Vitra Design Museum, with scenography by Lina Ghotmeh, over 250 objects, and a run that continues to M+ in Hong Kong next June. Three further stories can be read together, all of them about building on top of something that already exists. The Czech village of Čebín has kept the loadbearing structure of a 1970s general store and turned it into a primary school for 120 pupils, for €3.1 million. Herzog &amp; de Meuron have stacked two mass-timber floors on the retained concrete frame of a 1960s Brutalist science building, cutting embodied carbon by a third. And BIG wants to add 23 guest rooms at Sea Ranch, a touchstone of 1960s environmental design, where the criticism has arrived ahead of the permits. Reuse, addition and inheritance are this issue’s shared subject.</p></p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://www.metalocus.es/sites/default/files/styles/mopis_fullslider_desktop/public/2026-07/metalocus_vitra-museum_geoffrey-bawa_06_p.jpg?itok=m6OYl5_O" alt="Image relating to “Geoffrey Bawa: Architecture for the Senses” at the Vitra Design Museum / 「Geoffrey Bawa: Architecture for the Senses」展览相关图像，维特拉设计博物馆" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">Academia</span>
+    <div class="hl-title">The first major Geoffrey Bawa retrospective in more than twenty years opened yesterday at the Vitra Design Museum: over 250 objects, scenography by Lina Ghotmeh, on view to 28 February 2027, travelling to M+ in Hong Kong next June</div>
+    <div class="hl-meta">Sources: <span class="src">Architectural Record (25 Sept)</span> · <span class="src">METALOCUS</span> · <span class="src">Vitra Design Museum</span> · <span class="src">Wallpaper*</span></div>
+    <div class="hl-desc">“Geoffrey Bawa: Architecture for the Senses” opened on 26 September 2026 at the Vitra Design Museum in Weil am Rhein, Germany, and runs to 28 February 2027. It is the first major retrospective in over twenty years of the Sri Lankan architect Geoffrey Bawa (1919–2003), bringing together more than 250 drawings, models, photographs, pieces of furniture, artworks and archival documents across a five-decade career. The show is organised by the Vitra Design Museum, M+ and the Wüstenrot Foundation in collaboration with the Geoffrey Bawa Trust; scenography is by the Lebanese architect Lina Ghotmeh. Buildings covered include the Bentota Beach Hotel, the Kandalama Hotel, the Lighthouse Hotel, the Yala Bungalows, the new Sri Lankan Parliament, and Lunuganga, Bawa’s own country estate. One explicit thread is his long collaboration with Sri Lankan artists and craftspeople — batik panels, textiles and sculpture by Laki Senanayake, Ena de Silva and Barbara Sansoni, presented as components essential to the spatial experience rather than as decoration; the contemporary section includes new photography by Iwan Baan. The curators’ other stated intention is to lift Bawa out of the “tropical modernism” label and reframe his work around landscape integration, sensory experience and ecological strategy. The exhibition travels to M+ in Hong Kong in June 2027.</div>
+    <a href="https://www.architecturalrecord.com/articles/18420-major-retrospective-of-sri-lankan-architect-geoffrey-bawa-opens-at-the-vitra-design-museum" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://atlive-wp.s3.eu-west-2.amazonaws.com/wp-content/uploads/knesl-kyncl-primary-school-cebin-boysplaynice-04.jpg" alt="Čebín Primary School, Czech Republic: converted from a 1970s village store, with a ceramic-clad facade / 捷克切宾小学：由 1970 年代乡村杂货店改造，陶土挂板立面" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">Projects</span>
+    <div class="hl-title">A 1970s village general store turned into a primary school: Čebín in the Czech Republic keeps the loadbearing structure of the first two floors, fitting 1,710 square metres and 120 pupils onto an 898-square-metre site for €3.1 million</div>
+    <div class="hl-meta">Sources: <span class="src">gooood (24 Sept)</span> · <span class="src">Architecture Today</span> · <span class="src">StavbaWeb</span> · <span class="src">knesl kynčl architekti (architects)</span></div>
+    <div class="hl-desc">The project is in Čebín, a village about 15 kilometres northwest of Brno in the Czech Republic, by the Brno practice knesl kynčl architekti (Jiří Knesl, Jakub Kynčl), designed 2021–2023 and built 2024–2025 at a cost of €3.1 million. The subject was a 1970s Jednota general store on the village green, previously acquired by the municipality. The move is explicit: retain the loadbearing structure of the original building’s first two floors, then extend and adapt it into a school for roughly 120 upper-primary pupils. The relationship between the numbers is what makes the project interesting — the site is only 898 square metres while the gross floor area reaches 1,710 square metres (1,264 square metres usable), and that tightness dictates both the compact three-storey massing and the plan: classrooms, staff offices and administration arranged around a central atrium that unifies all three floors. Envelope and services were comprehensively upgraded — an external thermal insulation composite system with mineral wool, high-performance windows and doors, air-to-water heat pumps for heating, and a ceramic-clad facade. The immediate driver is a shortage of school places across the Brno metropolitan area; the conversion also gives the municipality greater control over local education provision. Growth has been provided for: adjacent land has been purchased, allowing an 80 per cent capacity increase through a new connected building, and the circulation core is positioned to accommodate exactly that. Against demolition and new construction, this was the cheaper and faster route.</div>
+    <a href="https://architecturetoday.co.uk/cebin-primary-school-knesl-kyncl-architekti/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/EXT02_WELLNESSCENTERSUPERGRAPHIC.jpg" alt="BIG’s wellness centre for Sea Ranch Lodge, carrying the Sea Ranch supergraphic / BIG 为 Sea Ranch Lodge 设计的康养中心，外墙带 Sea Ranch 超级图形" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">Urbanism</span>
+    <div class="hl-title">BIG wants to build on a touchstone of 1960s environmental design: Sea Ranch Lodge would go from 17 guest rooms to 40, clad in redwood and carrying the 1960s supergraphic, still subject to Sonoma County and association review, with critics already on record</div>
+    <div class="hl-meta">Sources: <span class="src">The Architect&#39;s Newspaper (24 Sept)</span> · <span class="src">AFAR</span> · <span class="src">Hoodline</span> · <span class="src">Punchlist (criticism)</span></div>
+    <div class="hl-desc">Sea Ranch Lodge, the 17-room retreat on Highway 1 on the Sonoma coast, has commissioned BIG (Bjarke Ingels Group) with the San Francisco landscape firm Lutsko Associates to prepare an expansion masterplan: 23 new ocean-facing guest rooms in four saw-toothed bar structures along Highway 1, plus two courtyard buildings holding a spa and wellness centre, with a library and additional dining. That would take the room count past double. The material language follows what is already on the site — opaque redwood cladding, simple volumes, rooflines that follow the contours of the land — and the design incorporates the Sea Ranch supergraphic that Barbara Stauffacher Solomon designed in the 1960s. The weight of the site is the premise for the controversy. Sea Ranch was developed by Al Boeke on former sheep farm, cattle ranch and logging land, with landscape by Lawrence Halprin and architecture by Joseph Esherick and MLTW — Donlyn Lyndon, Charles Moore, William Turnbull and Richard Whitaker. Ingels’s position is that “the ambition is evolution rather than revolution: a continuation rather than a departure,” and he credits studying Charles Moore’s Condominium One at the Royal Danish Academy. The criticism is equally on the record: Christopher Hawthorne has written that “BIG seems incapable here of entirely squashing its well-known formalist impulses,” while Oliver Wainwright called BIG “strangely fitting” for a place now dominated by tech-industry second homes. The proposal still faces review by Sonoma County and the Sea Ranch Association; no timeline has been published as of press time.</div>
+    <a href="https://www.archpaper.com/2026/09/big-sea-ranch-lodge/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/006607_00_N224_letter.jpg" alt="The undulating precast concrete belt of the Braman Comprehensive Cancer Center, Miami Beach / 迈阿密海滩 Braman 综合癌症中心起伏的预制混凝土腰带" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">Materials</span>
+    <div class="hl-title">Seven hundred unique precast panels reduced to seventy: CannonDesign used sine-wave deconstruction to derive a hurricane-resistant, self-shading concrete belt on Miami Beach</div>
+    <div class="hl-meta">Sources: <span class="src">The Architect&#39;s Newspaper (24 Sept)</span> · <span class="src">CannonDesign project page</span> · <span class="src">Tradeline</span> · <span class="src">Hoodline</span></div>
+    <div class="hl-desc">Mount Sinai Medical Center’s Braman Comprehensive Cancer Center sits on the shore of Biscayne Bay in Miami Beach. Designed by CannonDesign, the 220,000-square-foot (roughly 20,440-square-metre) building began seeing patients in April 2026. The facade turns on a single continuous undulating precast concrete spandrel, its geometry generated parametrically: the designers used an algorithmic approach based on sine wave deconstruction to derive the curve, then optimised the layout by flipping and repeating pieces, compressing what would have been 700 unique precast panels down to 70. Fabrication efficiency let the concrete belt be erected ahead of schedule. Precasting was managed by Wells, concrete supplied by Gate Precast, with JGMA as facade consultant and Crawford-Tracey as facade subcontractor; structural engineering was in-house at CannonDesign. The choice of concrete follows directly from the site: durability in high-salinity coastal air, and resistance to extreme winds and windborne debris. Hurricane measures include laminated glazing units (Viracon VNE 63 with a clear interlayer) alongside the precast construction, with flood barriers using Crawford-Tracey’s 9SG and 7SG systems. Design leader Arjun Bhat notes that “the curvature and the amount of volume the concrete belt offers provide passive shading to the interior” — the belt is simultaneously form, structure and brise-soleil. The project targets LEED Gold. The stated intent of donors Norman and Irma Braman is recorded as wanting “an art museum, but it happened to be a hospital.”</div>
+    <a href="https://www.archpaper.com/2026/09/cannon-design-adorns-concrete-braman-cancer-center/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/nghia-do-courtyard-kindergarten-sunjin-vietnam-joint-venture-company-designboom-1200-1.jpg" alt="Nghia Do Kindergarten, Hanoi: elliptical classroom volumes and the coloured louvres wrapping the corridors / 河内义都幼儿园：椭圆形教室体量与包住外廊的彩色百叶" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">Projects</span>
+    <div class="hl-title">Curves that eliminate blind corners: Nghia Do Kindergarten in Hanoi rings twenty elliptical classrooms around a triangular courtyard, 5,302 square metres for about 600 children, every corridor wrapped in coloured louvres</div>
+    <div class="hl-meta">Sources: <span class="src">designboom (26 Sept)</span> · <span class="src">Sunjin Vietnam Joint Venture Company (architects)</span> · <span class="src">Architizer practice archive</span></div>
+    <div class="hl-desc">The project occupies a 5,302-square-metre site in an older neighbourhood of Cau Giay district, Hanoi, with 20 classrooms for approximately 600 children, designed by Sunjin Vietnam Joint Venture Company. The plan develops from a basic classroom module into a series of elliptical volumes arranged around a triangular courtyard. The ellipse has a functional justification rather than a formal one: the curved geometry eliminates blind corners, allowing teachers to see across the whole playground, while the orientation and spacing of the volumes are used to drive natural cross ventilation. Each classroom module operates independently and has two doors — an adult-sized entrance and a smaller one scaled to children. The ring of classroom blocks forms a protective buffer, screening the school from the noise, dust and traffic of the surrounding alleys, with the large shared outdoor playground at the centre. A multicoloured louvre system wraps the corridors, reducing solar radiation and outside noise while permitting generous glazing below for daylight; as the sun moves through the day, the louvres cast shifting patterns of colour and shadow across the floors. A planted roof extends the green area and moderates temperature. For school buildings in tropical and subtropical climates, this combination — courtyard for acoustic buffering, louvres for shading, large glazing for daylight — is a cost-controlled and repeatable solution. Completion year and cost have not been published, and this briefing will not infer them.</div>
+    <a href="https://www.designboom.com/architecture/elliptical-classroom-volumes-colorful-louvers-courtyard-nghia-do-kindergarten-hanoi/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.stavbaweb.cz/wp-content/uploads/2026/09/knesl-kyncl-primary-school-cebin-boysplaynice-13.jpg" alt="Inside Čebín Primary School: the atrium running through all three floors / 切宾小学内部：贯通三层的中庭" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">Feature</span>
+    <div class="ft-title">898 square metres of site, 1,710 square metres of building, 120 pupils: a school made from a village general store, where reuse was settled as an economic calculation</div>
+    <div class="ft-meta">Cross-checked: <span class="src">gooood (24 Sept)</span> · <span class="src">Architecture Today</span> · <span class="src">StavbaWeb</span> · <span class="src">Archiweb practice archive</span> · <span class="src">knesl kynčl architekti project page</span> · <span class="src">photography BoysPlayNice</span></div>
+    <div class="ft-desc">
+      <p><strong>Design concept: reuse here is not a posture, it is the only option that adds up.</strong> Čebín is a village about 15 kilometres northwest of Brno in the Czech Republic. The municipality had acquired a 1970s Jednota general store on the village green — the kind of standardised socialist-era cooperative shop found across rural Czechia, with neither architectural quality nor any heritage designation. The proposal by the Brno practice knesl kynčl architekti (Jiří Knesl, Jakub Kynčl) retains the loadbearing structure of the building’s first two floors and extends and adapts it into a school for roughly 120 upper-primary pupils, designed 2021–2023, built 2024–2025, at a cost of €3.1 million. What deserves attention is how the decision was argued. Neither the architects nor the municipality justified retention on carbon grounds or on respect for history; the stated reason is that it was more economical than demolition and new construction. An ordinary old building with no commemorative value survived on the strength of the two most pragmatic parameters available — cost and programme. That is, in practice, the route by which adaptive reuse actually spreads into ordinary projects.</p>
+      <p><strong>Spatial strategy: an atrium forced out of the site.</strong> The hardest constraint here is a ratio: the site is only 898 square metres, while the building had to deliver 1,710 square metres gross (1,264 usable). That is a plot ratio close to 1.9, for users who are primary-school children and need room to move. The tightness dictates the massing directly — three storeys, compact, with no scope to spread out. The organisation follows: all three floors are unified by a central atrium, with classrooms, staff offices and administration arranged around it. The atrium does more than bring in light and carry circulation; it is the only space in the building that can properly be called public. When the site will not permit an outdoor yard, standing the yard upright and placing it inside the building is a recurring solution for schools on constrained land. For students, the value of the case is that the chain of cause and effect between constraint and form is unusually legible: nobody started out wanting an atrium — 898 square metres of site allowed nothing else.</p>
+      <p><strong>Structure and envelope: inherit the frame, replace the performance.</strong> The technical strategy reduces to a sentence — the old part supplies structure, the new part supplies performance. What was kept is the loadbearing structure of the first two floors of the former Jednota store, reinforced, extended and adapted to the new educational programme. Envelope and services were entirely renewed: an external thermal insulation composite system using mineral wool, high-performance windows and doors, air-to-water heat pumps for heating, and a ceramic-clad facade. That combination answers the standard objection to reusing old buildings: the structure can stay, but 1970s thermal performance absolutely cannot. Separating the two — inherit the structure, replace the envelope — is the usual way such projects satisfy current energy regulations and a fixed budget at the same time. The ceramic cladding also gives the building an unambiguous new identity on the village green, rather than the look of an old shop that has been tidied up.</p>
+      <p><strong>Context and consequence: a circulation core positioned for the next phase.</strong> The immediate driver was a shortage of school places across the Brno metropolitan area, and the conversion simultaneously gives the municipality greater control over local education provision — in the Czech system, a school built and run by the village operates on a different logic from regional place allocation. The detail most worth recording comes last: the architects have provided for growth. The municipality has purchased the adjacent plot, allowing an 80 per cent capacity increase through a new connected building, and the circulation core in the existing school is positioned precisely for that extension. This is not a scheme that closes itself off on completion; the second phase is written into the plan of the first. For rural and suburban schools facing volatile demographics, building half and leaving the connection ready is more realistic than building the full capacity at once. The project is a candidate for the Czech Building of the Year 2026.</p>
+    </div>
+    <a href="https://architecturetoday.co.uk/cebin-primary-school-knesl-kyncl-architekti/" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The Farm, Azores, Portugal / PF Architecture Studio: 1,234 square metres set between a banana grove and the Atlantic, with dark heavy arches carrying large openings</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (26 Sept)</span> · <span class="src">PF Architecture Studio (Pedro Ferreira, Marta Reis)</span></div>
+  <div class="ni-desc">The house is at Ponta Delgada in the Azores, Portugal, with a gross built area of 1,234 square metres, completed in 2024 by Pedro Ferreira and Marta Reis of PF Architecture Studio, in wood, metal and glass. The structural move is a set of dark, robust arches: they carry the loads while letting the elevations open up at large scale, filtering daylight deep into the interior. The relationship to the site is handled directly — the house sits over a garden that extends towards a banana grove, with the Atlantic horizon on the other side. The architects describe the spatial organisation as three layered atmospheres: volcanic, heavy forms at ground level; a lighter, more poetic register on the first floor influenced by nineteenth-century architecture; and expressive colour on the top floor. A staircase placed where the former chimney stood connects the three. As a sample for houses negotiating island climate and an existing agricultural landscape, the logic is worth noting: establish structural order with a small number of heavy elements, and reserve lightness and transparency for above.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Haydeé, San Fernando, Buenos Aires / ESTUDIO MONTEVIDEO: about 600 square metres split into three distinct experiences, with the roof conceived as “a great Italian pergola”</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (24 Sept)</span> · <span class="src">ESTUDIO MONTEVIDEO (Gabriela Jagodnik, Ramiro Veiga, Marco Ferrari)</span></div>
+  <div class="ni-desc">The restaurant is in San Fernando, Buenos Aires Province, Argentina, with roughly 4,790 square feet of interior and 1,884 square feet of exterior (about 600 square metres in total), completed in 2026. The organising logic splits the building into three independent experiences, each keyed to a different time of day and service type: ground floor, basement and rooftop, each with its own atmosphere. The rooftop carries the design’s stated theme — conceived as “a great Italian pergola” for the aperitif hour, with limestone floors laid in floral motifs and perimeter screens that hold privacy while preserving, in the architects’ words, “just the right degree of contact with the outside.” The material list is specific and restrained: vertically-laid brick cladding on the facade, wood-look metal screens combined with poplar trees, a black marble long table at the centre of the basement wine cellar, hand-crafted faux-stone cladding by Marcos Murasano and Stucci Italiani, Alphinus granite tabletops, and a blue metal handrail running the full length of the staircase. The vertically-laid brick deserves a note of its own: the same material, with the bond rotated ninety degrees, completely changes the perceived scale and the play of light across the elevation.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Casa EG, Loiano, Bologna / LADO architetti: 397 square metres stacking a medical practice under a house, structured in X-Lam and glulam, with stone from the demolished farmhouse reused as cladding</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (24 Sept)</span> · <span class="src">LADO architetti (Luca Ladinetti, Anna Branzanti, Alejandra Osorio Restrepo, Riccardo Bozzini)</span></div>
+  <div class="ni-desc">The house is at Scascoli in Loiano, province of Bologna, Italy, on a 1,230-square-metre site with 397 square metres built, completed in 2026. The programme is separated vertically rather than in plan: the ground floor holds the client’s professional practice and patient treatments, the upper level is given over to domestic life — one building carrying both public reception and private life, divided by storey. The structure is CLT (X-Lam in the Italian context) with glulam beams and plasterboard partitions; interiors are finished in oak parquet, ceramic and resin flooring, under a standing-seam metal roof. The detail most worth recording is the external cladding: stones salvaged from the farmhouse demolished on the site were reused as the exterior facing. This is not a token retention of a few pieces but the wholesale transfer of one vanished building’s material onto the skin of its replacement — in rural settings, that is both a cost-controlled approach and the most direct carrier of site memory available. The architects describe the house as a “domestic observatory,” with openings and views organised around the seasonal agricultural landscape and centuries-old oak groves.</div>
+</div></div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/EXT02_WELLNESSCENTERSUPERGRAPHIC.jpg" alt="BIG’s Sea Ranch Lodge expansion: redwood cladding and the 1960s supergraphic / BIG 的 Sea Ranch Lodge 扩建方案：红杉木外墙与 1960 年代超级图形" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">Feature</span>
+    <div class="ft-title">Building on a legacy that is in the textbooks: the 23 new rooms at Sea Ranch have to clear a review process, not an aesthetic argument</div>
+    <div class="ft-meta">Cross-checked: <span class="src">The Architect&#39;s Newspaper (24 Sept)</span> · <span class="src">AFAR</span> · <span class="src">Hoodline</span> · <span class="src">Punchlist (criticism)</span> · <span class="src">Kennedy Real Estate (local view)</span> · <span class="src">Sea Ranch development history</span></div>
+    <div class="ft-desc">
+      <p><strong>Design concept: treating “continuity” as a checkable promise rather than a phrase.</strong> Bjarke Ingels’s formulation for this commission is that “the ambition is evolution rather than revolution: a continuation rather than a departure.” That sentence appears often in architectural commissions and usually carries no information. What makes it testable at Sea Ranch are three specific commitments in the scheme itself: the material follows what is already there, opaque redwood cladding; the volumes stay simple, with rooflines that follow the contours of the land; and the identity carries forward the supergraphic that Barbara Stauffacher Solomon designed for Sea Ranch in the 1960s. Ingels adds a personal thread — that he studied Charles Moore’s Condominium One at the Royal Danish Academy, and that it taught him how architecture could become “the physical manifestation of thoughtful material storytelling.” Three commitments plus a lineage make a list that can be checked item by item, rather than a statement of attitude.</p>
+      <p><strong>Spatial strategy: four saw-toothed bars plus two courtyard buildings.</strong> The layout logic is restrained. The 23 ocean-facing rooms are split across four saw-toothed bar structures along Highway 1, with two further courtyard buildings holding the spa and wellness centre, and the rooms themselves organised around sheltered courtyards. Bars along the road and courtyards out of the wind is not a formal preference; it is a direct response to the wind conditions on the Sonoma coast — Sea Ranch’s original planning was built on Lawrence Halprin’s survey of wind, meadow and bluff, and buildings there were required to be low, grouped and sheltered. Splitting the rooms into four bars rather than consolidating them into one mass also avoids a single object large enough to break the meadow skyline. With the library and new dining added, the room count goes from 17 to 40 — more than double, and that is the quantitative basis of the dispute.</p>
+      <p><strong>Background: why you cannot simply add here.</strong> Sea Ranch was developed by Al Boeke on former sheep farm, cattle ranch and logging land, with landscape planning by Lawrence Halprin and architecture by Joseph Esherick and MLTW — Donlyn Lyndon, Charles Moore, William Turnbull and Richard Whitaker. Condominium One, built in the 1960s, remains the fixed case study in the “environmental design” chapter of virtually every architectural history survey: undecorated timber volumes, shed roofs, a posture of following rather than overriding the terrain, and a strict set of community covenants intended to keep subsequent construction from breaking the whole. The lodge itself was sold to a group of investors in 2018 — reported to include the founders of Stripe and Twitch — and renovated between 2019 and 2023. That change of ownership explains both the impetus for the expansion and the source of the criticism.</p>
+      <p><strong>Consequence and open questions: the review process is the real subject here.</strong> The criticism is already public. Christopher Hawthorne has written that “BIG seems incapable here of entirely squashing its well-known formalist impulses”; Oliver Wainwright calls BIG “strangely fitting” for a place now dominated by tech-industry second homes — the irony in the second remark is aimed less at the architecture than at what has become of Sea Ranch as a social experiment. But what decides the outcome is not commentary. It is two reviews: planning approval by Sonoma County, and internal review by the Sea Ranch Association. The second is precisely the institutional legacy of the Halprin era — a set of covenants written to constrain those who came later, now to be used to judge a scheme by an international practice. No approval timeline, total investment or construction start has been published as of press time, and this briefing will not infer them. For students, the value of the case is that it puts an ordinarily vague question on the table: when “respecting context” is written into a design statement, who has the authority to decide whether it has been honoured?</p>
+    </div>
+    <a href="https://www.archpaper.com/2026/09/big-sea-ranch-lodge/" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">China desk: MOHURD sets urban-renewal targets for the 15th Five-Year Plan — 115,000 old residential compounds to be renovated, 575,000 residential lifts renewed or newly installed, 50,000 hectares of urban green space, and legislation on urban renewal to be accelerated</div>
+  <div class="ni-meta">Sources: <span class="src">State Council Information Office press conference (18 Sept)</span> · <span class="src">China News Service</span> · <span class="src">21st Century Business Herald</span></div>
+  <div class="ni-desc">Zhang Qiang, director of the Urban Management and Supervision Bureau at China’s Ministry of Housing and Urban-Rural Development (MOHURD), announced a set of quantified urban-renewal targets for the 15th Five-Year Plan period at a State Council Information Office press conference: construction to start on the renovation of 115,000 older urban residential compounds nationwide, “complete community” upgrading in 5,000 neighbourhoods, 575,000 residential lifts renewed or newly installed, and 50,000 hectares of urban green space built or upgraded. Institutionally, four mechanisms are to be established: integrating “urban check-ups” with renewal so that diagnosed problems become renewal priorities; an implementation chain running from sector plans to district-level programming to project implementation schemes; a sustainable financing mechanism combining increased public investment with market participation; and a mechanism binding urban renewal to historic and cultural preservation. Legislation on urban renewal is to be accelerated, alongside a completed standards system. For architecture and planning students, the second mechanism is the one to watch: a three-tier structure of sector plan, district programming and project scheme means that the entry point for most renewal work will be district-scale programming rather than single-building design — a noticeable gap from how schools still train. This briefing previously covered the construction-industry portion of the same press conference; this item covers the urban-renewal portion.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">RIBA Neave Brown Award for Housing 2026 shortlist: from 157 homes across five pavilions to a disused 1970s estate turned into 46 low-carbon social rent homes, winner announced 15 October alongside the Stirling Prize</div>
+  <div class="ni-meta">Sources: <span class="src">RIBA announcement</span> · <span class="src">Dezeen</span> · <span class="src">Architects&#39; Journal</span> · <span class="src">Building Design</span></div>
+  <div class="ni-desc">The Neave Brown Award for Housing is drawn from the winners of the RIBA Regional Awards and recognises the best affordable and social housing in the UK. The 2026 shortlist comprises four schemes: Lion Green Road by Mary Duggan Architects with RUFF Architects, 157 homes across five pavilions with communal landscaping; Canada Water Plot K1 by Morris+Company with White Ink, in the Canada Water development in south-east London; Rowan Court by Satish Jassal Architects, the transformation of a disused 1970s estate into 46 low-carbon social rent homes in London; and St Andrew’s Drive Phases 2 and 3 by jmarchitects, delivering 120 affordable homes in Glasgow through a mix of stacked maisonettes, apartments and terraced housing around shared green space. The winner will be announced on 15 October 2026 at the RIBA Stirling Prize ceremony at Old Billingsgate in London. Two of the four shortlisted schemes are the adaptation or densification of existing housing estates — a ratio that is itself a reading of current British housing policy.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Editor’s note, read these together: Čebín reuses a shop nobody cared about, Sea Ranch builds new on a meadow that is in the textbooks — the threshold for reuse depends on whether the old thing is valuable</div>
+  <div class="ni-meta">Sources: <span class="src">Architecture Today / gooood (24 Sept)</span> · <span class="src">The Architect&#39;s Newspaper (24 Sept)</span></div>
+  <div class="ni-desc">Two of this issue’s stories form a useful pair. Čebín in the Czech Republic retained the loadbearing structure of a 1970s Jednota general store and converted it into a school for 120 pupils. What was kept has no heritage designation and no architectural quality; the reason for keeping it was that cost and programme beat demolition and rebuild. Reuse there is a purely economic question. Sea Ranch is the opposite case: the meadow and the buildings left by MLTW and Halprin are acknowledged as a benchmark of postwar American environmental design, valued highly enough that any addition must first pass both community covenants and county planning — which is exactly where BIG’s 23 new rooms now sit. Setting the two side by side clarifies something usually left vague. When architecture debates whether to retain, it tends to assume the subject is a valuable old building, so the answer turns on cultural judgement. In actual practice the overwhelming majority of old buildings have neither heritage status nor architectural quality, and retention is decided by cost, programme and code. The two cases require different arguments, and students working on adaptive briefs would do well to establish first which one they are facing. This item is an editorial cross-reference and is not a judgement on either scheme.</div>
+</div></div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://front.global/wp-content/uploads/2026/04/Amherst_530_CI_2205_Quad_HdM.jpg" alt="Herzog &amp; de Meuron’s Amherst College Student Center &amp; Dining Commons: mass timber above a retained concrete frame / 赫尔佐格与德梅隆的阿默斯特学院学生中心与餐饮中心：混凝土骨架之上的重木加建" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">Feature</span>
+    <div class="ft-title">Two floors of timber stacked on the bones of a 1960s Brutalist science building: Herzog &amp; de Meuron use Canadian black spruce to cut embodied carbon by a third</div>
+    <div class="ft-meta">Cross-checked: <span class="src">Dezeen (24 Sept)</span> · <span class="src">Herzog &amp; de Meuron project page “530 Amherst College”</span> · <span class="src">Amherst College news</span> · <span class="src">Sasaki (collaborator)</span> · <span class="src">Front (facade consultant)</span> · <span class="src">afasia archive</span></div>
+    <div class="ft-desc">
+      <p><strong>Design concept: don’t demolish — keep growing on the old frame.</strong> The new Student Center &amp; Dining Commons at Amherst College in Massachusetts is by the Swiss practice Herzog &amp; de Meuron, and is the firm’s first completed educational building in the United States. The starting point was the Merrill Science Center, a 1960s Brutalist brick building by the Boston firm Campbell, Aldrich and Nulty. The conventional move would have been demolition and rebuild; the move here was to treat the existing structure as a base and keep using it. The final design preserves and repurposes two floors of the existing concrete structure, sets a mass timber transfer table above it, and stacks two more mass-timber floors on top. The resulting section is worth drawing out: a 1960s concrete frame at the bottom, a timber transfer structure in the middle carrying one to the other, and new timber floors above — three stretches of structure from different decades and different materials, stitched together by a single transfer element.</p>
+      <p><strong>Structural and material innovation: the transfer table is the real technical core.</strong> The column grid, load capacity and bay sizes of a 1960s concrete science building are almost never going to line up with the long-span spaces a student centre and dining hall require. The mass timber transfer table resolves exactly that mismatch: it redistributes the loads of the new structure above to positions the existing grid below can carry, so the two structural logics do not have to correspond one to one. The new floors use black spruce sourced from Canada, chosen for its low carbon footprint. There is also a material benefit that often goes unremarked — retaining the existing foundations and two floors of structure eliminates a large volume of demolition haulage and new concrete pours, with a corresponding drop in construction waste.</p>
+      <p><strong>The numbers: 33 per cent and 93 per cent.</strong> The practice has published two comparative figures: against a new building of similar size and type, a 33 per cent reduction in embodied carbon (the emissions of material production and construction) and a 93 per cent reduction in operational carbon. The two come from different places and should be read separately. The 33 per cent derives mainly from two structural decisions — retaining the existing concrete, thereby avoiding new pours, and substituting timber for the concrete or steel that the new floors would otherwise have required. The 93 per cent derives from energy systems and envelope performance and has comparatively little to do with the structural choice. Conflating the two is a common error in student work. It should also be said plainly that both figures were released by the design team; the calculation boundaries have not been published (whether the full life-cycle stages are covered, whether operational carbon is adjusted for grid cleanliness), so this briefing reports them as stated without vouching for their precision.</p>
+      <p><strong>Context and consequence: adaptive reuse is becoming a structural option, not a moral one.</strong> The area goes from 80,000 to 120,000 square feet (7,432 to 11,148 square metres) to hold a combined student centre and dining hall — that is not a conservative refurbishment but a 50 per cent expansion built on old bones. And that is the project’s lesson for the profession: adaptive reuse has long been understood as a constrained practice in which programme must be sacrificed, whereas the section here shows that once a layer of structural transfer is inserted between old and new, the old column grid stops being a ceiling on what the building can do. American higher education is entering a bulk renewal cycle for its 1960s stock, and Brutalist campus buildings — structurally redundant, generous in floor-to-floor height — happen to be well suited as a base for timber addition. The value of this project is not that it is one more mass timber building; it is that it offers a repeatable section for joining old to new.</p>
+    </div>
+    <a href="https://www.dezeen.com/2026/09/24/herzog-de-meuron-mass-timber-massachusetts-school-amherst/" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">China desk: “Sun the Quilt” by six students from Xi’an University of Architecture and Technology wins the 2026 VELUX Light of Tomorrow global award — the everyday act of airing a quilt turned into an operable shading and daylighting facade, chosen from 539 entries across 345 schools</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (9 Sept)</span> · <span class="src">Archinect</span> · <span class="src">VELUX press release</span> · <span class="src">EAAE</span></div>
+  <div class="ni-desc">The global award of the twelfth Light of Tomorrow by VELUX student competition was announced at the UIA World Congress of Architects in Barcelona. The winning entry, “Sun the Quilt,” comes from Xi’an University of Architecture and Technology, by students XU Qicheng, LUO Jun, GAO Rui, RUAN Guoqiang, ZHANG Xuanyi and CAI Kunhong. The competition drew 539 entries from 345 schools of architecture, with eight finalists presenting to an international jury that included James Carpenter (US), Liene Jākobsone (LV), Níall McLaughlin (IE), Oya Atalay Franck (CH), Doris Wälchli (CH) and Elena Arregui Jaeger of VELUX. The point of departure is an ordinary domestic act — putting quilts, textiles and food out in the sun to dry. The design translates that act into a set of components: a fully openable window, an operational ledge, and nested, extendable and rotatable frames. Deployed, the quilts act as external shading; retracted, daylight enters the room. One assembly therefore handles drying, shading, ventilation and daylight modulation at once, responding to seasonal and daily solar patterns. One juror’s comment: “The architects have gone through a problem, got to the bottom of that problem, worked it through, and then made it into something that can live and thrive in the world.” The global award carries €4,000, with a further €1,000 to the supervising teacher.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">A derelict 45-square-metre adobe silo turned into a house: Casa Estelí in Chiapas rings 30-centimetre adobe walls with a continuous timber ring beam, adds 26-centimetre rat-trap bond brickwork, and runs entirely passively</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (24 Sept)</span> · <span class="src">COLAR Colectivo de Arquitectura (architects)</span></div>
+  <div class="ni-desc">The project is in San Cristóbal de las Casas, Chiapas, Mexico, by Santiago Constantino De Angoitia, Maximiliano Animas Rueda, Mateo Torres Sánchez and Roberto Marroquín Polín of COLAR Colectivo de Arquitectura, completed in 2026 with a built area of 165 square metres. The subject was a deteriorated 45-square-metre adobe silo. The architects summarise the technical strategy as structural separation with spatial continuity: the original 30-centimetre adobe walls are reinforced by a continuous timber ring beam and controlled openings — the ring beam ties the top of the adobe walls into a single element, which is the most common and most effective way of strengthening unreinforced earthen masonry in seismic regions. Two new loadbearing volumes flank the original in 26-centimetre rat-trap bond brickwork, a bond laid on edge that leaves internal cavities, saving brick and providing insulation in the same move, and a self-supporting timber frame adds further support and weather protection. The climate strategy is entirely passive: no mechanical systems, with the thermal mass of the adobe and brick regulating interior temperature. The original materials are retained deliberately, described by the architects as “evidence of time.” Three masonry systems and a timber frame each doing a distinct job in one small house make this a compact case study in low-tech construction and earthen-building retrofit.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">What you gain and lose as facade panels get larger: single-skin aluminium versus aluminium composite material, and why the plastic core is the problem</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (24 Sept, by Agustina Iñiguez)</span> · <span class="src">Dri-Design technical documentation</span> · <span class="src">Editor’s note: the article is sponsored content; only its verifiable technical parameters are reported here</span></div>
+  <div class="ni-desc">This is a technical survey arguing that facade panel size is not only an aesthetic choice — increasing panel dimensions carries consequences for durability, material recyclability and resistance to external forces. The article contrasts two approaches: conventional aluminium composite material (ACM), two thin aluminium skins bonded to a plastic core, against single-skin aluminium systems, which are monomaterial. The problem with ACM lies in that plastic core: first, the risk of delamination over a long service life; second, the difficulty of recycling a composite. Monomaterial solutions have the advantage on both counts. Verifiable parameters include panel dimensions up to roughly 4 feet by 12 feet (about 1.2 by 3.66 metres), aluminium thickness from 0.063 to 0.080 inches (about 1.6 to 2.0 millimetres), wind loads up to 130 pounds per square foot with compliance to High Velocity Hurricane Zone impact requirements, installation detailing that accommodates thermal and structural movement, and concealed single-point attachment with integrated drainage gutters. To be explicit: the article is brand-sponsored content, and the Dri-Design MA-X system it recommends is a drained, back-ventilated rainscreen using integrated aluminium stiffeners rather than a composite core. This briefing reports the technical parameters and does not endorse the product.</div>
+</div></div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.metalocus.es/sites/default/files/styles/mopis_fullslider_desktop/public/2026-07/metalocus_vitra-museum_geoffrey-bawa_06_p.jpg?itok=m6OYl5_O" alt="Image relating to “Geoffrey Bawa: Architecture for the Senses,” Vitra Design Museum / 维特拉设计博物馆「Geoffrey Bawa: Architecture for the Senses」展览相关图像" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">Feature</span>
+    <div class="ft-title">Taking Bawa out of “tropical modernism”: 250 objects, a practising architect doing the scenography, and a list of who else made these buildings</div>
+    <div class="ft-meta">Cross-checked: <span class="src">Architectural Record (25 Sept)</span> · <span class="src">METALOCUS</span> · <span class="src">Wallpaper*</span> · <span class="src">Vitra Design Museum exhibition notice</span> · <span class="src">Museumspass (dates)</span> · <span class="src">Design Diffusion</span></div>
+    <div class="ft-desc">
+      <p><strong>Curatorial concept: a correction aimed at a label.</strong> “Geoffrey Bawa: Architecture for the Senses” opened on 26 September 2026 at the Vitra Design Museum in Weil am Rhein and runs to 28 February 2027, the first major retrospective in more than twenty years of the Sri Lankan architect Geoffrey Bawa (1919–2003). The central curatorial act is a correction: lifting Bawa out of the much-used label “tropical modernism.” The trouble with that label is that it attributes the value of the work to climate — as though Bawa’s achievement were merely to have translated modernism into a version that copes with heat and humidity. The museum’s alternative framing has three terms: landscape integration, sensory experience and ecological approach. The subtitle is the statement of the correction: architecture defined as an experience that mobilises the body, rather than as a specimen of a regional style.</p>
+      <p><strong>Exhibition strategy: hire a practising architect to design the show.</strong> Scenography is by the Lebanese architect Lina Ghotmeh, and that choice is part of the exhibition’s argument. Bawa’s architecture is close to untransmittable through drawings and photographs — its core experience is continuous movement, alternation of light and shade, the blurring of boundaries from interior to courtyard to landscape, and the feel of materials in humid air. Two-dimensional media lose all of this. Bringing in a practising architect known for material and bodily experience to organise the display amounts to conceding that an exhibition about the senses has to be a spatial experience in its own right. The show comprises over 250 objects — drawings, models, photographs, furniture, artworks and archival documents — covering a five-decade career, with a contemporary section of new photography by Iwan Baan showing the buildings as they are used today rather than only as they were recorded at completion.</p>
+      <p><strong>A list: who else made these buildings.</strong> The most academically consequential thread in the show is the full presentation of Bawa’s long collaborations with Sri Lankan artists and craftspeople — batik panels, textiles and sculpture by Laki Senanayake, Ena de Silva and Barbara Sansoni, presented, in the curators’ terms, as integrated into the buildings and essential to the spatial experience rather than as decoration added afterwards. That distinction has direct consequences. In most architectural-historical accounts, interior textiles and artworks either go unmentioned or get filed under “decoration” and separated from the building proper; re-entering them as constituents of spatial experience effectively redraws the boundary of authorship. Buildings covered include the Bentota Beach Hotel, the Kandalama Hotel, the Lighthouse Hotel, the Yala Bungalows, the new Sri Lankan Parliament, and Lunuganga, the country estate Bawa tended for decades.</p>
+      <p><strong>Institutions and consequence: three organisers, and Hong Kong in 2027.</strong> The exhibition is organised by the Vitra Design Museum, M+ in Hong Kong and the Wüstenrot Foundation in collaboration with the Geoffrey Bawa Trust, and travels to M+ in June 2027. The combination is worth noting: a European design museum, an Asian visual-culture museum and a German foundation jointly handling the archive of a South Asian architect, with the itinerary running Europe first, then Asia. The reassessment of twentieth-century non-Western architects has become a standing agenda at major European and North American institutions over the past decade; what differs here is that M+ is a co-organiser rather than a receiving venue, so interpretive authority over the archive does not sit entirely on the European side. For students at the Syracuse School of Architecture there is a practical dimension too: in English-language architectural education Bawa’s work has long been compressed into a handful of hotel photographs, and the release of over 250 primary items makes drawing- and archive-based research viable again for the first time in twenty years.</p>
+    </div>
+    <a href="https://www.architecturalrecord.com/articles/18420-major-retrospective-of-sri-lankan-architect-geoffrey-bawa-opens-at-the-vitra-design-museum" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The fifth Tbilisi Architecture Biennial, “The Geography of Emptiness,” opened 25 September: emptiness studied as a product of war, industrialisation and economic collapse, on view to 3 October</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen Events Guide</span> · <span class="src">biennial.ge</span> · <span class="src">KoozArch</span> · <span class="src">OC Media</span> · <span class="src">LINA</span></div>
+  <div class="ni-desc">The fifth edition of the Tbilisi Architecture Biennial opened on 25 September 2026 and runs to 3 October, under the title “The Geography of Emptiness,” staged in an open-air setting at the Center of Visual and Performing Arts in Tbilisi, Georgia. The curatorial position is explicit: emptiness is not treated as the simple absence of space but as the visible residue of social, political and economic processes — produced by war, industrialisation and economic collapse. The programme covers abandoned villages and regions, migration, spaces affected by war and environmental disaster, and the new forms of emptiness generated by contemporary urban development itself, that last category pointing at housing and commercial stock that was built and never occupied. The format includes exhibitions, talks, workshops and site-based interventions across the city. Founded in 2017, the biennial positions itself as a platform for international and local professional dialogue on contemporary architecture and urban questions. For anyone working on shrinking cities or abandoned built environments, it is one of the few events this year to take emptiness as a positive object of study.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">RIBA Stirling Prize 2026 announced 15 October: the thirtieth edition, with a shortlist spanning a new public square above a major London interchange, a 1970s theatre converted into a cultural venue, high-density housing and two Cambridge college projects</div>
+  <div class="ni-meta">Sources: <span class="src">RIBA announcement</span> · <span class="src">Architects&#39; Journal</span> · <span class="src">ArchDaily</span> · <span class="src">The Architect&#39;s Newspaper</span></div>
+  <div class="ni-desc">The winner of the 2026 RIBA Stirling Prize will be announced live at Old Billingsgate in London on 15 October, marking the award’s thirtieth anniversary. The six shortlisted projects range widely by typology: a new public square built above one of London’s busiest transport interchanges, the adaptive reuse of a 1970s theatre as a cultural venue, a high-density residential development, two projects for Cambridge colleges, and a family home on the edge of Epping Forest. Witherford Watson Mann Architects, which won last year for the Appleby Blue almshouse in Southwark, is shortlisted again, this time for a new wing at the Grade I-listed Clare College in Cambridge. The Neave Brown Award for Housing will be announced the same evening. Laid out by type, at least three of the six are adaptations of existing buildings or additions within protected settings — which points at the same thing as this issue’s Sea Ranch lead story: the centre of gravity in contemporary European and North American architecture awards is shifting from the freestanding new building toward the quality of the joint between old and new.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">China desk: the seventh Half Stage exhibition, “Structuring Fragments,” opens, organised around two threads — the structure of relations and the structure of matter</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (24 Sept)</span> · <span class="src">exhibition organisers’ announcement</span></div>
+  <div class="ni-desc">The seventh edition of the Half Stage series, titled “Structuring Fragments,” opened on 24 September. According to the organisers, the exhibition is organised around two parallel threads: the structure of relations, meaning the ways people, space and society are bound together; and the structure of matter, meaning the organisational logic of materials and the order of construction. Setting these two senses of “structure” alongside each other is intended to ask how fragmentary experience in architecture is reassembled into a whole — which is the direct sense of the title. The six previous editions of Half Stage have built up a line of exhibitions around small-scale experiment and emerging Chinese practice. As of press time, the full participant list, exhibition dates and venue details have not been published; this briefing will report them once the organisers release them and will not speculate in the meantime.</div>
+</div></div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
