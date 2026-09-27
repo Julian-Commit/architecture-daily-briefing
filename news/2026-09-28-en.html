@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-28</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="Sven Markelius’s 1960 Folkets Hus in Stockholm completes the most extensive renovation in its history: the congress hall goes from 1,000 seats to 1,500, and DinellJohansson wins a…">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 022 · 2026-09-28 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="Sven Markelius’s 1960 Folkets Hus in Stockholm completes the most extensive renovation in its history: the congress hall goes from 1,000 seats to 1,500, and DinellJohansson wins a…">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-28-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images.adsttc.com/media/images/6aa7/c7f0/a74d/1200/0125/e127/large_jpg/FOLKETS_HUS_8_Victor_Johansson.jpg?1789380647">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 022 · 2026-09-28 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="Sven Markelius’s 1960 Folkets Hus in Stockholm completes the most extensive renovation in its history: the congress hall goes from 1,000 seats to 1,500, and DinellJohansson wins a…">
+<meta name="twitter:image" content="https://images.adsttc.com/media/images/6aa7/c7f0/a74d/1200/0125/e127/large_jpg/FOLKETS_HUS_8_Victor_Johansson.jpg?1789380647">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 022 · 2026-09-28 · 陆先生建筑日报 | Architecture Daily","description":"Sven Markelius’s 1960 Folkets Hus in Stockholm completes the most extensive renovation in its history: the congress hall goes from 1,000 seats to 1,500, and DinellJohansson wins a…","datePublished":"2026-09-28","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-28-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://images.adsttc.com/media/images/6aa7/c7f0/a74d/1200/0125/e127/large_jpg/FOLKETS_HUS_8_Victor_Johansson.jpg?1789380647"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 022</div>
+    <div>September 28, 2026 Monday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-28-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p>Stockholm’s Folkets Hus has completed the most extensive renovation since it opened in 1960: Sven Markelius’s functionalist landmark is a green-listed heritage building, its congress hall has gone from 1,000 seats to 1,500, and 4,000 square metres of interior have been reworked by DinellJohansson under a deliberate policy of treading lightly. One thing runs through all four sections today: nothing here starts on empty ground. In Hangzhou, a 330-metre service lane inside a new CBD had its carriageway cut from 12 metres to 7, with every recovered metre handed to pedestrians. In La Unión, Spain, a sawtooth photovoltaic canopy derived from maximum solar yield was built as the silhouette of a sports centre rather than bolted onto its roof. On the Oaxacan coast, Casa Cieno does the reverse of what a coastal house usually does — the plot has no sea frontage, so the house turns inward entirely and returns its displaced vegetation on the roof. And in academia, a loss: Los Angeles lost Orhan Ayyüce and Heather Roberge in the same week — the two joint recipients of this year’s AIA|LA Educator of the Year award.</p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6aa7/c7f0/a74d/1200/0125/e127/large_jpg/FOLKETS_HUS_8_Victor_Johansson.jpg?1789380647" alt="Inside Folkets Hus in Stockholm after the renovation / 改造后的斯德哥尔摩人民会堂室内" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">PROJECTS</span>
+    <div class="hl-title">Sven Markelius’s 1960 Folkets Hus in Stockholm completes the most extensive renovation in its history: the congress hall goes from 1,000 seats to 1,500, and DinellJohansson wins a competition to rework 4,000 square metres of interior inside a green-listed heritage building</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (27 Sep)</span> · <span class="src">dinelljohansson project page</span> · <span class="src">Meetings International (Sweden)</span> · <span class="src">Turismnytt</span> · <span class="src">Gustafs Stories (supplier case study)</span> · <span class="src">Photography: Victor Johansson, Jakob Larsson</span></div>
+    <div class="hl-desc">Folkets Hus in Stockholm opened in 1960 to a design by the Swedish architect Sven Markelius. At the time it was one of Europe’s largest and most modern conference facilities, with a single congress hall seating 1,000 — a landmark of the functionalist period. Between June 2023 and April 2025 the building went through the most extensive renovation in its history: congress hall capacity was raised to 1,500, installations were replaced throughout, and spaces were reconfigured to meet current requirements for safety, flexibility, comfort and technology. The building is green-listed, so every move had to clear heritage review. Kockum Luttinger Söderström Arkitektkontor handled the architecture; DinellJohansson (Kalle Dinell, Morten Johansson) won the competition for the interior and delivered 4,000 square metres, completed in 2025. The studio describes its approach as treading lightly, taking great care with a building whose character Markelius made unusually specific, and putting the weight of the work into how the rooms are used rather than how they look. The scope covers dining areas, staircases and a range of social spaces, with a palette concentrated on wood, glass and steel. One result does not show up visually at all: the property’s energy performance was radically improved and its climate impact reduced. The Folkets Hus is a public building type left behind by the Nordic labour movement — built with union and cooperative money, serving as assembly hall, cinema and dance hall — and the Stockholm building is the largest and most prominent of them.</div>
+    <a href="https://www.archdaily.com/1185763/house-of-people-dinelljohansson" class="hl-link" target="_blank" rel="noopener">Read the full story →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://oss.gooood.cn/uploads/2026/09/01-integrarted-renewal-of-yuelang-road-block-by-original-design-472x303.jpg" alt="The renewed street frontage of Yuelang Road, Qianjiang Century City, Hangzhou / 杭州钱江世纪城月朗路街区更新后的街道界面" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">URBANISM</span>
+    <div class="hl-title">Giving a 330-metre service lane back to pedestrians: TJAD’s Original Design Studio narrows the carriageway on Hangzhou’s Yuelang Road from 10–12 metres to 7, hangs a 16-metre lunar-phase ring, and re-codes a 69,900-square-metre block around night-time use</div>
+    <div class="hl-meta">Sources: <span class="src">gooood (24 Sep)</span> · <span class="src">Hangzhou Daily / hznews (31 Oct 2025)</span> · <span class="src">Original Design Studio, TJAD — project data</span></div>
+    <div class="hl-desc">The Yuelang Road Block Comprehensive Quality Enhancement Project sits in the core of Qianjiang Century City in Hangzhou’s Xiaoshan district. The site covers 69,900 square metres and centres on an internal street roughly 330 metres long. It was designed by the Original Design Studio of Tongji Architectural Design (Group) Co., Ltd — lead architects Zhang Ming, Zhang Zi, Shen Jie and Wang Xunan — for the Hangzhou Xiaoshan Qianjiang Century City Development and Construction Co., Ltd. Design began in March 2024; the street completed in November 2025. Before the work, the lane was purely logistical: office commuting, garage access, temporary parking and building servicing. Surface parking consumed most of the space, and the ground floors on either side presented closed, unrelated frontages — a condition familiar in almost every newly built Chinese CBD, where the master plan shows a street and the city does not have one. The hardest single move was narrowing the two-way carriageway from 10–12 metres to 7, transferring the recovered width permanently to walking and street life. The second was opening the building edge: physical barriers were removed and entrances, footway and forecourts stitched together with landscape transitions and ramps. The third gave the street an identity — a suspended lunar-phase ring 16 metres across as the visual anchor, with the motif carried through pavilions, lighting and street furniture to activate the evening. Qianjiang Century City markets the result as a night-economy district.</div>
+    <a href="https://www.gooood.cn/integrarted-renewal-of-yuelang-road-block-by-original-design.htm" class="hl-link" target="_blank" rel="noopener">Read the full story →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/ribbed-lime-green-gateway-blue-solar-canopy-municipal-sports-center-spain-meii-estudio-designboom-1200.jpg" alt="The blue sawtooth photovoltaic pergola and lime-green ceramic entrance of the municipal sports centre in La Unión, Spain / 西班牙拉乌尼翁市立体育中心的蓝色锯齿形光伏棚架与柠檬绿陶土入口" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">MATERIALS</span>
+    <div class="hl-title">Designing the photovoltaic array as a facade: meii estudio gives a Spanish municipal sports centre a south-facing sawtooth solar pergola and a 339-square-metre lime-green ceramic ventilated skin</div>
+    <div class="hl-meta">Sources: <span class="src">designboom (26 Sep)</span> · <span class="src">ArchDaily (9 Sep)</span> · <span class="src">Arquitectura Viva</span> · <span class="src">meii estudio</span></div>
+    <div class="hl-desc">The project is in La Unión, in Spain’s Región de Murcia, for the municipality of La Unión. It is by the local practice meii estudio — lead architects Elvira Carrión Meroño and José María Mateo Torres, with Javier Albacete Ródenas on the design team and Andrea Sanabria Tiscar, Antonio Ros Otarín, Helia Baños, Juan Antonio Abril Ortega and Sonia Hernández on the technical team. General contractor: Gruexma. Photography: hiperfocal. Completed 2026. The municipal sports centre, known to everyone locally as El Poli, is one of the town’s main meeting places. The intervention splits into two complementary operations. The first is the entrance building — El Poli proper, 339 square metres — rewrapped in a ventilated ceramic facade in lime-green glaze that unifies a set of previously unrelated volumes into one recognisable object; a row of fully foldable metal doors means that, when open, there is no hard threshold between the town and the facility. The second is La Pérgola, a photovoltaic canopy: a three-dimensional steel frame clad in blue sheeting, its roof made of south-facing inclined planes that produce a sawtooth profile. That geometry is not a stylistic choice — it is derived from maximising solar yield at La Unión’s latitude — and the same structure shades the football pitch’s stands. The architects describe the pair as interventions that “generate renewable energy, improve comfort, and establish a bold new presence within La Unión’s distinctive mining landscape.” Installed capacity and panel count have not been published, and we do not infer them.</div>
+    <a href="https://www.designboom.com/architecture/ribbed-lime-green-gateway-blue-solar-canopy-municipal-sports-center-spain-meii-estudio/" class="hl-link" target="_blank" rel="noopener">Read the full story →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/headshot2.jpg" alt="Heather Roberge, former chair of UCLA Architecture and Urban Design and founder of Murmur / UCLA 建筑与城市设计系前系主任、Murmur 事务所创始人 Heather Roberge" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">ACADEMIA</span>
+    <div class="hl-title">Los Angeles architecture education loses both of its 2026 AIA|LA Educators of the Year in a single week: Orhan Ayyüce died 20 September in Albuquerque at 75; Heather Roberge, former UCLA AUD chair, died at 55</div>
+    <div class="hl-meta">Sources: <span class="src">The Architect&#39;s Newspaper (24 Sep, Roberge obituary)</span> · <span class="src">The Architect&#39;s Newspaper (Ayyüce obituary)</span> · <span class="src">Archinect (both tributes)</span> · <span class="src">UCLA School of the Arts and Architecture</span></div>
+    <div class="hl-desc">Earlier this year AIA Los Angeles named Orhan Ayyüce and Heather Roberge jointly as its 2026 Educators of the Year. Months later, both died within the same week. Ayyüce died suddenly at his home in Albuquerque, New Mexico, on 20 September, aged 75; he had retired from East Los Angeles College earlier this year and moved to Albuquerque with his wife, Tina Simon, in June. For more than two decades he wrote as a senior editor, contributor and interviewer for Archinect, interviewing Frank Gehry, Carme Pinós and Francis Kéré, and using the same platform to draw attention to people and projects he thought deserved more of it. Roberge’s obituary was published on 24 September; she was 55. Born in Ohio in 1971, she took a BS in architecture from Ohio State in 1993 and an M.Arch summa cum laude in 1995, with study at the Architectural Association in London; she trained at Eisenman Architects, Architecture Research Office, Davis Brody Bond and HOK. She co-founded Gnuform in Los Angeles with Jason Payne in 1999 and founded her own practice, Murmur, in 2008. She began teaching at UCLA as a visiting lecturer in 2000, joined the faculty in 2002, directed the undergraduate programme for nine years, served as chair of Architecture and Urban Design from 2017 to 2020, and was promoted to full professor in 2022. Lionel Popkin, dean of the UCLA School of the Arts and Architecture, said: “Heather was an extraordinary architect and a dedicated educator who helped shape the intellectual life of the department and inspired generations of students.” She is survived by a husband and a son.</div>
+    <a href="https://www.archpaper.com/2026/09/heather-roberge-obituary/" class="hl-link" target="_blank" rel="noopener">Read the full story →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/oaxaca-casa-cieno-tac-taller-alberto-calleja-courtyards-planted-roof-pool-designboom-1200.jpg" alt="Casa Cieno on the Oaxacan coast: exposed concrete volumes, the central pool and the planted roof / 瓦哈卡海岸 Casa Cieno：清水混凝土体量、中央水池与种植屋面" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">PROJECTS</span>
+    <div class="hl-title">Not facing the sea, facing the courtyard: TAC’s Casa Cieno puts 300 square metres of building on a 1,500-square-metre Oaxacan plot and returns the displaced vegetation on the roof</div>
+    <div class="hl-meta">Sources: <span class="src">designboom (27 Sep)</span> · <span class="src">ArchDaily (Cieno House project page)</span> · <span class="src">Contemporist</span> · <span class="src">TAC Taller Alberto Calleja</span></div>
+    <div class="hl-desc">Casa Cieno sits in the El Vigía sector of Puerto Escondido, Oaxaca, Mexico: a 1,500-square-metre plot with 300 square metres of building, by TAC Taller Alberto Calleja (lead architect Alberto Calleja), completed 2026, photographed by César Belio. The interesting decision here is counter-intuitive. The plot is not on the beach, and rather than twisting the house toward a distant horizon to claim a sea view, the architects turned it inward. The main volume is rotated diagonally against the property lines, and the resulting slivers around the perimeter become planted patios — a vegetated buffer between the house and its neighbours that works visually and thermally at once. The plan is organised around a central pool, and the water itself does the zoning: social spaces on one side, two bedrooms on the other, reached by paths that cross the water. A circular opening in the roof slab lands directly above the pool, pulling daylight deep into the interior. The palette is limited to two materials, exposed concrete and wood, chosen for durability in a coastal climate and with the explicit intention that they will age with the site. The roof is planted, which does two things: it returns, at a different level, the vegetation the building displaced, and it extends the usable outdoor area — the roof looks out to both the sea and the Oaxacan mountains while contributing to passive climate control. A case where not looking at the sea is a strategy, not a compromise.</div>
+    <a href="https://www.designboom.com/architecture/planted-roof-concrete-casa-cieno-tac-taller-alberto-calleja-oaxacan-coast/" class="hl-link" target="_blank" rel="noopener">Read the full story →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6aad/567e/066f/0900/0145/7657/large_jpg/01_-_CC.jpg?1789744818" alt="Casa Cieno: the diagonally rotated exposed-concrete volume and the central pool / Casa Cieno：对角旋转的清水混凝土体量与中央水池" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">IN DEPTH</span>
+    <div class="ft-title">A house on a coastal plot that decides not to look at the sea: Casa Cieno fits 300 square metres into 1,500 using a diagonal rotation, a central pool and a planted roof</div>
+    <div class="ft-meta">Cross-checked against: <span class="src">designboom (27 Sep)</span> · <span class="src">ArchDaily “Cieno House” project page</span> · <span class="src">Contemporist</span> · <span class="src">TAC Taller Alberto Calleja practice material</span> · <span class="src">designboom archive (Casa Malandra, 2022)</span> · <span class="src">Photography: César Belio</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: treating “no sea view” as the premise rather than the problem.</strong> The house is in the El Vigía sector of Puerto Escondido, Oaxaca, Mexico: a 1,500-square-metre plot with 300 square metres of building, by TAC Taller Alberto Calleja, completed 2026. The plot does not front the beach. In the standard logic of holiday housing, that condition usually triggers the same reflex — lift the volume, raise the roof, swing the main rooms toward the distant horizon and claim a sliver of water. TAC did the opposite, turning the house inward and using vegetation and controlled openings, rather than a view, to establish its relationship with its surroundings. The studio frames the intent as blending into the site to become part of the landscape rather than imposing itself on the environment. Whether a house is genuinely responding to its site usually shows up in decisions like this one — not in what it performs, but in what it gives up. What is given up here is the sea view; what is bought is an interior-exterior relationship that is entirely under the architect’s control.</p>
+      <p><strong>Spatial strategy: one rotation, and a body of water doing the zoning.</strong> Two moves determine this plan. The first is the rotation: the main volume sits diagonally against the property lines, so the space between building and boundary is no longer an even setback but a ring of planted patios of varying width. That vegetation does three things at once — it screens the neighbouring plots visually, it buffers thermally, and it breaks the yard into several small outdoor rooms with specific orientations instead of one undifferentiated leftover strip. The second move is the central pool. It is not a landscape accessory but the organising core of the plan: the water separates the social zone from the private one, and the paths to the two bedrooms cross it directly. Moving from public to private therefore requires a deliberate, physically felt crossing. A circular opening in the roof slab lands exactly above the pool, pulling daylight deep into the interior — solving two problems with one aperture: light for a deep plan, and direct sun moving across the water over the course of a day.</p>
+      <p><strong>Material and construction: two materials only, and permission to age.</strong> The material list is short enough to read as a statement: exposed concrete and wood. The stated reasons are durability in a coastal climate and the intention that the building will age with the site — which are really two sides of the same thing. Salt spray, intense UV and a wet season on the Pacific coast punish anything that depends on coatings and surface treatments, and concrete and timber are among the few materials that can weather without maintenance cover and still look deliberate. The planted roof is the detail most worth recording. It works on two levels. In performance terms, the soil and planting add thermal mass and participate directly in the house’s passive climate control. Conceptually, it returns at roof level the vegetation the building removed at ground level: 300 square metres taken out of a 1,500-square-metre plot, put back in another form. The roof is also usable outdoor space, with views past the planted patios to both the sea and the Oaxacan mountains.</p>
+      <p><strong>Context: a recognisable method is forming among the Puerto Escondido houses.</strong> Over the past decade Puerto Escondido has become one of the densest testing grounds for contemporary Mexican domestic architecture, and TAC already has a body of work there — Casa Malandra, Casa Leria and Altanera House are all in the same stretch. Read together, a recurring recipe emerges: heavy concrete framing, a large proportion of semi-outdoor space, structural use of water, and a deliberate avoidance of air conditioning. Casa Cieno’s contribution is to push the inward-facing principle to its limit, giving up a sea view that was arguably available and rebuilding the entire environmental experience out of courtyards, water and roof. For students, it is a useful counter-example: the standard narrative for tropical holiday housing is framing the view, and this project shows that when the view is not good enough to organise a house around, light, water and planting inside the plot can do the job instead. Budget, structural detailing and the roof build-up have not been published, and we do not infer them.</p>
+    </div>
+    <a href="https://www.archdaily.com/1185476/cieno-house-tac-taller-alberto-calleja" class="ft-link" target="_blank" rel="noopener">Read the full story →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">KUSKA Residence / Taller MACAA, Peruvian Andes: 400 square metres for a writer and craftsperson, required to house family, guests and visiting artists as well</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (project page)</span> · <span class="src">Taller MACAA (Misión de Arquitectura, Construcción y Arte en los Andes)</span> · <span class="src">Photography: Rafael Ortiz Santos</span></div>
+  <div class="ni-desc">The house is in Peru: 400 square metres, completed 2026, by Taller MACAA — Misión de Arquitectura, Construcción y Arte en los Andes. The brief began with the client’s wish for a residential environment distinctly different from the city. The name comes from the Quechua word kuska, meaning “together,” and it is not decorative: the owner is a writer and craftsperson, and the house has to serve as a primary residence while also accommodating family, guests and visiting artists. Combining private dwelling with hospitality and creative work under one roof is an increasingly common commission type in the Andes; the difficulty is rarely floor area but keeping two very different daily rhythms from colliding. The practice’s name is also a statement of method — construction and art are part of the title, and its work consistently folds local building craft into the design process rather than treating it as execution.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Kagurazaka House / Takumi Wakui + Riho Wakui Architects, Tokyo: 60 square metres spread across a basement, two floors and a mezzanine, negotiating light and shadow between alleyway grain and high-density city</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (27 Sep)</span> · <span class="src">Takumi Wakui + Riho Wakui Architects</span> · <span class="src">Structural consultant: IN-STRUCT</span> · <span class="src">Photography: Shun Fukuda, Norihito Yamauchi</span></div>
+  <div class="ni-desc">The house sits in Kagurazaka, Tokyo; it covers 60 square metres and completed in 2024, with IN-STRUCT as structural consultant. Kagurazaka is a particular kind of test case: traditional Japanese alleyways and modern high-density urban fabric interweave within the same blocks, so plots are small, edges are complicated, and daylight is hard-won. The architects describe the house as reinterpreting “the boundaries between interior space, light and shadow, and urban texture.” In practice that means developing vertically on a 60-square-metre footprint — a basement, a first floor, a second floor and a mezzanine, each carrying a different degree of privacy, with kitchen, bathroom, living and sleeping distributed across levels and a stair with timber railings running through all of them. Wood dominates the interior, and daylighting and thermal performance are named as explicit design considerations. For anyone working on micro-housing in expensive cities, the transferable lesson is in the section: once plan area is fixed, the only remaining dimension is vertical, and every new level has to solve daylight, privacy and stair footprint simultaneously.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">casa POP / gon architects, Madrid: 78 square metres, with every corridor in a 2000s-standard apartment eliminated</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (26 Sep)</span> · <span class="src">gon architects (lead architect Gonzalo Pardo)</span> · <span class="src">Photography: imagensubliminal (Rocío R. Rivas + Miguel de Guzmán)</span></div>
+  <div class="ni-desc">The apartment is in Madrid, 78 square metres, completed in 2026, led by Gonzalo Pardo with Carol Linares, Maria Konstantinidou, Sara Mordt, María Cecilia Cordero and Alexandra Marouda. The existing unit dated from the 2000s and had two very typical problems: excessive corridor area, and rooms compartmentalised according to the fixed division of labour of a nuclear family. The owners, Santiago and Ángel, do not live that way. The architects state the premise flatly: “there is no such thing as a ‘standard user,’ therefore the building must adapt to unique ways of living.” The response removes the corridors, opens the plan, and substitutes timber partitions for fixed walls so the boundaries between rooms can shift with use; the kitchen is integrated into the main space rather than isolated at the end of it. It is a small project with a clear argument: the standardisation of the domestic plan is not only an efficiency question — it encodes an assumed family structure, and when that assumption fails, the corridor is the first thing that should go.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Vila Marebo / Frederico Zanelato | Arquitetos, Caraíva, Brazil: 200 square metres built not as one house but as two volumes joined by a passageway and a large pergola</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (26 Sep)</span> · <span class="src">Frederico Zanelato | Arquitetos with Marcelo Marchesini</span> · <span class="src">Photography: Oka Fotografia</span></div>
+  <div class="ni-desc">The project is in Caraíva, Bahia, Brazil: 200 square metres, completed 2025, with PROJETARENG on civil engineering and ETEC on services. The governing decision was not to build those 200 square metres as a single house. They are split into two independent volumes linked by a passageway and an expansive pergola — the architects describe the result as closer to a village settlement than to a residence, so that the whole site is inhabited rather than only the part the building stands on. Wood is used extensively inside and out; the pergola defines the principal outdoor living space; the plans are open in order to encourage encounter and lingering. For holiday housing on a tropical coast, breaking the volume up and connecting the pieces with semi-outdoor space has concrete climatic reasons: a dispersed arrangement lets cross-ventilation through, the pergola provides shade without enclosure, and the lengthened route between parts becomes part of the experience rather than a cost.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://oss.gooood.cn/uploads/2026/09/001-integrarted-renewal-of-yuelang-road-block-by-original-design-960x766.jpg" alt="Yuelang Road after the renewal: the widened pedestrian frontage created by narrowing the carriageway / 月朗路街区更新：压缩车行道后的步行界面与街边活动空间" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">IN DEPTH</span>
+    <div class="ft-title">From 12 metres of carriageway to 7: how a service lane in a Hangzhou CBD got recalculated as a street</div>
+    <div class="ft-meta">Cross-checked against: <span class="src">gooood (24 Sep)</span> · <span class="src">Hangzhou Daily / hznews (31 Oct 2025)</span> · <span class="src">Original Design Studio, TJAD — project data and drawings</span> · <span class="src">Tongji CAUP (Zhang Ming faculty record)</span> · <span class="src">Photography: Daily Architecture Photography — Liu Guowei, and Original Design Studio</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: this was never a street. It was a service route.</strong> Yuelang Road runs about 330 metres between office towers in the core of Qianjiang Century City, Hangzhou’s Xiaoshan district; the block it belongs to covers 69,900 square metres. Before the work, every function it carried was logistical — office commuting, garage entries, temporary parking, building servicing. Surface parking took most of the space, and the ground floors on both sides were sealed off from one another, with no continuous public edge between them. This is an extremely common condition in newly built Chinese central business districts: the master plan provides a road, and in use there is no street. The Original Design Studio of Tongji Architectural Design (Group) Co., Ltd — lead architects Zhang Ming, Zhang Zi, Shen Jie and Wang Xunan — took on the Yuelang Road Block Comprehensive Quality Enhancement Project in March 2024 for the Hangzhou Xiaoshan Qianjiang Century City Development and Construction Co., Ltd; it completed in November 2025. Its starting point is not beautification but a redistribution of the street section.</p>
+      <p><strong>Spatial strategy: the cross-section is the real design object.</strong> The hardest single move was narrowing the two-way carriageway from 10–12 metres to 7. That number deserves unpacking: 7 metres two-way still accommodates fire access and servicing vehicles, but it permanently transfers three to five metres of width from cars to pedestrians and street activity. The second move opens the building edge — removing the physical barriers along the street and using landscape transitions and ramps to connect entrances, footway and forecourts into one continuous surface, so that the relationship between building and street stops being a binary in/out and becomes a zone with depth. At the Qianjiang Yin entrance, a multi-level gallery with a spiral stair extends the pedestrian system vertically. Gradient paving and tree planters define stretches with different characters. The logic is straightforward: total street width is fixed, so the only place to find pedestrian space is the carriageway.</p>
+      <p><strong>Detail and the night: a 16-metre lunar ring, and carrying the motif all the way down to the furniture.</strong> The visual anchor is a suspended lunar-phase ring 16 metres across. It is not an isolated object: the lunar motif extends into the street pavilions, the lighting and the furniture, producing a single night-time vocabulary; lighting was manufactured by Guangdong Hengtai Lighting Technology. Choosing the moon has a practical reason behind it. By day the street’s users are office workers; the evening is when it actually performs as public space, and Qianjiang Century City explicitly positions it as a night-economy district. Pushing one motif from a landmark-scale element all the way down to benches and lamps is the conventional way to make 330 metres of street read as one thing after dark rather than as a series of unrelated installations. Integrated seating and outdoor dining complete the kit. Construction was by Zhejiang Guofeng Group; supervision by Zhejiang Gongcheng Construction Project Consulting.</p>
+      <p><strong>Context: the shift from road to street is a lesson China’s new CBDs are currently learning.</strong> Qianjiang Century City is a new centre planned and built over the past two decades, and its characteristic problem is not a shortage of roads but a set of dimensions calibrated entirely for vehicular throughput. Local press in October 2025 framed the Yuelang Road work as the starting point of a district-wide push toward “walking scale” — meaning this is not a one-off but the first built sample of a policy. Three things here transfer to other projects. First, the most effective lever in street retrofit is almost always the redistribution of the cross-section, not facades or paving. Second, how far the ground-floor edge is opened determines whether the widened pedestrian space actually gets used or merely looks wider. Third, a motif only unifies a street once it reaches the scale of furniture and lighting. One caveat worth stating: the project has so far been documented by gooood and local media, with no coverage yet in the international professional press, and no post-occupancy data has been published. We record the design facts as released.</p>
+    </div>
+    <a href="https://www.gooood.cn/integrarted-renewal-of-yuelang-road-block-by-original-design.htm" class="ft-link" target="_blank" rel="noopener">Read the full story →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">MPNYC turns an old port warehouse in Piraeus into adaptable cultural space: later mezzanines, columns and slabs stripped out, a roughly 150-year-old fir roof left in place, completing October 2026</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (24 Sep)</span> · <span class="src">MPNYC (Manhattan Projects New York City)</span> · <span class="src">Photography: Yorgos Kaplanidis</span></div>
+  <div class="ni-desc">The building is on Polydefkous Street in Piraeus, Greece, and the project by MPNYC (Manhattan Projects New York City) completes in October 2026. Its sequence of uses is a short history of the port economy: originally a storage facility, later subdivided into cargo units, then in turn repair workshops, an industrial-equipment showroom, and the offices of a film-production company. The main operation is subtraction — removing the suspended ceilings, concrete mezzanines, columns and floor slabs added during the workshop phase, and restoring original doorways and timber shutters found buried inside the walls. What remains is a roughly 150-year-old fir roof structure and exposed masonry and concrete. New elements are kept to a minimum: reclaimed brick for partitions and thresholds, minimal steel pivot doors, a liquid-metal insulation finish, reclaimed timber shelving. The architects describe the space as a “slider, with rooms able to shift between different functions according to the needs of the people using it.” A restrained example of industrial heritage reuse in a port city: rather than a dramatic insertion, first take out what was added later.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">A protected Flarz row house in Uster transformed: one concrete stair carries circulation, all the services, and the structural stabilisation of the whole building</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (25 Sep)</span> · <span class="src">Divisare</span> · <span class="src">afasia archzine</span> · <span class="src">Stefan Wülser Architektur project page</span> · <span class="src">Photography: Walter Mair</span></div>
+  <div class="ni-desc">The project is in Uster, canton of Zürich, Switzerland, by a working group of Balissat Kaçani Architekten and Stefan Wülser Architektur, and the subject is a listed Flarzhaus. The Flarz is a row-house type particular to the Zürich Oberland — part farmhouse, part artisan dwelling, extended segment by segment as families grew. Its condition before the work was poor: no contemporary installations at all, defective water, electrical and heating lines, gas-based heating, floors 1.95 metres high reachable only by ladder, deteriorated protected timber structure, and walls settling for want of foundations. The scheme concentrates every one of those problems into a single element — a new concrete stair. It replaces the former ladders, integrates all the technical installations of the house within its own structure, catches the existing timber beams, and stabilises the building statically. Around it, a continuum of bath, kitchen, music corner, shower niche and home office unfolds as a kind of stair landscape running all the way up to the roof terrace. A dense solution to a heritage retrofit: rather than distributing reinforcement and service runs everywhere, one new element resolves structure, servicing and vertical circulation at once.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Plastique Fantastique builds auruBOROS in New York: a 300-square-metre temporary urban organism turning the ouroboros into an enterable public installation</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (27 Sep)</span> · <span class="src">Plastique Fantastique (Yena Young, Marco Canevacci)</span> · <span class="src">Structural engineering: GEO die Luftwerker</span> · <span class="src">Photography: Park Swan, Lavinia Freitas, Marco Canevacci</span></div>
+  <div class="ni-desc">The installation is in New York, 300 square metres, completed 2026, by the Berlin practice Plastique Fantastique — lead architects Yena Young and Marco Canevacci, with Lavinia Freitas on the design team — with GEO die Luftwerker as structural engineers, Prodject managing, and Bulgari as brand partner. The name takes the ancient ouroboros, the serpent eating its own tail, and converts it into what the studio calls a temporary urban organism, connecting architecture, public space and collective experience across the city. Plastique Fantastique has worked for years with inflatable structures for urban intervention; the appeal of that construction is that it is extremely light, fast to erect and strike, and leaves essentially no permanent trace — which is precisely what makes short-term permits achievable in tightly managed public space. Material specifications and exhibition dates have not been published, and we do not infer them.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Three items from the Eavesdrop column: Trump annotating architectural drawings and declaring “I am the code”; a Gracie Mansion meeting with Mamdani on housing over Sunnyside Yard; Reinhold Martin proposing to nationalize the A&amp;E system</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect&#39;s Newspaper (25 Sep)</span> · <span class="src">The Washington Post (investigation)</span> · <span class="src">The Architectural League of New York (event)</span></div>
+  <div class="ni-desc">The 25 September edition of The Architect&#39;s Newspaper’s Eavesdrop column gathered several political items bearing on architecture. First, on 21 September President Donald Trump met New York mayor Zohran Mamdani at Gracie Mansion to discuss housing development above the Sunnyside Yard rail yards in Queens; no federal funding was committed, though Trump did not rule out subsidies. Second, a Washington Post investigation revealed that Trump had clashed with architect James McCrery II over building codes, telling him “I am the code”; the piece ran images of his Sharpie annotations offering design feedback directly on architectural drawings. Third, at an Architectural League of New York event discussing Billy Fleming’s book <em>Building Postcarbon Futures</em> — with Daniel Aldana Cohen, Keller Easterling and Olúfẹ́mi O. Táíwò — Reinhold Martin proposed “Nationalize the A&amp;E system” as a key idea for climate design.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6a99/95b7/15d8/6f00/01a2/ed17/large_jpg/Preview_Meii_Polideportivo-116.jpg?1788450339" alt="The lime-green glazed ceramic ventilated facade of the El Poli entrance building in La Unión / 拉乌尼翁 El Poli 入口建筑的柠檬绿釉面陶土通风幕墙" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">IN DEPTH</span>
+    <div class="ft-title">Photovoltaics are not equipment bolted to a roof: La Unión built the geometry of maximum yield directly into the silhouette of its sports centre</div>
+    <div class="ft-meta">Cross-checked against: <span class="src">designboom (26 Sep)</span> · <span class="src">ArchDaily “El Poli” project page (9 Sep)</span> · <span class="src">Arquitectura Viva</span> · <span class="src">meii estudio project statement</span> · <span class="src">Gruexma (contractor)</span> · <span class="src">hiperfocal (photography)</span></div>
+    <div class="ft-desc">
+      <p><strong>Concept: promoting energy infrastructure to an architectural element.</strong> La Unión is a small town with a mining history in Spain’s Región de Murcia. Its municipal sports centre — known locally, simply, as El Poli — is one of the main places people gather, used daily across every age group. meii estudio, led by Elvira Carrión Meroño and José María Mateo Torres, split the intervention into two complementary operations: El Poli handles the entrance, La Pérgola handles the photovoltaics. The second carries the argument. The architects describe the canopy as turning “an energy infrastructure into an architectural element defining the identity of the premises” — a sentence that in most sustainability writing would be a slogan, except that here it is backed by a verifiable method. The canopy’s geometry is derived from maximising photovoltaic output at La Unión’s latitude, rather than a form being drawn first and panels applied afterwards.</p>
+      <p><strong>Spatial strategy: a threshold that folds away entirely.</strong> The entrance building is only 339 square metres, but it does three jobs at once: facade, urban boundary and gateway to the complex. The renovation rewraps it in a ventilated ceramic facade that unifies volumes that previously read as unrelated. What actually changes how the building is used is the row of fully foldable metal doors. Open, there is no defined threshold between the street and the centre, and the entrance hall becomes semi-outdoor public space; closed, it reverts to a building with an edge. For a community sports facility this device solves something quite specific: the facility has opening hours and closing hours, but its identity as the town’s meeting place needs to survive the switch between the two states.</p>
+      <p><strong>Structure and material: the sawtooth section was calculated, not sketched.</strong> La Pérgola is a three-dimensional steel frame clad in blue metal sheeting. Its roof is a set of south-facing inclined planes producing a sawtooth section — a profile with more than a century of industrial-building history, originally used to bring even, glare-free north light through clerestories. Here it is inverted: the pitch and orientation are set by the local solar altitude so that each photovoltaic module faces the sun for as long as possible. The same construction does a second job, shading the stands of the football pitch. One assembly therefore acts as generating plant, shading structure and the identity of the site. The entrance’s ceramic skin is glazed lime-green, a colour the architects state is chosen to contrast with the earth tones of La Unión’s mining landscape. Installed capacity (kWp), module count and array area have not been published, and we do not infer them.</p>
+      <p><strong>Context: two possible statuses for photovoltaics in a building.</strong> In most built projects today, PV remains an add-on: lay panels on the roof, hit the compliance number, keep them out of sight. This project takes the other route, letting the geometry of generation efficiency become the generative logic of the architectural form — producing an image that is unmistakably visible and even a little loud. Each approach has a price. Bolt-on arrays are flexible and easy to replace but architecturally mute. Integrated arrays pay off formally but bind the life of the building to the life of one generation of PV technology — when the modules degrade and are swapped out in a couple of decades, this sawtooth roof will still be there. For students, the value of the project is that it lays that trade-off out clearly, not that it settles it. The architects’ own summary: these interventions “generate renewable energy, improve comfort, and establish a bold new presence within La Unión’s distinctive mining landscape.” Completed 2026.</p>
+    </div>
+    <a href="https://www.archdaily.com/1184500/el-poli-meii-estudio" class="ft-link" target="_blank" rel="noopener">Read the full story →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Patina House / 182 DESIGN, Erode, India: 370 square metres wrapped in a stone shell left to weather and a cascading plant screen, turning time itself into the material strategy</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (26 Sep)</span> · <span class="src">182 DESIGN (lead team Nandhakumar, Sindhuja; chief architect Lokesh PB)</span> · <span class="src">Structural consultant: Kaarvens Structural Consultancy</span></div>
+  <div class="ni-desc">The house is in Erode, Tamil Nadu, India: 370 square metres, completed 2026. The architects set the theme explicitly as the passage of time through materials, and pursue it in two layers. The outer layer is a restrained stone shell given no protective surface treatment, left to weather with exposure. Over it hangs a second layer of cascading plant screens, growing a constantly changing green patina across the building’s rigid geometry. In the architects’ words, the building “settles into a restrained stone shell, naturally weathering with exposure to the elements; meanwhile, cascading plant screens create a vibrant green patina that softens the structure’s rigid form over time.” The form itself is minimised so that material carries the expression. Redefining maintenance as a design variable has a practical basis in tropical and subtropical climates: rather than spending the budget fighting weathering, design the weathering path in. It does, however, place a higher demand on the client — the final effect of a facade like this depends heavily on ongoing planting care.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">House J / SV60 Cordón &amp; Liñán Arquitectos, Seville: a 207-square-metre single-storey house where modular repetition of white concrete block replaces form-making, and thermal mass plus cross-ventilation handle extreme summer heat</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (27 Sep)</span> · <span class="src">SV60 Cordón &amp; Liñán Arquitectos</span></div>
+  <div class="ni-desc">The house is in Bollullos de la Mitación, in the Aljarafe region of Seville province at the edge of the Guadalquivir valley: 207 square metres, built 2023–2025. The strategy fits in one sentence — close to the town, open to the countryside. The plan is a compact single storey in which all daytime activity is organised around one main space connected directly to the outdoors, with circulation deliberately eliminated so that a large family can be accommodated in a small footprint. Material expression amounts to a single move: white concrete blocks laid in repeated modular patterns, establishing verticality and scale through repetition rather than through changes in form. Passive design is the technical core. Solid, airtight walls use thermal mass to resist Seville’s extreme summer heat, while openings are positioned according to the prevailing winds to drive cross-ventilation, with the aim of reaching comfort without relying on equipment. The architects are unusually modest about their own remit: accept the site conditions and the client’s requirements as given, add no unnecessary ambition, and pursue “an essential house.”</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Two curved mirrored-steel walls multiply one tree into a forest: Chang Hao Studio’s Infinite Grove pavilion needs no foundations, travels on a single truck, and changes its tree with the season</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (23 Sep)</span> · <span class="src">Chang Hao Studio (design team Hao Chang, Fan Liu, Chao Li)</span> · <span class="src">2026 Shanghai International Flower Festival / Xiaohongshu (RED) Design Week</span></div>
+  <div class="ni-desc">The pavilion first landed at the Huangpu main venue in Shanghai’s Xintiandi, from 18 April to 10 May 2026, during the 2026 Shanghai International Flower Festival and Xiaohongshu (RED) Design Week, and has continued travelling around the city since. The construction is minimal: two curved mirrored-steel walls enclosing a small space, with frosted panels and a single living tree at the centre. The mirrors reflect that tree outward indefinitely, so a very small footprint opens visually into a grove. The studio describes it this way: “Inside, the tree appears above while its repeated reflections surround the visitor, incorporating their own figure into the mirrored landscape.” What actually makes the project work is how it is built — fully prefabricated, requiring no foundations, and transportable on one truck. Those three conditions together let it be re-sited repeatedly across the city without running the site-approval and foundation-construction gauntlet each time. The tree changes with the season and the location: a flowering azalea in spring 2026, an olive tree in summer. The festival drew roughly 29.5 million visits across its venues.</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://www.archpaper.com/wp-content/uploads/2026/09/orhan_self_portrait.jpeg" alt="Self-portrait of Orhan Ayyüce / Orhan Ayyüce 自拍肖像" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">IN DEPTH</span>
+    <div class="ft-title">Both winners of the same Educator of the Year award, gone in the same week: Ayyüce, Roberge, and two ways of being present in Los Angeles architecture education</div>
+    <div class="ft-meta">Cross-checked against: <span class="src">The Architect&#39;s Newspaper (Roberge obituary, 24 Sep)</span> · <span class="src">The Architect&#39;s Newspaper (Ayyüce obituary)</span> · <span class="src">Archinect (Ayyüce tribute)</span> · <span class="src">Archinect (Roberge tribute)</span> · <span class="src">UCLA Architecture and Urban Design faculty page</span> · <span class="src">murmur-la.com project archive</span></div>
+    <div class="ft-desc">
+      <p><strong>Two people, one award.</strong> Earlier this year AIA Los Angeles named Orhan Ayyüce and Heather Roberge jointly as its 2026 Educators of the Year. Months later both died within the same week: Ayyüce suddenly, at home in Albuquerque, New Mexico, on 20 September, at 75; Roberge, whose obituary The Architect&#39;s Newspaper published on 24 September, at 55. Read side by side, the two obituaries describe two very different — and equally necessary — ways of being present in architecture education in Los Angeles: one inside the academic institution, one almost entirely outside it.</p>
+      <p><strong>Roberge: treating the material prototype as the site of design research.</strong> Heather Roberge was born in Ohio in 1971, took a BS in architecture from Ohio State in 1993 and an M.Arch summa cum laude in 1995, with study at the Architectural Association in London. Her professional training was in New York: Eisenman Architects, Architecture Research Office, Davis Brody Bond and HOK. She co-founded Gnuform in Los Angeles with Jason Payne in 1999 and founded Murmur in 2008. Her best-known work sits along a consistent line of inquiry into what aluminium can be made to do: Succulent House took a 2011 AIA Next LA design merit award, the installation En Pointe an AIA|LA Merit award in 2015, and Vortex House a 2014 nomination for the Mies Crown Hall Americas Emerging Architecture Prize; she was named an Architectural League Emerging Voice in 2016 and received the ACADIA Teaching Award of Excellence in 2017. Her recent book, <em>Fabricating Plasticity in Aluminum</em>, argues through a series of case studies that the material prototype is itself the site where design innovation happens — not a verification step after the design is done. That position pulls digital design off the screen and back into the constraints of the shop floor, and it has been one of the through-lines of digital-fabrication teaching in Los Angeles schools for the last fifteen years.</p>
+      <p><strong>Ayyüce: a criticism practice with no faculty title attached.</strong> Orhan Ayyüce occupied a completely different position. For more than two decades he wrote as a senior editor, contributor and interviewer for Archinect, interviewing Frank Gehry, Carme Pinós and Francis Kéré while using the same platform to push forward people and projects he believed the mainstream was overlooking. He taught at East Los Angeles College, retiring earlier this year, and moved to Albuquerque with his wife, Tina Simon, in June. His influence never depended on a rank in a prestigious school’s promotion ladder; it came from sustaining an open public writing venue across twenty years in which architectural criticism generally contracted and professional media grew steadily more dependent on press releases. Writing of that kind — continuous, opinionated, organised around individual people — is itself a form of teaching. That AIA|LA gave its Educator of the Year award jointly to a full professor and to a community-college instructor and online editor is, in itself, a judgement about what education is.</p>
+      <p><strong>Inside and outside: a contrast worth keeping.</strong> Roberge’s path is close to a textbook account of the academic institution: visiting lecturer at UCLA in 2000, on the faculty from 2002, director of the undergraduate programme for nine years, interim vice chair and then chair of Architecture and Urban Design from 2017 to 2020, full professor in 2022. She also held the Baumer professorship at Knowlton, the Shure at the University of Virginia and the Davenport at Yale, and taught at Pratt, RPI and Washington University in St. Louis. Mariana Ibañez, the current AUD chair, described her as “a mentor who was endlessly curious, and unwavering in her belief in her students”; Lionel Popkin, dean of the UCLA School of the Arts and Architecture, said “Heather was an extraordinary architect and a dedicated educator who helped shape the intellectual life of the department and inspired generations of students.” Roberge is survived by a husband and a son. What the two paths share, perhaps, is this: the place where teaching actually happens can be a review room or a comment thread on a public platform — and both require somebody to hold the post for a very long time.</p>
+    </div>
+    <a href="https://www.archpaper.com/2026/09/orhan-ayyuce-obituary/" class="ft-link" target="_blank" rel="noopener">Read the full story →</a>
+  </div>
+</article><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The Gaetano Pesce Foundation launches: taking custody of his objects, drawings, prototypes and documentation, with Glenn Adamson as president and Giulia Tosciri as director, following a plan Pesce set out before his death</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (22 Sep)</span> · <span class="src">Gaetano Pesce Foundation</span> · <span class="src">Salon 94 (“Gaetano Pesce Studio: Continued”)</span></div>
+  <div class="ni-desc">A foundation in the name of the Italian architect and designer Gaetano Pesce (1939–2024) has launched, revealed during the “Gaetano Pesce Studio: Continued” event at Salon 94. It is a nonprofit with two tasks: safeguarding the archive Pesce left behind — objects, drawings, prototypes and documentation — and supporting exhibitions, publications, scholarship and authorised editions. Historian and curator Glenn Adamson, who knew Pesce personally, serves as president and will drive educational initiatives and institutional partnerships; Giulia Tosciri, who collaborated with Pesce for years, is director. The foundation was established according to a vision Pesce set out before his death. Its self-definition is the interesting part: Pesce spent a career refusing the boundaries between architecture, design and art, and the foundation writes that refusal into its mission, insisting his objects and projects functioned as vehicles for experimentation rather than as finished work in any one discipline. For students, the mechanics are worth watching — how a cross-disciplinary practitioner’s estate gets institutionalised determines what later generations can see, and under what heading.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Archinect asks 25 deans, directors and chairs what is next for architecture education: adaptation, interdisciplinarity, emerging technology, housing and climate resilience</div>
+  <div class="ni-meta">Sources: <span class="src">Archinect Features (Alexander Walter)</span> · <span class="src">Planetizen (syndication and commentary)</span></div>
+  <div class="ni-desc">As the 2026–27 academic year opened, Archinect editor Alexander Walter interviewed 25 deans, directors and chairs of architecture schools to build a snapshot of what students should expect. His conclusion is that this cohort of academic leaders has moved past the conventional question of what architecture ought to teach toward a less settled one: how design education can prepare students for a profession and a world in flux. Recurring themes are adaptation, interdisciplinary collaboration, emerging technologies, research, housing, climate resilience and public engagement, alongside more fundamental questions about the discipline itself. The specific subjects range from artificial intelligence and advanced fabrication to mass timber and community-based design. For applicants and new students, the usefulness of the compilation is not in ranking schools but in showing something else: the differences between them increasingly lie in which external pressures each one has chosen as the organising axis of its teaching.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">“Structuring Fragments,” the seventh Half Stage exhibition, opens at Beijing University of Civil Engineering and Architecture: YUARCHITECTS reorganising relational structures in the city, PARABASE reweaving material structures from industrial components</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (24 Sep)</span> · <span class="src">School of Architecture and Urban Planning, BUCEA</span> · <span class="src">Pro Helvetia Shanghai</span></div>
+  <div class="ni-desc">“Structuring Fragments” opened on 13 September in the ground-floor exhibition hall of the architecture building at Beijing University of Civil Engineering and Architecture (Xicheng campus). It is the seventh in the Half Stage series, curated by Wang Yifan and organised by the university’s School of Architecture and Urban Planning, with exhibition support from Pro Helvetia Shanghai, the Swiss Arts Council. Two practices are shown: YUARCHITECTS from China and PARABASE from Switzerland. The curatorial pairing is precise about its terms — both work with what already exists, but on different objects. YUARCHITECTS reorganises “relational structures” within fragmented urban sites; PARABASE reweaves “material structures” out of components left over from the post-industrial period. That China–Switzerland framing is more instructive than a straight display of work would be: it splits practice in an era of existing stock into two separately arguable threads, the urban-relational and the material.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Solange unveils copper and steel sculptures on New York’s High Line: inspired by artist Fred Eversley, and originally conceived for the 2019 Venice Biennale</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect&#39;s Newspaper, Eavesdrop column (25 Sep)</span></div>
+  <div class="ni-desc">The singer Solange has unveiled a group of copper and steel sculptures on New York’s High Line. According to The Architect&#39;s Newspaper, the work draws on the American artist Fred Eversley — known for parabolic cast-resin sculptures, and a trained aerospace engineer whose work has long sat at the intersection of optics, structure and perception. The pieces were originally conceived for the 2019 Venice Biennale. The High Line, a linear park built on a disused elevated rail line, has for years used commissioned art as a way of working on public space; this is the latest instance.</div>
+</div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
