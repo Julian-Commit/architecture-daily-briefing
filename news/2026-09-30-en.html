@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxiansheng Architecture Daily | 2026-09-30</title>
+<meta name="theme-color" content="#e8e4df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%232d2d2d' stroke-width='2.5'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23c41230'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e8e4df; --paper:#fff; --tint:#fafaf8; --tint2:#f5f0eb;
+  --ink:#2d2d2d; --ink-solid:#2d2d2d; --muted:#999; --soft:#555;
+  --line:var(--line); --line-strong:var(--line-strong);
+  --accent:#c41230;
+  --urb:var(--urb); --mat:var(--mat); --aca:var(--aca);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#17161a; --paper:#1f1e23; --tint:#232227; --tint2:#26242a;
+    --ink:#e4e1dc; --ink-solid:#3a3941; --muted:#8b8791; --soft:#b3afa9;
+    --line:#34323a; --line-strong:#44414b;
+    --accent:#e8574f;
+    --urb:#b09272; --mat:#6d9161; --aca:#8a76c4;
+    --mat-bg:#16251b; --aca-bg:#1f1a2e;
+  }
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto}
+@media(min-width:768px){.wrap{max-width:760px}}
+@media(min-width:1024px){.wrap{max-width:960px}}
+
+.hd{background:var(--paper);color:var(--ink);padding:24px 24px 20px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:4px solid var(--ink)}
+.hd .hd-brand{font-size:20px;font-weight:900;letter-spacing:2px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hd .hd-sub{font-size:10px;opacity:.35;letter-spacing:3px;margin-left:10px;font-weight:700;text-transform:uppercase}
+.hd .hd-accent{display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle}
+.hd .hd-meta{text-align:right;font-size:11px;opacity:.5;line-height:1.6}
+.hd .hd-meta .no{font-size:13px;color:var(--accent);font-weight:800;opacity:1}
+@media(min-width:768px){.hd{padding:28px 40px 24px}.hd .hd-brand{font-size:24px}}
+
+.langbar{background:var(--tint);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.langbar .lang-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700}
+.langbar a{font-size:11px;font-weight:700;padding:5px 14px;border-radius:2px;border:1px solid var(--line-strong);background:var(--paper);color:var(--muted);text-decoration:none;transition:all .15s;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.langbar a:hover{border-color:var(--ink);color:var(--ink)}
+.langbar a.active{background:var(--ink-solid);color:#fff;border-color:var(--ink)}
+
+.toc{background:var(--paper);padding:10px 20px;display:flex;align-items:center;gap:6px;overflow-x:auto;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06);border-bottom:1px solid var(--line)}
+.toc .toc-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;margin-right:8px;flex-shrink:0;text-transform:uppercase}
+.toc a{display:inline-block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--soft);text-decoration:none;border-radius:2px;white-space:nowrap;transition:all .2s;border:1px solid transparent;flex-shrink:0}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+.ct{padding:0}
+.preface{background:var(--paper);border-bottom:1px solid var(--line);padding:28px 24px 32px}
+.preface .pf-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ink);padding:5px 14px;border:2px solid #2d2d2d;border-radius:2px;margin-bottom:14px;text-transform:uppercase}
+.preface p{font-size:14px;color:var(--soft);line-height:2.1}
+@media(min-width:768px){.preface{padding:32px 40px 36px}}
+
+.sec{scroll-margin-top:60px}
+.sec-hd{display:flex;align-items:center;gap:14px;padding:32px 24px 0}
+.sec-hd .sec-num{font-size:40px;font-weight:900;color:var(--accent);line-height:1;min-width:48px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.sec-hd .sec-text{flex:1}
+.sec-hd .sec-name{font-size:20px;font-weight:800;color:var(--ink);display:block;letter-spacing:1px}
+.sec-hd .sec-en{font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:2px;font-weight:700}
+.sec-hd .sec-line{flex:1;height:2px;background:var(--ink-solid);align-self:flex-end;margin-bottom:6px}
+@media(min-width:768px){.sec-hd{padding:36px 40px 0}.sec-hd .sec-num{font-size:48px}.sec-hd .sec-name{font-size:22px}}
+.sec-inner{padding:18px 24px 32px;background:var(--tint)}
+.sec:nth-child(even) .sec-inner{background:var(--paper)}
+@media(min-width:768px){.sec-inner{padding:22px 40px 36px}}
+
+.hl{border:1px solid var(--line);margin-bottom:14px;background:var(--paper);transition:box-shadow .2s}
+.hl:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.hl .hl-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.hl .hl-body{padding:16px 18px 18px}
+.hl .hl-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.hl .hl-tag.arc{background:var(--ink-solid)}.hl .hl-tag.urb{background:var(--urb)}.hl .hl-tag.mat{background:var(--mat)}.hl .hl-tag.aca{background:var(--aca)}
+.hl .hl-title{font-size:16px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:6px}
+.hl .hl-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hl .hl-meta .src{font-weight:700;color:var(--accent)}
+.hl .hl-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:10px}
+.hl .hl-link{font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid #c41230;padding-bottom:1px}
+.hl .hl-link:hover{border-bottom-width:2px}
+@media(min-width:768px){
+  .hl{display:flex;border-radius:0}
+  .hl .hl-img{width:320px;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .hl .hl-body{flex:1;padding:20px}
+}
+@media(min-width:1024px){.hl .hl-img{width:380px}}
+
+.ft{border:1px solid var(--line);margin-bottom:18px;background:var(--paper)}
+.ft .ft-img{width:100%;height:auto;max-height:74vh;object-fit:contain;background:var(--bg);display:block;border-bottom:1px solid var(--line)}
+.ft .ft-body{padding:20px 18px}
+.ft .ft-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:2px;margin-bottom:12px;border:2px solid #2d2d2d;color:var(--ink);text-transform:uppercase}
+.ft .ft-label.arc{border-color:var(--ink);color:var(--ink);background:var(--tint2)}
+.ft .ft-label.urb{border-color:var(--urb);color:var(--urb);background:var(--tint2)}
+.ft .ft-label.mat{border-color:var(--mat);color:var(--mat);background:var(--mat-bg)}
+.ft .ft-label.aca{border-color:var(--aca);color:var(--aca);background:var(--aca-bg)}
+.ft .ft-title{font-size:17px;font-weight:800;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.ft .ft-meta{font-size:11px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e8e4df}
+.ft .ft-meta .src{font-weight:700;color:var(--accent)}
+.ft .ft-desc{font-size:14px;color:var(--ink);line-height:2}
+.ft .ft-desc p{margin-bottom:10px}
+@media(min-width:768px){
+  .ft{display:flex;border-radius:0}
+  .ft .ft-img{width:42%;height:auto;max-height:none;align-self:flex-start;flex-shrink:0;border-bottom:none;border-right:1px solid var(--line)}
+  .ft .ft-body{flex:1;padding:24px}
+}
+
+.ngrid{display:grid;gap:12px}
+@media(min-width:768px){.ngrid{grid-template-columns:1fr 1fr}}
+.ni{border:1px solid var(--line);padding:14px 16px;background:var(--paper);transition:box-shadow .15s;border-radius:0;position:relative}
+.ni:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ni .ni-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--line)}
+.ni:hover .ni-accent{background:var(--accent)}
+.ni .ni-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:4px;padding-left:8px}
+.ni .ni-meta{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:8px}
+.ni .ni-meta .src{font-weight:700;color:var(--accent)}
+.ni .ni-desc{font-size:12px;color:var(--soft);line-height:1.8;padding-left:8px}
+
+.ftr{background:var(--ink-solid);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:11px;line-height:2}
+.ftr .ftr-brand{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:1px}
+.btt{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:var(--ink-solid);color:#fff;border:none;font-size:16px;cursor:pointer;opacity:0;transition:opacity .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:99}
+.btt.on{opacity:.85}
+.btt:hover{opacity:1}
+
+/* ── 以下为 UI 升级追加，不覆盖上面的排版 ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink-solid);color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
+.skip:focus{left:0}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:120;transition:width .1s linear}
+.toc a.here{color:var(--accent);border-color:var(--accent)}
+.btt{pointer-events:none}
+.btt.on{pointer-events:auto}
+img{background:var(--tint)}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--tint:#fff;--tint2:#fff;--ink:#000;--soft:#222;--muted:#555;--line:#ccc}
+  .langbar,.toc,.btt,.prog,.skip{display:none!important}
+  .wrap{max-width:none}
+  .hl,.ft,.ni{break-inside:avoid;page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;color:#555;word-break:break-all}
+}
+
+/* 图片：完整显示，不裁切。点一下看大图 */
+.hl .hl-img,.ft .ft-img{cursor:zoom-in}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.lbx .lbx-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:1px}
+@media print{.lbx{display:none!important}}
+</style>
+<!-- share:start -->
+<meta name="description" content="A timber-connector manufacturer turns its own headquarters into a proof of its product: MOUNT FUJI ARCHITECTS STUDIO slots 210 mm-thick, 3,000 mm-wide CLT panels into a three-dime…">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="陆先生建筑日报">
+<meta property="og:title" content="No. 024 · 2026-09-30 · 陆先生建筑日报 | Architecture Daily">
+<meta property="og:description" content="A timber-connector manufacturer turns its own headquarters into a proof of its product: MOUNT FUJI ARCHITECTS STUDIO slots 210 mm-thick, 3,000 mm-wide CLT panels into a three-dime…">
+<meta property="og:url" content="https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-30-en.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images.adsttc.com/media/images/6ab2/8648/472c/aa01/8aa1/51b9/large_jpg/stroog-headquarters-mount-fuji-architects-studio_1.jpg?1790084697">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="No. 024 · 2026-09-30 · 陆先生建筑日报 | Architecture Daily">
+<meta name="twitter:description" content="A timber-connector manufacturer turns its own headquarters into a proof of its product: MOUNT FUJI ARCHITECTS STUDIO slots 210 mm-thick, 3,000 mm-wide CLT panels into a three-dime…">
+<meta name="twitter:image" content="https://images.adsttc.com/media/images/6ab2/8648/472c/aa01/8aa1/51b9/large_jpg/stroog-headquarters-mount-fuji-architects-studio_1.jpg?1790084697">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"No. 024 · 2026-09-30 · 陆先生建筑日报 | Architecture Daily","description":"A timber-connector manufacturer turns its own headquarters into a proof of its product: MOUNT FUJI ARCHITECTS STUDIO slots 210 mm-thick, 3,000 mm-wide CLT panels into a three-dime…","datePublished":"2026-09-30","url":"https://julian-commit.github.io/architecture-daily-briefing/news/2026-09-30-en.html","inLanguage":"en","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"陆先生建筑日报"},"image":["https://images.adsttc.com/media/images/6ab2/8648/472c/aa01/8aa1/51b9/large_jpg/stroog-headquarters-mount-fuji-architects-studio_1.jpg?1790084697"]}</script>
+<!-- share:end -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="hd">
+  <div>
+    <span class="hd-accent"></span>
+    <span class="hd-brand">Luxiansheng Architecture Daily</span>
+    <span class="hd-sub">Architecture Daily</span>
+  </div>
+  <div class="hd-meta">
+    <div class="no">No. 024</div>
+    <div>September 30, 2026 Wednesday</div>
+  </div>
+</header>
+
+<div class="langbar">
+  <span class="lang-label">LANGUAGE</span>
+  <a href="2026-09-30-cn.html">中 文</a>
+  <a class="active">EN</a>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <span class="toc-label">INDEX</span>
+  <a href="#headlines">Headlines</a>
+  <a href="#projects">Projects &amp; Design</a>
+  <a href="#urbanism">Urbanism &amp; Planning</a>
+  <a href="#materials">Materials &amp; Tech</a>
+  <a href="#academia">Academia &amp; Exhibitions</a>
+</nav>
+
+<main class="ct" id="main">
+
+  <section class="preface">
+    <span class="pf-label">EDITOR'S NOTE</span>
+    <p>Four threads worth reading together today. In Toyama, a company that manufactures structural timber connectors turned its own headquarters into a public test of its product: 210 mm-thick, 3,000 mm-wide CLT panels slotted into one another to form a three-dimensional lattice in which every member is simultaneously column and beam. The architects call it going beyond the Domino system. In Shenzhen, URBANUS packed 39,752 square meters onto a 5,761-square-meter site and pushed the public plaza up to levels 5 and 9 — in a district this dense, public space has nowhere to go but up. In Lima, a citizens' network of archaeologists and historians is pursuing a collective World Heritage nomination for the capital's 600-plus pre-Hispanic sites, timed deliberately to land before the October 4 local elections. And in Venice, the Luxembourg Pavilion announced Excess!, a 2027 Biennale proposal about the overconsumption of living space, argued through a pairing of Europe's wealthiest country with Vietnam. What these four have in common: none of them is an argument about form.</p>
+  </section>
+
+  <section class="sec" id="headlines">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div class="sec-text">
+        <span class="sec-name">Headlines</span>
+        <span class="sec-en">HEADLINES</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6ab2/8648/472c/aa01/8aa1/51b9/large_jpg/stroog-headquarters-mount-fuji-architects-studio_1.jpg?1790084697" alt="The interlocking CLT lattice of the STROOG Headquarters / STROOG 总部由开槽插接的 CLT 板构成的三维格构" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag mat">Materials &amp; Construction</span>
+    <div class="hl-title">A timber-connector manufacturer turns its own headquarters into a proof of its product: MOUNT FUJI ARCHITECTS STUDIO slots 210 mm-thick, 3,000 mm-wide CLT panels into a three-dimensional lattice across 499.64 sqm — winner of a 2026 Architectural Institute of Japan Works Award</div>
+    <div class="hl-meta">Sources: <span class="src">gooood (Sept 30)</span> · <span class="src">ArchDaily project page (Sept 24)</span> · <span class="src">STROOG Co., Ltd. official site</span> · <span class="src">Architectural Institute of Japan, 2026 Works Award announcement</span> · <span class="src">MOUNT FUJI ARCHITECTS STUDIO</span></div>
+    <div class="hl-desc">The building sits in Toyama Prefecture, Japan: 905.04 sqm site, 494.02 sqm building area, 499.64 sqm total floor area, structural engineering by KMC (Ken Kamachi), photography by Ryota Atarashi. The client, STROOG, manufactures structural timber connectors — hardware for pinned, rigid, truss and hybrid joints. The architects reduced the entire primary structure to a single component family: CLT (cross-laminated timber) panels, all 3,000 mm wide and 210 mm thick, varying in length from 4,500 to 12,000 mm. Slots are cut wherever members need to meet, and the panels are assembled into a lattice by knock-down construction. Because CLT has strong axes in two perpendicular directions, each panel works both as a column carrying vertical load and as a beam resisting horizontal force; because it is solid laminated timber, slots can be positioned anywhere to the nearest millimetre, and the engagement depth of the slot itself sets the structural span of the joint. The result is a three-dimensional system free of grid-module constraints — what the architects describe as moving beyond the Domino system.</div>
+    <a href="https://www.archdaily.com/1185578/stroog-headquarters-mount-fuji-architects-studio" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://oss.gooood.cn/uploads/2026/09/00-Yuehai-Culture-and-Sports-Center-by-URBANUS-472x303.jpg" alt="Yuehai Culture and Sports Center: elevated public platforms stacking cultural and sports programs / 粤海文体中心：抬升的公共平台与竖向叠合的文体功能" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag arc">Projects &amp; Design</span>
+    <div class="hl-title">39,752 square meters on a 5,761-square-meter site: URBANUS completes the Yuehai Culture and Sports Center in Shenzhen — 12 floors above grade, 3 below, 69.5 m tall, with the public plaza lifted to levels 5 and 9</div>
+    <div class="hl-meta">Sources: <span class="src">gooood (Sept 30, completed-project release)</span> · <span class="src">URBANUS project page</span> · <span class="src">gooood (August 2019, design-stage release)</span></div>
+    <div class="hl-desc">Located in Yuehai Subdistrict, Nanshan District, Shenzhen: 5,761 sqm site, 39,752 sqm building area, 12 storeys above ground and 3 below, 69.5 m tall. Lead architect Meng Yan; design 2016–2024, construction 2018–2025, completed at the end of 2025. At a floor area ratio approaching 7, a library, a theater, swimming pools (a 25 m lap pool, a youth pool and a children's wading pool), a climbing gym rising through levels 8 to 10, badminton and basketball courts on level 10, and a rooftop tennis court are all stacked in one volume. Rather than sealing each venue off, URBANUS placed three principal public platforms at grade, level 5 and level 9 — a Community Life Plaza, an Elevated Urban Living Room and a Sky Sports Garden — linked by outdoor escalators, landscape stairs and public corridors that can be traversed end to end without buying a ticket to anything.</div>
+    <a href="https://www.gooood.cn/yuehai-culture-and-sports-center-by-urbanus.htm" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6ab8/6a67/701b/1e01/88c7/9d56/large_jpg/citizen-led-campaign-seeks-unesco-status-for-select-pre-colonial-sites-among-capitals-600-plus_1.jpg?1790470766" alt="A pre-Hispanic huaca embedded in Lima's contemporary urban fabric / 嵌在利马现代城区中的史前遗址" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag urb">Urbanism &amp; Planning</span>
+    <div class="hl-title">More than 600 pre-Hispanic sites survive inside a metropolis of eleven million: Peru's Red Lima Milenaria pushes a collective World Heritage nomination, timed to land before the October 4 local elections</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (Sept 28)</span> · <span class="src">El Peruano (Peru's official gazette)</span> · <span class="src">El Comercio (Lima)</span> · <span class="src">Caretas</span> · <span class="src">ATV Perú</span></div>
+    <div class="hl-desc">Red Lima Milenaria — a citizens' network of archaeologists, historians and cultural activists founded by Javier Lizarzaburu — is campaigning to inscribe a group of Lima's huacas on UNESCO's World Heritage List as a single nomination. The first slate includes El Paraíso in San Martín de Porres (c. 2000 BCE), Pucllana in Miraflores (5th century CE), the Campoy fortress in San Juan de Lurigancho (12th century CE) and sections of the roughly 2,000-year-old Surco canal in San Borja. These sites are scattered across a metropolis of some eleven million people, surrounded by contemporary housing and commercial development, and have long suffered from urban pressure and inadequate maintenance. The network is explicit that inscription is a means, not the goal: the aim is to improve conservation conditions and public awareness, and — using the October 4 municipal and regional elections as leverage — to force a public argument about what place this heritage should occupy in the city Lima says it wants to build.</div>
+    <a href="https://www.archdaily.com/1185867/citizen-led-campaign-seeks-unesco-status-for-select-pre-colonial-sites-among-capitals-600-plus" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://images.adsttc.com/media/images/6abc/16ea/b2b8/9801/8835/a20e/large_jpg/the-luxembourg-pavilion-examines-overconsumption-of-living-space-through-excess-at-the-2027-venice-architecture-biennale_1.jpg?1790711552" alt="Excess!, the Luxembourg Pavilion proposal for the 2027 Venice Architecture Biennale / 卢森堡馆 2027 年威尼斯建筑双年展方案" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">Academia &amp; Exhibitions</span>
+    <div class="hl-title">The Luxembourg Pavilion takes the overconsumption of living space to the 2027 Venice Architecture Biennale: curators from Luxembourg and Hanoi pair Europe's wealthiest country with Vietnam, May 8 to November 21, 2027</div>
+    <div class="hl-meta">Sources: <span class="src">ArchDaily (Sept 30)</span> · <span class="src">e-flux Announcements (curatorial statement)</span> · <span class="src">Kultur | lx – Arts Council Luxembourg official page</span> · <span class="src">designboom (Nov 26, 2025, on the Biennale's chief curators)</span></div>
+    <div class="hl-desc">Titled "Excess! On the Overconsumption of Living Space," the proposal is curated by three people: Céline Zimmer, a Luxembourgish housing researcher and activist who founded Eist Neit Wunnen Agence in 2026 to promote cooperative housing models; and architects Bùi Quý Sơn and Paul-Antoine Lucas, who co-founded the Hanoi-based critical spatial practice Exutoire in 2019 — one of the winners of ArchDaily's 2026 Next Practices Awards. The exhibition treats the inequitable distribution of living space as one facet of "broader habits of excess that contribute to the current housing and ecological crises," setting the realities of Luxembourg (Europe's wealthiest nation, with a high per-capita housing floor area) against those of Vietnam, one of Southeast Asia's fastest-growing economies. Commissioned by Luxembourg's Ministry of Culture through Kultur | lx, the pavilion occupies the first floor of the Sale d'Armi in the Arsenale. The 20th Venice Architecture Biennale is curated by Wang Shu and Lu Wenyu of Amateur Architecture Studio under the theme "Do Architecture."</div>
+    <a href="https://www.archdaily.com/1186027/the-luxembourg-pavilion-examines-overconsumption-of-living-space-through-excess-at-the-2027-venice-architecture-biennale" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article>
+<article class="hl">
+  <img class="hl-img" src="https://www.designboom.com/twitterimages/uploads/2026/09/LACMA-home-future-exhibition-designboom-FB.jpg" alt="An exhibit from LACMA's Home of the Future, 1925-1985 / LACMA 展览「Home of the Future, 1925–1985」展品" loading="lazy" onerror="this.style.display='none'">
+  <div class="hl-body">
+    <span class="hl-tag aca">Academia &amp; Exhibitions</span>
+    <div class="hl-title">From Kohler's 1926 Electric Sink to the smart homes of the early 1980s: LACMA's "Home of the Future, 1925–1985" audits six decades of promised domesticity across 260-plus objects, opened September 27</div>
+    <div class="hl-meta">Sources: <span class="src">designboom (Sept 30)</span> · <span class="src">Los Angeles County Museum of Art, official exhibition listing</span></div>
+    <div class="hl-desc">The full title is "Home of the Future, 1925–1985: Designing Domestic Utopias," curated by Wendy Kaplan, department head and curator of Decorative Arts and Design at LACMA. It runs September 27, 2026 through March 14, 2027 in the Resnick Pavilion and gathers more than 260 objects and images: Kohler's 1926 Electric Sink, Monsanto's House of the Future (1956), Charles and Ray Eames's Case Study House #8 (1949), the first Barbie Dream House (c. 1962), Paul László's Atomville, U.S.A. (1950), Rick Guidice's 1975 NASA habitat paintings, AT&amp;T's Picturephone from the 1964 New York World's Fair, and the early-1980s smart homes Ahwatukee and Xanadu. The arc runs from the mechanized kitchen to the computerized house. For architecture students, its value lies in restoring the "house of the future" to what it largely was — a commercial product line, repeatedly sold and repeatedly abandoned.</div>
+    <a href="https://www.designboom.com/architecture/lacma-exhibition-strange-optimistic-homes-future-domestic-utopian/" class="hl-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div class="sec-text">
+        <span class="sec-name">Projects &amp; Design</span>
+        <span class="sec-en">PROJECTS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://oss.gooood.cn/uploads/2026/09/00-Yuehai-Culture-and-Sports-Center-by-URBANUS-472x303.jpg" alt="Yuehai Culture and Sports Center: stacked programs and externalized public platforms / 粤海文体中心：叠合的文体功能与外挂的公共平台" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label arc">In Depth</span>
+    <div class="ft-title">When there is no ground left for a plaza: URBANUS stands a 39,752-square-meter civic center on end in Shenzhen, then hangs three plazas off it — at grade, at level 5 and at level 9</div>
+    <div class="ft-meta">Cross-checked: <span class="src">gooood (Sept 30, completed-project release)</span> · <span class="src">URBANUS project page</span> · <span class="src">gooood (August 2019, design-stage release)</span> · <span class="src">archina (URBANUS practice profile)</span> · <span class="src">URBANUS Shenzhen project map</span></div>
+    <div class="ft-desc">
+      <p><strong>Design concept: dismantling the assumption that public space means a plaza at grade.</strong> The Yuehai Culture and Sports Center occupies a site in Yuehai Subdistrict, Nanshan District, Shenzhen: 5,761 sqm of land carrying 39,752 sqm of building, 12 storeys above ground and 3 below, 69.5 m tall. Lead architect Meng Yan of URBANUS; design 2016–2024, construction 2018–2025, completed at the end of 2025. Start with the relationship between those two numbers — 5,761 and 39,752. The site is almost entirely built over, at a floor area ratio approaching 7. Under that constraint, the default move for a district-scale civic center is to seal library, theater, pools and courts into separate boxes, link them by corridors, and leave a token patch of paving at grade to satisfy the word "plaza." URBANUS states the intent differently: to break the notion that public open space is confined to ground-level plazas. The underlying judgment is blunt — in a district as dense as Yuehai there is no ground left for a plaza, so the plaza has to go up.</p>
+      <p><strong>Spatial strategy: three platforms, three concentrations of publicness.</strong> The completed scheme sets three principal public platforms in section. At grade is the Community Life Plaza, the most open of the three, meshed directly with the street; the library entrance and a 24-hour self-service book return station sit on this level, carrying the kind of publicness you use in passing. Level 5 holds the Elevated Urban Living Room, positioned exactly at the seam between the cultural and the sports programs, functioning as the building's interchange and lingering floor. Level 9 is the Sky Sports Garden, the quietest and the most panoramic, with an outdoor tennis court on the roof above. Outdoor escalators, landscape stairs and public corridors connect all three, and URBANUS is emphatic that this vertical public route can be walked from end to end without a ticket to any venue. That detail is what makes or breaks the concept: put the turnstiles on the ground floor and the "three-dimensional plaza" is merely a lobby for paid space.</p>
+      <p><strong>Structure and construction: a steel frame absorbing wildly different spans and loads in one stack.</strong> Above grade the building is steel-framed, enclosed by curtain wall, perforated metal panels and prefabricated wall systems. That choice is forced by the program schedule. A 25 m lap pool plus a youth pool and a children's wading pool impose enormous water loads and waterproofing requirements. The climbing gym needs a triple-height atrium through levels 8 to 10 and a wall base able to take dynamic loads. The badminton and basketball courts on level 10 demand long column-free spans. The rooftop tennis court pushes load and enclosure height up one more time. Stacking all of this over a single 5,761 sqm footprint means the vertical load path has to transfer at several levels — and steel handles transfer floors and long spans more readily than concrete. The perforated metal does double duty on the facade: shading by day, and by night letting the activity inside register semi-transparently from the street, an effect URBANUS sums up as an everyday visual theater. Construction cost, transfer-floor detailing and curtain wall build-up have not been disclosed publicly, and this briefing will not speculate.</p>
+      <p><strong>Context and consequence: one of Shenzhen's most expensive districts gets a building with no admission fee.</strong> Yuehai Subdistrict is the core of Nanshan's tech economy, where land values are extreme and sites for public facilities are scarce. Allocating 5,761 sqm there to a community culture and sports center is itself a planning decision. What deserves a design student's attention is how the building handles the type: it declines the route of monumental massing and signature form, and spends its entire design budget on the vertical public route instead. Set it against the city's large cultural landmarks — the opera house, the art museums — and the division of labour is clear: those address civic image, this one addresses whether there is anywhere to go after work. For students at Syracuse Architecture, the useful comparison is the North American community recreation center: the same program schedule, built at FAR 1 versus FAR 7, produces two entirely different buildings, and whether publicness stays at grade or gets lifted nine floors up determines who actually walks in.</p>
+    </div>
+    <a href="https://www.gooood.cn/yuehai-culture-and-sports-center-by-urbanus.htm" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">110 Boerum Place / Brent Buck Architects, Boerum Hill, Brooklyn: 21 units, no two alike, behind a hand-laid brick facade set in pink mortar; completion spring 2027</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect&#39;s Newspaper (Sept 30)</span> · <span class="src">Brent Buck Architects</span> · <span class="src">Avdoo &amp; Partners Development</span> · <span class="src">Brook Landscape</span></div>
+  <div class="ni-desc">The building runs the full block between Dean and Pacific Streets in Boerum Hill, Brooklyn, with 21 apartments, each on a different layout. The massing splits into a four-storey and a six-storey section, answering the R6B and R6A zoning districts respectively. The whole facade is laid by hand, with powder-red mortar in place of the usual white; an expressed soldier course at every floor level throws a horizontal shadow line, stepped corbelling sits above the window heads, and the street corners are rounded. Lightwells puncture the envelope to bring daylight to courtyard-facing units. Brent Buck's stated aim was materials that "exhibit the hand of whoever is installing it," with the building meant to improve with age. Brook Landscape designed the loggias; completion is expected in spring 2027.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">ROOM 401 / Design Order Group, Tayuan compound, Beijing: two crossing load-bearing walls cut 49.6 sqm into three near-identical "quadrants" — the response was to insert a timber box into each one</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (Sept 30)</span> · <span class="src">Design Order Group</span></div>
+  <div class="ni-desc">The apartment is in the Tayuan residential compound near Beijing's North Third Ring Road: 49.6 sqm, completed April 2025 to April 2026. The obstacle in the original plan is structural — two load-bearing walls, one running north–south and one east–west, cross at the center and divide the unit into three almost identical quadrants. The walls cannot move, so occupants pass through narrow openings between them and the space reads as fragmented. Rather than fight the structure, the designers inserted a semi-open timber box into each quadrant: high-density functions (entry, kitchen, bathroom, laundry, storage, work surface) are concentrated inside the boxes, while everything outside stays deliberately loose. Box walls and ceilings are site-fabricated birch plywood; box floors are brown mosaic tile; concrete is hand-polished and left exposed with no dropped ceilings; floors outside the boxes are blue tile, and the brick walls are finished in white latex paint or prefabricated terrazzo depending on whether the zone is wet or dry.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Lilac Apartment / BUREAU, Lisbon: 44 sqm, with the entrance hall turned into the kitchen, the central bedroom into wet areas, and a continuous loop wrapped around the core</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (Sept 30)</span> · <span class="src">BUREAU (Daniel Zamarbide, Carine Pimenta, Galliane Zamarbide)</span></div>
+  <div class="ni-desc">The 44-square-meter apartment in Lisbon was reorganized around movement, light and everyday rituals. The former entrance hall became the kitchen; the bedroom at the center of the plan became the wet areas; and a continuous passage now wraps the core, linking rooms through symmetrical openings so that circulation is a loop rather than a back-and-forth along a corridor. Translucent and mirrored materials are used throughout to build visual depth through reflection and transmission, with the designers citing the fluidity of cinematic space as their reference. This corridor-elimination strategy has been recurring in European apartment retrofits; it reads well alongside casa POP in Madrid, covered in this briefing earlier, which removed every corridor from a 78-square-meter flat.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">NOT A HOTEL AOSHIMA 2.0 / GENERAL DESIGN, Aoshima, Miyazaki: two villas in the second phase, with a 21-meter infinity pool at CHILL 2.0 and ARUP on structure at the schematic stage</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (Sept 30)</span> · <span class="src">GENERAL DESIGN CO., LTD. (schematic design supervision, Shin Ohori)</span> · <span class="src">NOT A HOTEL ARCHITECTS (design)</span> · <span class="src">Maeda Corporation (design development and construction)</span></div>
+  <div class="ni-desc">This is the second phase of the NOT A HOTEL project at Aoshima, Miyazaki Prefecture, comprising two residences: CHILL 2.0, an upper-level maisonette, and COAST, a combined residence. CHILL 2.0 is organized around the distant ocean view and carries a 21-meter infinity pool; COAST sets surf culture alongside garden living, using high ceilings to generate a sense of openness. Both have private pools and outdoor living areas and share an LDK restaurant, a skate park, a basketball court and lawns. Materials are wood, metal, concrete and glass. Schematic design supervision was by Shin Ohori of GENERAL DESIGN, with ARUP on structure at the schematic phase and Maeda Corporation handling construction documents and construction. Floor area and cost have not been disclosed publicly, and this briefing will not speculate.</div>
+</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="urbanism">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div class="sec-text">
+        <span class="sec-name">Urbanism &amp; Planning</span>
+        <span class="sec-en">URBANISM</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6ab8/6a67/701b/1e01/88c7/9d56/large_jpg/citizen-led-campaign-seeks-unesco-status-for-select-pre-colonial-sites-among-capitals-600-plus_1.jpg?1790470766" alt="A pre-Hispanic site in Lima surrounded by contemporary development / 被现代城市包围的利马史前遗址" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label urb">In Depth</span>
+    <div class="ft-title">Not fencing the ruins off, but wiring them into an election: Lima's collective nomination of 600-plus pre-Hispanic sites is a public question about what kind of city this is</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (Sept 28)</span> · <span class="src">El Peruano (two pieces: the nomination initiative and the "Ciudad huaca" commentary)</span> · <span class="src">El Comercio (Lima)</span> · <span class="src">Caretas</span> · <span class="src">ATV Perú</span> · <span class="src">Red Lima Milenaria / Lima Milenaria public materials</span></div>
+    <div class="ft-desc">
+      <p><strong>The facts: a metropolis with six hundred ruins inside it.</strong> Metropolitan Lima holds roughly eleven million people and, within the same boundaries, more than 600 archaeological sites plus a number of pre-Hispanic irrigation canals — some of which still carry water. The campaign is led by Red Lima Milenaria, a citizens' network of archaeologists, historians and cultural activists founded by Javier Lizarzaburu. The first slate of nominated sites includes El Paraíso in San Martín de Porres (c. 2000 BCE), Pucllana in Miraflores (5th century CE), the Campoy fortress in San Juan de Lurigancho (12th century CE) and sections of the roughly 2,000-year-old Surco canal in San Borja. Four sites spanning more than four millennia, distributed across four non-adjacent districts: the composition of that list already tells you what is being proposed. This is not a nomination of a monument. It is a nomination of a condition of distribution.</p>
+      <p><strong>Spatial strategy: rewriting points as a network.</strong> Conventional heritage practice draws a boundary, establishes a buffer zone and isolates the site from the city in order to protect it — which is largely how Lima's huacas (pre-Hispanic adobe platforms and temple mounds) have been handled: a perimeter wall, a cleared lot, and development continuing unchanged around it. The cost of that approach is that the site becomes a void in the urban fabric, neither used nor understood, sustained indefinitely by public money. Red Lima Milenaria's proposal changes the scale and the unit of account. By bundling scattered sites and canals as a serial property, it makes the spatial relationships between them — rather than the integrity of any single site — the core of the case. Technically this follows UNESCO's serial nomination route; in planning terms it means these points would have to enter one metropolitan-scale framework for conservation and use, instead of being disposed of district by district.</p>
+      <p><strong>Conditions and conflicts: urban pressure and a maintenance gap.</strong> ArchDaily summarizes the situation as "intense urban pressure and inadequate maintenance," which is not an abstraction. These adobe structures are wedged between contemporary housing and commercial development and face informal occupation, erosion, dumping and infrastructure cutting through them. Adobe is acutely sensitive to moisture, and maintenance is not cheap in a city under near-permanent coastal fog (garúa). If inscription succeeds, what arrives first is not money but an obligatory management plan and periodic reporting duties — simultaneously a lever and a burden for a municipal system with limited fiscal and administrative capacity. The network's own framing of its goals is correspondingly restrained: improve conservation conditions and public awareness, and get the Peruvian government to formally prepare a nomination dossier.</p>
+      <p><strong>Why the timing sits just before an election.</strong> The initiative was made public deliberately ahead of Peru's municipal and regional elections on October 4, 2026. The network's stated reason is to use the start of a new political cycle to force the question of what place this heritage should occupy in the city model Lima says it wants. That step is worth noting for architecture and planning students: it translates heritage conservation out of the technical remit of a cultural ministry and onto an electoral agenda. Whether a 2,000-year-old canal fragment counts as an obstacle or an asset is, in the end, a political question rather than an archaeological one. For students at Syracuse Architecture, this reads usefully against American cities whose historic neighborhoods were severed by highways: in both cases, survival depends on whether the heritage can be rewritten into the daily operation of the city, not merely onto a list. Note that the submission timetable for the formal dossier and the final list of sites have not been announced by the Peruvian government, and this briefing will not speculate.</p>
+    </div>
+    <a href="https://www.archdaily.com/1185867/citizen-led-campaign-seeks-unesco-status-for-select-pre-colonial-sites-among-capitals-600-plus" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">From mainland China: OoEli International Block Renewal — Slow Flash Park / Kong Architects, Hangzhou: 11 small buildings across 2,000 sqm, retail rotating roughly every three months and F&amp;B every six to nine, on a 1,200-meter pedestrian loop</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (Sept 30)</span> · <span class="src">Kong Architects</span> · <span class="src">OoEli International Block development team (client)</span></div>
+  <div class="ni-desc">The project sits inside Hangzhou's OoEli (Tianmuli) International Block, covers 2,000 sqm and completed in June 2026. The operative term is "slow flash": "slow" for a pedestrian-paced tempo, "flash" for the short tenancy of any individual vendor — retail turns over roughly every three months, food and beverage every six to nine. The 11 small structures are themselves permanent, but they are designed as an editable commercial framework in which tenants rotate and the buildings do not. Timber cladding supplies warmth, glass keeps the ground floor visually permeable, and both are set in dialogue with the fair-faced concrete of the existing buildings. The opening phase brought in 13 brands, more than 60 percent of them regional or city-level flagships; the district's pedestrian loop runs about 1,200 meters. This writes the commercial programming cycle directly into the architectural brief — a different route to renewal than the Yuelang Road block project in the same city, covered yesterday, which worked by narrowing the carriageway.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">L&#39;Aiguilleuse / Studio Téré, Nantes: a 1960s railway signal box becomes a 36-square-meter park kiosk-bar with three facades that fully open, the original clock and signal lights left in place</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (Sept 29)</span> · <span class="src">Studio Téré</span></div>
+  <div class="ni-desc">The 36-square-meter building stands in the Jardins de l&#39;Estuaire park on the Île de Nantes and was originally a 1960s signal box in the Nantes-État railway system, used to control train movements. It now serves as a kiosk-bar with light catering and a place to gather. The conversion opens three facades to the park with bi-fold windows and folding metal shutters, open by day and closed at night; metalwork and joinery are painted a single red-orange as the new identity, while the original clock and railway signal lights are retained and integrated. At night the upper level is lit and works as a landmark in the park. The name L&#39;Aiguilleuse is the feminine form of the French word for a signal operator — part of the intent being to stop the naming of public space defaulting to the masculine.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Counting parks as social infrastructure: AN publishes a signed op-ed by the founder of DAVID RUBIN Land Collective arguing that a park within a ten-minute walk is the floor, not the ambition</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect&#39;s Newspaper (Sept 29, signed commentary)</span> · <span class="src">2023 U.S. Surgeon General advisory on loneliness</span> · <span class="src">Knight Foundation / Kresge Foundation project materials</span> · <span class="src">Robert Wood Johnson Foundation "Winter Cities Toolkit"</span></div>
+  <div class="ni-desc">The author is David A. Rubin, founding principal of the landscape practice DAVID RUBIN Land Collective. His argument starts from the 2023 U.S. Surgeon General advisory documenting loneliness as worse than smoking or obesity as a predictor of premature death, and points one cause directly at the built environment: digital devices, income gaps, and community design that privileges car dependency over walkability. The operational standard he proposes is that residents should reach a park within a ten-minute walk. The projects cited include Land Collective's Commonground at Eskenazi Health Hospital in Indianapolis and a project in Allentown, Pennsylvania, plus Franklin Park in Washington, D.C.; he also points to Knight and Kresge foundation investments in Akron, Lexington, Macon and San Jose, and the Robert Wood Johnson Foundation's "Winter Cities Toolkit" in Buffalo, Eau Claire and Leadville — the last addressing the specific problem of public space going unused for half the year in cold-climate cities. This is a signed opinion piece, not a news report.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Market Street 52 and 52a / MWArchitekten, Hohenems, Austria: one commercial unit and five apartments in 370 sqm, with the first building depth preserved and repaired as a brick-clad timber frame under heritage rules</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (Sept 29)</span> · <span class="src">MWArchitekten (project team Lukas Peter Mähr)</span></div>
+  <div class="ni-desc">The project is on the market street of Hohenems in Vorarlberg, Austria: 370 sqm of usable floor area holding one commercial unit and five apartments, completed in 2026 with an investment volume of about €3 million. The two building depths on the site are treated differently. The street-facing first depth falls under heritage protection, and the existing brick-clad timber frame (Fachwerk) was completely renovated and preserved as a timber structure. The second depth fills a gap in the urban fabric as contemporary infill. The material language pulls the two together: exposed solid-wood ceilings, folding sliding windows, brick cladding, and a Bordeaux-red coating on one storey. It is a small project but a typologically exact one — densification (Nachverdichtung) in the historic core of a European small town, where you can neither start over nor stop adding housing, and the answer usually turns up in the second depth of the same lot.</div>
+</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="materials">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div class="sec-text">
+        <span class="sec-name">Materials &amp; Technology</span>
+        <span class="sec-en">MATERIALS</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6ab2/8648/472c/aa01/8aa1/51b9/large_jpg/stroog-headquarters-mount-fuji-architects-studio_1.jpg?1790084697" alt="Inside the STROOG Headquarters: CLT panels slotted into a three-dimensional lattice / STROOG 总部内部：CLT 板互相开槽插接形成的三维格构" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label mat">In Depth</span>
+    <div class="ft-title">Every panel is both column and beam: the STROOG Headquarters slots 210 mm CLT into itself to get out from under the column grid</div>
+    <div class="ft-meta">Cross-checked: <span class="src">gooood (Sept 30)</span> · <span class="src">ArchDaily project page (Sept 24)</span> · <span class="src">STROOG Co., Ltd. official site (product and headquarters materials)</span> · <span class="src">Architectural Institute of Japan, 2026 Works Award announcement</span> · <span class="src">GA JAPAN 175, "STROOG Headquarters"</span> · <span class="src">MOUNT FUJI ARCHITECTS STUDIO</span></div>
+    <div class="ft-desc">
+      <p><strong>Design concept: don't draw an outline first — set a rule first.</strong> The building is in Toyama Prefecture, Japan: 905.04 sqm site, 494.02 sqm building area, 499.64 sqm total floor area, by MOUNT FUJI ARCHITECTS STUDIO, with structural engineering by KMC (Ken Kamachi) and photography by Ryota Atarashi. The architects' starting point was not a volume but a question: can you build an architectural system with no predetermined outline, one that stays open with respect to both space and time? That ambition is easy to leave at the level of a manifesto — except that the client here is STROOG, a manufacturer of structural timber connectors whose product line covers pinned, rigid, truss and hybrid joints. This building is simultaneously an office and a specification sheet. The joints have to actually work.</p>
+      <p><strong>Structure and material: collapsing column and beam into one component.</strong> The move is to reduce all primary members to a single component family: CLT (cross-laminated timber) panels, uniformly 3,000 mm wide and 210 mm thick, varying in length from 4,500 to 12,000 mm. Slots are cut wherever members intersect, and the panels are assembled into a lattice by knock-down construction. What makes this work is a basic property of CLT: it is built from layers of boards laid at right angles and glued together, so it has strong axes in two perpendicular directions — the same panel stands as a column carrying vertical load and lies as a beam resisting horizontal force. Because it is solid laminated timber, slots can be cut at virtually any position to the nearest millimetre, and the depth at which those slots engage sets the structural span of the joint. Put differently: the rigid frame is not assembled out of added metal hardware, it emerges from the single act of cutting a slot. STROOG's own technical material notes that the headquarters joints use a 45-degree chamfer to maximize connection resistance.</p>
+      <p><strong>Why "beyond the Domino system."</strong> Le Corbusier's 1914 Domino system is one of the starting points of modern architecture because it separates structure from enclosure: columns carry, slabs float, partitions go free. But Domino also leaves a constraint behind — the column grid. Once the column positions are fixed, the freedom of the plan is bounded by that grid. This is precisely what the STROOG Headquarters tries to get around: if every panel is column and beam at once, member positions need not obey a preset module and can be decided locally, space by space. The architects describe the result as a three-dimensional system free of grid-module constraints, and liken the building to an organism capable of continued evolution — knock-down construction means, in principle, that it can later be dismantled, altered and extended. That matters in timber: nailed and glued connections are irreversible, slotted connections are not. The building has received a 2026 Architectural Institute of Japan (AIJ) Works Award.</p>
+      <p><strong>Limits and context: what a 500-square-meter building can prove.</strong> The scale needs stating plainly: 499.64 sqm total floor area is a small office building, not a tower. At this size, loads, fire compartmentation and connection forces in a CLT lattice are far more forgiving than in mid- or large-scale timber construction, and no public source addresses whether the system scales — this briefing will not speculate. What does transfer is the method: covering an entire structural system with one component type, one machining operation (cutting a slot) and one assembly logic (slotting together), shifting complexity from the variety of components to the position of the cut — which is exactly what CNC fabrication is good at. For students at Syracuse Architecture, it reads well against the timber projects covered here earlier: Herzog &amp; de Meuron adding two storeys of Canadian black spruce onto the frame of a Brutalist teaching building takes the route of substituting the material, while the STROOG Headquarters takes the route of rewriting the joint. The first cuts embodied carbon; the second changes where the freedom of the plan comes from. Japan's recent policy push toward mid- and large-scale timber construction also gives a manufacturer-built demonstration like this significance beyond the single building.</p>
+    </div>
+    <a href="https://www.gooood.cn/stroog-headquarters-by-mount-fuji-architects-studio.htm" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">AN announces its 2026 Best of Products Awards: 29 categories, a seven-member jury, and winners including laser-etched bird-safe glass, a toilet claiming 80 percent less water, and a silica-free surface with 85 percent recycled content</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect&#39;s Newspaper (Sept 29, 2026 Best of Products Awards)</span> · <span class="src">Manufacturer product materials (Vitro, Kohler, Caesarstone, Amrize, Fantini, Patkau Studio)</span></div>
+  <div class="ni-desc">The awards span 29 categories across appliances, building materials, finishes, furnishings, hardware, lighting, openings, technology and textiles. The seven-member jury comprised Catherine Johnson (Design, Bitches), industrial designer Henry Julier, Ann Lui (Future Firm), David Rosenwasser (Rarify), Stefanie Shunk (Gensler), Marc Simmons (Front), and AN's Jack Murphy and Kelly Pau. Several winners bear directly on practice: Vitro's BirdSmart Glass (building materials/glass) uses laser etching to create patterns visible to birds and reduce collisions; Kohler's Anthem EvoCycle (bathroom plumbing) claims an 80 percent reduction in water use; Caesarstone's Taj Whisper (interior surfaces) is silica-free with 85 percent recycled content, a direct response to the silicosis crisis among engineered-stone fabricators; and Amrize's MAXtect (stone/concrete) offers an ultra-dense matrix for complex facades. Fantini's Flora line, designed by Vincent Van Duysen, won in bathroom fixtures, and Patkau Studio's Mineral Maitake modular curvilinear table system took residential furnishings.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">From mainland China: the second Future Timber Architecture Design Competition opens with Liu Jiakun, Dong Gong and Luo Yujie as principal jurors, a ¥500,000 professional prize pool, and registration closing October 23</div>
+  <div class="ni-meta">Sources: <span class="src">gooood (Sept 29, competition announcement)</span> · <span class="src">Hefei Jiuwucang Architectural Assembly Technology Co., Ltd. (organizer)</span> · <span class="src">Yizhu Yishi · Luhu A8 Design Center (co-organizers)</span></div>
+  <div class="ni-desc">The competition is jointly initiated by Hefei Jiuwucang Architectural Assembly Technology Co., Ltd., Yizhu Yishi and Luhu·A8 Design Center, and is the second edition (the first ran June to August 2025). This year's theme, "Fantastic Journey in a House," is framed as an attempt to pull timber construction out of its habitual mountain-retreat setting and test it across a wider range of scenarios. Liu Jiakun, Dong Gong and Luo Yujie serve as principal jurors, alongside 20 industry panelists drawn from media, commercial operations and brand innovation. The schedule: registration closes October 23, 2026 at 12:00 Beijing time; preliminary submissions November 23; final submissions December 28 for students and January 13, 2027 for professionals. There are two tracks — professional (open to architects, designers and firms worldwide) and university student (proof of enrollment required). Prizes total ¥500,000 for the professional track with 10 finalists selected; the student track totals ¥26,000, with ¥10,000 for first place, ¥5,000 for each second place and ¥2,000 for each third. For students, it is a well-defined timber brief with a clearly stated jury.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Forty-one architecture student volunteers, eleven days, and the salvaged timber of a roughly 60-year-old classroom: a hand-built school toilet in Suphanburi, Thailand</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (Sept 28)</span> · <span class="src">SEP (lead studio)</span> · <span class="src">Song Phi Nong Primary School (client)</span></div>
+  <div class="ni-desc">The project is at Song Phi Nong Primary School in Suphanburi Province, Thailand, led by the design studio SEP and built by 41 architecture student volunteers working with local craftsmen over eleven days. All material came from timber salvaged from the school's original Chinese-style classroom, roughly 60 years old, and every component was fabricated by hand. The brief was explicitly pedagogical rather than purely charitable: it covered sanitary design and plumbing systems, material reuse, and how to respond to specific site conditions such as tree shade and natural airflow. The construction process itself carried an exchange of skills across generations — students learning hand joinery, craftsmen working with a redesigned assembly. Floor area and cost have not been disclosed publicly, and this briefing will not speculate. Short-cycle volunteer design-build workshops are a well-established tradition in Southeast Asia, and their value usually lies less in the finished object than in handing the questions of where material comes from and who installs it back to students.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">A continuous gridshell of 66 engineered lumber profiles: photographer David Altrath revisits the Autobahnkirche Siegerland beside Germany's A45, completed in 2013 by schneider+schumacher</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (Sept 30)</span> · <span class="src">David Altrath (photography)</span> · <span class="src">schneider+schumacher</span></div>
+  <div class="ni-desc">The chapel stands beside the A45 motorway at Wilnsdorf, Germany, completed in 2013 by schneider+schumacher as a rest and contemplation stop for long-distance drivers. The exterior is a folded white volume with two pointed spires — the architects translated the generic pictogram of a church directly into three-dimensional form so that it registers instantly at motorway speed. The interior is another matter: a vaulted gridshell of 66 engineered lumber profiles curves continuously from walls into ceiling, producing a dense geometric pattern, with daylight entering through roof openings and skylights inside the spires. Altrath's new series is built precisely around that contrast — a minimal white geometry outside, an extremely dense timber texture inside, and light performing the transition between them. For students it is a constructional case worth studying on its own terms: how a sign-like exterior and a rational shell structure coexist within one small building.</div>
+</div>
+</div></div></div>
+  </section>
+
+  <section class="sec" id="academia">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <div class="sec-text">
+        <span class="sec-name">Academia &amp; Exhibitions</span>
+        <span class="sec-en">ACADEMIA</span>
+      </div>
+      <span class="sec-line"></span>
+    </div>
+    <div class="sec-inner"><article class="ft">
+  <img class="ft-img" src="https://images.adsttc.com/media/images/6abc/16ea/b2b8/9801/8835/a20e/large_jpg/the-luxembourg-pavilion-examines-overconsumption-of-living-space-through-excess-at-the-2027-venice-architecture-biennale_1.jpg?1790711552" alt="Excess!, the Luxembourg Pavilion proposal for the 2027 Venice Architecture Biennale / 卢森堡馆 2027 年威尼斯建筑双年展方案" loading="lazy" onerror="this.style.display='none'">
+  <div class="ft-body">
+    <span class="ft-label aca">In Depth</span>
+    <div class="ft-title">Redefining the housing crisis as a problem of excess: the Luxembourg Pavilion argues it in Venice in 2027 through Europe's wealthiest country and Vietnam</div>
+    <div class="ft-meta">Cross-checked: <span class="src">ArchDaily (Sept 30)</span> · <span class="src">e-flux Announcements (curatorial statement)</span> · <span class="src">Kultur | lx – Arts Council Luxembourg Biennale page</span> · <span class="src">Luxembourg Ministry of Culture (commissioner)</span> · <span class="src">designboom (Nov 26, 2025, chief curators announced)</span> · <span class="src">La Biennale di Venezia official calendar</span></div>
+    <div class="ft-desc">
+      <p><strong>The premise: not "too little," but "too much."</strong> The Luxembourg national pavilion has announced its participation in the 20th Venice International Architecture Exhibition under the title "Excess! On the Overconsumption of Living Space." The framing is itself a position. Public debate about the housing crisis runs overwhelmingly on a narrative of shortage — insufficient supply, too few starts, permitting too slow. This proposal turns the camera 180 degrees. It addresses the inequitable distribution of living space between people, and treats that inequity as a reflection of "broader habits of excess that contribute to the current housing and ecological crises." In other words: the problem is not only that some people live in too little, but that others occupy too much — and the second is simultaneously an ecological problem, because every square meter corresponds to material, heating and cooling, and land.</p>
+      <p><strong>The curators: a housing researcher plus a Hanoi-based critical spatial practice.</strong> The three curators are Céline Zimmer, a Luxembourgish housing researcher and activist who founded Eist Neit Wunnen Agence in 2026 to promote cooperative housing models; and Bùi Quý Sơn and Paul-Antoine Lucas, who co-founded Exutoire in Hanoi in 2019 — a critical spatial practice working on housing and social justice through design, and one of the winners of ArchDaily's 2026 Next Practices Awards. ArchDaily reports that the team's perspectives are rooted in housing systems, social justice design and queer architectural theory. That combination tells you something about method: this is unlikely to be an exhibition of models and drawings, and much more likely to be an argument built from data, institutions and lived scenarios.</p>
+      <p><strong>Why Luxembourg and Vietnam.</strong> The pairing is not arbitrary. Luxembourg is among the wealthiest countries in Europe per capita, with a correspondingly high per-capita housing floor area; Vietnam is one of Southeast Asia's fastest-growing economies, with housing forms and consumption levels changing rapidly. Setting them side by side strips the question of how much space is enough of its apparent self-evidence — the same floor-area figure means entirely different things across two income levels, two climates, two household structures and two land systems. That, for architecture students, is the most instructive thing about the proposal: it declines to treat the housing crisis as a design brief (smaller units, leaner construction) and instead puts the measure itself under examination. Note that the exhibition design and the comparative data for the two countries have not yet been disclosed publicly, and this briefing will not speculate.</p>
+      <p><strong>Dates, place, and the larger frame.</strong> The 20th Venice International Architecture Exhibition runs May 8 to November 21, 2027, under the overall theme "Do Architecture — For the Possibility of Coexistence Facing a Real Reality," curated by Wang Shu and Lu Wenyu of Amateur Architecture Studio. The Luxembourg Pavilion occupies the first floor of the Sale d'Armi in the Arsenale, commissioned by Luxembourg's Ministry of Culture and delivered through Kultur | lx – Arts Council Luxembourg. Read the two layers together and the logic is clear: a Biennale organized around coexistence, with one of its national pavilions choosing to examine the over-occupation of living space. For students planning to apply for or follow the 2027 season, now is the point at which to start tracking national pavilion proposals.</p>
+    </div>
+    <a href="https://www.archdaily.com/1186027/the-luxembourg-pavilion-examines-overconsumption-of-living-space-through-excess-at-the-2027-venice-architecture-biennale" class="ft-link" target="_blank" rel="noopener">Read more →</a>
+  </div>
+</article><div class="ngrid"><div class="ngrid"><div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">LACMA's "Home of the Future, 1925–1985: Designing Domestic Utopias" opened September 27 with more than 260 objects, running through March 14, 2027</div>
+  <div class="ni-meta">Sources: <span class="src">designboom (Sept 30)</span> · <span class="src">Los Angeles County Museum of Art, official exhibition listing</span></div>
+  <div class="ni-desc">Curated by Wendy Kaplan, department head and curator of Decorative Arts and Design at LACMA, the exhibition occupies the Resnick Pavilion from September 27, 2026 to March 14, 2027 and gathers more than 260 objects and images. It lines up six decades of American promises about the future of the home: Kohler's 1926 Electric Sink, Monsanto's House of the Future (1956), the Eameses' Case Study House #8 (1949), the first Barbie Dream House (c. 1962), Paul László's Atomville, U.S.A. (1950), Rick Guidice's 1975 NASA habitat paintings, AT&amp;T's Picturephone from the 1964 New York World's Fair, and the early-1980s smart homes Ahwatukee and Xanadu. The arc runs from the mechanized kitchen to the computerized house — which is to say, it is a history of commercialized promises.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Norman Foster will give the keynote at the Dezeen Awards 2026 party at the Royal Opera House in London on November 16; this year's 392 shortlisted projects were drawn from more than 4,300 entries across 91 countries, with public voting closing October 16</div>
+  <div class="ni-meta">Sources: <span class="src">Dezeen (Sept 30, keynote announcement)</span> · <span class="src">Dezeen (Sept 17, master jury announced)</span> · <span class="src">Dezeen (Sept 28, public vote opens)</span> · <span class="src">Engineers and Architects of America (syndication)</span></div>
+  <div class="ni-desc">All Dezeen Awards 2026 winners will be announced at the awards party at the Royal Opera House in London on November 16, 2026, where British architect Norman Foster will deliver a keynote on the future of architecture. Foster also sits on this year's architecture master jury alongside Annabelle Selldorf, Daniel Libeskind, Ma Yansong and Amanda Levete. The shortlist comprises 392 projects selected from more than 4,300 entries across 91 countries, revealed in three tranches (architecture, interiors, design). Public voting is now open across all three sectors and closes October 16. Note: dezeen.com returns HTTP 403 to non-browser requests, so this item was cross-checked against Dezeen's public page titles, search summaries and third-party syndication, and no image could be retrieved for it in this issue.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">Three months after opening, "the world's first Museum of AI Arts" gets an unsparing review: AN's critic asks whether DATALAND celebrates nature or data extraction</div>
+  <div class="ni-meta">Sources: <span class="src">The Architect&#39;s Newspaper (Sept 29, review by Shane Reiner-Roth)</span> · <span class="src">Refik Anadol Studio (exhibition production)</span> · <span class="src">Grand LA (building, designed by Frank Gehry)</span></div>
+  <div class="ni-desc">DATALAND occupies 25,000 square feet on the ground floor of the Grand LA complex in Los Angeles — Frank Gehry's building, across from Walt Disney Concert Hall — and opened on June 20, 2026 with investment from Google, LG and Nvidia and exhibitions developed by Refik Anadol Studio. The inaugural show, "Machine Dreams: Rainforest," runs through January 31, 2027 across three galleries: the Data Pavilion (claiming 1.2 billion ecological data points), the Infinity Room (made in partnership with the Yawanawá community in Brazil), and The Sanctuary (which tracks visitor movement and feeds it into a floral visualization). AN critic Shane Reiner-Roth's objections are threefold: whether the museum celebrates nature or data extraction; that the installation "listens" only on its own terms; and that the whole experience rests on a massive energy infrastructure while the gift shop commodifies visitor data, further undermining its artistic claims. This is a signed review, not a news report.</div>
+</div>
+<div class="ni"><div class="ni-accent"></div>
+  <div class="ni-title">The Buenos Aires International Architecture Biennial turns 40 in its 20th edition: the theme is HABITAR, running five weeks from September 22 with roughly 100 firms, 15 exhibitions and 50 conferences, all free</div>
+  <div class="ni-meta">Sources: <span class="src">ArchDaily (Sept 30, "Latin America in Focus" monthly round-up)</span> · <span class="src">ArchDaily China (Biennial coverage)</span> · <span class="src">Design Week Mexico official calendar</span></div>
+  <div class="ni-desc">The Bienal Internacional de Arquitectura de Buenos Aires marks its 40th anniversary and 20th edition under the theme HABITAR (Inhabit), running five weeks from September 22 across more than 55 cities, with roughly 100 firms participating, 15 exhibitions and 50 conferences, all free to attend. The same round-up lists several other Latin American dates for October: Oficios en Obra in Valparaíso, Chile (October 9–11), on the relationship between traditional building trades such as carpentry and rammed earth and sustainable practice; and Design Week Mexico (October 5–11, 18th edition), with Chile as Guest Country of Honor. For students planning exchange or research in Latin America, this cluster is the main window in October.</div>
+</div>
+</div></div></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr-brand">Luxiansheng Architecture Daily</div>
+  Cross-verified · Case Depth · Visual First<br>
+  <div style="margin-top:12px"><a href="index.html" style="color:#fff;opacity:.85;font-weight:800;letter-spacing:1px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)">ARCHIVE / 往期目录</a></div>
+  <span style="opacity:.3">Auto-generated · Content for reference only</span>
+</footer>
+
+</div>
+
+<button class="btt" id="btt" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){
+  var prog = document.getElementById('prog');
+  var btt = document.getElementById('btt');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog) prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      if (btt) btt.classList.toggle('on', window.scrollY > 500);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) map[el.id] = a;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('here'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('here');
+      });
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+
+  // 点图看大图（原图通常比版面里的大得多）
+  var lbx = document.createElement('div');
+  lbx.className = 'lbx';
+  lbx.innerHTML = '<img alt=""><div class="lbx-tip">点击任意处关闭 · Click anywhere to close</div>';
+  document.body.appendChild(lbx);
+  var lbxImg = lbx.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && /\b(hl-img|ft-img)\b/.test(t.className || '') && t.naturalWidth > 0) {
+      lbxImg.src = t.currentSrc || t.src;
+      lbx.classList.add('on');
+    } else if (lbx.classList.contains('on')) {
+      lbx.classList.remove('on');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') lbx.classList.remove('on');
+  });
+})();
+</script>
+</body>
+</html>
